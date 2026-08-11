@@ -1174,3 +1174,56 @@ img {
     scroll-behavior: auto !important;
   }
 }
+/* =========================================================
+   CORREÇÃO FINAL — TÍTULO MOBILE
+   ========================================================= */
+
+@media screen and (max-width: 600px) {
+
+  .hero h1,
+  .hero h1 span {
+    width: 100% !important;
+    max-width: 100% !important;
+
+    font-size: 30px !important;
+    line-height: .92 !important;
+
+    letter-spacing: -1.2px !important;
+
+    white-space: normal !important;
+    overflow: visible !important;
+
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+
+    display: block !important;
+  }
+
+  .hero-conteudo {
+    width: calc(100% - 44px) !important;
+    max-width: 100% !important;
+
+    margin-left: 22px !important;
+    margin-right: 22px !important;
+  }
+
+  .hero h1::after {
+    width: 100% !important;
+  }
+
+}
+
+
+/* =========================================================
+   CELULARES MUITO PEQUENOS
+   ========================================================= */
+
+@media screen and (max-width: 380px) {
+
+  .hero h1,
+  .hero h1 span {
+    font-size: 27px !important;
+    letter-spacing: -1px !important;
+  }
+
+}
