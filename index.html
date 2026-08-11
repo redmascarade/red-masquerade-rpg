@@ -8,10 +8,6 @@
   <title>Red Masquerade</title>
 
   <style>
-    /* =========================================================
-       RED MASQUERADE — HOME
-       ========================================================= */
-
     * {
       box-sizing: border-box;
       margin: 0;
@@ -20,7 +16,6 @@
 
     :root {
       --black: #050405;
-      --black-soft: #0b0809;
       --wine: #26070d;
       --red: #8e1f32;
       --red-light: #bd3048;
@@ -44,24 +39,14 @@
       font-family: Georgia, "Times New Roman", serif;
     }
 
-    button,
-    a {
-      font: inherit;
-    }
-
-    button {
-      border: 0;
-    }
-
     a {
       color: inherit;
       text-decoration: none;
     }
 
-
-    /* =========================================================
-       FUNDO
-       ========================================================= */
+    button {
+      font: inherit;
+    }
 
     .site {
       position: relative;
@@ -69,6 +54,7 @@
       height: 100vh;
       min-height: 600px;
       overflow: hidden;
+
       background:
         radial-gradient(
           circle at 72% 48%,
@@ -83,6 +69,10 @@
         var(--black);
     }
 
+    /* =====================================================
+       RUÍDO
+       ===================================================== */
+
     .noise {
       position: absolute;
       inset: 0;
@@ -94,22 +84,25 @@
         url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
     }
 
-
-    /* =========================================================
-       LUZ QUE SEGUE O MOUSE / TOQUE
-       ========================================================= */
+    /* =====================================================
+       LUZ INTERATIVA
+       ===================================================== */
 
     .cursor-light {
       position: absolute;
+
       width: 420px;
       height: 420px;
+
       left: var(--mouse-x, 70%);
       top: var(--mouse-y, 50%);
+
       transform: translate(-50%, -50%);
 
-      border-radius: 50%;
       pointer-events: none;
       z-index: 1;
+
+      border-radius: 50%;
 
       background:
         radial-gradient(
@@ -120,15 +113,15 @@
         );
 
       filter: blur(10px);
+
       transition:
         left .35s ease-out,
         top .35s ease-out;
     }
 
-
-    /* =========================================================
-       CÍRCULOS DECORATIVOS
-       ========================================================= */
+    /* =====================================================
+       CÍRCULOS
+       ===================================================== */
 
     .orbit {
       position: absolute;
@@ -140,6 +133,7 @@
     .orbit-one {
       width: 760px;
       height: 760px;
+
       right: -290px;
       top: 8%;
 
@@ -151,6 +145,7 @@
     .orbit-two {
       width: 470px;
       height: 470px;
+
       right: -130px;
       top: 27%;
 
@@ -162,6 +157,7 @@
     .orbit-three {
       width: 250px;
       height: 250px;
+
       right: 2%;
       top: 38%;
 
@@ -180,13 +176,13 @@
       }
     }
 
-
-    /* =========================================================
+    /* =====================================================
        CABEÇALHO
-       ========================================================= */
+       ===================================================== */
 
     .topo {
       position: absolute;
+
       top: 0;
       left: 0;
 
@@ -218,7 +214,6 @@
 
       color: var(--cream);
 
-      font-family: Georgia, serif;
       font-size: 16px;
       font-weight: bold;
 
@@ -231,6 +226,7 @@
       content: "";
 
       position: absolute;
+
       left: 0;
       bottom: -7px;
 
@@ -260,6 +256,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+
       gap: 6px;
 
       color: var(--cream);
@@ -293,10 +290,9 @@
       transform: translateY(-2px);
     }
 
-
-    /* =========================================================
-       CARTAS FLUTUANTES
-       ========================================================= */
+    /* =====================================================
+       CARTAS
+       ===================================================== */
 
     .cards {
       position: absolute;
@@ -367,6 +363,7 @@
       white-space: nowrap;
 
       font-family: Arial, sans-serif;
+
       font-size: 5px;
       letter-spacing: 2px;
 
@@ -451,10 +448,9 @@
       }
     }
 
-
-    /* =========================================================
+    /* =====================================================
        MÁSCARA
-       ========================================================= */
+       ===================================================== */
 
     .mask-area {
       position: absolute;
@@ -615,10 +611,9 @@
       }
     }
 
-
-    /* =========================================================
-       CONTEÚDO PRINCIPAL
-       ========================================================= */
+    /* =====================================================
+       HERO
+       ===================================================== */
 
     .hero {
       position: relative;
@@ -667,12 +662,12 @@
     .hero h1 {
       position: relative;
 
-      width: max-content;
+      width: 100%;
       max-width: 100%;
 
-      font-size: clamp(62px, 8vw, 116px);
+      font-size: clamp(60px, 8vw, 116px);
 
-      line-height: .78;
+      line-height: .82;
 
       letter-spacing: -5px;
 
@@ -686,15 +681,12 @@
 
     .hero h1 .red {
       display: block;
-
       color: var(--cream);
     }
 
     .hero h1 .masquerade {
       display: block;
-
       color: var(--gold);
-
       margin-left: -4px;
     }
 
@@ -705,7 +697,6 @@
       bottom: -12px;
 
       width: 55%;
-
       height: 1px;
 
       background:
@@ -780,7 +771,6 @@
       position: absolute;
 
       left: -110%;
-
       top: 0;
 
       width: 100%;
@@ -788,7 +778,8 @@
 
       background: var(--gold);
 
-      transition: left .45s cubic-bezier(.7,0,.2,1);
+      transition:
+        left .45s cubic-bezier(.7,0,.2,1);
 
       z-index: -1;
     }
@@ -826,10 +817,9 @@
       }
     }
 
-
-    /* =========================================================
+    /* =====================================================
        PARTÍCULAS
-       ========================================================= */
+       ===================================================== */
 
     .particles {
       position: absolute;
@@ -885,10 +875,9 @@
       }
     }
 
-
-    /* =========================================================
+    /* =====================================================
        TRANSIÇÃO
-       ========================================================= */
+       ===================================================== */
 
     .transition {
       position: fixed;
@@ -911,10 +900,9 @@
       pointer-events: auto;
     }
 
-
-    /* =========================================================
-       RESPONSIVO
-       ========================================================= */
+    /* =====================================================
+       TABLET
+       ===================================================== */
 
     @media (max-width: 900px) {
 
@@ -938,8 +926,12 @@
       .mask-area {
         right: -90px;
         top: 54%;
+
         opacity: .3;
-        transform: translateY(-50%) scale(.8);
+
+        transform:
+          translateY(-50%)
+          scale(.8);
       }
 
       .hero-content {
@@ -948,6 +940,9 @@
       }
     }
 
+    /* =====================================================
+       CELULAR
+       ===================================================== */
 
     @media (max-width: 600px) {
 
@@ -976,31 +971,53 @@
 
       .hero-content {
         width: 86%;
-
         margin-left: 7%;
-
         padding-top: 30px;
       }
 
       .eyebrow {
         font-size: 10px;
         letter-spacing: 5px;
-
         margin-bottom: 20px;
       }
 
+      /*
+       * CORREÇÃO PRINCIPAL DO TÍTULO
+       */
+
       .hero h1 {
-        font-size: clamp(55px, 16vw, 78px);
+        width: 100%;
+        max-width: 100%;
 
-        line-height: .82;
+        font-size: clamp(48px, 14vw, 68px);
 
-        letter-spacing: -3px;
+        line-height: .84;
 
-        max-width: none;
+        letter-spacing: -2px;
+
+        overflow: visible;
+      }
+
+      .hero h1 .red,
+      .hero h1 .masquerade {
+        display: block;
+        width: 100%;
       }
 
       .hero h1 .masquerade {
-        margin-left: 0;
+        font-size: .88em;
+        letter-spacing: -2px;
+
+        /*
+         * Impede o MASQUERADE
+         * de escapar da tela.
+         */
+        white-space: nowrap;
+      }
+
+      .title-line {
+        bottom: -10px;
+        width: 52%;
       }
 
       .subtitle {
@@ -1059,7 +1076,9 @@
         left: -45px;
         top: 26%;
 
-        transform: rotate(-18deg) scale(.6);
+        transform:
+          rotate(-18deg)
+          scale(.6);
 
         opacity: .2;
       }
@@ -1068,7 +1087,9 @@
         right: -40px;
         top: 25%;
 
-        transform: rotate(17deg) scale(.6);
+        transform:
+          rotate(17deg)
+          scale(.6);
 
         opacity: .18;
       }
@@ -1077,7 +1098,9 @@
         left: -40px;
         bottom: 10%;
 
-        transform: rotate(12deg) scale(.5);
+        transform:
+          rotate(12deg)
+          scale(.5);
 
         opacity: .16;
       }
@@ -1086,7 +1109,9 @@
         right: -40px;
         bottom: 9%;
 
-        transform: rotate(-12deg) scale(.55);
+        transform:
+          rotate(-12deg)
+          scale(.55);
 
         opacity: .16;
       }
@@ -1097,42 +1122,49 @@
       }
     }
 
+    /* =====================================================
+       CELULARES MAIS BAIXOS
+       ===================================================== */
+
     @media (max-height: 700px) and (max-width: 600px) {
 
       .hero-content {
-        padding-top: 50px;
+        padding-top: 45px;
       }
 
       .eyebrow {
-        margin-bottom: 15px;
+        margin-bottom: 14px;
       }
 
       .hero h1 {
-        font-size: 54px;
+        font-size: 51px;
+      }
+
+      .hero h1 .masquerade {
+        font-size: .86em;
       }
 
       .subtitle {
-        margin-top: 27px;
+        margin-top: 26px;
         font-size: 16px;
       }
 
       .enter {
-        margin-top: 25px;
+        margin-top: 24px;
         height: 52px;
       }
     }
   </style>
 </head>
 
-
 <body>
 
   <div class="site">
 
-    <!-- LUZ INTERATIVA -->
+    <!-- LUZ -->
     <div class="cursor-light"></div>
 
-    <!-- RUÍDO CINEMATOGRÁFICO -->
+    <!-- RUÍDO -->
     <div class="noise"></div>
 
     <!-- CÍRCULOS -->
@@ -1143,28 +1175,17 @@
     <!-- PARTÍCULAS -->
     <div class="particles" id="particles"></div>
 
-
-    <!-- =====================================================
-         CARTAS
-         ===================================================== -->
-
+    <!-- CARTAS -->
     <div class="cards">
 
       <div class="card card-1"></div>
-
       <div class="card card-2"></div>
-
       <div class="card card-3"></div>
-
       <div class="card card-4"></div>
 
     </div>
 
-
-    <!-- =====================================================
-         MÁSCARA
-         ===================================================== -->
-
+    <!-- MÁSCARA -->
     <div class="mask-area">
 
       <div class="mask-glow"></div>
@@ -1179,11 +1200,7 @@
 
     </div>
 
-
-    <!-- =====================================================
-         HEADER
-         ===================================================== -->
-
+    <!-- CABEÇALHO -->
     <header class="topo">
 
       <a href="index.html" class="logo">
@@ -1204,11 +1221,7 @@
 
     </header>
 
-
-    <!-- =====================================================
-         HERO
-         ===================================================== -->
-
+    <!-- HOME -->
     <main class="hero">
 
       <div class="hero-content">
@@ -1216,7 +1229,6 @@
         <p class="eyebrow">
           MOSCOW · RUSSIA
         </p>
-
 
         <h1>
 
@@ -1232,31 +1244,26 @@
 
         </h1>
 
-
         <p class="subtitle">
           Um universo de histórias, segredos,
           escolhas e consequências.
         </p>
-
 
         <a
           href="fraternidades.html"
           class="enter"
           id="enterBtn"
         >
-
           <span>
             ENTRAR NO UNIVERSO
           </span>
-
         </a>
 
       </div>
 
     </main>
 
-
-    <!-- TRANSIÇÃO DE PÁGINA -->
+    <!-- TRANSIÇÃO -->
     <div
       class="transition"
       id="transition"
@@ -1267,9 +1274,9 @@
 
   <script>
 
-    /* =========================================================
+    /* =====================================================
        PARTÍCULAS
-       ========================================================= */
+       ===================================================== */
 
     const particleContainer =
       document.getElementById("particles");
@@ -1300,9 +1307,9 @@
     }
 
 
-    /* =========================================================
-       MOVIMENTO DO MOUSE
-       ========================================================= */
+    /* =====================================================
+       MOUSE
+       ===================================================== */
 
     const site =
       document.querySelector(".site");
@@ -1313,89 +1320,86 @@
     const maskArea =
       document.querySelector(".mask-area");
 
-    let mouseX = 70;
-    let mouseY = 50;
+
+    document.addEventListener(
+      "mousemove",
+      (event) => {
+
+        const mouseX =
+          (event.clientX / window.innerWidth) * 100;
+
+        const mouseY =
+          (event.clientY / window.innerHeight) * 100;
+
+        site.style.setProperty(
+          "--mouse-x",
+          mouseX + "%"
+        );
+
+        site.style.setProperty(
+          "--mouse-y",
+          mouseY + "%"
+        );
 
 
-    document.addEventListener("mousemove", (event) => {
+        const centerX =
+          window.innerWidth / 2;
 
-      mouseX =
-        (event.clientX / window.innerWidth) * 100;
+        const centerY =
+          window.innerHeight / 2;
 
-      mouseY =
-        (event.clientY / window.innerHeight) * 100;
+        const moveX =
+          (event.clientX - centerX) / centerX;
 
-      site.style.setProperty(
-        "--mouse-x",
-        mouseX + "%"
-      );
-
-      site.style.setProperty(
-        "--mouse-y",
-        mouseY + "%"
-      );
+        const moveY =
+          (event.clientY - centerY) / centerY;
 
 
-      /*
-       * Pequeno movimento das cartas.
-       */
+        cards.forEach(
+          (card, index) => {
 
-      const centerX =
-        window.innerWidth / 2;
+            const strength =
+              5 + index * 2;
 
-      const centerY =
-        window.innerHeight / 2;
+            card.style.marginLeft =
+              (moveX * strength) + "px";
 
-      const moveX =
-        (event.clientX - centerX) / centerX;
+            card.style.marginTop =
+              (moveY * strength) + "px";
 
-      const moveY =
-        (event.clientY - centerY) / centerY;
-
-
-      cards.forEach((card, index) => {
-
-        const strength =
-          5 + index * 2;
-
-        card.style.marginLeft =
-          (moveX * strength) + "px";
-
-        card.style.marginTop =
-          (moveY * strength) + "px";
-
-      });
+          }
+        );
 
 
-      /*
-       * Movimento sutil da máscara.
-       */
+        maskArea.style.marginLeft =
+          (moveX * 7) + "px";
 
-      maskArea.style.marginLeft =
-        (moveX * 7) + "px";
+        maskArea.style.marginTop =
+          (moveY * 5) + "px";
 
-      maskArea.style.marginTop =
-        (moveY * 5) + "px";
-    });
+      }
+    );
 
 
-    /* =========================================================
-       TOQUE NO CELULAR
-       ========================================================= */
+    /* =====================================================
+       TOQUE
+       ===================================================== */
 
     document.addEventListener(
       "touchmove",
       (event) => {
 
-        if (!event.touches.length) return;
+        if (!event.touches.length) {
+          return;
+        }
 
         const touch =
           event.touches[0];
 
-        mouseX =
+        const mouseX =
           (touch.clientX / window.innerWidth) * 100;
 
-        mouseY =
+        const mouseY =
           (touch.clientY / window.innerHeight) * 100;
 
         site.style.setProperty(
@@ -1409,13 +1413,15 @@
         );
 
       },
-      { passive: true }
+      {
+        passive: true
+      }
     );
 
 
-    /* =========================================================
-       EFEITO DO BOTÃO ENTRAR
-       ========================================================= */
+    /* =====================================================
+       BOTÃO ENTRAR
+       ===================================================== */
 
     const enterBtn =
       document.getElementById("enterBtn");
@@ -1435,48 +1441,53 @@
 
         transition.classList.add("active");
 
-        setTimeout(() => {
-
-          window.location.href =
-            destination;
-
-        }, 700);
+        setTimeout(
+          () => {
+            window.location.href =
+              destination;
+          },
+          700
+        );
 
       }
     );
 
 
-    /* =========================================================
+    /* =====================================================
        MENU
-       ========================================================= */
+       ===================================================== */
 
     const menuBtn =
       document.getElementById("menuBtn");
+
 
     menuBtn.addEventListener(
       "click",
       () => {
 
-        /*
-         * Por enquanto o botão dá um pequeno
-         * efeito visual. Depois vamos transformar
-         * este botão no menu completo do universo.
-         */
-
         menuBtn.classList.toggle("active");
 
-        menuBtn.style.transform =
+        if (
           menuBtn.classList.contains("active")
-            ? "rotate(90deg)"
-            : "";
+        ) {
+
+          menuBtn.style.transform =
+            "rotate(90deg)";
+
+        } else {
+
+          menuBtn.style.transform =
+            "";
+
+        }
 
       }
     );
 
 
-    /* =========================================================
-       EFEITO DE ENTRADA
-       ========================================================= */
+    /* =====================================================
+       LOAD
+       ===================================================== */
 
     window.addEventListener(
       "load",
