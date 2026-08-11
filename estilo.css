@@ -194,8 +194,13 @@ body {
   }
 
   .hero h1 {
-    font-size: 60px;
-    letter-spacing: -2px;
+    font-size: 48px;
+    line-height: .9;
+    letter-spacing: -1px;
+  }
+
+  .hero h1 span {
+    display: block;
   }
 
   .subtitulo {
@@ -207,4 +212,4 @@ body {
     width: 100%;
   }
 
-    }
+}
