@@ -2,14 +2,21 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#070607">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
+
+<meta name="theme-color" content="#060506">
+
 <title>Red Masquerade</title>
 
 <style>
+
 /* =========================================================
-   RED MASQUERADE — SITE COMPLETO
-   Tudo neste arquivo: HTML + CSS + JavaScript
+   RED MASQUERADE
+   VERSÃO RESPONSIVA
    ========================================================= */
 
 :root {
@@ -30,18 +37,41 @@
   padding: 0;
 }
 
-html,
-body {
+html {
   width: 100%;
-  height: 100%;
-  overflow: hidden;
+  min-width: 0;
+  max-width: 100%;
+  background: var(--black);
+  overflow-x: hidden;
 }
 
 body {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 100vh;
+
+  overflow-x: hidden;
+
   background: var(--black);
   color: var(--cream);
-  font-family: Georgia, "Times New Roman", serif;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
 }
+
+button,
+a {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 
 /* =========================================================
    FUNDO
@@ -49,9 +79,12 @@ body {
 
 body::before {
   content: "";
+
   position: fixed;
   inset: 0;
+
   pointer-events: none;
+
   z-index: 0;
 
   background:
@@ -67,6 +100,7 @@ body::before {
     );
 }
 
+
 /* =========================================================
    PARTÍCULAS
    ========================================================= */
@@ -74,22 +108,31 @@ body::before {
 .particles {
   position: fixed;
   inset: 0;
-  pointer-events: none;
+
   overflow: hidden;
+  pointer-events: none;
+
   z-index: 1;
 }
 
 .particle {
   position: absolute;
+
   width: 2px;
   height: 2px;
-  background: var(--gold-light);
+
   border-radius: 50%;
+
+  background: var(--gold-light);
+
   opacity: .45;
-  animation: floatParticle linear infinite;
+
+  animation:
+    floatParticle linear infinite;
 }
 
 @keyframes floatParticle {
+
   from {
     transform: translateY(110vh);
     opacity: 0;
@@ -109,58 +152,86 @@ body::before {
   }
 }
 
+
 /* =========================================================
-   CÍRCULOS DECORATIVOS
+   CÍRCULOS
    ========================================================= */
 
 .circle {
   position: fixed;
+
   border-radius: 50%;
+
   pointer-events: none;
+
   z-index: 1;
 }
 
 .circle-one {
   width: 760px;
   height: 760px;
+
   right: -350px;
   top: 25%;
-  border: 1px solid rgba(182,154,99,.16);
-  animation: rotateSlow 25s linear infinite;
+
+  border:
+    1px solid
+    rgba(182,154,99,.16);
+
+  animation:
+    rotateSlow 25s linear infinite;
 }
 
 .circle-two {
   width: 510px;
   height: 510px;
+
   right: -150px;
   top: 39%;
-  border: 1px solid rgba(155,38,56,.25);
-  animation: rotateReverse 19s linear infinite;
+
+  border:
+    1px solid
+    rgba(155,38,56,.25);
+
+  animation:
+    rotateReverse 19s linear infinite;
 }
 
 .circle-three {
   width: 250px;
   height: 250px;
+
   right: 8%;
   top: 55%;
-  border: 1px solid rgba(182,154,99,.10);
-  animation: pulseCircle 5s ease-in-out infinite;
+
+  border:
+    1px solid
+    rgba(182,154,99,.10);
+
+  animation:
+    pulseCircle 5s ease-in-out infinite;
 }
 
 @keyframes rotateSlow {
+
   to {
     transform: rotate(360deg);
   }
+
 }
 
 @keyframes rotateReverse {
+
   to {
     transform: rotate(-360deg);
   }
+
 }
 
 @keyframes pulseCircle {
-  0%,100% {
+
+  0%,
+  100% {
     transform: scale(1);
     opacity: .4;
   }
@@ -169,7 +240,9 @@ body::before {
     transform: scale(1.08);
     opacity: .8;
   }
+
 }
+
 
 /* =========================================================
    CARTAS
@@ -178,68 +251,99 @@ body::before {
 .cards {
   position: fixed;
   inset: 0;
+
   pointer-events: none;
+
   z-index: 2;
 }
 
 .card {
   position: absolute;
+
   width: 105px;
   height: 150px;
-  border: 1px solid rgba(238,230,218,.12);
+
+  border:
+    1px solid
+    rgba(238,230,218,.12);
+
   background:
     linear-gradient(
       135deg,
       rgba(155,38,56,.08),
       rgba(0,0,0,.55)
     );
-  box-shadow: 0 20px 60px rgba(0,0,0,.4);
+
+  box-shadow:
+    0 20px 60px
+    rgba(0,0,0,.4);
+
   opacity: .35;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   color: var(--red);
+
   font-size: 38px;
-  transition: transform 1s ease;
+
+  transition:
+    transform 1s ease;
 }
 
 .card::before {
   content: "RED MASQUERADE";
+
   position: absolute;
   inset: 8px;
-  border: 1px solid rgba(182,154,99,.12);
+
+  border:
+    1px solid
+    rgba(182,154,99,.12);
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   font-family: Arial, sans-serif;
+
   font-size: 6px;
+
   letter-spacing: 2px;
-  color: rgba(238,230,218,.25);
+
+  color:
+    rgba(238,230,218,.25);
 }
 
 .card-one {
   left: -25px;
   top: 42%;
+
   transform: rotate(-17deg);
 }
 
 .card-two {
   right: -28px;
   top: 38%;
+
   transform: rotate(15deg);
 }
 
 .card-three {
   left: -35px;
   bottom: -15px;
+
   transform: rotate(12deg);
 }
 
 .card-four {
   right: -30px;
   bottom: -20px;
+
   transform: rotate(-12deg);
 }
+
 
 /* =========================================================
    HEADER
@@ -247,8 +351,10 @@ body::before {
 
 header {
   position: fixed;
+
   top: 0;
   left: 0;
+
   width: 100%;
   height: 82px;
 
@@ -258,30 +364,42 @@ header {
   align-items: center;
   justify-content: space-between;
 
-  border-bottom: 1px solid var(--line);
+  border-bottom:
+    1px solid var(--line);
 
-  background: rgba(6,5,6,.84);
+  background:
+    rgba(6,5,6,.88);
+
   backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 
-  z-index: 50;
+  z-index: 100;
 }
 
 .logo {
   color: var(--cream);
-  text-decoration: none;
+
   font-size: 17px;
   font-weight: bold;
+
   letter-spacing: 5px;
+
+  white-space: nowrap;
 }
 
 .menu-button {
   width: 50px;
   height: 50px;
 
-  border: 1px solid rgba(238,230,218,.18);
-  background: rgba(255,255,255,.01);
+  border:
+    1px solid
+    rgba(238,230,218,.18);
+
+  background:
+    rgba(255,255,255,.01);
 
   color: var(--cream);
+
   cursor: pointer;
 
   display: flex;
@@ -296,43 +414,60 @@ header {
 
 .menu-button:hover {
   border-color: var(--gold);
-  background: rgba(182,154,99,.08);
+
+  background:
+    rgba(182,154,99,.08);
+
   transform: scale(1.04);
 }
 
 .menu-icon {
   width: 24px;
+
   display: flex;
   flex-direction: column;
+
   gap: 6px;
 }
 
 .menu-icon span {
   width: 100%;
   height: 2px;
+
   background: var(--cream);
+
   transition: .3s ease;
 }
 
-.menu-button.active .menu-icon span:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
+.menu-button.active
+.menu-icon span:nth-child(1) {
+  transform:
+    translateY(8px)
+    rotate(45deg);
 }
 
-.menu-button.active .menu-icon span:nth-child(2) {
+.menu-button.active
+.menu-icon span:nth-child(2) {
   opacity: 0;
 }
 
-.menu-button.active .menu-icon span:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
+.menu-button.active
+.menu-icon span:nth-child(3) {
+  transform:
+    translateY(-8px)
+    rotate(-45deg);
 }
 
+
 /* =========================================================
-   PÁGINA PRINCIPAL
+   HOME
    ========================================================= */
 
 .page {
   position: fixed;
+
   inset: 0;
+
   padding-top: 82px;
 
   display: flex;
@@ -352,19 +487,26 @@ header {
 
 .page.hidden {
   opacity: 0;
+
   visibility: hidden;
-  transform: scale(1.04);
+
+  transform:
+    scale(1.04);
+
   pointer-events: none;
 }
 
 .hero-content {
   position: relative;
+
   z-index: 10;
 
   width: min(900px, 88%);
+
   margin: 0 auto;
 
-  transform: translateY(10px);
+  transform:
+    translateY(10px);
 }
 
 .eyebrow {
@@ -373,34 +515,59 @@ header {
   color: var(--red);
 
   font-family: Arial, sans-serif;
+
   font-size: 11px;
   font-weight: bold;
 
   letter-spacing: 7px;
 
-  animation: reveal .9s ease both;
+  animation:
+    reveal .9s ease both;
 }
 
+
+/* =========================================================
+   TÍTULO
+   ========================================================= */
+
 .hero-title {
-  font-size: clamp(58px, 9vw, 115px);
+  display: block;
+
+  width: 100%;
+  max-width: 100%;
+
+  font-size:
+    clamp(58px, 9vw, 115px);
+
   line-height: .78;
+
   letter-spacing: -4px;
 
-  animation: reveal 1s .1s ease both;
+  animation:
+    reveal 1s .1s ease both;
+}
+
+.hero-title .red,
+.hero-title .gold {
+  display: block;
+
+  width: 100%;
+  max-width: 100%;
+
+  white-space: nowrap;
 }
 
 .hero-title .red {
-  display: block;
   color: var(--cream);
 }
 
 .hero-title .gold {
-  display: block;
   color: var(--gold);
 }
 
 .title-line {
-  width: min(470px, 75%);
+  width: min(470px,75%);
+
   height: 1px;
 
   margin-top: 25px;
@@ -412,7 +579,8 @@ header {
       transparent
     );
 
-  animation: revealLine 1s .3s ease both;
+  animation:
+    revealLine 1s .3s ease both;
 }
 
 .subtitle {
@@ -422,11 +590,19 @@ header {
 
   color: var(--gray);
 
-  font-size: clamp(18px, 2.3vw, 25px);
+  font-size:
+    clamp(18px, 2.3vw, 25px);
+
   line-height: 1.45;
 
-  animation: reveal 1s .35s ease both;
+  animation:
+    reveal 1s .35s ease both;
 }
+
+
+/* =========================================================
+   BOTÃO
+   ========================================================= */
 
 .enter-button {
   position: relative;
@@ -435,22 +611,27 @@ header {
   align-items: center;
   justify-content: center;
 
-  width: min(595px, 100%);
+  width: min(595px,100%);
   height: 62px;
 
   margin-top: 38px;
 
-  border: 1px solid var(--gold);
+  border:
+    1px solid var(--gold);
 
-  background: rgba(0,0,0,.16);
+  background:
+    rgba(0,0,0,.16);
 
   color: var(--cream);
 
   font-family: Arial, sans-serif;
+
   font-size: 11px;
+
   letter-spacing: 5px;
 
   cursor: pointer;
+
   overflow: hidden;
 
   transition:
@@ -463,39 +644,58 @@ header {
   content: "";
 
   position: absolute;
+
   inset: 0;
 
   background: var(--gold);
 
-  transform: translateX(-101%);
+  transform:
+    translateX(-101%);
 
-  transition: transform .45s ease;
+  transition:
+    transform .45s ease;
 
   z-index: -1;
 }
 
 .enter-button:hover {
   color: var(--black);
-  box-shadow: 0 0 35px rgba(182,154,99,.18);
+
+  box-shadow:
+    0 0 35px
+    rgba(182,154,99,.18);
 }
 
 .enter-button:hover::before {
-  transform: translateX(0);
+  transform:
+    translateX(0);
 }
 
+
+/* =========================================================
+   ANIMAÇÕES
+   ========================================================= */
+
 @keyframes reveal {
+
   from {
     opacity: 0;
-    transform: translateY(20px);
+
+    transform:
+      translateY(20px);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+
+    transform:
+      translateY(0);
   }
+
 }
 
 @keyframes revealLine {
+
   from {
     opacity: 0;
     width: 0;
@@ -505,7 +705,9 @@ header {
     opacity: 1;
     width: min(470px,75%);
   }
+
 }
+
 
 /* =========================================================
    MÁSCARA
@@ -551,7 +753,8 @@ header {
   width: 135px;
   height: 130px;
 
-  border: 2px solid var(--gold);
+  border:
+    2px solid var(--gold);
 
   background:
     radial-gradient(
@@ -563,14 +766,22 @@ header {
 
 .mask-left {
   left: 0;
-  border-radius: 80% 20% 65% 35%;
-  transform: rotate(7deg);
+
+  border-radius:
+    80% 20% 65% 35%;
+
+  transform:
+    rotate(7deg);
 }
 
 .mask-right {
   right: 0;
-  border-radius: 20% 80% 35% 65%;
-  transform: rotate(-7deg);
+
+  border-radius:
+    20% 80% 35% 65%;
+
+  transform:
+    rotate(-7deg);
 }
 
 .mask-center {
@@ -582,20 +793,26 @@ header {
   width: 20px;
   height: 95px;
 
-  transform: translateX(-50%);
+  transform:
+    translateX(-50%);
 
-  border-left: 2px solid var(--gold);
-  border-right: 2px solid var(--gold);
+  border-left:
+    2px solid var(--gold);
+
+  border-right:
+    2px solid var(--gold);
 }
 
 .mask-eye {
   position: absolute;
+
   top: 72px;
 
   width: 42px;
   height: 18px;
 
-  border: 2px solid var(--red);
+  border:
+    2px solid var(--red);
 
   border-radius: 50%;
 }
@@ -608,12 +825,14 @@ header {
   right: 46px;
 }
 
+
 /* =========================================================
    MENU
    ========================================================= */
 
 .menu-overlay {
   position: fixed;
+
   inset: 0;
 
   padding-top: 82px;
@@ -626,10 +845,12 @@ header {
     ),
     rgba(6,5,6,.98);
 
-  z-index: 40;
+  z-index: 90;
 
   opacity: 0;
+
   visibility: hidden;
+
   pointer-events: none;
 
   transition:
@@ -639,18 +860,24 @@ header {
 
 .menu-overlay.open {
   opacity: 1;
+
   visibility: visible;
+
   pointer-events: auto;
 }
 
 .menu-inner {
-  width: min(900px, 88%);
-  height: calc(100% - 82px);
+  width: min(900px,88%);
+
+  height:
+    calc(100% - 82px);
 
   margin: 0 auto;
 
   display: flex;
+
   flex-direction: column;
+
   justify-content: center;
 }
 
@@ -658,14 +885,18 @@ header {
   color: var(--red);
 
   font-family: Arial, sans-serif;
+
   font-size: 11px;
+
   letter-spacing: 7px;
 
   margin-bottom: 25px;
 }
 
 .menu-title {
-  font-size: clamp(52px, 8vw, 90px);
+  font-size:
+    clamp(52px,8vw,90px);
+
   line-height: .9;
 
   margin-bottom: 40px;
@@ -680,17 +911,18 @@ header {
 
   padding: 22px 5px;
 
-  border-top: 1px solid var(--line);
+  border-top:
+    1px solid var(--line);
 
   display: flex;
+
   align-items: center;
   justify-content: space-between;
 
   color: var(--cream);
 
-  text-decoration: none;
-
-  font-size: clamp(20px, 3vw, 30px);
+  font-size:
+    clamp(20px,3vw,30px);
 
   transition:
     padding-left .35s ease,
@@ -698,11 +930,13 @@ header {
 }
 
 .menu-link:last-child {
-  border-bottom: 1px solid var(--line);
+  border-bottom:
+    1px solid var(--line);
 }
 
 .menu-link:hover {
   padding-left: 20px;
+
   color: var(--gold);
 }
 
@@ -710,9 +944,12 @@ header {
   color: var(--red);
 
   font-family: Arial, sans-serif;
+
   font-size: 12px;
+
   letter-spacing: 3px;
 }
+
 
 /* =========================================================
    PÁGINAS INTERNAS
@@ -720,12 +957,14 @@ header {
 
 .internal {
   position: fixed;
+
   inset: 0;
 
   padding:
     82px 6% 30px;
 
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 
   background:
     radial-gradient(
@@ -735,13 +974,16 @@ header {
     ),
     var(--black);
 
-  z-index: 20;
+  z-index: 80;
 
   opacity: 0;
+
   visibility: hidden;
+
   pointer-events: none;
 
-  transform: translateX(35px);
+  transform:
+    translateX(35px);
 
   transition:
     opacity .55s ease,
@@ -751,35 +993,45 @@ header {
 
 .internal.active {
   opacity: 1;
+
   visibility: visible;
+
   pointer-events: auto;
 
-  transform: translateX(0);
+  transform:
+    translateX(0);
 }
 
 .internal-header {
-  width: min(1050px, 100%);
-  margin: 0 auto 30px;
+  width: min(1050px,100%);
+
+  margin:
+    0 auto 30px;
 }
 
 .back-button {
   display: inline-flex;
 
   align-items: center;
+
   gap: 10px;
 
   color: var(--cream);
 
-  border: 1px solid var(--line);
+  border:
+    1px solid var(--line);
 
-  padding: 12px 18px;
+  padding:
+    12px 18px;
 
   background: transparent;
 
   cursor: pointer;
 
   font-family: Arial, sans-serif;
+
   font-size: 10px;
+
   letter-spacing: 3px;
 
   transition: .3s ease;
@@ -787,6 +1039,7 @@ header {
 
 .back-button:hover {
   border-color: var(--gold);
+
   color: var(--gold);
 }
 
@@ -794,15 +1047,24 @@ header {
   color: var(--red);
 
   font-family: Arial, sans-serif;
+
   font-size: 11px;
+
   letter-spacing: 6px;
 
   margin-bottom: 15px;
 }
 
 .internal-title {
-  font-size: clamp(46px, 7vw, 82px);
+  width: 100%;
+  max-width: 100%;
+
+  font-size:
+    clamp(46px,7vw,82px);
+
   line-height: .9;
+
+  overflow-wrap: anywhere;
 }
 
 .internal-title span {
@@ -817,20 +1079,25 @@ header {
   color: var(--gray);
 
   font-size: 18px;
+
   line-height: 1.5;
 }
 
+
 /* =========================================================
-   CARTAS DAS FRATERNIDADES
+   CASAS
    ========================================================= */
 
 .house-grid {
-  width: min(1050px, 100%);
+  width: min(1050px,100%);
 
-  margin: 35px auto 0;
+  margin:
+    35px auto 0;
 
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+
+  grid-template-columns:
+    repeat(3,1fr);
 
   gap: 18px;
 }
@@ -842,7 +1109,8 @@ header {
 
   padding: 28px;
 
-  border: 1px solid var(--line);
+  border:
+    1px solid var(--line);
 
   background:
     linear-gradient(
@@ -872,7 +1140,9 @@ header {
   right: -80px;
   bottom: -80px;
 
-  border: 1px solid rgba(182,154,99,.18);
+  border:
+    1px solid
+    rgba(182,154,99,.18);
 
   border-radius: 50%;
 
@@ -880,8 +1150,12 @@ header {
 }
 
 .house-card:hover {
-  transform: translateY(-8px);
-  border-color: var(--gold);
+  transform:
+    translateY(-8px);
+
+  border-color:
+    var(--gold);
+
   background:
     linear-gradient(
       145deg,
@@ -891,21 +1165,27 @@ header {
 }
 
 .house-card:hover::after {
-  transform: scale(1.5);
+  transform:
+    scale(1.5);
 }
 
 .house-number {
   color: var(--red);
 
   font-family: Arial, sans-serif;
+
   font-size: 11px;
+
   letter-spacing: 4px;
 }
 
 .house-name {
   margin-top: 55px;
 
-  font-size: clamp(25px, 3vw, 34px);
+  font-size:
+    clamp(25px,3vw,34px);
+
+  overflow-wrap: anywhere;
 }
 
 .house-description {
@@ -916,19 +1196,31 @@ header {
   line-height: 1.5;
 }
 
+
 /* =========================================================
-   RESPONSIVO
+   TABLET
    ========================================================= */
 
 @media (max-width: 700px) {
 
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+
+    overflow-x: hidden;
+  }
+
   header {
     height: 72px;
-    padding: 0 22px;
+
+    padding:
+      0 22px;
   }
 
   .logo {
     font-size: 13px;
+
     letter-spacing: 4px;
   }
 
@@ -939,156 +1231,403 @@ header {
 
   .page {
     padding-top: 72px;
+
+    width: 100%;
+    max-width: 100%;
   }
 
   .hero-content {
-    width: 88%;
-    transform: translateY(5px);
+    width:
+      calc(100% - 44px);
+
+    max-width:
+      calc(100% - 44px);
+
+    margin:
+      0 22px;
+
+    transform:
+      translateY(0);
   }
 
   .eyebrow {
-    font-size: 10px;
-    letter-spacing: 5px;
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
     margin-bottom: 18px;
+
+    white-space: nowrap;
   }
 
+
+  /* =====================================================
+     CORREÇÃO PRINCIPAL DO TÍTULO MOBILE
+     ===================================================== */
+
   .hero-title {
-    font-size: clamp(56px, 15vw, 78px);
-    line-height: .82;
-    letter-spacing: -3px;
+    width: 100% !important;
+
+    max-width: 100% !important;
+
+    font-size:
+      clamp(40px,12vw,50px) !important;
+
+    line-height:
+      .88 !important;
+
+    letter-spacing:
+      -1.5px !important;
+
+    overflow: visible !important;
+  }
+
+  .hero-title .red,
+  .hero-title .gold {
+    width: 100% !important;
+
+    max-width: 100% !important;
+
+    display: block !important;
+
+    white-space: nowrap !important;
+
+    overflow: visible !important;
   }
 
   .title-line {
-    width: 80%;
+    width: 75%;
+
+    margin-top: 20px;
   }
 
   .subtitle {
-    font-size: 18px;
-    max-width: 360px;
-    margin-top: 25px;
+    width: 100%;
+
+    max-width: 350px;
+
+    margin-top: 22px;
+
+    font-size: 17px;
+
+    line-height: 1.5;
   }
 
   .enter-button {
-    height: 58px;
-    margin-top: 32px;
+    width: 100%;
+
+    height: 56px;
+
+    margin-top: 28px;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
   }
+
+
+  /* =====================================================
+     MÁSCARA MOBILE
+     ===================================================== */
 
   .mask {
-    right: -75px;
-    top: 57%;
-    transform: translateY(-50%) rotate(-7deg) scale(.8);
-  }
+    right: -120px;
 
-  .page:hover .mask {
+    top: 62%;
+
     transform:
       translateY(-50%)
-      rotate(0deg)
-      scale(.84);
+      rotate(-7deg)
+      scale(.65);
+
+    opacity: .09;
   }
 
+
+  /* =====================================================
+     CÍRCULOS MOBILE
+     ===================================================== */
+
   .circle-one {
-    width: 650px;
-    height: 650px;
+    width: 620px;
+    height: 620px;
+
     right: -350px;
   }
 
   .circle-two {
-    width: 430px;
-    height: 430px;
-    right: -170px;
+    width: 420px;
+    height: 420px;
+
+    right: -180px;
   }
+
+  .circle-three {
+    width: 210px;
+    height: 210px;
+
+    right: -40px;
+  }
+
+
+  /* =====================================================
+     CARTAS MOBILE
+     ===================================================== */
+
+  .card {
+    width: 82px;
+    height: 120px;
+
+    font-size: 30px;
+
+    opacity: .18;
+  }
+
+
+  /* =====================================================
+     MENU MOBILE
+     ===================================================== */
 
   .menu-overlay {
     padding-top: 72px;
   }
 
   .menu-inner {
-    height: calc(100% - 72px);
-    width: 88%;
+    width:
+      calc(100% - 44px);
+
+    height:
+      calc(100% - 72px);
+
+    margin:
+      0 22px;
+  }
+
+  .menu-eyebrow {
+    font-size: 9px;
+
+    letter-spacing: 4px;
   }
 
   .menu-title {
-    font-size: 54px;
-    margin-bottom: 25px;
+    font-size: 48px;
+
+    margin-bottom: 24px;
   }
 
   .menu-link {
-    padding: 18px 0;
-    font-size: 22px;
+    padding:
+      18px 0;
+
+    font-size: 21px;
   }
+
+
+  /* =====================================================
+     PÁGINAS INTERNAS MOBILE
+     ===================================================== */
 
   .internal {
     padding:
-      72px 22px 20px;
+      72px 22px 30px;
+
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 
   .internal-header {
+    width: 100%;
+    max-width: 100%;
+
     margin-bottom: 20px;
   }
 
+  .back-button {
+    margin-bottom: 6px;
+  }
+
+  .internal-eyebrow {
+    font-size: 9px;
+
+    letter-spacing: 4px;
+  }
+
   .internal-title {
-    font-size: 48px;
+    width: 100%;
+
+    max-width: 100%;
+
+    font-size:
+      clamp(36px,10vw,43px) !important;
+
+    line-height:
+      .95 !important;
+
+    letter-spacing:
+      -1px !important;
+
+    overflow-wrap:
+      anywhere !important;
+
+    word-break:
+      normal;
   }
 
   .internal-description {
+    width: 100%;
+
+    max-width: 350px;
+
     font-size: 16px;
+
+    line-height: 1.5;
+
+    margin-top: 18px;
   }
 
   .house-grid {
+    width: 100%;
+
     grid-template-columns: 1fr;
+
     gap: 12px;
+
     margin-top: 22px;
   }
 
   .house-card {
     min-height: 150px;
+
     padding: 20px;
   }
 
   .house-name {
     margin-top: 22px;
+
     font-size: 25px;
   }
 
   .house-description {
     font-size: 14px;
   }
-
-  .card {
-    transform: scale(.75);
-    opacity: .22;
-  }
 }
 
-@media (max-height: 700px) and (max-width: 700px) {
+
+/* =========================================================
+   CELULAR PEQUENO
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .hero-content {
+    width:
+      calc(100% - 36px);
+
+    max-width:
+      calc(100% - 36px);
+
+    margin-left: 18px;
+    margin-right: 18px;
+  }
 
   .hero-title {
-    font-size: 53px;
+    font-size:
+      clamp(35px,11.5vw,43px) !important;
+
+    letter-spacing:
+      -1px !important;
   }
 
   .subtitle {
-    margin-top: 18px;
     font-size: 16px;
   }
 
   .enter-button {
-    margin-top: 22px;
+    font-size: 8px;
+
+    letter-spacing: 2.5px;
+  }
+
+  .internal {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .internal-title {
+    font-size: 36px !important;
   }
 }
+
+
+/* =========================================================
+   CELULAR BAIXO
+   ========================================================= */
+
+@media
+  (max-height: 700px)
+  and (max-width: 700px) {
+
+  .hero-title {
+    font-size:
+      clamp(36px,10vw,45px) !important;
+  }
+
+  .subtitle {
+    margin-top: 18px;
+
+    font-size: 15px;
+  }
+
+  .enter-button {
+    margin-top: 20px;
+
+    height: 52px;
+  }
+
+}
+
+
+/* =========================================================
+   SEGURANÇA FINAL CONTRA OVERFLOW
+   ========================================================= */
+
+.hero-content,
+.hero-title,
+.hero-title .red,
+.hero-title .gold,
+.internal-header,
+.internal-title,
+.menu-inner,
+.menu-title {
+  min-width: 0;
+  max-width: 100%;
+}
+
 </style>
 </head>
 
+
 <body>
+
 
 <!-- ======================================================
      PARTÍCULAS
      ====================================================== -->
 
-<div class="particles" id="particles"></div>
+<div
+  class="particles"
+  id="particles"
+></div>
+
+
+<!-- ======================================================
+     CÍRCULOS
+     ====================================================== -->
 
 <div class="circle circle-one"></div>
 <div class="circle circle-two"></div>
 <div class="circle circle-three"></div>
+
 
 <!-- ======================================================
      CARTAS
@@ -1097,11 +1636,15 @@ header {
 <div class="cards">
 
   <div class="card card-one">♠</div>
-  <div class="card card-two">♠</div>
-  <div class="card card-three">♠</div>
-  <div class="card card-four">♠</div>
+
+  <div class="card card-two">♥</div>
+
+  <div class="card card-three">♣</div>
+
+  <div class="card card-four">♦</div>
 
 </div>
+
 
 <!-- ======================================================
      HEADER
@@ -1109,9 +1652,14 @@ header {
 
 <header>
 
-  <a href="#" class="logo" id="logoHome">
+  <a
+    href="#"
+    class="logo"
+    id="logoHome"
+  >
     RED MASQUERADE
   </a>
+
 
   <button
     class="menu-button"
@@ -1120,26 +1668,33 @@ header {
   >
 
     <span class="menu-icon">
+
       <span></span>
       <span></span>
       <span></span>
+
     </span>
 
   </button>
 
 </header>
 
+
 <!-- ======================================================
-     PÁGINA INICIAL
+     HOME
      ====================================================== -->
 
-<main class="page" id="home">
+<main
+  class="page"
+  id="home"
+>
 
   <div class="hero-content">
 
     <p class="eyebrow">
       MOSCOW · RUSSIA
     </p>
+
 
     <h1 class="hero-title">
 
@@ -1153,12 +1708,15 @@ header {
 
     </h1>
 
+
     <div class="title-line"></div>
+
 
     <p class="subtitle">
       Um universo de histórias, segredos,
       escolhas e consequências.
     </p>
+
 
     <button
       class="enter-button"
@@ -1169,21 +1727,25 @@ header {
 
   </div>
 
+
   <!-- MÁSCARA -->
 
   <div class="mask">
 
     <div class="mask-left"></div>
+
     <div class="mask-right"></div>
 
     <div class="mask-center"></div>
 
     <div class="mask-eye left"></div>
+
     <div class="mask-eye right"></div>
 
   </div>
 
 </main>
+
 
 <!-- ======================================================
      MENU
@@ -1200,49 +1762,83 @@ header {
       RED MASQUERADE
     </p>
 
+
     <h2 class="menu-title">
       O <span>UNIVERSO</span>
     </h2>
+
 
     <a
       href="#"
       class="menu-link"
       data-page="fraternidades"
     >
-      <span>As Fraternidades</span>
-      <span class="menu-number">01</span>
+
+      <span>
+        As Fraternidades
+      </span>
+
+      <span class="menu-number">
+        01
+      </span>
+
     </a>
+
 
     <a
       href="#"
       class="menu-link"
       data-page="casas"
     >
-      <span>As Casas</span>
-      <span class="menu-number">02</span>
+
+      <span>
+        As Casas
+      </span>
+
+      <span class="menu-number">
+        02
+      </span>
+
     </a>
+
 
     <a
       href="#"
       class="menu-link"
       data-page="mundo"
     >
-      <span>O Mundo</span>
-      <span class="menu-number">03</span>
+
+      <span>
+        O Mundo
+      </span>
+
+      <span class="menu-number">
+        03
+      </span>
+
     </a>
+
 
     <a
       href="#"
       class="menu-link"
       data-page="regras"
     >
-      <span>Regras do Jogo</span>
-      <span class="menu-number">04</span>
+
+      <span>
+        Regras do Jogo
+      </span>
+
+      <span class="menu-number">
+        04
+      </span>
+
     </a>
 
   </div>
 
 </section>
+
 
 <!-- ======================================================
      FRATERNIDADES
@@ -1275,6 +1871,7 @@ header {
 
   </div>
 
+
   <div class="house-grid">
 
     <article class="house-card">
@@ -1293,6 +1890,7 @@ header {
 
     </article>
 
+
     <article class="house-card">
 
       <span class="house-number">
@@ -1308,6 +1906,7 @@ header {
       </p>
 
     </article>
+
 
     <article class="house-card">
 
@@ -1328,6 +1927,7 @@ header {
   </div>
 
 </section>
+
 
 <!-- ======================================================
      CASAS
@@ -1359,35 +1959,63 @@ header {
 
   </div>
 
+
   <div class="house-grid">
 
     <article class="house-card">
-      <span class="house-number">01</span>
-      <h3 class="house-name">Golden Knights</h3>
+
+      <span class="house-number">
+        01
+      </span>
+
+      <h3 class="house-name">
+        Golden Knights
+      </h3>
+
       <p class="house-description">
         Poder, influência e tradição.
       </p>
+
     </article>
 
+
     <article class="house-card">
-      <span class="house-number">02</span>
-      <h3 class="house-name">Winter Foxes</h3>
+
+      <span class="house-number">
+        02
+      </span>
+
+      <h3 class="house-name">
+        Winter Foxes
+      </h3>
+
       <p class="house-description">
         Inteligência, diplomacia e manipulação.
       </p>
+
     </article>
 
+
     <article class="house-card">
-      <span class="house-number">03</span>
-      <h3 class="house-name">Iron Crows</h3>
+
+      <span class="house-number">
+        03
+      </span>
+
+      <h3 class="house-name">
+        Iron Crows
+      </h3>
+
       <p class="house-description">
         Liberdade, perigo e ambição.
       </p>
+
     </article>
 
   </div>
 
 </section>
+
 
 <!-- ======================================================
      MUNDO
@@ -1420,38 +2048,66 @@ header {
 
   </div>
 
+
   <div class="house-grid">
 
     <article class="house-card">
-      <span class="house-number">01</span>
-      <h3 class="house-name">Moscou</h3>
+
+      <span class="house-number">
+        01
+      </span>
+
+      <h3 class="house-name">
+        Moscou
+      </h3>
+
       <p class="house-description">
         Uma cidade dividida entre poder,
         luxo e segredos.
       </p>
+
     </article>
 
+
     <article class="house-card">
-      <span class="house-number">02</span>
-      <h3 class="house-name">A Noite</h3>
+
+      <span class="house-number">
+        02
+      </span>
+
+      <h3 class="house-name">
+        A Noite
+      </h3>
+
       <p class="house-description">
         Onde alianças são feitas e
         promessas são quebradas.
       </p>
+
     </article>
 
+
     <article class="house-card">
-      <span class="house-number">03</span>
-      <h3 class="house-name">O Submundo</h3>
+
+      <span class="house-number">
+        03
+      </span>
+
+      <h3 class="house-name">
+        O Submundo
+      </h3>
+
       <p class="house-description">
         O lugar onde ninguém pergunta
         de onde você veio.
       </p>
+
     </article>
 
   </div>
 
 </section>
+
 
 <!-- ======================================================
      REGRAS
@@ -1484,36 +2140,64 @@ header {
 
   </div>
 
+
   <div class="house-grid">
 
     <article class="house-card">
-      <span class="house-number">01</span>
-      <h3 class="house-name">Escolhas</h3>
+
+      <span class="house-number">
+        01
+      </span>
+
+      <h3 class="house-name">
+        Escolhas
+      </h3>
+
       <p class="house-description">
         Suas decisões alteram sua história.
       </p>
+
     </article>
 
+
     <article class="house-card">
-      <span class="house-number">02</span>
-      <h3 class="house-name">Alianças</h3>
+
+      <span class="house-number">
+        02
+      </span>
+
+      <h3 class="house-name">
+        Alianças
+      </h3>
+
       <p class="house-description">
         Ninguém sobrevive sozinho.
       </p>
+
     </article>
 
+
     <article class="house-card">
-      <span class="house-number">03</span>
-      <h3 class="house-name">Segredos</h3>
+
+      <span class="house-number">
+        03
+      </span>
+
+      <h3 class="house-name">
+        Segredos
+      </h3>
+
       <p class="house-description">
         Descubra os segredos antes
         que descubram os seus.
       </p>
+
     </article>
 
   </div>
 
 </section>
+
 
 <!-- ======================================================
      JAVASCRIPT
@@ -1547,77 +2231,106 @@ for (let i = 0; i < 35; i++) {
   particle.style.opacity =
     (0.15 + Math.random() * 0.45);
 
-  particleContainer.appendChild(particle);
+  particleContainer.appendChild(
+    particle
+  );
 }
+
 
 /* =========================================================
    ELEMENTOS
    ========================================================= */
 
 const menuButton =
-  document.getElementById("menuButton");
+  document.getElementById(
+    "menuButton"
+  );
 
 const menuOverlay =
-  document.getElementById("menuOverlay");
+  document.getElementById(
+    "menuOverlay"
+  );
 
 const enterButton =
-  document.getElementById("enterButton");
+  document.getElementById(
+    "enterButton"
+  );
 
 const home =
-  document.getElementById("home");
+  document.getElementById(
+    "home"
+  );
 
 const logoHome =
-  document.getElementById("logoHome");
+  document.getElementById(
+    "logoHome"
+  );
 
 const internalPages =
-  document.querySelectorAll(".internal");
+  document.querySelectorAll(
+    ".internal"
+  );
 
 const menuLinks =
-  document.querySelectorAll(".menu-link");
+  document.querySelectorAll(
+    ".menu-link"
+  );
 
 const backButtons =
-  document.querySelectorAll(".back-button");
+  document.querySelectorAll(
+    ".back-button"
+  );
+
 
 /* =========================================================
-   ABRIR / FECHAR MENU
+   MENU
    ========================================================= */
-
-function toggleMenu() {
-
-  const open =
-    menuOverlay.classList.contains("open");
-
-  if (open) {
-
-    closeMenu();
-
-  } else {
-
-    openMenu();
-
-  }
-}
 
 function openMenu() {
 
-  menuOverlay.classList.add("open");
+  menuOverlay.classList.add(
+    "open"
+  );
 
-  menuButton.classList.add("active");
+  menuButton.classList.add(
+    "active"
+  );
 
 }
 
 function closeMenu() {
 
-  menuOverlay.classList.remove("open");
+  menuOverlay.classList.remove(
+    "open"
+  );
 
-  menuButton.classList.remove("active");
+  menuButton.classList.remove(
+    "active"
+  );
 
 }
 
 menuButton.addEventListener(
   "click",
-  toggleMenu
+  () => {
+
+    if (
+      menuOverlay.classList.contains(
+        "open"
+      )
+    ) {
+
+      closeMenu();
+
+    } else {
+
+      openMenu();
+
+    }
+
+  }
 );
+
 
 /* =========================================================
    ABRIR PÁGINA
@@ -1627,96 +2340,127 @@ function openPage(pageName) {
 
   closeMenu();
 
-  home.classList.add("hidden");
+  home.classList.add(
+    "hidden"
+  );
 
-  internalPages.forEach(page => {
+  internalPages.forEach(
+    page => {
 
-    page.classList.remove("active");
+      page.classList.remove(
+        "active"
+      );
 
-  });
+    }
+  );
 
   const page =
-    document.getElementById(pageName);
+    document.getElementById(
+      pageName
+    );
 
-  if (page) {
+  if (!page) return;
 
-    setTimeout(() => {
+  setTimeout(
+    () => {
 
-      page.classList.add("active");
+      page.classList.add(
+        "active"
+      );
 
-    }, 120);
-
-  }
+    },
+    120
+  );
 
 }
 
+
 /* =========================================================
-   VOLTAR PARA HOME
+   VOLTAR HOME
    ========================================================= */
 
 function goHome() {
 
-  internalPages.forEach(page => {
+  internalPages.forEach(
+    page => {
 
-    page.classList.remove("active");
+      page.classList.remove(
+        "active"
+      );
 
-  });
+    }
+  );
 
-  setTimeout(() => {
+  setTimeout(
+    () => {
 
-    home.classList.remove("hidden");
+      home.classList.remove(
+        "hidden"
+      );
 
-  }, 120);
+    },
+    120
+  );
 
 }
 
+
 /* =========================================================
-   BOTÃO ENTRAR
+   ENTRAR
    ========================================================= */
 
 enterButton.addEventListener(
   "click",
   () => {
 
-    openPage("fraternidades");
+    openPage(
+      "fraternidades"
+    );
 
   }
 );
 
-/* =========================================================
-   MENU LINKS
-   ========================================================= */
-
-menuLinks.forEach(link => {
-
-  link.addEventListener(
-    "click",
-    event => {
-
-      event.preventDefault();
-
-      const page =
-        link.dataset.page;
-
-      openPage(page);
-
-    }
-  );
-
-});
 
 /* =========================================================
-   BOTÕES VOLTAR
+   LINKS MENU
    ========================================================= */
 
-backButtons.forEach(button => {
+menuLinks.forEach(
+  link => {
 
-  button.addEventListener(
-    "click",
-    goHome
-  );
+    link.addEventListener(
+      "click",
+      event => {
 
-});
+        event.preventDefault();
+
+        const page =
+          link.dataset.page;
+
+        openPage(page);
+
+      }
+    );
+
+  }
+);
+
+
+/* =========================================================
+   VOLTAR
+   ========================================================= */
+
+backButtons.forEach(
+  button => {
+
+    button.addEventListener(
+      "click",
+      goHome
+    );
+
+  }
+);
+
 
 /* =========================================================
    LOGO
@@ -1733,8 +2477,9 @@ logoHome.addEventListener(
   }
 );
 
+
 /* =========================================================
-   EFEITO DE MOVIMENTO DO MOUSE
+   MOVIMENTO DO MOUSE
    ========================================================= */
 
 document.addEventListener(
@@ -1742,64 +2487,79 @@ document.addEventListener(
   event => {
 
     const x =
-      (event.clientX / window.innerWidth - .5);
+      event.clientX /
+      window.innerWidth - .5;
 
     const y =
-      (event.clientY / window.innerHeight - .5);
+      event.clientY /
+      window.innerHeight - .5;
 
     const cards =
-      document.querySelectorAll(".card");
+      document.querySelectorAll(
+        ".card"
+      );
 
-    cards.forEach((card, index) => {
+    cards.forEach(
+      (card, index) => {
 
-      const strength =
-        (index + 1) * 5;
+        const strength =
+          (index + 1) * 5;
 
-      card.style.marginLeft =
-        (x * strength) + "px";
+        card.style.marginLeft =
+          (x * strength) + "px";
 
-      card.style.marginTop =
-        (y * strength) + "px";
+        card.style.marginTop =
+          (y * strength) + "px";
 
-    });
+      }
+    );
 
   }
 );
 
+
 /* =========================================================
-   EFEITO TÁTIL NO CELULAR
+   MOVIMENTO NO CELULAR
    ========================================================= */
 
 document.addEventListener(
   "touchmove",
   event => {
 
-    if (!event.touches.length) return;
+    if (
+      !event.touches.length
+    ) {
+      return;
+    }
 
     const touch =
       event.touches[0];
 
     const x =
-      (touch.clientX / window.innerWidth - .5);
+      touch.clientX /
+      window.innerWidth - .5;
 
     const y =
-      (touch.clientY / window.innerHeight - .5);
+      touch.clientY /
+      window.innerHeight - .5;
 
     const mask =
-      document.querySelector(".mask");
+      document.querySelector(
+        ".mask"
+      );
 
-    if (mask) {
+    if (!mask) return;
 
-      mask.style.marginLeft =
-        (x * 20) + "px";
+    mask.style.marginLeft =
+      (x * 20) + "px";
 
-      mask.style.marginTop =
-        (y * 20) + "px";
-
-    }
+    mask.style.marginTop =
+      (y * 20) + "px";
 
   },
-  { passive: true }
+  {
+    passive: true
+  }
 );
 
 </script>
