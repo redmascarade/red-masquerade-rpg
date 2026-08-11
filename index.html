@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,15 +16,15 @@
     }
 
     :root {
-      --black: #050405;
-      --wine: #26070d;
-      --red: #8e1f32;
-      --red-light: #bd3048;
-      --gold: #c3a46a;
-      --gold-light: #e2c98e;
-      --cream: #f0e8dc;
-      --gray: #a79d94;
-      --line: rgba(240, 232, 220, .15);
+      --preto: #050405;
+      --vinho: #26070d;
+      --vermelho: #8e1f32;
+      --vermelho-claro: #bd3048;
+      --dourado: #c3a46a;
+      --dourado-claro: #e2c98e;
+      --creme: #f0e8dc;
+      --cinza: #a79d94;
+      --linha: rgba(240, 232, 220, .15);
     }
 
     html,
@@ -31,11 +32,11 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      background: var(--black);
+      background: var(--preto);
     }
 
     body {
-      color: var(--cream);
+      color: var(--creme);
       font-family: Georgia, "Times New Roman", serif;
     }
 
@@ -47,6 +48,10 @@
     button {
       font: inherit;
     }
+
+    /* =====================================================
+       FUNDO PRINCIPAL
+       ===================================================== */
 
     .site {
       position: relative;
@@ -66,7 +71,7 @@
           rgba(55, 5, 15, .28),
           transparent 35%
         ),
-        var(--black);
+        var(--preto);
     }
 
     /* =====================================================
@@ -85,7 +90,7 @@
     }
 
     /* =====================================================
-       LUZ INTERATIVA
+       LUZ
        ===================================================== */
 
     .cursor-light {
@@ -139,7 +144,8 @@
 
       border: 1px solid rgba(195, 164, 106, .18);
 
-      animation: orbitFloat 14s ease-in-out infinite;
+      animation:
+        orbitFloat 14s ease-in-out infinite;
     }
 
     .orbit-two {
@@ -151,7 +157,8 @@
 
       border: 1px solid rgba(142, 31, 50, .34);
 
-      animation: orbitFloat 10s ease-in-out infinite reverse;
+      animation:
+        orbitFloat 10s ease-in-out infinite reverse;
     }
 
     .orbit-three {
@@ -163,21 +170,28 @@
 
       border: 1px solid rgba(195, 164, 106, .08);
 
-      animation: orbitFloat 8s ease-in-out infinite;
+      animation:
+        orbitFloat 8s ease-in-out infinite;
     }
 
     @keyframes orbitFloat {
-      0%, 100% {
-        transform: translate(0, 0) rotate(0deg);
+
+      0%,
+      100% {
+        transform:
+          translate(0, 0)
+          rotate(0deg);
       }
 
       50% {
-        transform: translate(-15px, 12px) rotate(5deg);
+        transform:
+          translate(-15px, 12px)
+          rotate(5deg);
       }
     }
 
     /* =====================================================
-       CABEÇALHO
+       HEADER
        ===================================================== */
 
     .topo {
@@ -197,13 +211,13 @@
 
       z-index: 30;
 
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid var(--linha);
 
       background:
         linear-gradient(
           to bottom,
-          rgba(5,4,5,.92),
-          rgba(5,4,5,.68)
+          rgba(5, 4, 5, .94),
+          rgba(5, 4, 5, .70)
         );
 
       backdrop-filter: blur(12px);
@@ -212,7 +226,7 @@
     .logo {
       position: relative;
 
-      color: var(--cream);
+      color: var(--creme);
 
       font-size: 16px;
       font-weight: bold;
@@ -233,13 +247,13 @@
       width: 0;
       height: 1px;
 
-      background: var(--gold);
+      background: var(--dourado);
 
       transition: .5s ease;
     }
 
     .logo:hover {
-      color: var(--gold-light);
+      color: var(--dourado-claro);
     }
 
     .logo:hover::after {
@@ -259,11 +273,11 @@
 
       gap: 6px;
 
-      color: var(--cream);
+      color: var(--creme);
 
       background: transparent;
 
-      border: 1px solid var(--line);
+      border: 1px solid var(--linha);
 
       cursor: pointer;
 
@@ -279,7 +293,7 @@
       width: 22px;
       height: 2px;
 
-      background: var(--cream);
+      background: var(--creme);
 
       transition: .3s ease;
     }
@@ -287,6 +301,7 @@
     .menu-btn:hover {
       background: rgba(195, 164, 106, .08);
       border-color: rgba(195, 164, 106, .5);
+
       transform: translateY(-2px);
     }
 
@@ -321,15 +336,13 @@
         );
 
       box-shadow:
-        0 20px 50px rgba(0,0,0,.45),
-        inset 0 0 20px rgba(142,31,50,.06);
-
-      transform-style: preserve-3d;
+        0 20px 50px rgba(0, 0, 0, .45),
+        inset 0 0 20px rgba(142, 31, 50, .06);
 
       opacity: .72;
 
       transition:
-        transform .5s cubic-bezier(.2,.8,.2,1),
+        transform .5s cubic-bezier(.2, .8, .2, 1),
         opacity .4s ease;
     }
 
@@ -343,9 +356,9 @@
       align-items: center;
       justify-content: center;
 
-      border: 1px solid rgba(195,164,106,.12);
+      border: 1px solid rgba(195, 164, 106, .12);
 
-      color: var(--red-light);
+      color: var(--vermelho-claro);
 
       font-size: 31px;
     }
@@ -367,7 +380,7 @@
       font-size: 5px;
       letter-spacing: 2px;
 
-      color: rgba(240,232,220,.4);
+      color: rgba(240, 232, 220, .4);
     }
 
     .card-1 {
@@ -376,38 +389,50 @@
 
       transform: rotate(-17deg);
 
-      animation: cardFloat1 8s ease-in-out infinite;
+      animation:
+        cardFloat1 8s ease-in-out infinite;
     }
 
     .card-2 {
       right: 11%;
       top: 17%;
 
-      transform: rotate(15deg) scale(.82);
+      transform:
+        rotate(15deg)
+        scale(.82);
 
-      animation: cardFloat2 10s ease-in-out infinite;
+      animation:
+        cardFloat2 10s ease-in-out infinite;
     }
 
     .card-3 {
       left: 9%;
       bottom: 11%;
 
-      transform: rotate(12deg) scale(.7);
+      transform:
+        rotate(12deg)
+        scale(.7);
 
-      animation: cardFloat3 9s ease-in-out infinite;
+      animation:
+        cardFloat3 9s ease-in-out infinite;
     }
 
     .card-4 {
       right: 6%;
       bottom: 13%;
 
-      transform: rotate(-12deg) scale(.88);
+      transform:
+        rotate(-12deg)
+        scale(.88);
 
-      animation: cardFloat4 11s ease-in-out infinite;
+      animation:
+        cardFloat4 11s ease-in-out infinite;
     }
 
     @keyframes cardFloat1 {
-      0%, 100% {
+
+      0%,
+      100% {
         margin-top: 0;
         margin-left: 0;
       }
@@ -419,7 +444,9 @@
     }
 
     @keyframes cardFloat2 {
-      0%, 100% {
+
+      0%,
+      100% {
         margin-top: 0;
       }
 
@@ -429,7 +456,9 @@
     }
 
     @keyframes cardFloat3 {
-      0%, 100% {
+
+      0%,
+      100% {
         margin-top: 0;
       }
 
@@ -439,7 +468,9 @@
     }
 
     @keyframes cardFloat4 {
-      0%, 100% {
+
+      0%,
+      100% {
         margin-top: 0;
       }
 
@@ -495,7 +526,7 @@
         );
 
       border:
-        2px solid rgba(195,164,106,.48);
+        2px solid rgba(195, 164, 106, .48);
 
       border-radius:
         50% 50%
@@ -504,8 +535,8 @@
         55% 55%;
 
       box-shadow:
-        0 0 35px rgba(142,31,50,.22),
-        inset 0 0 30px rgba(195,164,106,.05);
+        0 0 35px rgba(142, 31, 50, .22),
+        inset 0 0 30px rgba(195, 164, 106, .05);
     }
 
     .mask::before,
@@ -519,15 +550,15 @@
       width: 74px;
       height: 28px;
 
-      background: var(--black);
+      background: var(--preto);
 
       border:
-        1px solid rgba(195,164,106,.25);
+        1px solid rgba(195, 164, 106, .25);
 
       border-radius: 50%;
 
       box-shadow:
-        0 0 18px rgba(142,31,50,.2);
+        0 0 18px rgba(142, 31, 50, .2);
     }
 
     .mask::before {
@@ -553,8 +584,11 @@
         translateX(-50%)
         rotate(2deg);
 
-      border-left: 1px solid rgba(195,164,106,.38);
-      border-right: 1px solid rgba(195,164,106,.14);
+      border-left:
+        1px solid rgba(195, 164, 106, .38);
+
+      border-right:
+        1px solid rgba(195, 164, 106, .14);
 
       border-radius: 50%;
     }
@@ -571,7 +605,7 @@
       background:
         linear-gradient(
           to top,
-          var(--gold),
+          var(--dourado),
           transparent
         );
 
@@ -590,17 +624,20 @@
       background:
         radial-gradient(
           circle,
-          rgba(142,31,50,.17),
+          rgba(142, 31, 50, .17),
           transparent 65%
         );
 
       filter: blur(12px);
 
-      animation: maskGlow 4s ease-in-out infinite;
+      animation:
+        maskGlow 4s ease-in-out infinite;
     }
 
     @keyframes maskGlow {
-      0%, 100% {
+
+      0%,
+      100% {
         opacity: .5;
         transform: scale(.95);
       }
@@ -644,7 +681,7 @@
     .eyebrow {
       margin-bottom: 22px;
 
-      color: var(--red-light);
+      color: var(--vermelho-claro);
 
       font-family: Arial, sans-serif;
 
@@ -659,13 +696,17 @@
         revealUp .9s .15s forwards;
     }
 
+    /* =====================================================
+       TÍTULO
+       ===================================================== */
+
     .hero h1 {
       position: relative;
 
       width: 100%;
-      max-width: 100%;
 
-      font-size: clamp(60px, 8vw, 116px);
+      font-size:
+        clamp(60px, 8vw, 116px);
 
       line-height: .82;
 
@@ -681,13 +722,17 @@
 
     .hero h1 .red {
       display: block;
-      color: var(--cream);
+      color: var(--creme);
     }
 
     .hero h1 .masquerade {
       display: block;
-      color: var(--gold);
+
+      color: var(--dourado);
+
       margin-left: -4px;
+
+      white-space: nowrap;
     }
 
     .title-line {
@@ -702,19 +747,23 @@
       background:
         linear-gradient(
           90deg,
-          var(--gold),
+          var(--dourado),
           transparent
         );
 
       opacity: .5;
     }
 
+    /* =====================================================
+       SUBTÍTULO
+       ===================================================== */
+
     .subtitle {
       max-width: 500px;
 
       margin-top: 40px;
 
-      color: var(--gray);
+      color: var(--cinza);
 
       font-size: 21px;
 
@@ -725,6 +774,10 @@
       animation:
         revealUp .9s .5s forwards;
     }
+
+    /* =====================================================
+       BOTÃO
+       ===================================================== */
 
     .enter {
       position: relative;
@@ -741,11 +794,11 @@
 
       overflow: hidden;
 
-      color: var(--cream);
+      color: var(--creme);
 
-      border: 1px solid var(--gold);
+      border: 1px solid var(--dourado);
 
-      background: rgba(5,4,5,.45);
+      background: rgba(5, 4, 5, .45);
 
       font-family: Arial, sans-serif;
 
@@ -776,21 +829,21 @@
       width: 100%;
       height: 100%;
 
-      background: var(--gold);
+      background: var(--dourado);
 
       transition:
-        left .45s cubic-bezier(.7,0,.2,1);
+        left .45s cubic-bezier(.7, 0, .2, 1);
 
       z-index: -1;
     }
 
     .enter:hover {
-      color: var(--black);
+      color: var(--preto);
 
       transform: translateY(-4px);
 
       box-shadow:
-        0 12px 40px rgba(195,164,106,.16);
+        0 12px 40px rgba(195, 164, 106, .16);
     }
 
     .enter:hover::before {
@@ -798,22 +851,27 @@
     }
 
     .enter span {
-      transition: transform .35s ease;
+      transition:
+        transform .35s ease;
     }
 
     .enter:hover span {
-      transform: translateX(7px);
+      transform:
+        translateX(7px);
     }
 
     @keyframes revealUp {
+
       from {
         opacity: 0;
-        transform: translateY(28px);
+        transform:
+          translateY(28px);
       }
 
       to {
         opacity: 1;
-        transform: translateY(0);
+        transform:
+          translateY(0);
       }
     }
 
@@ -838,10 +896,10 @@
 
       border-radius: 50%;
 
-      background: var(--gold);
+      background: var(--dourado);
 
       box-shadow:
-        0 0 8px rgba(195,164,106,.7);
+        0 0 8px rgba(195, 164, 106, .7);
 
       animation:
         particleFloat linear infinite;
@@ -850,6 +908,7 @@
     }
 
     @keyframes particleFloat {
+
       0% {
         transform:
           translateY(40px)
@@ -886,13 +945,14 @@
 
       z-index: 100;
 
-      background: var(--black);
+      background: var(--preto);
 
       pointer-events: none;
 
       opacity: 0;
 
-      transition: opacity .8s ease;
+      transition:
+        opacity .8s ease;
     }
 
     .transition.active {
@@ -909,12 +969,14 @@
       .card-1 {
         left: -20px;
         top: 18%;
+
         opacity: .35;
       }
 
       .card-2 {
         right: -20px;
         top: 20%;
+
         opacity: .3;
       }
 
@@ -970,57 +1032,67 @@
       }
 
       .hero-content {
-        width: 86%;
-        margin-left: 7%;
+        width: calc(100% - 44px);
+
+        margin-left: 22px;
+
         padding-top: 30px;
       }
 
       .eyebrow {
         font-size: 10px;
+
         letter-spacing: 5px;
+
         margin-bottom: 20px;
       }
 
       /*
-       * CORREÇÃO PRINCIPAL DO TÍTULO
+       * AQUI ESTÁ A CORREÇÃO PRINCIPAL.
+       *
+       * O título agora usa toda a largura disponível,
+       * mas com tamanho menor no celular.
        */
 
       .hero h1 {
         width: 100%;
         max-width: 100%;
 
-        font-size: clamp(48px, 14vw, 68px);
+        font-size: 57px;
 
-        line-height: .84;
+        line-height: .86;
 
-        letter-spacing: -2px;
-
-        overflow: visible;
+        letter-spacing: -3px;
       }
 
-      .hero h1 .red,
-      .hero h1 .masquerade {
-        display: block;
-        width: 100%;
+      .hero h1 .red {
+        font-size: 1em;
       }
 
       .hero h1 .masquerade {
-        font-size: .88em;
-        letter-spacing: -2px;
-
         /*
-         * Impede o MASQUERADE
-         * de escapar da tela.
+         * Reduzimos somente MASQUERADE.
+         * Assim ele continua grande, mas cabe.
          */
+
+        font-size: 0.67em;
+
+        letter-spacing: -1px;
+
+        margin-left: 0;
+
         white-space: nowrap;
       }
 
       .title-line {
         bottom: -10px;
-        width: 52%;
+
+        width: 55%;
       }
 
       .subtitle {
+        width: 100%;
+
         max-width: 330px;
 
         margin-top: 34px;
@@ -1032,6 +1104,7 @@
 
       .enter {
         width: 100%;
+
         height: 58px;
 
         margin-top: 34px;
@@ -1123,7 +1196,7 @@
     }
 
     /* =====================================================
-       CELULARES MAIS BAIXOS
+       CELULAR BAIXO
        ===================================================== */
 
     @media (max-height: 700px) and (max-width: 600px) {
@@ -1137,31 +1210,65 @@
       }
 
       .hero h1 {
-        font-size: 51px;
+        font-size: 52px;
       }
 
       .hero h1 .masquerade {
-        font-size: .86em;
+        font-size: .67em;
       }
 
       .subtitle {
-        margin-top: 26px;
+        margin-top: 27px;
+
         font-size: 16px;
       }
 
       .enter {
         margin-top: 24px;
+
         height: 52px;
+      }
+    }
+
+    /* =====================================================
+       CELULARES MUITO ESTREITOS
+       ===================================================== */
+
+    @media (max-width: 380px) {
+
+      .hero-content {
+        width: calc(100% - 36px);
+        margin-left: 18px;
+      }
+
+      .hero h1 {
+        font-size: 49px;
+
+        letter-spacing: -2px;
+      }
+
+      .hero h1 .masquerade {
+        font-size: .65em;
+      }
+
+      .subtitle {
+        font-size: 16px;
+      }
+
+      .logo {
+        font-size: 12px;
+        letter-spacing: 3px;
       }
     }
   </style>
 </head>
 
+
 <body>
 
   <div class="site">
 
-    <!-- LUZ -->
+    <!-- LUZ INTERATIVA -->
     <div class="cursor-light"></div>
 
     <!-- RUÍDO -->
@@ -1173,14 +1280,20 @@
     <div class="orbit orbit-three"></div>
 
     <!-- PARTÍCULAS -->
-    <div class="particles" id="particles"></div>
+    <div
+      class="particles"
+      id="particles">
+    </div>
 
     <!-- CARTAS -->
     <div class="cards">
 
       <div class="card card-1"></div>
+
       <div class="card card-2"></div>
+
       <div class="card card-3"></div>
+
       <div class="card card-4"></div>
 
     </div>
@@ -1200,18 +1313,20 @@
 
     </div>
 
-    <!-- CABEÇALHO -->
+
+    <!-- HEADER -->
     <header class="topo">
 
-      <a href="index.html" class="logo">
+      <a
+        href="index.html"
+        class="logo">
         RED MASQUERADE
       </a>
 
       <button
         class="menu-btn"
         id="menuBtn"
-        aria-label="Abrir menu"
-      >
+        aria-label="Abrir menu">
 
         <span></span>
         <span></span>
@@ -1221,7 +1336,8 @@
 
     </header>
 
-    <!-- HOME -->
+
+    <!-- HERO -->
     <main class="hero">
 
       <div class="hero-content">
@@ -1252,22 +1368,24 @@
         <a
           href="fraternidades.html"
           class="enter"
-          id="enterBtn"
-        >
+          id="enterBtn">
+
           <span>
             ENTRAR NO UNIVERSO
           </span>
+
         </a>
 
       </div>
 
     </main>
 
+
     <!-- TRANSIÇÃO -->
     <div
       class="transition"
-      id="transition"
-    ></div>
+      id="transition">
+    </div>
 
   </div>
 
@@ -1286,7 +1404,8 @@
       const particle =
         document.createElement("div");
 
-      particle.className = "particle";
+      particle.className =
+        "particle";
 
       particle.style.left =
         Math.random() * 100 + "%";
@@ -1301,14 +1420,16 @@
         (-Math.random() * 10) + "s";
 
       particle.style.opacity =
-        (.15 + Math.random() * .5);
+        .15 + Math.random() * .5;
 
-      particleContainer.appendChild(particle);
+      particleContainer.appendChild(
+        particle
+      );
     }
 
 
     /* =====================================================
-       MOUSE
+       MOVIMENTO DO MOUSE
        ===================================================== */
 
     const site =
@@ -1326,10 +1447,12 @@
       (event) => {
 
         const mouseX =
-          (event.clientX / window.innerWidth) * 100;
+          (event.clientX /
+            window.innerWidth) * 100;
 
         const mouseY =
-          (event.clientY / window.innerHeight) * 100;
+          (event.clientY /
+            window.innerHeight) * 100;
 
         site.style.setProperty(
           "--mouse-x",
@@ -1349,10 +1472,12 @@
           window.innerHeight / 2;
 
         const moveX =
-          (event.clientX - centerX) / centerX;
+          (event.clientX - centerX) /
+          centerX;
 
         const moveY =
-          (event.clientY - centerY) / centerY;
+          (event.clientY - centerY) /
+          centerY;
 
 
         cards.forEach(
@@ -1362,27 +1487,27 @@
               5 + index * 2;
 
             card.style.marginLeft =
-              (moveX * strength) + "px";
+              moveX * strength + "px";
 
             card.style.marginTop =
-              (moveY * strength) + "px";
+              moveY * strength + "px";
 
           }
         );
 
 
         maskArea.style.marginLeft =
-          (moveX * 7) + "px";
+          moveX * 7 + "px";
 
         maskArea.style.marginTop =
-          (moveY * 5) + "px";
+          moveY * 5 + "px";
 
       }
     );
 
 
     /* =====================================================
-       TOQUE
+       MOVIMENTO NO CELULAR
        ===================================================== */
 
     document.addEventListener(
@@ -1397,10 +1522,12 @@
           event.touches[0];
 
         const mouseX =
-          (touch.clientX / window.innerWidth) * 100;
+          (touch.clientX /
+            window.innerWidth) * 100;
 
         const mouseY =
-          (touch.clientY / window.innerHeight) * 100;
+          (touch.clientY /
+            window.innerHeight) * 100;
 
         site.style.setProperty(
           "--mouse-x",
@@ -1420,7 +1547,7 @@
 
 
     /* =====================================================
-       BOTÃO ENTRAR
+       TRANSIÇÃO PARA O RPG
        ===================================================== */
 
     const enterBtn =
@@ -1436,15 +1563,19 @@
 
         event.preventDefault();
 
-        const destination =
+        const destino =
           this.href;
 
-        transition.classList.add("active");
+        transition.classList.add(
+          "active"
+        );
 
         setTimeout(
           () => {
+
             window.location.href =
-              destination;
+              destino;
+
           },
           700
         );
@@ -1465,10 +1596,14 @@
       "click",
       () => {
 
-        menuBtn.classList.toggle("active");
+        menuBtn.classList.toggle(
+          "active"
+        );
 
         if (
-          menuBtn.classList.contains("active")
+          menuBtn.classList.contains(
+            "active"
+          )
         ) {
 
           menuBtn.style.transform =
@@ -1484,21 +1619,8 @@
       }
     );
 
-
-    /* =====================================================
-       LOAD
-       ===================================================== */
-
-    window.addEventListener(
-      "load",
-      () => {
-
-        document.body.classList.add("loaded");
-
-      }
-    );
-
   </script>
 
 </body>
+
 </html>
