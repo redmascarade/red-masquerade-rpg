@@ -1,3 +1,8 @@
+/* =========================================================
+   RED MASQUERADE
+   CSS COMPLETO — RESPONSIVO
+   ========================================================= */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5,45 +10,45 @@
 }
 
 :root {
-
-  --preto: #050405;
-  --preto-2: #0b0809;
-
+  --preto: #070607;
+  --preto-2: #0d090b;
   --vinho: #4b0d16;
   --vermelho: #9b2638;
-  --vermelho-claro: #c13750;
-
+  --vermelho-claro: #c13b51;
   --dourado: #b69a63;
-  --dourado-claro: #d2b87a;
-
+  --dourado-claro: #d0b77c;
   --creme: #eee6da;
   --cinza: #9b9188;
-
-  --linha: rgba(238, 230, 218, .14);
-
-  --mouse-x: 50%;
-  --mouse-y: 50%;
+  --linha: rgba(238, 230, 218, .15);
 }
 
-html,
-body {
-
+html {
   width: 100%;
-  height: 100%;
-
-  overflow: hidden;
-
+  min-height: 100%;
   background: var(--preto);
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      circle at 75% 45%,
+      rgba(155, 38, 56, .13),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 20% 85%,
+      rgba(75, 13, 22, .18),
+      transparent 38%
+    ),
+    var(--preto);
+
   color: var(--creme);
 
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-}
+  font-family: Georgia, "Times New Roman", serif;
 
-body {
-  position: relative;
+  overflow-x: hidden;
 }
 
 a {
@@ -55,13 +60,17 @@ button {
   font: inherit;
 }
 
+img {
+  max-width: 100%;
+  display: block;
+}
 
-/* =========================================
+
+/* =========================================================
    CABEÇALHO
-========================================= */
+   ========================================================= */
 
 .topo {
-
   position: fixed;
 
   top: 0;
@@ -78,1145 +87,1090 @@ button {
 
   z-index: 100;
 
-  border-bottom:
-    1px solid var(--linha);
+  border-bottom: 1px solid var(--linha);
 
-  background:
-    rgba(5, 4, 5, .82);
+  background: rgba(7, 6, 7, .88);
 
-  backdrop-filter:
-    blur(12px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .logo {
-
   color: var(--creme);
 
   font-size: 17px;
-
   font-weight: bold;
 
   letter-spacing: 5px;
 
-  transition:
-    color .3s ease,
-    letter-spacing .3s ease;
+  white-space: nowrap;
+
+  transition: .3s ease;
 }
 
 .logo:hover {
-
   color: var(--dourado);
-
-  letter-spacing: 6px;
 }
 
-
-/* =========================================
-   BOTÃO MENU
-========================================= */
-
 .menu-btn {
-
-  position: relative;
-
   width: 48px;
   height: 48px;
 
-  border:
-    1px solid var(--linha);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  background:
-    rgba(255,255,255,.01);
+  border: 1px solid var(--linha);
+
+  background: transparent;
 
   color: var(--creme);
 
   cursor: pointer;
 
+  font-size: 22px;
+
+  transition: .3s ease;
+}
+
+.menu-btn:hover {
+  border-color: var(--dourado);
+  color: var(--dourado);
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+  position: relative;
+
+  width: 100%;
+  min-height: 100vh;
+
   display: flex;
-  flex-direction: column;
+  align-items: center;
+
+  padding-top: 82px;
+
+  overflow: hidden;
+
+  isolation: isolate;
+
+  background:
+    radial-gradient(
+      circle at 75% 45%,
+      rgba(155, 38, 56, .20),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 18% 85%,
+      rgba(75, 13, 22, .25),
+      transparent 38%
+    ),
+    var(--preto);
+}
+
+
+/* =========================================================
+   CÍRCULOS
+   ========================================================= */
+
+.hero::before {
+  content: "";
+
+  position: absolute;
+
+  width: 760px;
+  height: 760px;
+
+  right: -280px;
+  top: 18%;
+
+  border: 1px solid rgba(182, 154, 99, .18);
+
+  border-radius: 50%;
+
+  z-index: -2;
+
+  pointer-events: none;
+
+  animation: circuloGrande 18s ease-in-out infinite alternate;
+}
+
+.hero::after {
+  content: "";
+
+  position: absolute;
+
+  width: 520px;
+  height: 520px;
+
+  right: -90px;
+  top: 32%;
+
+  border: 1px solid rgba(155, 38, 56, .28);
+
+  border-radius: 50%;
+
+  z-index: -2;
+
+  pointer-events: none;
+
+  animation: circuloPequeno 13s ease-in-out infinite alternate;
+}
+
+@keyframes circuloGrande {
+  from {
+    transform: rotate(0deg) scale(1);
+  }
+
+  to {
+    transform: rotate(8deg) scale(1.04);
+  }
+}
+
+@keyframes circuloPequeno {
+  from {
+    transform: rotate(0deg) translate(0, 0);
+  }
+
+  to {
+    transform: rotate(-8deg) translate(-12px, 8px);
+  }
+}
+
+
+/* =========================================================
+   CONTEÚDO
+   ========================================================= */
+
+.hero-conteudo {
+  position: relative;
+
+  z-index: 5;
+
+  width: min(850px, 88%);
+
+  margin: 0 auto;
+
+  padding-top: 30px;
+}
+
+
+/* =========================================================
+   EYEBROW
+   ========================================================= */
+
+.eyebrow {
+  color: var(--vermelho);
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 11px;
+
+  font-weight: bold;
+
+  letter-spacing: 5px;
+
+  margin-bottom: 22px;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   TÍTULO DA HOME
+   ========================================================= */
+
+.hero h1 {
+  width: 100%;
+  max-width: 100%;
+
+  margin: 0;
+
+  color: var(--creme);
+
+  font-size: clamp(48px, 7vw, 88px);
+
+  line-height: .88;
+
+  letter-spacing: -2px;
+
+  font-weight: 700;
+
+  overflow: visible;
+}
+
+.hero h1 span {
+  display: block;
+
+  width: 100%;
+  max-width: 100%;
+
+  color: var(--dourado);
+}
+
+
+/* =========================================================
+   LINHA ABAIXO DO TÍTULO
+   ========================================================= */
+
+.hero h1::after {
+  content: "";
+
+  display: block;
+
+  width: min(620px, 100%);
+
+  height: 1px;
+
+  margin-top: 25px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--dourado),
+      rgba(182,154,99,.08),
+      transparent
+    );
+}
+
+
+/* =========================================================
+   SUBTÍTULO
+   ========================================================= */
+
+.subtitulo {
+  width: 100%;
+  max-width: 540px;
+
+  margin-top: 28px;
+
+  color: var(--cinza);
+
+  font-size: 20px;
+
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   BOTÃO
+   ========================================================= */
+
+.botao {
+  position: relative;
+
+  display: inline-flex;
 
   align-items: center;
   justify-content: center;
 
-  gap: 6px;
+  min-height: 52px;
 
-  transition:
-    border-color .4s ease,
-    background .4s ease;
+  margin-top: 38px;
+
+  padding: 0 28px;
+
+  border: 1px solid var(--dourado);
+
+  background: transparent;
+
+  color: var(--creme);
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 11px;
+
+  letter-spacing: 3px;
+
+  overflow: hidden;
+
+  transition: .35s ease;
 }
 
-.menu-btn span {
+.botao::before {
+  content: "";
 
-  display: block;
+  position: absolute;
 
-  width: 22px;
-  height: 2px;
+  left: -110%;
+  top: 0;
 
-  background: var(--creme);
+  width: 100%;
+  height: 100%;
 
-  transition:
-    transform .4s ease,
-    opacity .3s ease,
-    background .3s ease;
+  background: var(--dourado);
+
+  transition: .4s ease;
+
+  z-index: -1;
 }
 
-.menu-btn:hover {
+.botao:hover::before {
+  left: 0;
+}
 
-  border-color:
-    var(--dourado);
+.botao:hover {
+  color: var(--preto);
+
+  box-shadow:
+    0 0 30px rgba(182,154,99,.18);
+}
+
+
+/* =========================================================
+   CARTAS
+   ========================================================= */
+
+.hero .carta,
+.carta-decorativa {
+  position: absolute;
+
+  width: 100px;
+  height: 150px;
+
+  border: 1px solid rgba(182,154,99,.13);
 
   background:
-    rgba(182,154,99,.06);
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.025),
+      rgba(75,13,22,.08)
+    );
+
+  opacity: .35;
+
+  pointer-events: none;
+
+  box-shadow:
+    0 0 30px rgba(0,0,0,.35);
+
+  animation:
+    cartaFlutuando 8s ease-in-out infinite;
 }
 
-.menu-btn:hover span {
+.hero .carta::before,
+.carta-decorativa::before {
+  content: "♠";
 
-  background:
-    var(--dourado-claro);
+  position: absolute;
+
+  top: 18px;
+  left: 18px;
+
+  color: var(--vermelho);
+
+  font-size: 28px;
+}
+
+.hero .carta::after,
+.carta-decorativa::after {
+  content: "RED MASQUERADE";
+
+  position: absolute;
+
+  left: 10px;
+  right: 10px;
+  bottom: 16px;
+
+  color: rgba(238,230,218,.35);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 7px;
+
+  letter-spacing: 2px;
+
+  text-align: center;
+}
+
+@keyframes cartaFlutuando {
+  0%,
+  100% {
+    transform: rotate(-12deg) translateY(0);
+  }
+
+  50% {
+    transform: rotate(-8deg) translateY(-15px);
+  }
 }
 
 
-/* X */
+/* =========================================================
+   PARTÍCULAS
+   ========================================================= */
 
-.menu-btn.fechar {
+.particula {
+  position: absolute;
 
-  border-color:
-    var(--dourado);
+  width: 3px;
+  height: 3px;
 
+  border-radius: 50%;
+
+  background: var(--dourado);
+
+  opacity: .5;
+
+  pointer-events: none;
+
+  animation:
+    particulaBrilho 4s ease-in-out infinite;
 }
 
-.menu-btn.fechar span:nth-child(1) {
+@keyframes particulaBrilho {
+  0%,
+  100% {
+    opacity: .15;
+    transform: scale(.8);
+  }
 
-  transform:
-    translateY(8px)
-    rotate(45deg);
-}
-
-.menu-btn.fechar span:nth-child(2) {
-
-  opacity: 0;
-}
-
-.menu-btn.fechar span:nth-child(3) {
-
-  transform:
-    translateY(-8px)
-    rotate(-45deg);
+  50% {
+    opacity: .8;
+    transform: scale(1.5);
+  }
 }
 
 
-/* =========================================
+/* =========================================================
    MENU
-========================================= */
+   ========================================================= */
 
-.menu-fundo {
-
+.menu-overlay {
   position: fixed;
 
   inset: 0;
 
-  z-index: 50;
+  z-index: 200;
 
   background:
-
     radial-gradient(
-      circle at 70% 50%,
-      rgba(155,38,56,.14),
-      transparent 32%
+      circle at 70% 45%,
+      rgba(155,38,56,.18),
+      transparent 35%
     ),
-
-    radial-gradient(
-      circle at 20% 80%,
-      rgba(75,13,22,.18),
-      transparent 38%
-    ),
-
     var(--preto);
 
   opacity: 0;
 
   visibility: hidden;
 
-  pointer-events: none;
+  transform: translateY(-10px);
 
-  transform:
-    scale(1.04);
+  transition: .4s ease;
 
-  transition:
-
-    opacity .5s ease,
-
-    visibility .5s ease,
-
-    transform .7s cubic-bezier(.22,1,.36,1);
+  overflow-y: auto;
 }
 
-.menu-fundo.aberto {
-
+.menu-overlay.aberto {
   opacity: 1;
 
   visibility: visible;
 
-  pointer-events: auto;
+  transform: translateY(0);
+}
 
-  transform:
-    scale(1);
+.menu-conteudo {
+  width: min(900px, 88%);
+
+  margin: 0 auto;
+
+  padding: 150px 0 80px;
+}
+
+.menu-titulo {
+  color: var(--creme);
+
+  font-size: clamp(48px, 9vw, 92px);
+
+  line-height: .9;
+
+  margin-bottom: 55px;
+}
+
+.menu-titulo span {
+  color: var(--dourado);
+}
+
+.menu-item {
+  display: flex;
+
+  align-items: center;
+
+  width: 100%;
+
+  padding: 30px 0;
+
+  border-top: 1px solid var(--linha);
+
+  color: var(--creme);
+
+  transition: .3s ease;
+}
+
+.menu-item:last-child {
+  border-bottom: 1px solid var(--linha);
+}
+
+.menu-item:hover {
+  padding-left: 15px;
+
+  color: var(--dourado);
+}
+
+.menu-item-numero {
+  color: var(--vermelho);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 12px;
+
+  letter-spacing: 3px;
+}
+
+.menu-item-nome {
+  flex: 1;
+
+  margin-left: 35px;
+
+  font-size: 28px;
+}
+
+.menu-item-seta {
+  color: var(--dourado);
+
+  font-size: 24px;
 }
 
 
-/* =========================================
-   LUZ QUE SEGUE O DEDO
-========================================= */
+/* =========================================================
+   PÁGINA FRATERNIDADES
+   ========================================================= */
 
-.luz-mouse {
+.pagina-fraternidades {
+  position: relative;
+
+  width: 100%;
+
+  min-height: 100vh;
+
+  padding: 140px 6% 80px;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 75% 45%,
+      rgba(155,38,56,.16),
+      transparent 35%
+    ),
+    var(--preto);
+}
+
+.pagina-fraternidades::before {
+  content: "";
+
+  position: absolute;
+
+  width: 600px;
+  height: 600px;
+
+  right: -220px;
+  top: 30%;
+
+  border: 1px solid rgba(182,154,99,.15);
+
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+.pagina-fraternidades::after {
+  content: "";
 
   position: absolute;
 
   width: 420px;
   height: 420px;
 
-  left:
-    calc(var(--mouse-x) - 210px);
+  right: -100px;
+  top: 45%;
 
-  top:
-    calc(var(--mouse-y) - 210px);
+  border: 1px solid rgba(155,38,56,.2);
 
   border-radius: 50%;
 
+  pointer-events: none;
+}
+
+.conteudo-fraternidades {
+  position: relative;
+
+  z-index: 2;
+
+  width: min(1000px, 100%);
+
+  margin: 0 auto;
+}
+
+.pagina-fraternidades h1 {
+  width: 100%;
+  max-width: 100%;
+
+  color: var(--creme);
+
+  font-size: clamp(48px, 8vw, 88px);
+
+  line-height: .95;
+
+  margin-bottom: 22px;
+
+  overflow-wrap: break-word;
+}
+
+.pagina-fraternidades .subtitulo {
+  max-width: 650px;
+
+  margin-bottom: 35px;
+}
+
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.fraternidade-card {
+  position: relative;
+
+  width: 100%;
+
+  padding: 34px 40px;
+
+  margin-bottom: 30px;
+
+  border: 1px solid var(--linha);
+
   background:
-    radial-gradient(
-      circle,
-      rgba(155,38,56,.14),
-      rgba(155,38,56,.05) 35%,
-      transparent 70%
+    linear-gradient(
+      135deg,
+      rgba(155,38,56,.09),
+      rgba(255,255,255,.01)
     );
 
-  pointer-events: none;
-
-  transition:
-    left .12s linear,
-    top .12s linear;
+  transition: .35s ease;
 }
 
+.fraternidade-card:hover {
+  transform: translateY(-6px);
 
-/* =========================================
-   CÍRCULOS
-========================================= */
-
-.circulo {
-
-  position: absolute;
-
-  border-radius: 50%;
-
-  pointer-events: none;
-
-  animation:
-    flutuar 9s ease-in-out infinite alternate;
-}
-
-.circulo-1 {
-
-  width: 720px;
-  height: 720px;
-
-  right: -310px;
-  top: 18%;
-
-  border:
-    1px solid
-    rgba(182,154,99,.16);
-}
-
-.circulo-2 {
-
-  width: 500px;
-  height: 500px;
-
-  right: -170px;
-  top: 34%;
-
-  border:
-    1px solid
-    rgba(155,38,56,.25);
-
-  animation-delay:
-    -3s;
-}
-
-@keyframes flutuar {
-
-  from {
-
-    transform:
-      translateY(-12px)
-      rotate(0deg);
-
-  }
-
-  to {
-
-    transform:
-      translateY(12px)
-      rotate(4deg);
-
-  }
-}
-
-
-/* =========================================
-   CARTAS
-========================================= */
-
-.carta {
-
-  position: absolute;
-
-  width: 105px;
-  height: 150px;
-
-  padding: 15px;
-
-  border:
-    1px solid
-    rgba(182,154,99,.20);
+  border-color: var(--dourado);
 
   background:
-
     linear-gradient(
-      145deg,
-      rgba(30,8,12,.85),
-      rgba(8,6,7,.9)
+      135deg,
+      rgba(155,38,56,.18),
+      rgba(182,154,99,.04)
     );
 
   box-shadow:
-
-    0 20px 60px
-    rgba(0,0,0,.45),
-
-    inset 0 0 30px
-    rgba(155,38,56,.05);
-
-  color: var(--dourado);
-
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content:
-    space-between;
-
-  pointer-events: none;
-
-  opacity: 0;
-
-  transition:
-
-    opacity 1s ease,
-
-    transform .15s ease;
+    0 20px 50px rgba(0,0,0,.35);
 }
 
-.menu-fundo.aberto .carta {
+.fraternidade-numero {
+  color: var(--vermelho);
 
-  opacity: .45;
-}
+  font-family: Arial, sans-serif;
 
-.carta::before {
-
-  content: "";
-
-  position: absolute;
-
-  inset: 7px;
-
-  border:
-    1px solid
-    rgba(238,230,218,.08);
-}
-
-.carta .naipe {
-
-  position: relative;
-
-  font-size: 40px;
-
-  line-height: 1;
-
-  color:
-    var(--vermelho);
-}
-
-.carta small {
-
-  position: relative;
-
-  font-family:
-    Arial,
-    sans-serif;
-
-  font-size: 6px;
-
-  letter-spacing: 2px;
-
-  opacity: .6;
-}
-
-.carta-1 {
-
-  left: -20px;
-  top: 18%;
-
-  transform:
-    rotate(-12deg);
-
-  transition-delay: .1s;
-}
-
-.carta-2 {
-
-  right: -30px;
-  top: 25%;
-
-  transform:
-    rotate(9deg);
-
-  transition-delay: .2s;
-}
-
-.carta-3 {
-
-  left: -15px;
-  bottom: 8%;
-
-  transform:
-    rotate(-7deg);
-
-  transition-delay: .3s;
-}
-
-.carta-4 {
-
-  right: -15px;
-  bottom: 10%;
-
-  transform:
-    rotate(13deg);
-
-  transition-delay: .4s;
-}
-
-
-/* =========================================
-   MÁSCARA
-========================================= */
-
-.mascara {
-
-  position: absolute;
-
-  width: 360px;
-  height: 210px;
-
-  right: 8%;
-  top: 50%;
-
-  transform:
-    translateY(-50%)
-    rotate(-5deg);
-
-  border-radius:
-    48% 48% 42% 42%;
-
-  background:
-
-    radial-gradient(
-      ellipse at center,
-      rgba(155,38,56,.12),
-      rgba(35,7,11,.04) 60%,
-      transparent 72%
-    );
-
-  border:
-    1px solid
-    rgba(182,154,99,.08);
-
-  opacity: 0;
-
-  filter:
-    blur(.2px);
-
-  transition:
-    opacity 1.2s ease,
-    transform 1.2s ease;
-}
-
-.menu-fundo.aberto .mascara {
-
-  opacity: .7;
-
-  transform:
-    translateY(-50%)
-    rotate(-5deg)
-    scale(1);
-}
-
-.olho {
-
-  position: absolute;
-
-  width: 105px;
-  height: 45px;
-
-  top: 70px;
-
-  border:
-    1px solid
-    rgba(182,154,99,.12);
-
-  border-radius:
-    50%;
-
-  transform:
-    rotate(-8deg);
-}
-
-.olho-1 {
-  left: 45px;
-}
-
-.olho-2 {
-
-  right: 45px;
-
-  transform:
-    rotate(8deg);
-}
-
-
-/* =========================================
-   CONTEÚDO
-========================================= */
-
-.menu-conteudo {
-
-  position: relative;
-
-  z-index: 10;
-
-  width: min(
-    850px,
-    88%
-  );
-
-  margin: 0 auto;
-
-  padding-top: 110px;
-}
-
-
-/* =========================================
-   PEQUENO TÍTULO
-========================================= */
-
-.menu-eyebrow {
-
-  color:
-    var(--vermelho-claro);
-
-  font-family:
-    Arial,
-    sans-serif;
-
-  font-size: 11px;
-
-  font-weight: bold;
-
-  letter-spacing: 7px;
-
-  margin-bottom: 32px;
-
-  opacity: 0;
-
-  transform:
-    translateY(20px);
-
-  transition:
-    opacity .6s ease .15s,
-    transform .6s ease .15s;
-}
-
-.menu-fundo.aberto .menu-eyebrow {
-
-  opacity: 1;
-
-  transform:
-    translateY(0);
-}
-
-
-/* =========================================
-   TÍTULO
-========================================= */
-
-.menu-conteudo h1 {
-
-  font-size:
-    clamp(
-      55px,
-      9vw,
-      100px
-    );
-
-  line-height: .85;
-
-  letter-spacing:
-    -3px;
-
-  color:
-    var(--creme);
-
-  font-weight:
-    bold;
-
-  opacity: 0;
-
-  transform:
-    translateY(30px);
-
-  transition:
-    opacity .7s ease .25s,
-    transform .7s ease .25s;
-}
-
-.menu-conteudo h1 span {
-
-  color:
-    var(--dourado);
-
-}
-
-.menu-fundo.aberto
-.menu-conteudo h1 {
-
-  opacity: 1;
-
-  transform:
-    translateY(0);
-}
-
-
-/* =========================================
-   LINHA
-========================================= */
-
-.linha-menu {
-
-  width: 100%;
-
-  height: 1px;
-
-  margin:
-    55px 0 0;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(182,154,99,.35),
-      rgba(238,230,218,.10),
-      transparent
-    );
-
-  transform:
-    scaleX(0);
-
-  transform-origin:
-    left;
-
-  transition:
-    transform .8s ease .4s;
-}
-
-.menu-fundo.aberto
-.linha-menu {
-
-  transform:
-    scaleX(1);
-}
-
-
-/* =========================================
-   LISTA
-========================================= */
-
-.menu-lista {
-
-  width: 100%;
-}
-
-
-/* =========================================
-   ITEM
-========================================= */
-
-.menu-item {
-
-  position: relative;
-
-  min-height: 82px;
-
-  padding:
-    0 34px;
-
-  display: grid;
-
-  grid-template-columns:
-    60px 1fr 40px;
-
-  align-items: center;
-
-  border-bottom:
-    1px solid
-    var(--linha);
-
-  overflow: hidden;
-
-  opacity: 0;
-
-  transform:
-    translateX(-30px);
-
-  transition:
-
-    opacity .6s ease,
-
-    transform .6s ease,
-
-    background .4s ease,
-
-    padding .4s ease;
-}
-
-.menu-item::before {
-
-  content: "";
-
-  position: absolute;
-
-  left: 0;
-  top: 0;
-
-  width: 3px;
-  height: 100%;
-
-  background:
-    var(--vermelho);
-
-  transform:
-    scaleY(0);
-
-  transform-origin:
-    bottom;
-
-  transition:
-    transform .4s ease;
-}
-
-.menu-item::after {
-
-  content: "";
-
-  position: absolute;
-
-  width: 300px;
-  height: 300px;
-
-  right: -150px;
-  top: 50%;
-
-  transform:
-    translateY(-50%);
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(155,38,56,.14),
-      transparent 70%
-    );
-
-  opacity: 0;
-
-  transition:
-    opacity .5s ease;
-}
-
-.menu-fundo.aberto
-.menu-item {
-
-  opacity: 1;
-
-  transform:
-    translateX(0);
-}
-
-.menu-fundo.aberto
-.menu-item:nth-child(1) {
-  transition-delay: .45s;
-}
-
-.menu-fundo.aberto
-.menu-item:nth-child(2) {
-  transition-delay: .55s;
-}
-
-.menu-fundo.aberto
-.menu-item:nth-child(3) {
-  transition-delay: .65s;
-}
-
-.menu-fundo.aberto
-.menu-item:nth-child(4) {
-  transition-delay: .75s;
-}
-
-
-/* =========================================
-   HOVER / TOQUE
-========================================= */
-
-.menu-item:hover,
-.menu-item.tocando {
-
-  padding-left:
-    46px;
-
-  background:
-    rgba(155,38,56,.07);
-}
-
-.menu-item:hover::before,
-.menu-item.tocando::before {
-
-  transform:
-    scaleY(1);
-}
-
-.menu-item:hover::after,
-.menu-item.tocando::after {
-
-  opacity: 1;
-}
-
-
-/* =========================================
-   NÚMERO
-========================================= */
-
-.numero {
-
-  position: relative;
-
-  z-index: 2;
-
-  color:
-    var(--vermelho-claro);
-
-  font-family:
-    Arial,
-    sans-serif;
-
-  font-size: 11px;
+  font-size: 12px;
 
   letter-spacing: 4px;
 
-  transition:
-    transform .4s ease;
+  margin-bottom: 22px;
 }
 
-.menu-item:hover .numero {
+.fraternidade-card h2 {
+  color: var(--creme);
 
-  transform:
-    translateX(5px);
+  font-size: 36px;
+
+  margin-bottom: 12px;
 }
 
+.fraternidade-card p {
+  color: var(--cinza);
 
-/* =========================================
-   NOME
-========================================= */
+  font-size: 18px;
 
-.nome {
-
-  position: relative;
-
-  z-index: 2;
-
-  font-size:
-    clamp(
-      22px,
-      4vw,
-      34px
-    );
-
-  color:
-    var(--creme);
-
-  transition:
-    color .4s ease,
-    transform .4s ease;
-}
-
-.menu-item:hover .nome {
-
-  color:
-    var(--dourado-claro);
-
-  transform:
-    translateX(8px);
+  line-height: 1.5;
 }
 
 
-/* =========================================
-   SETA
-========================================= */
-
-.seta {
-
-  position: relative;
-
-  z-index: 2;
-
-  color:
-    var(--dourado);
-
-  font-family:
-    Arial,
-    sans-serif;
-
-  font-size: 22px;
-
-  opacity: .5;
-
-  transform:
-    translateX(-8px);
-
-  transition:
-    opacity .4s ease,
-    transform .4s ease;
-}
-
-.menu-item:hover .seta {
-
-  opacity: 1;
-
-  transform:
-    translateX(4px);
-}
-
-
-/* =========================================
-   RESPONSIVO
-========================================= */
+/* =========================================================
+   CELULAR
+   ========================================================= */
 
 @media (max-width: 600px) {
 
-  .topo {
+  body {
+    width: 100%;
+    overflow-x: hidden;
+  }
 
+  .topo {
     height: 72px;
 
-    padding:
-      0 22px;
+    padding: 0 22px;
   }
 
   .logo {
+    font-size: 13px;
 
-    font-size:
-      13px;
-
-    letter-spacing:
-      3px;
+    letter-spacing: 3px;
   }
 
   .menu-btn {
-
     width: 44px;
     height: 44px;
   }
 
-  .menu-conteudo {
 
-    width: 86%;
+  /* -------------------------
+     HOME
+     ------------------------- */
 
-    padding-top:
-      105px;
+  .hero {
+    min-height: 100svh;
+
+    padding-top: 72px;
+
+    align-items: center;
   }
 
-  .menu-eyebrow {
+  .hero-conteudo {
+    width: calc(100% - 44px);
+
+    max-width: none;
+
+    margin: 0 22px;
+
+    padding-top: 10px;
+  }
+
+  .eyebrow {
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 20px;
+
+    white-space: nowrap;
+  }
+
+
+  /*
+     IMPORTANTE:
+
+     O título agora pode diminuir
+     de acordo com a largura da tela.
+
+     Não usamos nowrap.
+  */
+
+  .hero h1 {
+    width: 100%;
+
+    max-width: 100%;
+
+    font-size: 38px;
+
+    line-height: .9;
+
+    letter-spacing: -1.5px;
+
+    white-space: normal;
+
+    overflow-wrap: anywhere;
+  }
+
+  .hero h1 span {
+    display: block;
+
+    width: 100%;
+
+    max-width: 100%;
+
+    font-size: 38px;
+
+    line-height: .9;
+
+    letter-spacing: -1.5px;
+
+    white-space: normal;
+
+    overflow-wrap: anywhere;
+
+    word-break: normal;
+  }
+
+  .hero h1::after {
+    width: 100%;
+
+    margin-top: 20px;
+  }
+
+  .subtitulo {
+    width: 100%;
+
+    max-width: 100%;
+
+    margin-top: 24px;
+
+    font-size: 17px;
+
+    line-height: 1.55;
+  }
+
+  .botao {
+    width: 100%;
+
+    min-height: 54px;
+
+    margin-top: 32px;
+
+    padding: 0 18px;
 
     font-size: 10px;
 
-    letter-spacing:
-      5px;
-
-    margin-bottom:
-      25px;
+    letter-spacing: 3px;
   }
 
-  .menu-conteudo h1 {
 
-    font-size:
-      58px;
+  /* -------------------------
+     CÍRCULOS
+     ------------------------- */
 
-    line-height:
-      .9;
+  .hero::before {
+    width: 620px;
+    height: 620px;
 
-    letter-spacing:
-      -2px;
+    right: -340px;
+    top: 25%;
   }
 
-  .linha-menu {
+  .hero::after {
+    width: 420px;
+    height: 420px;
 
-    margin-top:
-      38px;
+    right: -180px;
+    top: 38%;
   }
 
-  .menu-item {
 
-    min-height:
-      82px;
+  /* -------------------------
+     CARTAS
+     ------------------------- */
 
-    padding:
-      0 10px;
+  .hero .carta,
+  .carta-decorativa {
+    width: 70px;
+    height: 105px;
 
-    grid-template-columns:
-      38px 1fr 25px;
+    opacity: .24;
   }
 
-  .nome {
-
-    font-size:
-      21px;
+  .hero .carta::before,
+  .carta-decorativa::before {
+    font-size: 20px;
   }
 
-  .numero {
-
-    font-size:
-      9px;
-
-    letter-spacing:
-      2px;
+  .hero .carta::after,
+  .carta-decorativa::after {
+    font-size: 5px;
   }
 
-  .seta {
 
-    font-size:
-      18px;
-  }
-
-  .carta {
-
-    width: 75px;
-    height: 110px;
-  }
-
-  .carta-1 {
-    left: -35px;
-  }
-
-  .carta-2 {
-    right: -35px;
-  }
-
-  .carta-3 {
-    left: -30px;
-  }
-
-  .carta-4 {
-    right: -30px;
-  }
-
-  .mascara {
-
-    width: 280px;
-    height: 160px;
-
-    right: -70px;
-
-    top: 54%;
-  }
-
-  .olho {
-
-    width: 75px;
-    height: 32px;
-
-    top: 53px;
-  }
-
-  .olho-1 {
-    left: 38px;
-  }
-
-  .olho-2 {
-    right: 38px;
-  }
-
-}
-
-
-/* =========================================
-   TELAS MUITO PEQUENAS
-========================================= */
-
-@media (max-height: 700px) {
+  /* -------------------------
+     MENU
+     ------------------------- */
 
   .menu-conteudo {
+    width: calc(100% - 44px);
 
-    padding-top:
-      92px;
+    margin: 0 22px;
+
+    padding: 125px 0 60px;
   }
 
-  .menu-eyebrow {
+  .menu-titulo {
+    width: 100%;
 
-    margin-bottom:
-      18px;
-  }
+    font-size: 46px;
 
-  .menu-conteudo h1 {
+    line-height: .9;
 
-    font-size:
-      50px;
-  }
+    overflow-wrap: anywhere;
 
-  .linha-menu {
-
-    margin-top:
-      28px;
+    margin-bottom: 35px;
   }
 
   .menu-item {
-
-    min-height:
-      68px;
+    padding: 25px 0;
   }
 
+  .menu-item-nome {
+    margin-left: 18px;
+
+    font-size: 21px;
+  }
+
+  .menu-item-seta {
+    font-size: 20px;
+  }
+
+
+  /* -------------------------
+     FRATERNIDADES
+     ------------------------- */
+
+  .pagina-fraternidades {
+    width: 100%;
+
+    padding:
+      120px
+      22px
+      60px;
+  }
+
+  .conteudo-fraternidades {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /*
+     CORREÇÃO DO "FRATERNIDADES"
+  */
+
+  .pagina-fraternidades h1 {
+    width: 100%;
+
+    max-width: 100%;
+
+    font-size: 43px;
+
+    line-height: .95;
+
+    letter-spacing: -1px;
+
+    white-space: normal;
+
+    overflow-wrap: anywhere;
+
+    word-break: normal;
+  }
+
+  .pagina-fraternidades .subtitulo {
+    width: 100%;
+
+    max-width: 100%;
+
+    font-size: 17px;
+
+    line-height: 1.55;
+
+    margin-bottom: 30px;
+  }
+
+  .fraternidade-card {
+    width: 100%;
+
+    padding: 30px 40px;
+
+    margin-bottom: 28px;
+  }
+
+  .fraternidade-card h2 {
+    font-size: 30px;
+  }
+
+  .fraternidade-card p {
+    font-size: 17px;
+  }
 }
 
 
-/* =========================================
-   REDUÇÃO DE MOVIMENTO
-========================================= */
+/* =========================================================
+   CELULARES PEQUENOS
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .hero-conteudo {
+    width: calc(100% - 36px);
+
+    margin: 0 18px;
+  }
+
+  .hero h1 {
+    font-size: 34px;
+  }
+
+  .hero h1 span {
+    font-size: 34px;
+  }
+
+  .eyebrow {
+    font-size: 9px;
+
+    letter-spacing: 3px;
+  }
+
+  .subtitulo {
+    font-size: 16px;
+  }
+
+  .botao {
+    font-size: 9px;
+
+    letter-spacing: 2.5px;
+  }
+
+
+  .pagina-fraternidades {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .pagina-fraternidades h1 {
+    font-size: 38px;
+
+    letter-spacing: -1px;
+  }
+
+  .fraternidade-card {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+}
+
+
+/* =========================================================
+   ACESSIBILIDADE
+   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
   *,
   *::before,
   *::after {
+    animation-duration: .01ms !important;
 
-    animation-duration:
-      .01ms !important;
+    animation-iteration-count: 1 !important;
 
-    transition-duration:
-      .01ms !important;
+    transition-duration: .01ms !important;
+
+    scroll-behavior: auto !important;
   }
-
 }
