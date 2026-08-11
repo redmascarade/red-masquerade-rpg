@@ -3,1019 +3,818 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070606">
 
 <title>Fraternidades — Red Masquerade</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
 
-:root {
-  --black: #060506;
-  --black-2: #0b0809;
-  --wine: #310b13;
-  --red: #9b2638;
-  --gold: #b69a63;
-  --gold-light: #d3bb82;
-  --cream: #eee6da;
-  --gray: #a49a91;
-  --line: rgba(238,230,218,.14);
+:root{
+    --black:#070606;
+    --black2:#0d090b;
+    --wine:#260b12;
+    --red:#8f1f35;
+    --gold:#b69a63;
+    --gold2:#d8bd82;
+    --cream:#eee6da;
+    --muted:#aaa19a;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-html,
-body {
-  min-height: 100%;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-  background: var(--black);
-  color: var(--cream);
-  font-family: Georgia, "Times New Roman", serif;
+body{
+    background:
+        radial-gradient(circle at 85% 15%,rgba(143,31,53,.13),transparent 30%),
+        var(--black);
+    color:var(--cream);
+    font-family:'Cormorant Garamond',serif;
 }
 
-/* =========================================================
-   FUNDO
-   ========================================================= */
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-
-  background:
-    radial-gradient(
-      circle at 78% 45%,
-      rgba(155,38,56,.16),
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at 15% 80%,
-      rgba(75,13,22,.18),
-      transparent 35%
-    );
-
-  z-index: 0;
+a{
+    color:inherit;
+    text-decoration:none;
 }
 
-/* =========================================================
-   HEADER
-   ========================================================= */
+/* HEADER */
 
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-
-  width: 100%;
-  height: 82px;
-
-  padding: 0 6%;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  border-bottom: 1px solid var(--line);
-
-  background: rgba(6,5,6,.88);
-  backdrop-filter: blur(14px);
-
-  z-index: 50;
+header{
+    height:94px;
+    border-bottom:1px solid rgba(182,154,99,.25);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 6%;
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(7,6,6,.95);
+    backdrop-filter:blur(12px);
 }
 
-.logo {
-  color: var(--cream);
-  text-decoration: none;
-
-  font-size: 17px;
-  font-weight: bold;
-
-  letter-spacing: 5px;
+.logo{
+    font-family:'Montserrat',sans-serif;
+    font-size:18px;
+    letter-spacing:7px;
 }
 
-/* =========================================================
-   MENU
-   ========================================================= */
-
-.menu-button {
-  width: 50px;
-  height: 50px;
-
-  border: 1px solid rgba(238,230,218,.18);
-
-  background: transparent;
-
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.menu{
+    width:58px;
+    height:58px;
+    border:1px solid rgba(182,154,99,.4);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
 }
 
-.menu-icon {
-  width: 24px;
-
-  display: flex;
-  flex-direction: column;
-
-  gap: 6px;
+.menu span{
+    width:27px;
+    height:1px;
+    background:var(--cream);
 }
 
-.menu-icon span {
-  width: 100%;
-  height: 2px;
+/* PAGE */
 
-  background: var(--cream);
+.page{
+    padding:80px 6% 110px;
 }
 
-/* =========================================================
-   CONTEÚDO
-   ========================================================= */
-
-main {
-  position: relative;
-  z-index: 2;
-
-  width: min(1100px, 88%);
-
-  margin: 0 auto;
-
-  padding:
-    120px 0 70px;
+.back{
+    display:inline-block;
+    border:1px solid rgba(182,154,99,.3);
+    padding:13px 20px;
+    font-family:'Montserrat',sans-serif;
+    font-size:10px;
+    letter-spacing:3px;
+    margin-bottom:70px;
+    transition:.3s;
 }
 
-/* =========================================================
-   VOLTAR
-   ========================================================= */
-
-.back-button {
-  display: inline-flex;
-
-  align-items: center;
-  gap: 10px;
-
-  padding: 12px 18px;
-
-  border: 1px solid var(--line);
-
-  background: transparent;
-
-  color: var(--cream);
-
-  font-family: Arial, sans-serif;
-  font-size: 10px;
-
-  letter-spacing: 3px;
-
-  text-decoration: none;
-
-  transition: .3s ease;
+.back:hover{
+    border-color:var(--gold);
+    color:var(--gold2);
 }
 
-.back-button:hover {
-  border-color: var(--gold);
-  color: var(--gold);
+.eyebrow{
+    color:var(--red);
+    font-family:'Montserrat',sans-serif;
+    font-size:11px;
+    letter-spacing:6px;
+    margin-bottom:18px;
 }
 
-/* =========================================================
-   CABEÇALHO
-   ========================================================= */
-
-.eyebrow {
-  margin-top: 35px;
-  margin-bottom: 15px;
-
-  color: var(--red);
-
-  font-family: Arial, sans-serif;
-  font-size: 11px;
-
-  letter-spacing: 6px;
+h1{
+    font-size:clamp(55px,9vw,105px);
+    line-height:.9;
+    font-weight:600;
+    text-transform:uppercase;
+    margin-bottom:30px;
 }
 
-h1 {
-  font-size: clamp(48px, 8vw, 88px);
-
-  line-height: .9;
+.intro{
+    max-width:700px;
+    color:#c7beb5;
+    font-size:24px;
+    line-height:1.4;
+    margin-bottom:90px;
 }
 
-h1 span {
-  color: var(--gold);
+/* FRATERNITY */
+
+.fraternity{
+    border-top:1px solid rgba(182,154,99,.2);
+    padding:100px 0;
 }
 
-.intro {
-  max-width: 700px;
-
-  margin-top: 22px;
-
-  color: var(--gray);
-
-  font-size: 19px;
-
-  line-height: 1.5;
+.fraternity-grid{
+    display:grid;
+    grid-template-columns:420px 1fr;
+    gap:70px;
+    align-items:start;
 }
 
-/* =========================================================
-   FRATERNIDADES
-   ========================================================= */
-
-.fraternity-list {
-  margin-top: 55px;
-
-  display: flex;
-  flex-direction: column;
-
-  gap: 30px;
+.emblem{
+    border:1px solid rgba(182,154,99,.3);
+    background:#0b0809;
+    padding:15px;
+    position:sticky;
+    top:125px;
 }
 
-/* =========================================================
-   CARD
-   ========================================================= */
-
-.fraternity {
-  position: relative;
-
-  display: grid;
-
-  grid-template-columns:
-    minmax(260px, 390px)
-    1fr;
-
-  min-height: 440px;
-
-  border: 1px solid var(--line);
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(155,38,56,.12),
-      rgba(0,0,0,.25)
-    );
-
-  overflow: hidden;
-
-  transition:
-    border-color .4s ease,
-    transform .4s ease;
+.emblem img{
+    width:100%;
+    display:block;
+    aspect-ratio:1/1;
+    object-fit:cover;
 }
 
-.fraternity:hover {
-  border-color: rgba(182,154,99,.55);
-
-  transform: translateY(-4px);
+.fraternity-content{
+    min-width:0;
 }
 
-/* =========================================================
-   ESCUDO
-   ========================================================= */
+.fraternity-name{
+    font-size:55px;
+    line-height:1;
+    margin-bottom:12px;
+}
 
-.fraternity-image {
-  position: relative;
+.motto{
+    color:var(--gold2);
+    font-family:'Montserrat',sans-serif;
+    font-size:11px;
+    letter-spacing:4px;
+    margin-bottom:45px;
+}
 
-  min-height: 440px;
+.description{
+    color:#c7beb5;
+    font-size:20px;
+    line-height:1.55;
+    margin-bottom:40px;
+    max-width:700px;
+}
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* DETAILS */
 
-  padding: 25px;
+.details{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:2px;
+    margin-bottom:45px;
+}
 
-  background:
-    radial-gradient(
-      circle,
-      rgba(182,154,99,.08),
-      transparent 65%
+.detail{
+    padding:25px;
+    border-left:1px solid var(--gold);
+    background:linear-gradient(
+        90deg,
+        rgba(143,31,53,.10),
+        rgba(255,255,255,.015)
     );
 }
 
-.fraternity-image img {
-  display: block;
-
-  width: 100%;
-  max-width: 350px;
-
-  max-height: 390px;
-
-  object-fit: contain;
-
-  filter:
-    drop-shadow(0 20px 30px rgba(0,0,0,.55));
-
-  transition:
-    transform .5s ease;
+.detail small{
+    display:block;
+    color:var(--red);
+    font-family:'Montserrat',sans-serif;
+    font-size:9px;
+    letter-spacing:4px;
+    margin-bottom:10px;
 }
 
-.fraternity:hover .fraternity-image img {
-  transform: scale(1.035);
+.detail strong{
+    font-size:21px;
+    font-weight:500;
 }
 
-/* =========================================================
-   INFORMAÇÕES
-   ========================================================= */
+/* TEXT BLOCKS */
 
-.fraternity-info {
-  padding: 42px;
+.block{
+    margin-top:35px;
 }
 
-.fraternity-number {
-  color: var(--red);
-
-  font-family: Arial, sans-serif;
-
-  font-size: 11px;
-
-  letter-spacing: 4px;
+.block h3{
+    color:var(--gold2);
+    font-size:29px;
+    font-weight:600;
+    margin-bottom:13px;
 }
 
-.fraternity-name {
-  margin-top: 15px;
-
-  font-size: clamp(32px, 4vw, 48px);
-
-  line-height: 1;
+.block p{
+    color:#b9b0a8;
+    font-size:19px;
+    line-height:1.55;
 }
 
-.fraternity-tagline {
-  margin-top: 12px;
-
-  color: var(--gold);
-
-  font-family: Arial, sans-serif;
-
-  font-size: 11px;
-
-  letter-spacing: 3px;
-
-  text-transform: uppercase;
+.block ul{
+    list-style:none;
+    display:grid;
+    gap:10px;
 }
 
-/* =========================================================
-   DETALHES
-   ========================================================= */
-
-.details {
-  margin-top: 30px;
-
-  display: grid;
-
-  grid-template-columns: repeat(2, 1fr);
-
-  gap: 18px;
+.block li{
+    color:#b9b0a8;
+    font-size:18px;
+    padding-left:22px;
+    position:relative;
 }
 
-.detail {
-  border-top: 1px solid var(--line);
-
-  padding-top: 12px;
+.block li:before{
+    content:"◆";
+    position:absolute;
+    left:0;
+    color:var(--red);
+    font-size:8px;
+    top:7px;
 }
 
-.detail-label {
-  color: var(--red);
+/* FOOTER */
 
-  font-family: Arial, sans-serif;
-
-  font-size: 9px;
-
-  letter-spacing: 3px;
-
-  text-transform: uppercase;
+footer{
+    border-top:1px solid rgba(182,154,99,.2);
+    padding:50px 6%;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:25px;
 }
 
-.detail-value {
-  margin-top: 5px;
-
-  color: var(--cream);
-
-  font-size: 16px;
-
-  line-height: 1.4;
+footer strong{
+    font-family:'Montserrat',sans-serif;
+    font-size:12px;
+    letter-spacing:5px;
 }
 
-/* =========================================================
-   DESCRIÇÕES
-   ========================================================= */
-
-.section-title {
-  margin-top: 25px;
-
-  color: var(--gold);
-
-  font-family: Arial, sans-serif;
-
-  font-size: 10px;
-
-  letter-spacing: 3px;
-
-  text-transform: uppercase;
+footer p{
+    color:#706964;
+    font-size:14px;
 }
 
-.description {
-  margin-top: 8px;
+/* MOBILE */
 
-  color: var(--gray);
+@media(max-width:850px){
 
-  font-size: 15px;
+    header{
+        height:82px;
+        padding:0 5%;
+    }
 
-  line-height: 1.55;
+    .logo{
+        font-size:14px;
+        letter-spacing:5px;
+    }
+
+    .page{
+        padding:55px 5% 80px;
+    }
+
+    .back{
+        margin-bottom:50px;
+    }
+
+    h1{
+        font-size:58px;
+    }
+
+    .intro{
+        font-size:21px;
+        margin-bottom:60px;
+    }
+
+    .fraternity{
+        padding:70px 0;
+    }
+
+    .fraternity-grid{
+        grid-template-columns:1fr;
+        gap:40px;
+    }
+
+    .emblem{
+        position:static;
+        max-width:500px;
+        margin:auto;
+    }
+
+    .fraternity-name{
+        font-size:43px;
+    }
+
+    .details{
+        grid-template-columns:1fr;
+    }
+
+    .block p,
+    .block li{
+        font-size:17px;
+    }
 }
-
-/* =========================================================
-   OBSERVAÇÃO
-   ========================================================= */
-
-.site-note {
-  margin-top: 40px;
-
-  padding: 22px 25px;
-
-  border-left: 1px solid var(--gold);
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(155,38,56,.08),
-      transparent
-    );
-
-  color: var(--gray);
-
-  font-size: 14px;
-
-  line-height: 1.5;
-}
-
-/* =========================================================
-   RESPONSIVO
-   ========================================================= */
-
-@media (max-width: 760px) {
-
-  header {
-    height: 72px;
-
-    padding: 0 22px;
-  }
-
-  .logo {
-    font-size: 13px;
-    letter-spacing: 4px;
-  }
-
-  .menu-button {
-    width: 48px;
-    height: 48px;
-  }
-
-  main {
-    width: 88%;
-
-    padding:
-      105px 0 50px;
-  }
-
-  .eyebrow {
-    margin-top: 28px;
-  }
-
-  .intro {
-    font-size: 17px;
-  }
-
-  .fraternity-list {
-    margin-top: 38px;
-  }
-
-  .fraternity {
-    display: block;
-
-    min-height: auto;
-  }
-
-  .fraternity-image {
-    min-height: auto;
-
-    padding: 25px 20px 10px;
-  }
-
-  .fraternity-image img {
-    max-width: 290px;
-    max-height: 330px;
-  }
-
-  .fraternity-info {
-    padding: 25px 22px 30px;
-  }
-
-  .fraternity-name {
-    font-size: 32px;
-  }
-
-  .details {
-    grid-template-columns: 1fr;
-
-    gap: 14px;
-  }
-
-  .site-note {
-    margin-bottom: 20px;
-  }
-}
-
 </style>
 </head>
 
 <body>
 
-<!-- ======================================================
-     HEADER
-     ====================================================== -->
-
 <header>
 
-  <a href="index.html" class="logo">
-    RED MASQUERADE
-  </a>
+    <a href="index.html" class="logo">
+        RED MASQUERADE
+    </a>
 
-  <button
-    class="menu-button"
-    onclick="window.location.href='index.html'"
-    aria-label="Voltar para o início"
-  >
-
-    <span class="menu-icon">
-      <span></span>
-      <span></span>
-      <span></span>
-    </span>
-
-  </button>
+    <div class="menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 
 </header>
 
 
-<!-- ======================================================
-     CONTEÚDO
-     ====================================================== -->
+<main class="page">
 
-<main>
+    <a href="index.html" class="back">
+        ← INÍCIO
+    </a>
 
-  <a href="index.html" class="back-button">
-    ← INÍCIO
-  </a>
+    <div class="eyebrow">
+        RED MASQUERADE · UNIVERSO
+    </div>
 
+    <h1>
+        Fraternidades
+    </h1>
 
-  <p class="eyebrow">
-    RED MASQUERADE · FRATERNIDADES
-  </p>
-
-  <h1>
-    As <span>Fraternidades</span>
-  </h1>
-
-  <p class="intro">
-    Três fraternidades. Três histórias.
-    Três formas diferentes de existir dentro
-    do universo da Universidade Lomonosov.
-  </p>
-
-
-  <!-- ====================================================
-       LISTA
-       ==================================================== -->
-
-  <div class="fraternity-list">
+    <p class="intro">
+        Três grupos. Três códigos. Três formas diferentes
+        de exercer influência dentro e fora da Universidade
+        Lomonosov.
+    </p>
 
 
     <!-- ==================================================
          GOLDEN KNIGHTS
-         ================================================== -->
+    =================================================== -->
 
-    <article class="fraternity">
+    <section class="fraternity" id="golden-knights">
 
-      <div class="fraternity-image">
+        <div class="fraternity-grid">
 
-        <img
-          src="img/Golden_Knights_escudo_v2.jpg"
-          alt="Escudo dos Golden Knights"
-        >
+            <div class="emblem">
 
-      </div>
+                <img
+                    src="img/Golden_Knights_escudo_v2.jpg"
+                    alt="Escudo The Golden Knights"
+                >
 
-
-      <div class="fraternity-info">
-
-        <span class="fraternity-number">
-          01
-        </span>
-
-        <h2 class="fraternity-name">
-          Golden Knights
-        </h2>
-
-        <p class="fraternity-tagline">
-          Strength & Honor
-        </p>
+            </div>
 
 
-        <div class="details">
+            <div class="fraternity-content">
 
-          <div class="detail">
-            <p class="detail-label">
-              Fundação
-            </p>
+                <div class="eyebrow">
+                    FRATERNIDADE · 01
+                </div>
 
-            <p class="detail-value">
-              1907
-            </p>
-          </div>
+                <h2 class="fraternity-name">
+                    The Golden Knights
+                </h2>
 
+                <div class="motto">
+                    STRENGTH &amp; HONOR
+                </div>
 
-          <div class="detail">
-            <p class="detail-label">
-              Perfil
-            </p>
-
-            <p class="detail-value">
-              Exclusivamente masculina
-            </p>
-          </div>
+                <p class="description">
+                    Uma fraternidade tradicional, marcada pela
+                    disciplina, pela hierarquia e pela ideia de
+                    que lealdade e honra estão acima de interesses
+                    individuais.
+                </p>
 
 
-          <div class="detail">
-            <p class="detail-label">
-              Cores
-            </p>
+                <div class="details">
 
-            <p class="detail-value">
-              Dourado e preto
-            </p>
-          </div>
+                    <div class="detail">
+                        <small>FUNDAÇÃO</small>
+                        <strong>1907</strong>
+                    </div>
+
+                    <div class="detail">
+                        <small>PERFIL</small>
+                        <strong>Exclusivamente masculina</strong>
+                    </div>
+
+                    <div class="detail">
+                        <small>CORES</small>
+                        <strong>Dourado e preto</strong>
+                    </div>
+
+                    <div class="detail">
+                        <small>SÍMBOLO</small>
+                        <strong>Leão</strong>
+                    </div>
+
+                    <div class="detail">
+                        <small>SEDE</small>
+                        <strong>Clube privado de elite em Moscou</strong>
+                    </div>
+
+                    <div class="detail">
+                        <small>ENTRADA</small>
+                        <strong>Candidatura aberta</strong>
+                    </div>
+
+                </div>
 
 
-          <div class="detail">
-            <p class="detail-label">
-              Símbolo
-            </p>
+                <div class="block">
 
-            <p class="detail-value">
-              Leão
-            </p>
-          </div>
+                    <h3>História</h3>
 
+                    <p>
+                        Fundada em 1907, os Golden Knights cresceram
+                        como uma fraternidade associada à tradição,
+                        à influência e à formação de uma elite
+                        extremamente reservada. Ao longo das décadas,
+                        sua estrutura permaneceu baseada na disciplina
+                        e na força dos vínculos internos.
+                    </p>
 
-          <div class="detail">
-            <p class="detail-label">
-              Sede
-            </p>
-
-            <p class="detail-value">
-              Clube privado de elite em Moscou
-            </p>
-          </div>
+                </div>
 
 
-          <div class="detail">
-            <p class="detail-label">
-              Entrada
-            </p>
+                <div class="block">
 
-            <p class="detail-value">
-              Candidatura aberta, sem período específico
-            </p>
-          </div>
+                    <h3>Hierarquia</h3>
+
+                    <ul>
+                        <li>Líder</li>
+                        <li>Vice-líder</li>
+                        <li>Conselho</li>
+                        <li>Membros</li>
+                        <li>Novatos / Candidatos</li>
+                        <li>Mentor</li>
+                    </ul>
+
+                </div>
+
+
+                <div class="block">
+
+                    <h3>Princípios</h3>
+
+                    <ul>
+                        <li>Lealdade</li>
+                        <li>Honra</li>
+                        <li>Discrição</li>
+                        <li>Hierarquia</li>
+                        <li>Proteção da fraternidade</li>
+                    </ul>
+
+                </div>
+
+
+                <div class="block">
+
+                    <h3>Tradições</h3>
+
+                    <p>
+                        Jantares de gala e reuniões secretas realizadas
+                        em porões históricos fazem parte da identidade
+                        dos Golden Knights.
+                    </p>
+
+                </div>
+
+            </div>
 
         </div>
 
-
-        <h3 class="section-title">
-          Hierarquia
-        </h3>
-
-        <p class="description">
-          Líder, Vice-líder, Conselho, Membros,
-          Novatos/Candidatos e Mentor.
-        </p>
-
-
-        <h3 class="section-title">
-          Princípios
-        </h3>
-
-        <p class="description">
-          Lealdade, honra, discrição, hierarquia
-          e proteção da fraternidade.
-        </p>
-
-
-        <h3 class="section-title">
-          Tradições
-        </h3>
-
-        <p class="description">
-          Jantares de gala e reuniões secretas
-          em porões históricos.
-        </p>
-
-      </div>
-
-    </article>
+    </section>
 
 
     <!-- ==================================================
          WINTER FOXES
-         ================================================== -->
+    =================================================== -->
 
-    <article class="fraternity">
+    <section class="fraternity" id="winter-foxes">
 
-      <div class="fraternity-image">
+        <div class="fraternity-grid">
 
-        <img
-          src="img/Winter_Foxes_escudo_v2.jpg"
-          alt="Escudo das Winter Foxes"
-        >
+            <div class="emblem">
 
-      </div>
+                <img
+                    src="img/Winter_Foxes_escudo_v2.jpg"
+                    alt="Escudo The Winter Foxes"
+                >
 
-
-      <div class="fraternity-info">
-
-        <span class="fraternity-number">
-          02
-        </span>
-
-        <h2 class="fraternity-name">
-          Winter Foxes
-        </h2>
-
-        <p class="fraternity-tagline">
-          Endurance & Cunning
-        </p>
+            </div>
 
 
-        <div class="details">
+            <div class="fraternity-content">
 
-          <div class="detail">
-            <p class="detail-label">
-              Fundação
-            </p>
+                <div class="eyebrow">
+                    FRATERNIDADE · 02
+                </div>
 
-            <p class="detail-value">
-              1957
-            </p>
-          </div>
+                <h2 class="fraternity-name">
+                    The Winter Foxes
+                </h2>
 
+                <div class="motto">
+                    ENDURANCE &amp; CUNNING
+                </div>
 
-          <div class="detail">
-            <p class="detail-label">
-              Perfil
-            </p>
-
-            <p class="detail-value">
-              Exclusivamente feminina
-            </p>
-          </div>
+                <p class="description">
+                    Uma fraternidade feminina construída em torno
+                    da inteligência, da discrição e da capacidade
+                    de compreender que informação pode ser tão
+                    poderosa quanto influência.
+                </p>
 
 
-          <div class="detail">
-            <p class="detail-label">
-              Cores
-            </p>
+                <div class="details">
 
-            <p class="detail-value">
-              Prata e azul-gelo
-            </p>
-          </div>
+                    <div class="detail">
+                        <small>FUNDAÇÃO</small>
+                        <strong>1957</strong>
+                    </div>
+
+                    <div class="detail">
+                        <small>PERFIL</small>
+                        <strong>Exclusivamente feminina</strong>
+                    </div>
+
+                    <div class="detail">
+                        <small>CORES</small>
+                        <strong>Prata e azul-gelo</strong>
+                    </div>
+
+                    <div class="detail">
+                        <small>SÍMBOLO</small>
+                        <strong>Raposa</strong>
+                    </div>
+
+                    <div class="detail">
+                        <small>SEDE</small>
+                        <strong>Ala histórica da Universidade Lomonosov</strong>
+                    </div>
+
+                    <div class="detail">
+                        <small>ENTRADA</small>
+                        <strong>Candidatura aberta</strong>
+                    </div>
+
+                </div>
 
 
-          <div class="detail">
-            <p class="detail-label">
-              Símbolo
-            </p>
+                <div class="block">
 
-            <p class="detail-value">
-              Raposa
-            </p>
-          </div>
+                    <h3>História</h3>
 
+                    <p>
+                        Fundada em 1957, as Winter Foxes surgiram
+                        dentro da própria tradição universitária.
+                        A fraternidade construiu sua reputação
+                        através da observação, da inteligência
+                        social e da circulação cuidadosa de
+                        informações.
+                    </p>
 
-          <div class="detail">
-            <p class="detail-label">
-              Sede
-            </p>
-
-            <p class="detail-value">
-              Ala histórica da Universidade Lomonosov
-            </p>
-          </div>
+                </div>
 
 
-          <div class="detail">
-            <p class="detail-label">
-              Entrada
-            </p>
+                <div class="block">
 
-            <p class="detail-value">
-              Candidatura aberta, sem período específico
-            </p>
-          </div>
+                    <h3>Hierarquia</h3>
+
+                    <ul>
+                        <li>Líder</li>
+                        <li>Vice-líder</li>
+                        <li>Conselho</li>
+                        <li>Membros</li>
+                        <li>Novatas / Candidatas</li>
+                        <li>Mentor</li>
+                    </ul>
+
+                </div>
+
+
+                <div class="block">
+
+                    <h3>Princípios</h3>
+
+                    <ul>
+                        <li>Lealdade</li>
+                        <li>Discrição</li>
+                        <li>Proteção</li>
+                        <li>Hierarquia</li>
+                        <li>Cuidado com informações internas</li>
+                    </ul>
+
+                </div>
+
+
+                <div class="block">
+
+                    <h3>Tradições</h3>
+
+                    <p>
+                        A coleta e a troca de informações fazem parte
+                        da cultura das Winter Foxes. Segredos podem
+                        ser utilizados estrategicamente, enquanto
+                        informações privilegiadas circulam de maneira
+                        controlada entre suas integrantes.
+                    </p>
+
+                </div>
+
+            </div>
 
         </div>
 
-
-        <h3 class="section-title">
-          Hierarquia
-        </h3>
-
-        <p class="description">
-          Líder, Vice-líder, Conselho, Membros,
-          Novatas/Candidatas e Mentor.
-        </p>
-
-
-        <h3 class="section-title">
-          Princípios
-        </h3>
-
-        <p class="description">
-          Lealdade, discrição, proteção, hierarquia
-          e cuidado com informações internas.
-        </p>
-
-
-        <h3 class="section-title">
-          Tradições
-        </h3>
-
-        <p class="description">
-          Coleta e troca de informações, uso
-          estratégico de segredos e circulação
-          de informações privilegiadas.
-        </p>
-
-      </div>
-
-    </article>
+    </section>
 
 
     <!-- ==================================================
          IRON CROWS
-         ================================================== -->
+    =================================================== -->
 
-    <article class="fraternity">
+    <section class="fraternity" id="iron-crows">
 
-      <div class="fraternity-image">
+        <div class="fraternity-grid">
 
-        <img
-          src="img/Iron_Crows_escudo_v2.jpg"
-          alt="Escudo dos Iron Crows"
-        >
+            <div class="emblem">
 
-      </div>
+                <img
+                    src="img/Iron_Crows_escudo_v2.jpg"
+                    alt="Escudo The Iron Crows"
+                >
 
-
-      <div class="fraternity-info">
-
-        <span class="fraternity-number">
-          03
-        </span>
-
-        <h2 class="fraternity-name">
-          Iron Crows
-        </h2>
-
-        <p class="fraternity-tagline">
-          Strength & Relentless
-        </p>
+            </div>
 
 
-        <div class="details">
+            <div class="fraternity-content">
 
-          <div class="detail">
-            <p class="detail-label">
-              Fundação
-            </p>
+                <div class="eyebrow">
+                    FRATERNIDADE · 03
+                </div>
 
-            <p class="detail-value">
-              1982
-            </p>
-          </div>
+                <h2 class="fraternity-name">
+                    The Iron Crows
+                </h2>
 
+                <div class="motto">
+                    STRENGTH &amp; RELENTLESS
+                </div>
 
-          <div class="detail">
-            <p class="detail-label">
-              Perfil
-            </p>
-
-            <p class="detail-value">
-              Grupo misto
-            </p>
-          </div>
+                <p class="description">
+                    Um grupo misto que representa liberdade,
+                    impulsividade e a disposição de assumir as
+                    consequências das próprias escolhas.
+                </p>
 
 
-          <div class="detail">
-            <p class="detail-label">
-              Cores
-            </p>
+                <div class="details">
 
-            <p class="detail-value">
-              Cinza e vermelho-sangue
-            </p>
-          </div>
+                    <div class="detail">
+                        <small>FUNDAÇÃO</small>
+                        <strong>1982</strong>
+                    </div>
+
+                    <div class="detail">
+                        <small>PERFIL</small>
+                        <strong>Grupo misto</strong>
+                    </div>
+
+                    <div class="detail">
+                        <small>CORES</small>
+                        <strong>Cinza e vermelho-sangue</strong>
+                    </div>
+
+                    <div class="detail">
+                        <small>SÍMBOLO</small>
+                        <strong>Corvo</strong>
+                    </div>
+
+                    <div class="detail">
+                        <small>SEDE</small>
+                        <strong>Clube noturno privado em Moscou</strong>
+                    </div>
+
+                    <div class="detail">
+                        <small>ENTRADA</small>
+                        <strong>Candidatura aberta</strong>
+                    </div>
+
+                </div>
 
 
-          <div class="detail">
-            <p class="detail-label">
-              Símbolo
-            </p>
+                <div class="block">
 
-            <p class="detail-value">
-              Corvo
-            </p>
-          </div>
+                    <h3>História</h3>
 
+                    <p>
+                        Fundados em 1982, os Iron Crows surgiram
+                        como uma alternativa às estruturas mais
+                        tradicionais das outras fraternidades.
+                        Seu nome passou a ser associado à liberdade,
+                        às escolhas individuais e a uma vida marcada
+                        por riscos e excessos.
+                    </p>
 
-          <div class="detail">
-            <p class="detail-label">
-              Sede
-            </p>
-
-            <p class="detail-value">
-              Clube noturno privado em Moscou
-            </p>
-          </div>
+                </div>
 
 
-          <div class="detail">
-            <p class="detail-label">
-              Entrada
-            </p>
+                <div class="block">
 
-            <p class="detail-value">
-              Candidatura aberta, sem período específico
-            </p>
-          </div>
+                    <h3>Hierarquia</h3>
+
+                    <ul>
+                        <li>Líder</li>
+                        <li>Vice-líder</li>
+                        <li>Conselho</li>
+                        <li>Membros</li>
+                        <li>Novatos / Candidatos</li>
+                        <li>Mentor</li>
+                    </ul>
+
+                </div>
+
+
+                <div class="block">
+
+                    <h3>Princípios</h3>
+
+                    <ul>
+                        <li>Liberdade</li>
+                        <li>Lealdade</li>
+                        <li>Responsabilidade pelas próprias escolhas</li>
+                    </ul>
+
+                </div>
+
+
+                <div class="block">
+
+                    <h3>Tradições</h3>
+
+                    <p>
+                        Festas, jogos de azar, desafios de risco e
+                        eventos exclusivos ou secretos fazem parte
+                        da cultura dos Iron Crows. A fraternidade
+                        possui poucas regras internas e valoriza
+                        especialmente a liberdade de seus membros.
+                    </p>
+
+                </div>
+
+            </div>
 
         </div>
 
-
-        <h3 class="section-title">
-          Hierarquia
-        </h3>
-
-        <p class="description">
-          Líder, Vice-líder, Conselho, Membros,
-          Novatos/Candidatos e Mentor.
-        </p>
-
-
-        <h3 class="section-title">
-          Princípios
-        </h3>
-
-        <p class="description">
-          Liberdade, lealdade e responsabilidade
-          pelas próprias escolhas.
-        </p>
-
-
-        <h3 class="section-title">
-          Tradições
-        </h3>
-
-        <p class="description">
-          Festas, jogos de azar, desafios de risco
-          e eventos exclusivos ou secretos.
-        </p>
-
-      </div>
-
-    </article>
-
-
-  </div>
-
-
-  <!-- ====================================================
-       OBSERVAÇÃO
-       ==================================================== -->
-
-  <div class="site-note">
-
-    <strong>
-      Observação:
-    </strong>
-
-    Os desafios de entrada das fraternidades
-    não são divulgados no site.
-
-  </div>
+    </section>
 
 </main>
+
+
+<footer>
+
+    <strong>RED MASQUERADE</strong>
+
+    <p>
+        The jester always laughs last.
+    </p>
+
+</footer>
 
 </body>
 </html>
