@@ -2,55 +2,1671 @@
 <html lang="pt-BR">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
 
-<title>Red Masquerade</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  >
 
-<link rel="stylesheet" href="estilo.css?v=2">
+  <title>Red Masquerade</title>
 
+  <style>
+    /* =========================================================
+       RED MASQUERADE — HOME
+       ========================================================= */
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --black: #050506;
+      --black-2: #0b0809;
+      --wine: #4b0d16;
+      --red: #9b2638;
+      --red-light: #c13a50;
+      --gold: #b69a63;
+      --gold-light: #d5bc82;
+      --cream: #eee6da;
+      --gray: #9b9188;
+      --line: rgba(238, 230, 218, .14);
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: var(--black);
+    }
+
+    body {
+      color: var(--cream);
+      font-family: Georgia, "Times New Roman", serif;
+      position: relative;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button,
+    a {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+
+    /* =========================================================
+       FUNDO
+       ========================================================= */
+
+    .site {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      min-height: 100vh;
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at 72% 48%,
+          rgba(155, 38, 56, .15),
+          transparent 28%
+        ),
+
+        radial-gradient(
+          circle at 25% 80%,
+          rgba(75, 13, 22, .18),
+          transparent 32%
+        ),
+
+        linear-gradient(
+          135deg,
+          #050506 0%,
+          #080607 55%,
+          #100708 100%
+        );
+    }
+
+    /* brilho que acompanha mouse/toque */
+
+    .cursor-glow {
+      position: absolute;
+      width: 360px;
+      height: 360px;
+
+      left: var(--mouse-x, 70%);
+      top: var(--mouse-y, 48%);
+
+      transform: translate(-50%, -50%);
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(155, 38, 56, .16),
+          rgba(155, 38, 56, .05) 35%,
+          transparent 70%
+        );
+
+      pointer-events: none;
+      transition:
+        left .35s ease-out,
+        top .35s ease-out;
+
+      z-index: 0;
+    }
+
+
+    /* =========================================================
+       CÍRCULOS DECORATIVOS
+       ========================================================= */
+
+    .ring {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .ring-1 {
+      width: 760px;
+      height: 760px;
+
+      right: -310px;
+      top: 4%;
+
+      border: 1px solid rgba(182, 154, 99, .16);
+
+      animation: ringFloat 12s ease-in-out infinite;
+    }
+
+    .ring-2 {
+      width: 520px;
+      height: 520px;
+
+      right: -160px;
+      top: 25%;
+
+      border: 1px solid rgba(155, 38, 56, .25);
+
+      animation: ringFloat 9s ease-in-out infinite reverse;
+    }
+
+    .ring-3 {
+      width: 260px;
+      height: 260px;
+
+      right: 70px;
+      top: 40%;
+
+      border: 1px solid rgba(182, 154, 99, .08);
+
+      animation: pulseRing 5s ease-in-out infinite;
+    }
+
+    @keyframes ringFloat {
+      0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+
+      50% {
+        transform: translate(-20px, 15px) rotate(4deg);
+      }
+    }
+
+    @keyframes pulseRing {
+      0%, 100% {
+        opacity: .4;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: .9;
+        transform: scale(1.05);
+      }
+    }
+
+
+    /* =========================================================
+       PARTÍCULAS
+       ========================================================= */
+
+    .particles {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .particle {
+      position: absolute;
+
+      width: 3px;
+      height: 3px;
+
+      background: var(--gold);
+      border-radius: 50%;
+
+      opacity: 0;
+
+      animation:
+        particleFloat var(--duration) linear infinite;
+
+      animation-delay: var(--delay);
+    }
+
+    @keyframes particleFloat {
+      0% {
+        transform:
+          translate3d(0, 110vh, 0)
+          scale(.4);
+
+        opacity: 0;
+      }
+
+      15% {
+        opacity: .5;
+      }
+
+      75% {
+        opacity: .2;
+      }
+
+      100% {
+        transform:
+          translate3d(var(--move), -20vh, 0)
+          scale(1);
+
+        opacity: 0;
+      }
+    }
+
+
+    /* =========================================================
+       HEADER
+       ========================================================= */
+
+    .topo {
+      position: absolute;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 82px;
+
+      padding: 0 6%;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      border-bottom: 1px solid var(--line);
+
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(5, 5, 6, .94),
+          rgba(5, 5, 6, .70)
+        );
+
+      backdrop-filter: blur(14px);
+
+      z-index: 20;
+    }
+
+    .logo {
+      font-family: Georgia, serif;
+
+      font-size: 17px;
+      font-weight: bold;
+
+      letter-spacing: 5px;
+
+      color: var(--cream);
+
+      text-shadow:
+        0 0 20px rgba(238, 230, 218, .08);
+    }
+
+    .menu-btn {
+      width: 48px;
+      height: 48px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid var(--line);
+
+      background: rgba(5, 5, 6, .4);
+
+      color: var(--cream);
+
+      cursor: pointer;
+
+      transition:
+        background .3s ease,
+        border-color .3s ease,
+        transform .3s ease;
+    }
+
+    .menu-btn:hover {
+      border-color: var(--gold);
+      background: rgba(182, 154, 99, .08);
+      transform: translateY(-2px);
+    }
+
+    .menu-icon {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .menu-icon span {
+      display: block;
+
+      width: 21px;
+      height: 1px;
+
+      background: var(--cream);
+
+      transition: .3s ease;
+    }
+
+
+    /* =========================================================
+       HOME
+       ========================================================= */
+
+    .hero {
+      position: relative;
+
+      width: 100%;
+      height: 100vh;
+
+      display: flex;
+      align-items: center;
+
+      z-index: 5;
+    }
+
+    .hero-content {
+      position: relative;
+
+      width: min(1100px, 88%);
+      margin: 0 auto;
+
+      padding-top: 65px;
+
+      z-index: 10;
+    }
+
+    .eyebrow {
+      font-family: Arial, sans-serif;
+
+      color: var(--red-light);
+
+      font-size: 11px;
+      font-weight: bold;
+
+      letter-spacing: 7px;
+
+      margin-bottom: 22px;
+
+      opacity: 0;
+
+      animation:
+        fadeUp .9s ease forwards .2s;
+    }
+
+    .title {
+      position: relative;
+
+      font-size: clamp(55px, 8vw, 110px);
+
+      line-height: .82;
+
+      letter-spacing: -5px;
+
+      text-transform: uppercase;
+
+      max-width: 850px;
+
+      opacity: 0;
+
+      animation:
+        titleReveal 1.1s cubic-bezier(.2,.7,.2,1) forwards .35s;
+    }
+
+    .title-red {
+      display: block;
+      color: var(--cream);
+
+      text-shadow:
+        0 0 35px rgba(238, 230, 218, .05);
+    }
+
+    .title-gold {
+      display: block;
+
+      color: var(--gold);
+
+      margin-left: -4px;
+
+      text-shadow:
+        0 0 35px rgba(182, 154, 99, .12);
+    }
+
+    .title::after {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      bottom: -15px;
+
+      width: 85px;
+      height: 1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--red),
+          transparent
+        );
+
+      animation:
+        lineGrow 1.2s ease forwards 1.2s;
+
+      transform-origin: left;
+
+      transform: scaleX(0);
+    }
+
+    .subtitle {
+      max-width: 520px;
+
+      margin-top: 45px;
+
+      color: #b5aaa0;
+
+      font-size: clamp(17px, 2vw, 23px);
+
+      line-height: 1.55;
+
+      opacity: 0;
+
+      animation:
+        fadeUp .9s ease forwards 1s;
+    }
+
+    .enter {
+      position: relative;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: min(595px, 100%);
+      height: 68px;
+
+      margin-top: 40px;
+
+      border: 1px solid var(--gold);
+
+      background: rgba(5, 5, 6, .3);
+
+      color: var(--cream);
+
+      font-family: Arial, sans-serif;
+
+      font-size: 11px;
+      letter-spacing: 5px;
+
+      cursor: pointer;
+
+      overflow: hidden;
+
+      opacity: 0;
+
+      animation:
+        fadeUp .9s ease forwards 1.2s;
+
+      transition:
+        color .4s ease,
+        transform .4s ease,
+        border-color .4s ease;
+    }
+
+    .enter::before {
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(182, 154, 99, .15),
+          transparent
+        );
+
+      transform: translateX(-100%);
+
+      transition: transform .7s ease;
+    }
+
+    .enter:hover {
+      color: var(--black);
+
+      border-color: var(--gold-light);
+
+      background: var(--gold);
+
+      transform: translateY(-3px);
+    }
+
+    .enter:hover::before {
+      transform: translateX(100%);
+    }
+
+    .enter span {
+      position: relative;
+      z-index: 2;
+    }
+
+
+    /* =========================================================
+       CARTAS
+       ========================================================= */
+
+    .card-table {
+      position: absolute;
+
+      right: 4%;
+      top: 50%;
+
+      width: 370px;
+      height: 470px;
+
+      transform:
+        translateY(-42%)
+        perspective(1000px)
+        rotateY(-8deg);
+
+      z-index: 4;
+
+      pointer-events: none;
+    }
+
+    .card {
+      position: absolute;
+
+      width: 210px;
+      height: 310px;
+
+      left: 50%;
+      top: 50%;
+
+      margin-left: -105px;
+      margin-top: -155px;
+
+      border: 1px solid rgba(182, 154, 99, .5);
+
+      background:
+        linear-gradient(
+          145deg,
+          #130a0c,
+          #080708
+        );
+
+      box-shadow:
+        0 30px 70px rgba(0, 0, 0, .55);
+
+      overflow: hidden;
+
+      transition:
+        transform .6s cubic-bezier(.2,.8,.2,1),
+        box-shadow .6s ease;
+    }
+
+    .card::before {
+      content: "";
+
+      position: absolute;
+
+      inset: 9px;
+
+      border: 1px solid rgba(182, 154, 99, .16);
+
+      pointer-events: none;
+    }
+
+    .card::after {
+      content: "";
+
+      position: absolute;
+
+      width: 130px;
+      height: 130px;
+
+      left: 50%;
+      top: 50%;
+
+      transform: translate(-50%, -50%);
+
+      border: 1px solid rgba(155, 38, 56, .5);
+
+      border-radius: 50%;
+
+      box-shadow:
+        0 0 35px rgba(155, 38, 56, .15);
+
+      pointer-events: none;
+    }
+
+    .card-1 {
+      transform: rotate(-15deg) translate(-70px, 5px);
+      animation: cardFloat1 5s ease-in-out infinite;
+    }
+
+    .card-2 {
+      transform: rotate(0deg) translate(0, -15px);
+      animation: cardFloat2 5.5s ease-in-out infinite;
+      z-index: 3;
+    }
+
+    .card-3 {
+      transform: rotate(15deg) translate(70px, 5px);
+      animation: cardFloat3 6s ease-in-out infinite;
+    }
+
+    @keyframes cardFloat1 {
+      0%, 100% {
+        transform: rotate(-15deg) translate(-70px, 5px);
+      }
+
+      50% {
+        transform: rotate(-12deg) translate(-70px, -10px);
+      }
+    }
+
+    @keyframes cardFloat2 {
+      0%, 100% {
+        transform: rotate(0deg) translate(0, -15px);
+      }
+
+      50% {
+        transform: rotate(1deg) translate(0, -28px);
+      }
+    }
+
+    @keyframes cardFloat3 {
+      0%, 100% {
+        transform: rotate(15deg) translate(70px, 5px);
+      }
+
+      50% {
+        transform: rotate(12deg) translate(70px, -10px);
+      }
+    }
+
+    .card-content {
+      position: absolute;
+
+      inset: 25px;
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+    }
+
+    .card-number {
+      position: absolute;
+
+      top: 0;
+      left: 0;
+
+      color: var(--red-light);
+
+      font-family: Arial, sans-serif;
+
+      font-size: 9px;
+
+      letter-spacing: 4px;
+    }
+
+    .card-symbol {
+      font-size: 55px;
+
+      color: var(--gold);
+
+      line-height: 1;
+
+      margin-bottom: 20px;
+
+      text-shadow:
+        0 0 25px rgba(182, 154, 99, .15);
+    }
+
+    .card-name {
+      font-size: 18px;
+
+      color: var(--cream);
+
+      letter-spacing: 2px;
+    }
+
+    .card-line {
+      width: 35px;
+      height: 1px;
+
+      margin: 16px 0;
+
+      background: var(--red);
+    }
+
+    .card-small {
+      color: var(--gray);
+
+      font-family: Arial, sans-serif;
+
+      font-size: 8px;
+
+      letter-spacing: 3px;
+    }
+
+
+    /* =========================================================
+       MÁSCARA
+       ========================================================= */
+
+    .mask {
+      position: absolute;
+
+      right: 16%;
+      top: 50%;
+
+      width: 250px;
+      height: 130px;
+
+      transform:
+        translateY(-50%)
+        rotate(-4deg);
+
+      z-index: 7;
+
+      opacity: 0;
+
+      animation:
+        maskReveal 1.4s cubic-bezier(.2,.8,.2,1) forwards 1.4s;
+
+      pointer-events: none;
+
+      filter:
+        drop-shadow(0 20px 30px rgba(0, 0, 0, .6));
+    }
+
+    .mask-shape {
+      position: absolute;
+
+      width: 100%;
+      height: 100%;
+
+      background:
+        linear-gradient(
+          145deg,
+          #201315,
+          #080708
+        );
+
+      border: 1px solid rgba(182, 154, 99, .55);
+
+      clip-path: polygon(
+        0 35%,
+        18% 20%,
+        38% 25%,
+        50% 10%,
+        62% 25%,
+        82% 20%,
+        100% 35%,
+        88% 75%,
+        68% 88%,
+        50% 78%,
+        32% 88%,
+        12% 75%
+      );
+    }
+
+    .eye {
+      position: absolute;
+
+      top: 43%;
+
+      width: 55px;
+      height: 16px;
+
+      border: 2px solid var(--gold);
+
+      border-radius: 50%;
+
+      transform: rotate(-5deg);
+
+      box-shadow:
+        0 0 15px rgba(182, 154, 99, .12);
+    }
+
+    .eye-left {
+      left: 30px;
+    }
+
+    .eye-right {
+      right: 30px;
+      transform: rotate(5deg);
+    }
+
+    .mask-center {
+      position: absolute;
+
+      left: 50%;
+      top: 20%;
+
+      width: 2px;
+      height: 65%;
+
+      transform: translateX(-50%);
+
+      background: var(--gold);
+
+      opacity: .5;
+    }
+
+
+    /* =========================================================
+       MENU OVERLAY
+       ========================================================= */
+
+    .menu-overlay {
+      position: fixed;
+
+      inset: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(75, 13, 22, .38),
+          rgba(5, 5, 6, .98) 65%
+        );
+
+      opacity: 0;
+      visibility: hidden;
+
+      transition:
+        opacity .45s ease,
+        visibility .45s ease;
+
+      z-index: 100;
+    }
+
+    .menu-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .menu-box {
+      width: min(700px, 88%);
+
+      text-align: center;
+    }
+
+    .menu-label {
+      color: var(--red-light);
+
+      font-family: Arial, sans-serif;
+
+      font-size: 10px;
+
+      letter-spacing: 6px;
+
+      margin-bottom: 35px;
+    }
+
+    .menu-link {
+      display: block;
+
+      font-size: clamp(34px, 7vw, 65px);
+
+      margin: 15px 0;
+
+      color: var(--cream);
+
+      transition:
+        color .3s ease,
+        transform .3s ease;
+    }
+
+    .menu-link:hover {
+      color: var(--gold);
+
+      transform: translateX(10px);
+    }
+
+    .close-menu {
+      margin-top: 40px;
+
+      width: 48px;
+      height: 48px;
+
+      border: 1px solid var(--line);
+
+      background: transparent;
+
+      color: var(--cream);
+
+      cursor: pointer;
+
+      font-size: 20px;
+    }
+
+
+    /* =========================================================
+       ANIMAÇÕES
+       ========================================================= */
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes titleReveal {
+      from {
+        opacity: 0;
+        transform: translateY(35px);
+        filter: blur(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes lineGrow {
+      to {
+        transform: scaleX(1);
+      }
+    }
+
+    @keyframes maskReveal {
+      from {
+        opacity: 0;
+        transform:
+          translate(80px, -50%)
+          rotate(12deg)
+          scale(.8);
+      }
+
+      to {
+        opacity: .8;
+        transform:
+          translate(0, -50%)
+          rotate(-4deg)
+          scale(1);
+      }
+    }
+
+
+    /* =========================================================
+       MOBILE
+       ========================================================= */
+
+    @media (max-width: 800px) {
+
+      .topo {
+        height: 72px;
+        padding: 0 22px;
+      }
+
+      .logo {
+        font-size: 13px;
+        letter-spacing: 3px;
+      }
+
+      .menu-btn {
+        width: 44px;
+        height: 44px;
+      }
+
+      .hero {
+        align-items: center;
+      }
+
+      .hero-content {
+        width: calc(100% - 44px);
+        padding-top: 45px;
+      }
+
+      .eyebrow {
+        font-size: 10px;
+        letter-spacing: 5px;
+        margin-bottom: 20px;
+      }
+
+      .title {
+        font-size: clamp(48px, 14vw, 70px);
+        line-height: .86;
+        letter-spacing: -3px;
+        max-width: 100%;
+      }
+
+      .title-gold {
+        margin-left: 0;
+      }
+
+      .subtitle {
+        max-width: 350px;
+        margin-top: 34px;
+        font-size: 17px;
+        line-height: 1.5;
+      }
+
+      .enter {
+        width: 100%;
+        height: 62px;
+        margin-top: 32px;
+      }
+
+      .card-table {
+        width: 240px;
+        height: 300px;
+
+        right: -85px;
+        top: 27%;
+
+        opacity: .45;
+
+        transform:
+          translateY(-50%)
+          scale(.7)
+          perspective(1000px)
+          rotateY(-8deg);
+      }
+
+      .mask {
+        right: -35px;
+        top: 34%;
+
+        transform:
+          translateY(-50%)
+          scale(.55)
+          rotate(-4deg);
+
+        opacity: .45;
+      }
+
+      .ring-1 {
+        width: 620px;
+        height: 620px;
+
+        right: -300px;
+        top: 15%;
+      }
+
+      .ring-2 {
+        width: 430px;
+        height: 430px;
+
+        right: -180px;
+        top: 35%;
+      }
+
+      .cursor-glow {
+        width: 280px;
+        height: 280px;
+      }
+    }
+
+    @media (max-width: 430px) {
+
+      .hero-content {
+        width: calc(100% - 36px);
+      }
+
+      .title {
+        font-size: 52px;
+      }
+
+      .subtitle {
+        font-size: 16px;
+      }
+
+      .card-table {
+        right: -110px;
+        top: 28%;
+        transform:
+          translateY(-50%)
+          scale(.58)
+          perspective(1000px)
+          rotateY(-8deg);
+      }
+
+      .mask {
+        right: -80px;
+        top: 34%;
+        transform:
+          translateY(-50%)
+          scale(.42)
+          rotate(-4deg);
+      }
+    }
+
+    /* telas muito pequenas */
+
+    @media (max-height: 700px) and (max-width: 800px) {
+
+      .hero-content {
+        padding-top: 35px;
+      }
+
+      .eyebrow {
+        margin-bottom: 13px;
+      }
+
+      .title {
+        font-size: 45px;
+      }
+
+      .subtitle {
+        margin-top: 25px;
+        font-size: 15px;
+      }
+
+      .enter {
+        margin-top: 24px;
+      }
+    }
+
+  </style>
 </head>
+
 
 <body>
 
-<header class="topo">
+  <div class="site">
 
-<a href="index.html" class="logo">
-RED MASQUERADE
-</a>
+    <!-- brilho interativo -->
+    <div class="cursor-glow"></div>
 
-<button class="menu-btn">
-☰
-</button>
+    <!-- círculos -->
+    <div class="ring ring-1"></div>
+    <div class="ring ring-2"></div>
+    <div class="ring ring-3"></div>
 
-</header>
+    <!-- partículas -->
+    <div class="particles" id="particles"></div>
 
 
-<main class="hero">
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
 
-<div class="hero-conteudo">
+    <header class="topo">
 
-<p class="eyebrow">
-MOSCOW · RUSSIA
-</p>
+      <a href="index.html" class="logo">
+        RED MASQUERADE
+      </a>
 
-<h1>
-RED<br>
-<span>MASQUERADE</span>
-</h1>
+      <button
+        class="menu-btn"
+        id="menuButton"
+        aria-label="Abrir menu"
+      >
 
-<p class="subtitulo">
-Um universo de histórias, segredos,
-escolhas e consequências.
-</p>
+        <span class="menu-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
 
-<a href="fraternidades.html" class="botao">
-ENTRAR NO UNIVERSO
-</a>
+      </button>
 
-</div>
+    </header>
 
-</main>
+
+    <!-- =====================================================
+         HOME
+         ===================================================== -->
+
+    <main class="hero">
+
+      <div class="hero-content">
+
+        <p class="eyebrow">
+          MOSCOW · RUSSIA
+        </p>
+
+
+        <h1 class="title">
+
+          <span class="title-red">
+            RED
+          </span>
+
+          <span class="title-gold">
+            MASQUERADE
+          </span>
+
+        </h1>
+
+
+        <p class="subtitle">
+          Um universo de histórias, segredos,
+          escolhas e consequências.
+        </p>
+
+
+        <a
+          href="fraternidades.html"
+          class="enter"
+          id="enterButton"
+        >
+          <span>
+            ENTRAR NO UNIVERSO
+          </span>
+        </a>
+
+      </div>
+
+
+      <!-- =====================================================
+           CARTAS
+           ===================================================== -->
+
+      <div class="card-table">
+
+        <div class="card card-1">
+
+          <div class="card-content">
+
+            <span class="card-number">
+              01
+            </span>
+
+            <div class="card-symbol">
+              ♜
+            </div>
+
+            <div class="card-name">
+              GOLDEN
+            </div>
+
+            <div class="card-line"></div>
+
+            <div class="card-small">
+              HONOR
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="card card-2">
+
+          <div class="card-content">
+
+            <span class="card-number">
+              02
+            </span>
+
+            <div class="card-symbol">
+              ♠
+            </div>
+
+            <div class="card-name">
+              WINTER
+            </div>
+
+            <div class="card-line"></div>
+
+            <div class="card-small">
+              SECRETS
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="card card-3">
+
+          <div class="card-content">
+
+            <span class="card-number">
+              03
+            </span>
+
+            <div class="card-symbol">
+              ♞
+            </div>
+
+            <div class="card-name">
+              IRON
+            </div>
+
+            <div class="card-line"></div>
+
+            <div class="card-small">
+              FREEDOM
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- =====================================================
+           MÁSCARA
+           ===================================================== -->
+
+      <div class="mask">
+
+        <div class="mask-shape"></div>
+
+        <div class="eye eye-left"></div>
+
+        <div class="eye eye-right"></div>
+
+        <div class="mask-center"></div>
+
+      </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         MENU
+         ===================================================== -->
+
+    <div class="menu-overlay" id="menuOverlay">
+
+      <div class="menu-box">
+
+        <div class="menu-label">
+          RED MASQUERADE
+        </div>
+
+        <a
+          href="index.html"
+          class="menu-link"
+        >
+          Início
+        </a>
+
+        <a
+          href="fraternidades.html"
+          class="menu-link"
+        >
+          Fraternidades
+        </a>
+
+        <button
+          class="close-menu"
+          id="closeMenu"
+          aria-label="Fechar menu"
+        >
+          ×
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =======================================================
+       JAVASCRIPT
+       ======================================================= -->
+
+  <script>
+
+    /* =====================================================
+       PARTÍCULAS
+       ===================================================== */
+
+    const particles =
+      document.getElementById("particles");
+
+    for (let i = 0; i < 32; i++) {
+
+      const particle =
+        document.createElement("span");
+
+      particle.className = "particle";
+
+      particle.style.left =
+        Math.random() * 100 + "%";
+
+      particle.style.setProperty(
+        "--duration",
+        (8 + Math.random() * 12) + "s"
+      );
+
+      particle.style.setProperty(
+        "--delay",
+        (-Math.random() * 15) + "s"
+      );
+
+      particle.style.setProperty(
+        "--move",
+        ((Math.random() - .5) * 180) + "px"
+      );
+
+      particle.style.width =
+        (Math.random() * 3 + 1) + "px";
+
+      particle.style.height =
+        particle.style.width;
+
+      particles.appendChild(particle);
+    }
+
+
+    /* =====================================================
+       BRILHO DO MOUSE / TOQUE
+       ===================================================== */
+
+    const site =
+      document.querySelector(".site");
+
+    function moveGlow(x, y) {
+
+      site.style.setProperty(
+        "--mouse-x",
+        x + "px"
+      );
+
+      site.style.setProperty(
+        "--mouse-y",
+        y + "px"
+      );
+
+    }
+
+
+    document.addEventListener(
+      "mousemove",
+      function (event) {
+
+        moveGlow(
+          event.clientX,
+          event.clientY
+        );
+
+      }
+    );
+
+
+    document.addEventListener(
+      "touchmove",
+      function (event) {
+
+        if (!event.touches.length) return;
+
+        moveGlow(
+          event.touches[0].clientX,
+          event.touches[0].clientY
+        );
+
+      },
+      {
+        passive: true
+      }
+    );
+
+
+    /* =====================================================
+       CARTAS INTERATIVAS
+       ===================================================== */
+
+    const table =
+      document.querySelector(".card-table");
+
+    const cards =
+      document.querySelectorAll(".card");
+
+
+    document.addEventListener(
+      "mousemove",
+      function (event) {
+
+        if (window.innerWidth < 801) return;
+
+        const x =
+          (event.clientX / window.innerWidth) - .5;
+
+        const y =
+          (event.clientY / window.innerHeight) - .5;
+
+        table.style.transform =
+          `
+          translateY(-42%)
+          perspective(1000px)
+          rotateY(${x * 8 - 8}deg)
+          rotateX(${y * -4}deg)
+          `;
+
+      }
+    );
+
+
+    /* =====================================================
+       MENU
+       ===================================================== */
+
+    const menuButton =
+      document.getElementById("menuButton");
+
+    const menuOverlay =
+      document.getElementById("menuOverlay");
+
+    const closeMenu =
+      document.getElementById("closeMenu");
+
+
+    menuButton.addEventListener(
+      "click",
+      function () {
+
+        menuOverlay.classList.add("open");
+
+      }
+    );
+
+
+    closeMenu.addEventListener(
+      "click",
+      function () {
+
+        menuOverlay.classList.remove("open");
+
+      }
+    );
+
+
+    menuOverlay.addEventListener(
+      "click",
+      function (event) {
+
+        if (event.target === menuOverlay) {
+
+          menuOverlay.classList.remove("open");
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       TECLADO
+       ===================================================== */
+
+    document.addEventListener(
+      "keydown",
+      function (event) {
+
+        if (event.key === "Escape") {
+
+          menuOverlay.classList.remove("open");
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       EFEITO DE ENTRADA
+       ===================================================== */
+
+    const enterButton =
+      document.getElementById("enterButton");
+
+
+    enterButton.addEventListener(
+      "click",
+      function () {
+
+        document.body.style.transition =
+          "opacity .5s ease";
+
+        document.body.style.opacity = "0";
+
+      }
+    );
+
+
+    /* =====================================================
+       TOQUE NAS CARTAS
+       ===================================================== */
+
+    cards.forEach(function (card, index) {
+
+      card.addEventListener(
+        "click",
+        function () {
+
+          card.style.transform =
+            "translateY(-25px) rotate(0deg) scale(1.08)";
+
+          setTimeout(function () {
+
+            card.style.transform = "";
+
+          }, 700);
+
+        }
+      );
+
+    });
+
+  </script>
 
 </body>
+
 </html>
