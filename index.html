@@ -3,1099 +3,3294 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#070606">
+<meta name="theme-color" content="#070607">
+
 <title>Red Masquerade</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
 
-:root{
-    --black:#070606;
-    --black2:#0d090b;
-    --wine:#260b12;
-    --red:#8f1f35;
-    --gold:#b69a63;
-    --gold2:#d8bd82;
-    --cream:#eee6da;
-    --muted:#a99f96;
+/* =========================================================
+   RED MASQUERADE — VERSÃO BASE DEFINITIVA
+   Uma página + páginas internas
+   ========================================================= */
+
+:root {
+  --black: #060506;
+  --black-2: #0b0809;
+  --wine: #310b13;
+  --red: #9b2638;
+  --gold: #b69a63;
+  --gold-light: #d3bb82;
+  --cream: #eee6da;
+  --gray: #a49a91;
+  --line: rgba(238,230,218,.14);
 }
 
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-html{
-    scroll-behavior:smooth;
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
 }
 
-body{
-    min-height:100vh;
-    background:
-        radial-gradient(
-            circle at 78% 30%,
-            rgba(143,31,53,.14),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 15% 80%,
-            rgba(182,154,99,.06),
-            transparent 25%
-        ),
-        var(--black);
-    color:var(--cream);
-    font-family:'Cormorant Garamond',Georgia,serif;
-    overflow-x:hidden;
+body {
+  background: var(--black);
+  color: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
 }
 
-a{
-    color:inherit;
-    text-decoration:none;
+button,
+a {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* =========================================================
+   FUNDO
+   ========================================================= */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  background:
+    radial-gradient(
+      circle at 72% 52%,
+      rgba(155,38,56,.18),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 20% 80%,
+      rgba(75,13,22,.20),
+      transparent 35%
+    );
+}
+
+
+/* =========================================================
+   PARTÍCULAS
+   ========================================================= */
+
+.particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+
+  width: 2px;
+  height: 2px;
+
+  background: var(--gold-light);
+
+  border-radius: 50%;
+
+  opacity: .35;
+
+  animation: floatParticle linear infinite;
+}
+
+@keyframes floatParticle {
+
+  from {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: .35;
+  }
+
+  85% {
+    opacity: .35;
+  }
+
+  to {
+    transform: translateY(-10vh);
+    opacity: 0;
+  }
+
+}
+
+
+/* =========================================================
+   CÍRCULOS
+   ========================================================= */
+
+.circle {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.circle-one {
+  width: 700px;
+  height: 700px;
+
+  right: -330px;
+  top: 24%;
+
+  border: 1px solid rgba(182,154,99,.14);
+
+  animation: rotateSlow 30s linear infinite;
+}
+
+.circle-two {
+  width: 470px;
+  height: 470px;
+
+  right: -160px;
+  top: 39%;
+
+  border: 1px solid rgba(155,38,56,.22);
+
+  animation: rotateReverse 22s linear infinite;
+}
+
+@keyframes rotateSlow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateReverse {
+  to {
+    transform: rotate(-360deg);
+  }
 }
 
 
 /* =========================================================
    HEADER
-========================================================= */
+   ========================================================= */
 
-header{
-    position:sticky;
-    top:0;
-    z-index:100;
+header {
+  position: fixed;
 
-    width:100%;
-    height:94px;
+  top: 0;
+  left: 0;
 
-    padding:0 6%;
+  width: 100%;
+  height: 82px;
 
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+  padding: 0 6%;
 
-    background:rgba(7,6,6,.94);
-    backdrop-filter:blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    border-bottom:1px solid rgba(182,154,99,.22);
+  border-bottom: 1px solid var(--line);
+
+  background: rgba(6,5,6,.88);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  z-index: 100;
 }
 
-.logo{
-    font-family:'Montserrat',Arial,sans-serif;
-    font-size:17px;
-    font-weight:500;
-    letter-spacing:6px;
+.logo {
+  color: var(--cream);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 15px;
+  font-weight: bold;
+
+  letter-spacing: 5px;
+
+  white-space: nowrap;
 }
 
-.menu-button{
-    width:56px;
-    height:56px;
+.menu-button {
+  width: 48px;
+  height: 48px;
 
-    border:1px solid rgba(182,154,99,.38);
+  border: 1px solid rgba(238,230,218,.18);
 
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    gap:7px;
+  background: transparent;
 
-    background:transparent;
+  color: var(--cream);
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    border-color .3s ease,
+    color .3s ease;
 }
 
-.menu-button span{
-    width:27px;
-    height:1px;
-    background:var(--cream);
+.menu-button:hover {
+  border-color: var(--gold);
+  color: var(--gold);
 }
 
+.menu-icon {
+  width: 23px;
 
-/* =========================================================
-   HERO
-========================================================= */
+  display: flex;
+  flex-direction: column;
 
-.hero{
-    position:relative;
-    min-height:calc(100vh - 94px);
-
-    padding:
-        100px 6%
-        100px;
-
-    display:flex;
-    align-items:center;
-
-    overflow:hidden;
+  gap: 6px;
 }
 
-.hero::before{
-    content:"";
+.menu-icon span {
+  width: 100%;
+  height: 2px;
 
-    position:absolute;
+  background: currentColor;
 
-    width:760px;
-    height:760px;
-
-    right:-390px;
-    top:8%;
-
-    border:1px solid rgba(182,154,99,.12);
-    border-radius:50%;
+  transition: .3s ease;
 }
 
-.hero::after{
-    content:"";
-
-    position:absolute;
-
-    width:520px;
-    height:520px;
-
-    right:-210px;
-    top:24%;
-
-    border:1px solid rgba(143,31,53,.18);
-    border-radius:50%;
+.menu-button.active .menu-icon span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
 }
 
-.hero-content{
-    position:relative;
-    z-index:2;
-
-    width:min(1050px,100%);
-    margin:auto;
+.menu-button.active .menu-icon span:nth-child(2) {
+  opacity: 0;
 }
 
-.eyebrow{
-    color:var(--red);
-
-    font-family:'Montserrat',Arial,sans-serif;
-
-    font-size:11px;
-    font-weight:500;
-
-    letter-spacing:6px;
-
-    margin-bottom:25px;
-}
-
-.hero h1{
-    font-size:clamp(70px,11vw,145px);
-
-    line-height:.78;
-
-    letter-spacing:-4px;
-
-    font-weight:600;
-
-    text-transform:uppercase;
-}
-
-.hero h1 span{
-    display:block;
-    color:var(--gold2);
-}
-
-.divider{
-    width:470px;
-    max-width:80%;
-
-    height:1px;
-
-    margin:48px 0 30px;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--gold),
-            transparent
-        );
-}
-
-.subtitle{
-    max-width:620px;
-
-    color:#d2c9c0;
-
-    font-size:24px;
-
-    line-height:1.45;
-}
-
-.quote{
-    margin-top:20px;
-
-    color:var(--gold2);
-
-    font-size:18px;
-
-    letter-spacing:3px;
-
-    font-style:italic;
+.menu-button.active .menu-icon span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
 }
 
 
 /* =========================================================
-   INFORMAÇÕES
-========================================================= */
+   HOME
+   ========================================================= */
 
-.info-grid{
-    max-width:900px;
+.page {
+  position: fixed;
 
-    margin-top:48px;
+  inset: 0;
 
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
+  padding-top: 82px;
 
-    gap:1px;
+  display: flex;
+  align-items: center;
 
-    border-top:1px solid rgba(182,154,99,.18);
-    border-bottom:1px solid rgba(182,154,99,.18);
+  overflow: hidden;
+
+  opacity: 1;
+  visibility: visible;
+
+  transition:
+    opacity .5s ease,
+    transform .6s ease;
+
+  z-index: 10;
 }
 
-.info{
-    min-height:100px;
+.page.hidden {
+  opacity: 0;
+  visibility: hidden;
 
-    padding:20px;
+  transform: scale(1.03);
 
-    border-right:1px solid rgba(182,154,99,.14);
-
-    background:rgba(255,255,255,.01);
+  pointer-events: none;
 }
 
-.info:nth-child(3),
-.info:nth-child(6){
-    border-right:0;
+.hero-content {
+  position: relative;
+  z-index: 10;
+
+  width: min(850px, 88%);
+
+  margin: 0 auto;
+
+  transform: translateY(5px);
 }
 
-.info small{
-    display:block;
+.eyebrow {
+  margin-bottom: 20px;
 
-    color:var(--red);
+  color: var(--red);
 
-    font-family:'Montserrat',Arial,sans-serif;
+  font-family: Arial, sans-serif;
 
-    font-size:9px;
+  font-size: 10px;
+  font-weight: bold;
 
-    letter-spacing:4px;
-
-    margin-bottom:10px;
+  letter-spacing: 6px;
 }
 
-.info strong{
-    font-size:18px;
-    font-weight:500;
+.hero-title {
+  font-size: clamp(55px, 9vw, 105px);
+
+  line-height: .80;
+
+  letter-spacing: -4px;
 }
 
-
-/* =========================================================
-   PORTAL
-========================================================= */
-
-.portal{
-    position:relative;
-    z-index:2;
-
-    padding:110px 6%;
-
-    border-top:1px solid rgba(182,154,99,.13);
+.hero-title .red {
+  display: block;
+  color: var(--cream);
 }
 
-.section-inner{
-    width:min(1100px,100%);
-    margin:auto;
+.hero-title .gold {
+  display: block;
+  color: var(--gold);
 }
 
-.section-label{
-    color:var(--red);
+.title-line {
+  width: min(430px, 75%);
 
-    font-family:'Montserrat',Arial,sans-serif;
+  height: 1px;
 
-    font-size:10px;
+  margin-top: 27px;
 
-    letter-spacing:5px;
-
-    margin-bottom:15px;
+  background:
+    linear-gradient(
+      90deg,
+      var(--gold),
+      transparent
+    );
 }
 
-.section-title{
-    font-size:58px;
+.subtitle {
+  max-width: 520px;
 
-    line-height:1;
+  margin-top: 25px;
 
-    font-weight:500;
+  color: var(--gray);
 
-    margin-bottom:50px;
+  font-size: clamp(17px, 2.2vw, 22px);
+
+  line-height: 1.5;
 }
 
+.quote {
+  margin-top: 18px;
 
-/* =========================================================
-   CARDS
-========================================================= */
+  color: var(--gold-light);
 
-.cards{
-    display:grid;
+  font-size: 15px;
 
-    grid-template-columns:repeat(3,1fr);
+  font-style: italic;
 
-    gap:16px;
+  letter-spacing: 2px;
 }
 
-.card{
-    position:relative;
+.enter-button {
+  position: relative;
 
-    min-height:235px;
+  display: flex;
 
-    padding:30px;
+  align-items: center;
+  justify-content: center;
 
-    border:1px solid rgba(182,154,99,.22);
+  width: min(430px, 100%);
+  height: 55px;
 
-    background:
-        radial-gradient(
-            circle at 100% 100%,
-            rgba(143,31,53,.13),
-            transparent 48%
-        ),
-        rgba(255,255,255,.012);
+  margin-top: 30px;
 
-    transition:
-        transform .35s ease,
-        border-color .35s ease,
-        background .35s ease;
+  border: 1px solid var(--gold);
+
+  background: transparent;
+
+  color: var(--cream);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 10px;
+
+  letter-spacing: 4px;
+
+  cursor: pointer;
+
+  overflow: hidden;
+
+  transition: .35s ease;
 }
 
-.card:hover{
-    transform:translateY(-6px);
+.enter-button::before {
+  content: "";
 
-    border-color:var(--gold);
+  position: absolute;
 
-    background:
-        radial-gradient(
-            circle at 100% 100%,
-            rgba(143,31,53,.21),
-            transparent 50%
-        ),
-        rgba(255,255,255,.025);
+  inset: 0;
+
+  background: var(--gold);
+
+  transform: translateX(-101%);
+
+  transition: .4s ease;
+
+  z-index: -1;
 }
 
-.card-number{
-    color:var(--red);
-
-    font-family:'Montserrat',Arial,sans-serif;
-
-    font-size:10px;
-
-    letter-spacing:4px;
-
-    margin-bottom:42px;
+.enter-button:hover {
+  color: var(--black);
 }
 
-.card h3{
-    font-size:30px;
-
-    line-height:1;
-
-    font-weight:600;
-
-    margin-bottom:13px;
-}
-
-.card p{
-    max-width:280px;
-
-    color:var(--muted);
-
-    font-size:17px;
-
-    line-height:1.45;
-}
-
-.card-arrow{
-    position:absolute;
-
-    right:25px;
-    bottom:22px;
-
-    color:var(--gold);
-
-    font-family:'Montserrat',Arial,sans-serif;
-
-    font-size:20px;
+.enter-button:hover::before {
+  transform: translateX(0);
 }
 
 
 /* =========================================================
-   ACESSO
-========================================================= */
+   MENU
+   ========================================================= */
 
-.access{
-    padding:110px 6%;
+.menu-overlay {
+  position: fixed;
 
-    text-align:center;
+  inset: 0;
 
-    border-top:1px solid rgba(182,154,99,.13);
+  padding-top: 82px;
+
+  background:
+    radial-gradient(
+      circle at 70% 50%,
+      rgba(75,13,22,.35),
+      transparent 38%
+    ),
+    rgba(6,5,6,.98);
+
+  z-index: 90;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity .4s ease,
+    visibility .4s ease;
 }
 
-.access-inner{
-    max-width:750px;
-    margin:auto;
+.menu-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
-.access h2{
-    font-size:58px;
-    font-weight:500;
-    margin-bottom:18px;
+.menu-inner {
+  width: min(850px, 88%);
+
+  height: calc(100% - 82px);
+
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
 }
 
-.access p{
-    color:var(--muted);
+.menu-eyebrow {
+  color: var(--red);
 
-    font-size:20px;
+  font-family: Arial, sans-serif;
 
-    line-height:1.5;
+  font-size: 10px;
 
-    margin-bottom:38px;
+  letter-spacing: 6px;
+
+  margin-bottom: 18px;
 }
 
-.buttons{
-    display:flex;
+.menu-title {
+  font-size: clamp(48px, 8vw, 80px);
 
-    justify-content:center;
+  line-height: .9;
 
-    flex-wrap:wrap;
-
-    gap:14px;
+  margin-bottom: 30px;
 }
 
-.button{
-    display:inline-flex;
-
-    align-items:center;
-    justify-content:center;
-
-    min-height:54px;
-
-    padding:0 28px;
-
-    border:1px solid var(--gold);
-
-    font-family:'Montserrat',Arial,sans-serif;
-
-    font-size:10px;
-
-    letter-spacing:3px;
-
-    transition:.3s;
+.menu-title span {
+  color: var(--gold);
 }
 
-.button:hover{
-    background:var(--gold);
-    color:var(--black);
+.menu-link {
+  width: 100%;
+
+  padding: 17px 4px;
+
+  border-top: 1px solid var(--line);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  color: var(--cream);
+
+  font-size: clamp(19px, 3vw, 27px);
+
+  transition:
+    padding-left .3s ease,
+    color .3s ease;
 }
 
-.button.primary{
-    background:var(--gold);
-    color:var(--black);
+.menu-link:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.menu-link:hover {
+  padding-left: 18px;
+  color: var(--gold);
+}
+
+.menu-number {
+  color: var(--red);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 9px;
+
+  letter-spacing: 3px;
+}
+
+
+/* =========================================================
+   PÁGINAS INTERNAS
+   ========================================================= */
+
+.internal {
+  position: fixed;
+
+  inset: 0;
+
+  padding:
+    110px 6% 50px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  background:
+    radial-gradient(
+      circle at 75% 45%,
+      rgba(155,38,56,.15),
+      transparent 35%
+    ),
+    var(--black);
+
+  z-index: 20;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: translateX(25px);
+
+  transition:
+    opacity .45s ease,
+    transform .45s ease,
+    visibility .45s ease;
+}
+
+.internal.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transform: translateX(0);
+}
+
+.internal-inner {
+  width: min(1000px,100%);
+
+  margin: 0 auto;
+}
+
+.back-button {
+  display: inline-flex;
+
+  align-items: center;
+  gap: 9px;
+
+  border: 1px solid var(--line);
+
+  background: transparent;
+
+  color: var(--cream);
+
+  padding: 10px 16px;
+
+  cursor: pointer;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 9px;
+
+  letter-spacing: 3px;
+
+  margin-bottom: 28px;
+}
+
+.back-button:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.internal-eyebrow {
+  color: var(--red);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 10px;
+
+  letter-spacing: 5px;
+
+  margin-bottom: 13px;
+}
+
+.internal-title {
+  font-size: clamp(45px, 7vw, 75px);
+
+  line-height: .9;
+
+  margin-bottom: 18px;
+}
+
+.internal-title span {
+  color: var(--gold);
+}
+
+.internal-description {
+  max-width: 680px;
+
+  color: var(--gray);
+
+  font-size: 17px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   CARDS INTERNOS
+   ========================================================= */
+
+.house-grid {
+  margin-top: 32px;
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 15px;
+}
+
+.house-card {
+  position: relative;
+
+  min-height: 220px;
+
+  padding: 25px;
+
+  border: 1px solid var(--line);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(155,38,56,.12),
+      rgba(0,0,0,.25)
+    );
+
+  cursor: pointer;
+
+  overflow: hidden;
+
+  transition:
+    transform .35s ease,
+    border-color .35s ease;
+}
+
+.house-card:hover {
+  transform: translateY(-5px);
+
+  border-color: var(--gold);
+}
+
+.house-number {
+  color: var(--red);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 10px;
+
+  letter-spacing: 4px;
+}
+
+.house-name {
+  margin-top: 42px;
+
+  font-size: 29px;
+
+  line-height: 1;
+}
+
+.house-description {
+  margin-top: 11px;
+
+  color: var(--gray);
+
+  font-size: 16px;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   FRATERNIDADES
+   ========================================================= */
+
+.fraternity-card {
+  min-height: 330px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+}
+
+.fraternity-shield {
+  width: 105px;
+  height: 105px;
+
+  object-fit: cover;
+
+  margin: 18px auto 5px;
+
+  border: 1px solid rgba(182,154,99,.25);
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.35);
+}
+
+.fraternity-card .house-name {
+  margin-top: 18px;
+}
+
+.fraternity-card .house-description {
+  max-width: 260px;
+}
+
+
+/* =========================================================
+   DETALHES DAS FRATERNIDADES
+   ========================================================= */
+
+.fraternity-detail {
+  display: none;
+}
+
+.fraternity-detail.active {
+  display: block;
+}
+
+.detail-top {
+  display: grid;
+
+  grid-template-columns: 150px 1fr;
+
+  gap: 30px;
+
+  align-items: center;
+
+  margin-bottom: 35px;
+}
+
+.detail-shield {
+  width: 150px;
+  height: 150px;
+
+  object-fit: cover;
+
+  border: 1px solid rgba(182,154,99,.3);
+}
+
+.detail-title {
+  font-size: clamp(38px, 6vw, 65px);
+
+  line-height: .9;
+}
+
+.detail-title span {
+  color: var(--gold);
+}
+
+.detail-motto {
+  margin-top: 12px;
+
+  color: var(--gold-light);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 9px;
+
+  letter-spacing: 3px;
+}
+
+.detail-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2,1fr);
+
+  gap: 12px;
+}
+
+.detail-box {
+  padding: 21px;
+
+  border: 1px solid var(--line);
+
+  background: rgba(255,255,255,.015);
+}
+
+.detail-box h4 {
+  color: var(--gold);
+
+  font-size: 17px;
+
+  margin-bottom: 8px;
+}
+
+.detail-box p {
+  color: var(--gray);
+
+  font-size: 15px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   LISTAS
+   ========================================================= */
+
+.list-section {
+  margin-top: 30px;
+}
+
+.list-section h3 {
+  color: var(--gold);
+
+  font-size: 25px;
+
+  margin-bottom: 15px;
+}
+
+.simple-list {
+  display: grid;
+
+  grid-template-columns: repeat(3,1fr);
+
+  gap: 8px;
+}
+
+.simple-list div {
+  padding: 12px 14px;
+
+  border: 1px solid var(--line);
+
+  color: var(--cream);
+
+  font-size: 15px;
+
+  background: rgba(255,255,255,.01);
+}
+
+
+/* =========================================================
+   REGRAS
+   ========================================================= */
+
+.rules-list {
+  margin-top: 30px;
+
+  display: grid;
+
+  gap: 10px;
+}
+
+.rule {
+  padding: 18px 20px;
+
+  border-left: 2px solid var(--red);
+
+  background: rgba(255,255,255,.018);
+}
+
+.rule strong {
+  display: block;
+
+  color: var(--gold);
+
+  font-size: 17px;
+
+  margin-bottom: 5px;
+}
+
+.rule p {
+  color: var(--gray);
+
+  font-size: 15px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   VAZIO / NPC
+   ========================================================= */
+
+.empty-box {
+  margin-top: 30px;
+
+  padding: 45px 25px;
+
+  border: 1px solid var(--line);
+
+  text-align: center;
+}
+
+.empty-box strong {
+  display: block;
+
+  color: var(--gold);
+
+  font-size: 25px;
+
+  margin-bottom: 10px;
+}
+
+.empty-box p {
+  color: var(--gray);
+
+  font-size: 16px;
+}
+
+
+/* =========================================================
+   WHATSAPP
+   ========================================================= */
+
+.whatsapp-buttons {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 12px;
+
+  margin-top: 30px;
+}
+
+.whatsapp-button {
+  min-height: 50px;
+
+  padding: 0 23px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--gold);
+
+  color: var(--cream);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 9px;
+
+  letter-spacing: 3px;
+
+  transition: .3s;
+}
+
+.whatsapp-button:hover {
+  background: var(--gold);
+
+  color: var(--black);
+}
+
+.whatsapp-button.red {
+  border-color: var(--red);
+}
+
+.whatsapp-button.red:hover {
+  background: var(--red);
+
+  color: var(--cream);
 }
 
 
 /* =========================================================
    FOOTER
-========================================================= */
+   ========================================================= */
 
-footer{
-    padding:45px 6%;
+footer {
+  position: relative;
 
-    border-top:1px solid rgba(182,154,99,.18);
+  z-index: 5;
 
-    display:flex;
+  padding: 35px 6%;
 
-    align-items:center;
-    justify-content:space-between;
+  border-top: 1px solid var(--line);
 
-    gap:20px;
+  text-align: center;
 
-    flex-wrap:wrap;
-}
+  color: var(--gray);
 
-footer strong{
-    font-family:'Montserrat',Arial,sans-serif;
+  font-family: Arial, sans-serif;
 
-    font-size:11px;
+  font-size: 9px;
 
-    letter-spacing:5px;
-}
-
-footer p{
-    color:#706963;
-
-    font-size:14px;
+  letter-spacing: 3px;
 }
 
 
 /* =========================================================
-   MOBILE
-========================================================= */
+   TABLET
+   ========================================================= */
 
-@media(max-width:850px){
+@media screen and (max-width: 800px) {
 
-    header{
-        height:78px;
-        padding:0 22px;
-    }
+  .hero-content {
+    width: calc(100% - 48px);
+  }
 
-    .logo{
-        font-size:12px;
-        letter-spacing:4px;
-    }
+  .hero-title {
+    font-size: 55px;
+  }
 
-    .menu-button{
-        width:48px;
-        height:48px;
-    }
+  .house-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 
-    .hero{
-        min-height:auto;
+  .simple-list {
+    grid-template-columns: 1fr 1fr;
+  }
 
-        padding:
-            90px 22px
-            75px;
-    }
-
-    .hero h1{
-        font-size:66px;
-        letter-spacing:-2px;
-    }
-
-    .subtitle{
-        font-size:21px;
-    }
-
-    .info-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .info:nth-child(3){
-        border-right:1px solid rgba(182,154,99,.14);
-    }
-
-    .info:nth-child(even){
-        border-right:0;
-    }
-
-    .portal,
-    .access{
-        padding:80px 22px;
-    }
-
-    .section-title,
-    .access h2{
-        font-size:45px;
-    }
-
-    .cards{
-        grid-template-columns:1fr;
-    }
-
-    .card{
-        min-height:190px;
-    }
-
-    footer{
-        padding:35px 22px;
-    }
 }
 
-@media(max-width:420px){
 
-    .hero h1{
-        font-size:54px;
-    }
+/* =========================================================
+   CELULAR
+   ========================================================= */
 
-    .info-grid{
-        grid-template-columns:1fr;
-    }
+@media screen and (max-width: 600px) {
 
-    .info,
-    .info:nth-child(3){
-        border-right:0;
-        border-bottom:1px solid rgba(182,154,99,.14);
-    }
+  header {
+    height: 72px;
 
-    .info:last-child{
-        border-bottom:0;
-    }
+    padding: 0 20px;
+  }
+
+  .logo {
+    font-size: 12px;
+
+    letter-spacing: 3px;
+  }
+
+  .menu-button {
+    width: 44px;
+    height: 44px;
+  }
+
+
+  /* HOME */
+
+  .page {
+    padding-top: 72px;
+  }
+
+  .hero-content {
+    width: calc(100% - 40px);
+
+    max-width: calc(100% - 40px);
+
+    margin-left: 20px;
+    margin-right: 20px;
+
+    transform: none;
+  }
+
+  .eyebrow {
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 17px;
+  }
+
+  .hero-title {
+    font-size: 42px;
+
+    line-height: .86;
+
+    letter-spacing: -1.5px;
+  }
+
+  .title-line {
+    width: 72%;
+
+    margin-top: 22px;
+  }
+
+  .subtitle {
+    max-width: 320px;
+
+    margin-top: 21px;
+
+    font-size: 16px;
+
+    line-height: 1.5;
+  }
+
+  .quote {
+    font-size: 12px;
+
+    letter-spacing: 1.5px;
+
+    margin-top: 14px;
+  }
+
+  .enter-button {
+    width: 100%;
+
+    height: 50px;
+
+    margin-top: 25px;
+
+    font-size: 9px;
+
+    letter-spacing: 2.5px;
+  }
+
+
+  /* MENU */
+
+  .menu-overlay {
+    padding-top: 72px;
+  }
+
+  .menu-inner {
+    width: calc(100% - 40px);
+
+    height: calc(100% - 72px);
+  }
+
+  .menu-title {
+    font-size: 43px;
+
+    margin-bottom: 22px;
+  }
+
+  .menu-link {
+    padding: 13px 3px;
+
+    font-size: 18px;
+  }
+
+  .menu-number {
+    font-size: 8px;
+  }
+
+
+  /* INTERNAS */
+
+  .internal {
+    padding:
+      95px 20px 45px;
+  }
+
+  .internal-inner {
+    width: 100%;
+  }
+
+  .back-button {
+    margin-bottom: 22px;
+
+    padding: 9px 13px;
+
+    font-size: 8px;
+  }
+
+  .internal-eyebrow {
+    font-size: 9px;
+
+    letter-spacing: 4px;
+  }
+
+  .internal-title {
+    font-size: 42px;
+
+    line-height: .9;
+  }
+
+  .internal-description {
+    font-size: 15px;
+  }
+
+
+  /* CARDS */
+
+  .house-grid {
+    grid-template-columns: 1fr;
+
+    gap: 10px;
+
+    margin-top: 25px;
+  }
+
+  .house-card {
+    min-height: 145px;
+
+    padding: 20px;
+  }
+
+  .house-name {
+    margin-top: 23px;
+
+    font-size: 24px;
+  }
+
+  .house-description {
+    font-size: 14px;
+  }
+
+
+  /* FRATERNIDADES */
+
+  .fraternity-card {
+    min-height: 215px;
+  }
+
+  .fraternity-shield {
+    width: 70px;
+    height: 70px;
+
+    margin-top: 4px;
+  }
+
+  .fraternity-card .house-name {
+    margin-top: 12px;
+  }
+
+  .detail-top {
+    grid-template-columns: 90px 1fr;
+
+    gap: 18px;
+
+    margin-bottom: 25px;
+  }
+
+  .detail-shield {
+    width: 90px;
+    height: 90px;
+  }
+
+  .detail-title {
+    font-size: 30px;
+  }
+
+  .detail-motto {
+    font-size: 7px;
+
+    letter-spacing: 2px;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+
+    gap: 9px;
+  }
+
+  .detail-box {
+    padding: 17px;
+  }
+
+  .detail-box h4 {
+    font-size: 16px;
+  }
+
+  .detail-box p {
+    font-size: 14px;
+  }
+
+
+  /* LISTAS */
+
+  .simple-list {
+    grid-template-columns: 1fr;
+
+    gap: 7px;
+  }
+
+  .simple-list div {
+    padding: 11px 13px;
+
+    font-size: 14px;
+  }
+
+
+  /* REGRAS */
+
+  .rule {
+    padding: 15px 17px;
+  }
+
+  .rule strong {
+    font-size: 16px;
+  }
+
+  .rule p {
+    font-size: 14px;
+  }
+
+
+  /* WHATSAPP */
+
+  .whatsapp-buttons {
+    flex-direction: column;
+  }
+
+  .whatsapp-button {
+    width: 100%;
+  }
+
+
+  /* CÍRCULOS */
+
+  .circle-one {
+    width: 500px;
+    height: 500px;
+
+    right: -290px;
+  }
+
+  .circle-two {
+    width: 340px;
+    height: 340px;
+
+    right: -170px;
+  }
+
 }
+
+
+/* =========================================================
+   CELULARES MUITO PEQUENOS
+   ========================================================= */
+
+@media screen and (max-width: 380px) {
+
+  .hero-title {
+    font-size: 37px;
+  }
+
+  .subtitle {
+    font-size: 15px;
+  }
+
+  .menu-link {
+    font-size: 17px;
+  }
+
+}
+
 </style>
 </head>
+
 
 <body>
 
 
 <!-- =====================================================
+     PARTÍCULAS
+====================================================== -->
+
+<div class="particles" id="particles"></div>
+
+<div class="circle circle-one"></div>
+<div class="circle circle-two"></div>
+
+
+<!-- =====================================================
      HEADER
-===================================================== -->
+====================================================== -->
 
 <header>
 
-    <a href="index.html" class="logo">
-        RED MASQUERADE
-    </a>
+  <a href="#" class="logo" id="logoHome">
+    RED MASQUERADE
+  </a>
 
-    <div class="menu-button">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
+  <button
+    class="menu-button"
+    id="menuButton"
+    aria-label="Abrir menu"
+  >
+
+    <span class="menu-icon">
+
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </span>
+
+  </button>
 
 </header>
 
 
 <!-- =====================================================
-     INÍCIO
-===================================================== -->
+     HOME
+====================================================== -->
 
-<section class="hero">
+<main
+  class="page"
+  id="home"
+>
 
-    <div class="hero-content">
+  <div class="hero-content">
 
-        <div class="eyebrow">
-            MOSCOW · RUSSIA · 2026
-        </div>
-
-        <h1>
-            RED
-            <span>MASQUERADE</span>
-        </h1>
-
-        <div class="divider"></div>
-
-        <p class="subtitle">
-            Um universo de histórias, segredos,
-            escolhas e consequências.
-        </p>
-
-        <p class="quote">
-            “The jester always laughs last.”
-        </p>
-
-
-        <div class="info-grid">
-
-            <div class="info">
-                <small>STATUS</small>
-                <strong>RPG em andamento</strong>
-            </div>
-
-            <div class="info">
-                <small>GÊNERO</small>
-                <strong>RPG textual</strong>
-            </div>
-
-            <div class="info">
-                <small>TEMÁTICA</small>
-                <strong>Mistério</strong>
-            </div>
-
-            <div class="info">
-                <small>NÚCLEO</small>
-                <strong>Lomonosov</strong>
-            </div>
-
-            <div class="info">
-                <small>ADMINISTRAÇÃO</small>
-                <strong>Red Masquerade</strong>
-            </div>
-
-            <div class="info">
-                <small>ANO</small>
-                <strong>2026</strong>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     UNIVERSO
-===================================================== -->
-
-<section class="portal">
-
-    <div class="section-inner">
-
-        <div class="section-label">
-            RED MASQUERADE · UNIVERSO
-        </div>
-
-        <h2 class="section-title">
-            Explore o universo
-        </h2>
-
-
-        <div class="cards">
-
-
-            <!-- UNIVERSIDADE -->
-
-            <a href="universidade.html" class="card">
-
-                <div class="card-number">
-                    01
-                </div>
-
-                <h3>
-                    Universidade
-                </h3>
-
-                <p>
-                    A Universidade Lomonosov,
-                    sua história, cursos, atividades
-                    e moradia.
-                </p>
-
-                <div class="card-arrow">
-                    →
-                </div>
-
-            </a>
-
-
-            <!-- FRATERNIDADES -->
-
-            <a href="fraternidades.html" class="card">
-
-                <div class="card-number">
-                    02
-                </div>
-
-                <h3>
-                    Fraternidades
-                </h3>
-
-                <p>
-                    Golden Knights, Winter Foxes
-                    e Iron Crows.
-                </p>
-
-                <div class="card-arrow">
-                    →
-                </div>
-
-            </a>
-
-
-            <!-- JORNAL -->
-
-            <a href="jornal.html" class="card">
-
-                <div class="card-number">
-                    03
-                </div>
-
-                <h3>
-                    The University Echo
-                </h3>
-
-                <p>
-                    O jornal oficial da universidade
-                    e o Burn Book.
-                </p>
-
-                <div class="card-arrow">
-                    →
-                </div>
-
-            </a>
-
-
-            <!-- RED MASQUERADE -->
-
-            <a href="red-masquerade.html" class="card">
-
-                <div class="card-number">
-                    04
-                </div>
-
-                <h3>
-                    Red Masquerade
-                </h3>
-
-                <p>
-                    O Jester, seus mistérios,
-                    publicações e segredos.
-                </p>
-
-                <div class="card-arrow">
-                    →
-                </div>
-
-            </a>
-
-
-            <!-- NPCS -->
-
-            <a href="npcs.html" class="card">
-
-                <div class="card-number">
-                    05
-                </div>
-
-                <h3>
-                    NPCs
-                </h3>
-
-                <p>
-                    Os personagens oficiais
-                    do universo.
-                </p>
-
-                <div class="card-arrow">
-                    →
-                </div>
-
-            </a>
-
-
-            <!-- LOCAIS -->
-
-            <a href="locais.html" class="card">
-
-                <div class="card-number">
-                    06
-                </div>
-
-                <h3>
-                    Locais
-                </h3>
-
-                <p>
-                    Campus, Moscou e locais
-                    restritos.
-                </p>
-
-                <div class="card-arrow">
-                    →
-                </div>
-
-            </a>
-
-
-            <!-- EVENTOS -->
-
-            <a href="eventos.html" class="card">
-
-                <div class="card-number">
-                    07
-                </div>
-
-                <h3>
-                    Eventos
-                </h3>
-
-                <p>
-                    Baile, festivais, jogos,
-                    galas e acontecimentos especiais.
-                </p>
-
-                <div class="card-arrow">
-                    →
-                </div>
-
-            </a>
-
-
-            <!-- LINHA DO TEMPO -->
-
-            <a href="timeline.html" class="card">
-
-                <div class="card-number">
-                    08
-                </div>
-
-                <h3>
-                    Linha do Tempo
-                </h3>
-
-                <p>
-                    Os principais acontecimentos
-                    da história.
-                </p>
-
-                <div class="card-arrow">
-                    →
-                </div>
-
-            </a>
-
-
-            <!-- REGRAS -->
-
-            <a href="regras.html" class="card">
-
-                <div class="card-number">
-                    09
-                </div>
-
-                <h3>
-                    Regras
-                </h3>
-
-                <p>
-                    As regras oficiais do
-                    Red Masquerade RPG.
-                </p>
-
-                <div class="card-arrow">
-                    →
-                </div>
-
-            </a>
-
-
-            <!-- PARTICIPE -->
-
-            <a href="participe.html" class="card">
-
-                <div class="card-number">
-                    10
-                </div>
-
-                <h3>
-                    Participe
-                </h3>
-
-                <p>
-                    Informações sobre fichas,
-                    reservas e entrada no RPG.
-                </p>
-
-                <div class="card-arrow">
-                    →
-                </div>
-
-            </a>
-
-
-            <!-- CANAIS -->
-
-            <a href="canais.html" class="card">
-
-                <div class="card-number">
-                    11
-                </div>
-
-                <h3>
-                    Canais
-                </h3>
-
-                <p>
-                    Acompanhe os canais oficiais
-                    da administração.
-                </p>
-
-                <div class="card-arrow">
-                    →
-                </div>
-
-            </a>
-
-
-            <!-- MAPA -->
-
-            <a href="mapa.html" class="card">
-
-                <div class="card-number">
-                    12
-                </div>
-
-                <h3>
-                    Mapa
-                </h3>
-
-                <p>
-                    Explore os pontos importantes
-                    do universo.
-                </p>
-
-                <div class="card-arrow">
-                    →
-                </div>
-
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     ACESSO
-===================================================== -->
-
-<section class="access">
-
-    <div class="access-inner">
-
-        <div class="section-label">
-            JOIN THE STORY
-        </div>
-
-        <h2>
-            Entre no universo
-        </h2>
-
-        <p>
-            Acompanhe os avisos oficiais, reservas
-            e informações do RPG através dos canais
-            da administração.
-        </p>
-
-        <div class="buttons">
-
-            <a
-                href="https://whatsapp.com/channel/0029Vb8ZvdCJkK7DJfdsOY32"
-                target="_blank"
-                rel="noopener"
-                class="button primary"
-            >
-                CANAL OFICIAL
-            </a>
-
-            <a
-                href="https://chat.whatsapp.com/HBHdg2gMY8J5EkcAGcfMXG?s=cl&p=a&ilr=1"
-                target="_blank"
-                rel="noopener"
-                class="button"
-            >
-                GRUPO DE FICHAS
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<footer>
-
-    <strong>
-        RED MASQUERADE
-    </strong>
-
-    <p>
-        The jester always laughs last.
+    <p class="eyebrow">
+      MOSCOW · RUSSIA
     </p>
 
-</footer>
+    <h1 class="hero-title">
+
+      <span class="red">
+        RED
+      </span>
+
+      <span class="gold">
+        MASQUERADE
+      </span>
+
+    </h1>
+
+    <div class="title-line"></div>
+
+    <p class="subtitle">
+      Um universo de histórias, segredos,
+      escolhas e consequências.
+    </p>
+
+    <p class="quote">
+      “The jester always laughs last.”
+    </p>
+
+    <button
+      class="enter-button"
+      id="enterButton"
+    >
+      EXPLORAR O UNIVERSO
+    </button>
+
+  </div>
+
+</main>
+
+
+<!-- =====================================================
+     MENU
+====================================================== -->
+
+<section
+  class="menu-overlay"
+  id="menuOverlay"
+>
+
+  <div class="menu-inner">
+
+    <p class="menu-eyebrow">
+      RED MASQUERADE
+    </p>
+
+    <h2 class="menu-title">
+      O <span>UNIVERSO</span>
+    </h2>
+
+
+    <a
+      href="#"
+      class="menu-link"
+      data-page="universidade"
+    >
+      <span>Universidade</span>
+      <span class="menu-number">01</span>
+    </a>
+
+
+    <a
+      href="#"
+      class="menu-link"
+      data-page="fraternidades"
+    >
+      <span>Fraternidades</span>
+      <span class="menu-number">02</span>
+    </a>
+
+
+    <a
+      href="#"
+      class="menu-link"
+      data-page="echo"
+    >
+      <span>The University Echo</span>
+      <span class="menu-number">03</span>
+    </a>
+
+
+    <a
+      href="#"
+      class="menu-link"
+      data-page="redmasquerade"
+    >
+      <span>RED MASQUERADE</span>
+      <span class="menu-number">04</span>
+    </a>
+
+
+    <a
+      href="#"
+      class="menu-link"
+      data-page="npcs"
+    >
+      <span>NPCs</span>
+      <span class="menu-number">05</span>
+    </a>
+
+
+    <a
+      href="#"
+      class="menu-link"
+      data-page="locais"
+    >
+      <span>Locais</span>
+      <span class="menu-number">06</span>
+    </a>
+
+
+    <a
+      href="#"
+      class="menu-link"
+      data-page="eventos"
+    >
+      <span>Eventos</span>
+      <span class="menu-number">07</span>
+    </a>
+
+
+    <a
+      href="#"
+      class="menu-link"
+      data-page="timeline"
+    >
+      <span>Linha do Tempo</span>
+      <span class="menu-number">08</span>
+    </a>
+
+
+    <a
+      href="#"
+      class="menu-link"
+      data-page="regras"
+    >
+      <span>Regras</span>
+      <span class="menu-number">09</span>
+    </a>
+
+
+    <a
+      href="#"
+      class="menu-link"
+      data-page="participar"
+    >
+      <span>Participar</span>
+      <span class="menu-number">10</span>
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     UNIVERSIDADE
+====================================================== -->
+
+<section
+  class="internal"
+  id="universidade"
+>
+
+  <div class="internal-inner">
+
+    <button class="back-button">
+      ← VOLTAR
+    </button>
+
+    <p class="internal-eyebrow">
+      LOMONOSOV · 1755
+    </p>
+
+    <h2 class="internal-title">
+      A <span>Universidade</span>
+    </h2>
+
+    <p class="internal-description">
+      A Universidade Lomonosov é o centro acadêmico e
+      social onde grande parte da história de Red Masquerade
+      acontece.
+    </p>
+
+
+    <div class="list-section">
+
+      <h3>
+        Sobre a universidade
+      </h3>
+
+      <div class="detail-grid">
+
+        <div class="detail-box">
+          <h4>História</h4>
+          <p>
+            Fundação em 1755, com séculos de tradição
+            e prestígio acadêmico.
+          </p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Estrutura</h4>
+          <p>
+            Universidade pública de grande influência
+            acadêmica e social.
+          </p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Prestígio</h4>
+          <p>
+            Uma instituição marcada por tradição,
+            influência e excelência.
+          </p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Relações</h4>
+          <p>
+            Mantém relações com famílias, empresas
+            e organizações privadas.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="list-section">
+
+      <h3>
+        Cursos
+      </h3>
+
+      <div class="simple-list">
+
+        <div>Medicina</div>
+        <div>Enfermagem</div>
+        <div>Administração</div>
+        <div>Economia</div>
+        <div>Relações Internacionais</div>
+        <div>Ciência Política</div>
+        <div>Perícia Criminal</div>
+        <div>Criminologia</div>
+        <div>Biologia</div>
+        <div>Biomedicina</div>
+        <div>Arquitetura</div>
+        <div>Engenharia</div>
+        <div>Ciência da Computação</div>
+        <div>Artes</div>
+        <div>Fotografia</div>
+        <div>Moda</div>
+        <div>Design</div>
+        <div>Jornalismo</div>
+        <div>Direito</div>
+        <div>Agricultura</div>
+        <div>Medicina Veterinária</div>
+        <div>História</div>
+
+      </div>
+
+    </div>
+
+
+    <div class="list-section">
+
+      <h3>
+        Atividades extracurriculares
+      </h3>
+
+      <div class="simple-list">
+
+        <div>Boxe</div>
+        <div>Jornal</div>
+        <div>Hóquei</div>
+        <div>Patinação no gelo</div>
+        <div>Pintura</div>
+        <div>Botânica</div>
+        <div>Debate</div>
+        <div>Teatro</div>
+        <div>Dança</div>
+        <div>Música</div>
+        <div>Esgrima</div>
+        <div>Xadrez</div>
+        <div>Clube de idiomas</div>
+
+      </div>
+
+    </div>
+
+
+    <div class="list-section">
+
+      <h3>
+        Moradia
+      </h3>
+
+      <div class="simple-list">
+
+        <div>Alojamentos</div>
+        <div>Casas das fraternidades</div>
+        <div>Moradia fora do campus</div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     FRATERNIDADES
+====================================================== -->
+
+<section
+  class="internal"
+  id="fraternidades"
+>
+
+  <div class="internal-inner">
+
+    <button class="back-button">
+      ← VOLTAR
+    </button>
+
+    <p class="internal-eyebrow">
+      AS TRÊS CASAS
+    </p>
+
+    <h2 class="internal-title">
+      As <span>Fraternidades</span>
+    </h2>
+
+    <p class="internal-description">
+      Três fraternidades. Três histórias.
+      Três formas diferentes de enxergar
+      poder, lealdade e liberdade.
+    </p>
+
+
+    <div class="house-grid">
+
+
+      <!-- GOLDEN KNIGHTS -->
+
+      <article
+        class="house-card fraternity-card"
+        data-fraternity="knights"
+      >
+
+        <span class="house-number">
+          01
+        </span>
+
+        <img
+          class="fraternity-shield"
+          src="img/Golden_Knights_escudo_v2.jpg"
+          alt="Escudo Golden Knights"
+        >
+
+        <h3 class="house-name">
+          Golden Knights
+        </h3>
+
+        <p class="house-description">
+          Strength & Honor
+        </p>
+
+      </article>
+
+
+      <!-- WINTER FOXES -->
+
+      <article
+        class="house-card fraternity-card"
+        data-fraternity="foxes"
+      >
+
+        <span class="house-number">
+          02
+        </span>
+
+        <img
+          class="fraternity-shield"
+          src="img/Winter_Foxes_escudo_v2.jpg"
+          alt="Escudo Winter Foxes"
+        >
+
+        <h3 class="house-name">
+          Winter Foxes
+        </h3>
+
+        <p class="house-description">
+          Endurance & Cunning
+        </p>
+
+      </article>
+
+
+      <!-- IRON CROWS -->
+
+      <article
+        class="house-card fraternity-card"
+        data-fraternity="crows"
+      >
+
+        <span class="house-number">
+          03
+        </span>
+
+        <img
+          class="fraternity-shield"
+          src="img/Iron_Crows_escudo_v2.jpg"
+          alt="Escudo Iron Crows"
+        >
+
+        <h3 class="house-name">
+          Iron Crows
+        </h3>
+
+        <p class="house-description">
+          Strength & Relentless
+        </p>
+
+      </article>
+
+    </div>
+
+
+    <!-- GOLDEN DETAIL -->
+
+    <div
+      class="fraternity-detail"
+      id="knights"
+    >
+
+      <button
+        class="back-button fraternity-back"
+      >
+        ← FRATERNIDADES
+      </button>
+
+      <div class="detail-top">
+
+        <img
+          class="detail-shield"
+          src="img/Golden_Knights_escudo_v2.jpg"
+          alt="Golden Knights"
+        >
+
+        <div>
+
+          <p class="internal-eyebrow">
+            01 · GOLDEN KNIGHTS
+          </p>
+
+          <h3 class="detail-title">
+            The <span>Golden Knights</span>
+          </h3>
+
+          <p class="detail-motto">
+            STRENGTH &amp; HONOR
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="detail-grid">
+
+        <div class="detail-box">
+          <h4>História</h4>
+          <p>
+            Fundada em 1907, a Golden Knights é uma
+            fraternidade tradicional ligada à elite
+            e à influência de Moscou.
+          </p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Perfil</h4>
+          <p>
+            Exclusivamente masculina, marcada por
+            força, honra, tradição e lealdade.
+          </p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Fundação</h4>
+          <p>1907</p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Sede</h4>
+          <p>Clube privado de elite em Moscou.</p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Cores</h4>
+          <p>Dourado e preto.</p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Símbolo</h4>
+          <p>Leão.</p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Hierarquia</h4>
+          <p>
+            Líder, Vice-líder, Conselho,
+            Membros, Novatos/Candidatos e Mentor.
+          </p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Princípios</h4>
+          <p>
+            Lealdade, honra, discrição,
+            hierarquia e proteção.
+          </p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Tradições</h4>
+          <p>
+            Jantares de gala e reuniões secretas
+            em porões históricos.
+          </p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Entrada</h4>
+          <p>
+            Candidatura aberta, sem período específico.
+            O desafio de entrada não aparece no site.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- FOX DETAIL -->
+
+    <div
+      class="fraternity-detail"
+      id="foxes"
+    >
+
+      <button
+        class="back-button fraternity-back"
+      >
+        ← FRATERNIDADES
+      </button>
+
+      <div class="detail-top">
+
+        <img
+          class="detail-shield"
+          src="img/Winter_Foxes_escudo_v2.jpg"
+          alt="Winter Foxes"
+        >
+
+        <div>
+
+          <p class="internal-eyebrow">
+            02 · WINTER FOXES
+          </p>
+
+          <h3 class="detail-title">
+            The <span>Winter Foxes</span>
+          </h3>
+
+          <p class="detail-motto">
+            ENDURANCE &amp; CUNNING
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="detail-grid">
+
+        <div class="detail-box">
+          <h4>História</h4>
+          <p>
+            Fundada em 1957, a Winter Foxes estabeleceu
+            sua presença dentro da Universidade Lomonosov.
+          </p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Perfil</h4>
+          <p>
+            Exclusivamente feminina, conhecida por
+            estratégia, discrição e informações.
+          </p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Fundação</h4>
+          <p>1957</p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Sede</h4>
+          <p>Ala histórica da Universidade Lomonosov.</p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Cores</h4>
+          <p>Prata e azul-gelo.</p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Símbolo</h4>
+          <p>Raposa.</p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Hierarquia</h4>
+          <p>
+            Líder, Vice-líder, Conselho,
+            Membros, Novatas/Candidatas e Mentor.
+          </p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Princípios</h4>
+          <p>
+            Lealdade, discrição, proteção,
+            hierarquia e cuidado com informações.
+          </p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Tradições</h4>
+          <p>
+            Coleta e troca de informações,
+            uso estratégico de segredos e
+            circulação de informações privilegiadas.
+          </p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Entrada</h4>
+          <p>
+            Candidatura aberta, sem período específico.
+            O desafio de entrada não aparece no site.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- CROWS DETAIL -->
+
+    <div
+      class="fraternity-detail"
+      id="crows"
+    >
+
+      <button
+        class="back-button fraternity-back"
+      >
+        ← FRATERNIDADES
+      </button>
+
+      <div class="detail-top">
+
+        <img
+          class="detail-shield"
+          src="img/Iron_Crows_escudo_v2.jpg"
+          alt="Iron Crows"
+        >
+
+        <div>
+
+          <p class="internal-eyebrow">
+            03 · IRON CROWS
+          </p>
+
+          <h3 class="detail-title">
+            The <span>Iron Crows</span>
+          </h3>
+
+          <p class="detail-motto">
+            STRENGTH &amp; RELENTLESS
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="detail-grid">
+
+        <div class="detail-box">
+          <h4>História</h4>
+          <p>
+            Fundada em 1982, a Iron Crows surgiu
+            como uma alternativa às estruturas
+            tradicionais das outras fraternidades.
+          </p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Perfil</h4>
+          <p>
+            Grupo misto marcado por liberdade,
+            risco e responsabilidade pelas próprias escolhas.
+          </p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Fundação</h4>
+          <p>1982</p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Sede</h4>
+          <p>Clube noturno privado em Moscou.</p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Cores</h4>
+          <p>Cinza e vermelho-sangue.</p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Símbolo</h4>
+          <p>Corvo.</p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Hierarquia</h4>
+          <p>
+            Líder, Vice-líder, Conselho,
+            Membros, Novatos/Candidatos e Mentor.
+          </p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Princípios</h4>
+          <p>
+            Liberdade, lealdade e responsabilidade
+            pelas próprias escolhas.
+          </p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Tradições</h4>
+          <p>
+            Festas, jogos de azar, desafios de risco
+            e eventos exclusivos ou secretos.
+          </p>
+        </div>
+
+        <div class="detail-box">
+          <h4>Entrada</h4>
+          <p>
+            Candidatura aberta, sem período específico.
+            O desafio de entrada não aparece no site.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     UNIVERSITY ECHO
+====================================================== -->
+
+<section
+  class="internal"
+  id="echo"
+>
+
+  <div class="internal-inner">
+
+    <button class="back-button">
+      ← VOLTAR
+    </button>
+
+    <p class="internal-eyebrow">
+      IMPRENSA UNIVERSITÁRIA
+    </p>
+
+    <h2 class="internal-title">
+      The University <span>Echo</span>
+    </h2>
+
+    <p class="internal-description">
+      O jornal oficial da universidade e uma das principais
+      fontes de notícias, informações e rumores do universo.
+    </p>
+
+
+    <div class="house-grid">
+
+      <article class="house-card">
+        <span class="house-number">01</span>
+        <h3 class="house-name">Editora-chefe</h3>
+        <p class="house-description">
+          Taryn Frost Durant.
+        </p>
+      </article>
+
+      <article class="house-card">
+        <span class="house-number">02</span>
+        <h3 class="house-name">Redação</h3>
+        <p class="house-description">
+          Estrutura própria e vagas limitadas.
+        </p>
+      </article>
+
+      <article class="house-card">
+        <span class="house-number">03</span>
+        <h3 class="house-name">Burn Book</h3>
+        <p class="house-description">
+          Espaço destinado a rumores e fofocas.
+        </p>
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     RED MASQUERADE
+====================================================== -->
+
+<section
+  class="internal"
+  id="redmasquerade"
+>
+
+  <div class="internal-inner">
+
+    <button class="back-button">
+      ← VOLTAR
+    </button>
+
+    <p class="internal-eyebrow">
+      O MISTÉRIO
+    </p>
+
+    <h2 class="internal-title">
+      RED <span>MASQUERADE</span>
+    </h2>
+
+    <p class="internal-description">
+      A parte do universo diretamente ligada ao mistério,
+      às publicações e à figura conhecida como Jester.
+    </p>
+
+
+    <div class="house-grid">
+
+      <article class="house-card">
+        <span class="house-number">01</span>
+        <h3 class="house-name">O Jester</h3>
+        <p class="house-description">
+          Sua identidade e seus segredos não serão revelados.
+        </p>
+      </article>
+
+      <article class="house-card">
+        <span class="house-number">02</span>
+        <h3 class="house-name">Ekaterina Volkov</h3>
+        <p class="house-description">
+          Seu nome está ligado ao surgimento da página.
+        </p>
+      </article>
+
+      <article class="house-card">
+        <span class="house-number">03</span>
+        <h3 class="house-name">Publicações</h3>
+        <p class="house-description">
+          Informações selecionadas pela administração.
+        </p>
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     NPCS
+====================================================== -->
+
+<section
+  class="internal"
+  id="npcs"
+>
+
+  <div class="internal-inner">
+
+    <button class="back-button">
+      ← VOLTAR
+    </button>
+
+    <p class="internal-eyebrow">
+      PERSONAGENS OFICIAIS
+    </p>
+
+    <h2 class="internal-title">
+      Personagens do <span>Universo</span>
+    </h2>
+
+    <p class="internal-description">
+      Os NPCs fazem parte da história oficial do universo
+      e não são personagens dos jogadores.
+    </p>
+
+
+    <div class="empty-box">
+
+      <strong>
+        EM BREVE
+      </strong>
+
+      <p>
+        A lista de NPCs será adicionada pela administração.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     LOCAIS
+====================================================== -->
+
+<section
+  class="internal"
+  id="locais"
+>
+
+  <div class="internal-inner">
+
+    <button class="back-button">
+      ← VOLTAR
+    </button>
+
+    <p class="internal-eyebrow">
+      MOSCOU · LOMONOSOV
+    </p>
+
+    <h2 class="internal-title">
+      <span>Locais</span>
+    </h2>
+
+    <p class="internal-description">
+      Os principais pontos da universidade e da cidade.
+    </p>
+
+
+    <div class="house-grid">
+
+      <article class="house-card">
+        <span class="house-number">CAMPUS</span>
+        <h3 class="house-name">Prédio Principal</h3>
+        <p class="house-description">
+          Centro administrativo e acadêmico.
+        </p>
+      </article>
+
+      <article class="house-card">
+        <span class="house-number">CAMPUS</span>
+        <h3 class="house-name">Biblioteca</h3>
+        <p class="house-description">
+          Um dos principais espaços acadêmicos.
+        </p>
+      </article>
+
+      <article class="house-card">
+        <span class="house-number">CAMPUS</span>
+        <h3 class="house-name">Teatro</h3>
+        <p class="house-description">
+          Espaço cultural da universidade.
+        </p>
+      </article>
+
+      <article class="house-card">
+        <span class="house-number">CAMPUS</span>
+        <h3 class="house-name">Laboratórios</h3>
+        <p class="house-description">
+          Estruturas destinadas às atividades acadêmicas.
+        </p>
+      </article>
+
+      <article class="house-card">
+        <span class="house-number">CAMPUS</span>
+        <h3 class="house-name">Centro Esportivo</h3>
+        <p class="house-description">
+          Esportes e atividades físicas.
+        </p>
+      </article>
+
+      <article class="house-card">
+        <span class="house-number">MOSCOU</span>
+        <h3 class="house-name">Hospital</h3>
+        <p class="house-description">
+          Um dos locais importantes da cidade.
+        </p>
+      </article>
+
+      <article class="house-card">
+        <span class="house-number">MOSCOU</span>
+        <h3 class="house-name">Delegacia</h3>
+        <p class="house-description">
+          Local relacionado à segurança pública.
+        </p>
+      </article>
+
+      <article class="house-card">
+        <span class="house-number">MOSCOU</span>
+        <h3 class="house-name">Instituto de Perícia</h3>
+        <p class="house-description">
+          Estrutura ligada à investigação e perícia.
+        </p>
+      </article>
+
+      <article class="house-card">
+        <span class="house-number">RESTRITO</span>
+        <h3 class="house-name">Locais Restritos</h3>
+        <p class="house-description">
+          Áreas cujo acesso poderá depender da narrativa.
+        </p>
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     EVENTOS
+====================================================== -->
+
+<section
+  class="internal"
+  id="eventos"
+>
+
+  <div class="internal-inner">
+
+    <button class="back-button">
+      ← VOLTAR
+    </button>
+
+    <p class="internal-eyebrow">
+      CALENDÁRIO
+    </p>
+
+    <h2 class="internal-title">
+      Grandes <span>Eventos</span>
+    </h2>
+
+    <p class="internal-description">
+      Os principais acontecimentos sociais e acadêmicos
+      previstos para o universo.
+    </p>
+
+
+    <div class="house-grid">
+
+      <article class="house-card">
+        <span class="house-number">01</span>
+        <h3 class="house-name">Baile de Boas-Vindas</h3>
+        <p class="house-description">
+          O início de um novo ciclo.
+        </p>
+      </article>
+
+      <article class="house-card">
+        <span class="house-number">02</span>
+        <h3 class="house-name">Baile de Inverno</h3>
+        <p class="house-description">
+          Uma das noites mais importantes do calendário.
+        </p>
+      </article>
+
+      <article class="house-card">
+        <span class="house-number">03</span>
+        <h3 class="house-name">Jogos Universitários</h3>
+        <p class="house-description">
+          Competição, rivalidade e orgulho.
+        </p>
+      </article>
+
+      <article class="house-card">
+        <span class="house-number">04</span>
+        <h3 class="house-name">Festival de Artes</h3>
+        <p class="house-description">
+          Celebração da produção artística.
+        </p>
+      </article>
+
+      <article class="house-card">
+        <span class="house-number">05</span>
+        <h3 class="house-name">Semana do Echo</h3>
+        <p class="house-description">
+          Semana dedicada ao jornal universitário.
+        </p>
+      </article>
+
+      <article class="house-card">
+        <span class="house-number">06</span>
+        <h3 class="house-name">Gala das Fraternidades</h3>
+        <p class="house-description">
+          As três fraternidades reunidas.
+        </p>
+      </article>
+
+      <article class="house-card">
+        <span class="house-number">07</span>
+        <h3 class="house-name">Festival de Primavera</h3>
+        <p class="house-description">
+          Um dos grandes eventos sociais.
+        </p>
+      </article>
+
+      <article class="house-card">
+        <span class="house-number">08</span>
+        <h3 class="house-name">Cerimônia de Encerramento</h3>
+        <p class="house-description">
+          Encerramento do ciclo acadêmico.
+        </p>
+      </article>
+
+      <article class="house-card">
+        <span class="house-number">09</span>
+        <h3 class="house-name">RED MASQUERADE</h3>
+        <p class="house-description">
+          Eventos especiais poderão surgir.
+        </p>
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     TIMELINE
+====================================================== -->
+
+<section
+  class="internal"
+  id="timeline"
+>
+
+  <div class="internal-inner">
+
+    <button class="back-button">
+      ← VOLTAR
+    </button>
+
+    <p class="internal-eyebrow">
+      HISTÓRIA
+    </p>
+
+    <h2 class="internal-title">
+      Linha do <span>Tempo</span>
+    </h2>
+
+
+    <div class="rules-list">
+
+      <div class="rule">
+        <strong>1755</strong>
+        <p>
+          Fundação da Universidade Lomonosov.
+        </p>
+      </div>
+
+      <div class="rule">
+        <strong>1907</strong>
+        <p>
+          Fundação da Golden Knights.
+        </p>
+      </div>
+
+      <div class="rule">
+        <strong>1957</strong>
+        <p>
+          Fundação da Winter Foxes.
+        </p>
+      </div>
+
+      <div class="rule">
+        <strong>1982</strong>
+        <p>
+          Fundação da Iron Crows.
+        </p>
+      </div>
+
+      <div class="rule">
+        <strong>2026</strong>
+        <p>
+          Retorno dos estudantes e morte de Ekaterina Volkov.
+        </p>
+      </div>
+
+      <div class="rule">
+        <strong>2026</strong>
+        <p>
+          Surgimento da RED MASQUERADE.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     REGRAS
+====================================================== -->
+
+<section
+  class="internal"
+  id="regras"
+>
+
+  <div class="internal-inner">
+
+    <button class="back-button">
+      ← VOLTAR
+    </button>
+
+    <p class="internal-eyebrow">
+      RED MASQUERADE RPG
+    </p>
+
+    <h2 class="internal-title">
+      Regras do <span>Jogo</span>
+    </h2>
+
+    <p class="internal-description">
+      Regras destinadas a manter o RPG organizado,
+      justo e confortável para todos.
+    </p>
+
+
+    <div class="rules-list">
+
+      <div class="rule">
+        <strong>01 · RPG textual</strong>
+        <p>
+          O RPG é desenvolvido por meio da escrita
+          e da interação entre os personagens.
+        </p>
+      </div>
+
+      <div class="rule">
+        <strong>02 · Mínimo de 20 linhas</strong>
+        <p>
+          As interações devem respeitar o mínimo
+          de 20 linhas estabelecido pela administração.
+        </p>
+      </div>
+
+      <div class="rule">
+        <strong>03 · Até dois personagens</strong>
+        <p>
+          Cada jogador poderá possuir até dois personagens,
+          respeitando as condições da administração.
+        </p>
+      </div>
+
+      <div class="rule">
+        <strong>04 · Metagame proibido</strong>
+        <p>
+          O jogador não pode utilizar informações que
+          seu personagem não teria como conhecer.
+        </p>
+      </div>
+
+      <div class="rule">
+        <strong>05 · Consequências narrativas</strong>
+        <p>
+          As escolhas dos personagens podem gerar
+          consequências dentro da narrativa.
+        </p>
+      </div>
+
+      <div class="rule">
+        <strong>06 · Morte mediante acordo</strong>
+        <p>
+          A morte de um personagem depende de acordo
+          quando não estiver ligada ao plot central.
+        </p>
+      </div>
+
+      <div class="rule">
+        <strong>07 · Ninguém está protegido</strong>
+        <p>
+          Nenhum personagem está protegido das
+          consequências narrativas, incluindo personagens
+          ligados à administração.
+        </p>
+      </div>
+
+      <div class="rule">
+        <strong>08 · Troca de personagem</strong>
+        <p>
+          A troca de personagem somente poderá ocorrer
+          durante o período de abertura das fichas.
+        </p>
+      </div>
+
+      <div class="rule">
+        <strong>09 · Reservas</strong>
+        <p>
+          As reservas acontecem durante a semana
+          determinada pelos administradores.
+        </p>
+      </div>
+
+      <div class="rule">
+        <strong>10 · Conteúdo +18</strong>
+        <p>
+          Conteúdo adulto deve ser sinalizado e
+          mantido em espaço privado apropriado.
+        </p>
+      </div>
+
+      <div class="rule">
+        <strong>11 · Plágio proibido</strong>
+        <p>
+          É proibido copiar personagens, histórias,
+          textos ou conceitos de terceiros.
+        </p>
+      </div>
+
+      <div class="rule">
+        <strong>12 · Saída</strong>
+        <p>
+          Ao sair do RPG, o jogador deve avisar
+          a administração.
+        </p>
+      </div>
+
+      <div class="rule">
+        <strong>13 · Ausência</strong>
+        <p>
+          A ausência prolongada poderá resultar
+          na remoção do jogador.
+        </p>
+      </div>
+
+      <div class="rule">
+        <strong>14 · Descumprimento</strong>
+        <p>
+          O descumprimento das regras poderá resultar
+          em remoção do RPG.
+        </p>
+      </div>
+
+      <div class="rule">
+        <strong>15 · Ouvidoria</strong>
+        <p>
+          Problemas e conflitos devem ser encaminhados
+          aos administradores para resolução.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     PARTICIPAR
+====================================================== -->
+
+<section
+  class="internal"
+  id="participar"
+>
+
+  <div class="internal-inner">
+
+    <button class="back-button">
+      ← VOLTAR
+    </button>
+
+    <p class="internal-eyebrow">
+      ENTRE NO RPG
+    </p>
+
+    <h2 class="internal-title">
+      Faça parte do <span>Universo</span>
+    </h2>
+
+    <p class="internal-description">
+      As fichas e reservas são disponibilizadas pela
+      administração no canal oficial do WhatsApp
+      durante os períodos determinados.
+    </p>
+
+
+    <div class="whatsapp-buttons">
+
+      <a
+        class="whatsapp-button"
+        href="https://whatsapp.com/channel/0029Vb8ZvdCJkK7DJfdsOY32"
+        target="_blank"
+        rel="noopener"
+      >
+        ENTRAR NO CANAL OFICIAL
+      </a>
+
+
+      <a
+        class="whatsapp-button red"
+        href="https://chat.whatsapp.com/HBHdg2gMY8J5EkcAGcfMXG?s=cl&p=a&ilr=1"
+        target="_blank"
+        rel="noopener"
+      >
+        FICHAS &amp; RESERVAS
+      </a>
+
+    </div>
+
+
+    <div class="list-section">
+
+      <h3>
+        Formulário
+      </h3>
+
+      <p class="internal-description">
+        O formulário será divulgado pela administração
+        no grupo de avisos do RPG.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script>
+
+/* =========================================================
+   PARTÍCULAS
+========================================================= */
+
+const particleContainer =
+  document.getElementById("particles");
+
+for(let i = 0; i < 30; i++){
+
+  const particle =
+    document.createElement("div");
+
+  particle.className = "particle";
+
+  particle.style.left =
+    Math.random() * 100 + "%";
+
+  particle.style.animationDuration =
+    (8 + Math.random() * 14) + "s";
+
+  particle.style.animationDelay =
+    (-Math.random() * 15) + "s";
+
+  particleContainer.appendChild(particle);
+
+}
+
+
+/* =========================================================
+   ELEMENTOS
+========================================================= */
+
+const menuButton =
+  document.getElementById("menuButton");
+
+const menuOverlay =
+  document.getElementById("menuOverlay");
+
+const home =
+  document.getElementById("home");
+
+const enterButton =
+  document.getElementById("enterButton");
+
+const logoHome =
+  document.getElementById("logoHome");
+
+const menuLinks =
+  document.querySelectorAll(".menu-link");
+
+const internalPages =
+  document.querySelectorAll(".internal");
+
+const backButtons =
+  document.querySelectorAll(".back-button");
+
+
+/* =========================================================
+   MENU
+========================================================= */
+
+function openMenu(){
+
+  menuOverlay.classList.add("open");
+
+  menuButton.classList.add("active");
+
+}
+
+function closeMenu(){
+
+  menuOverlay.classList.remove("open");
+
+  menuButton.classList.remove("active");
+
+}
+
+menuButton.addEventListener(
+  "click",
+  () => {
+
+    if(
+      menuOverlay.classList.contains("open")
+    ){
+
+      closeMenu();
+
+    } else {
+
+      openMenu();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   ABRIR PÁGINA
+========================================================= */
+
+function openPage(pageName){
+
+  closeMenu();
+
+  home.classList.add("hidden");
+
+  internalPages.forEach(
+    page => {
+
+      page.classList.remove("active");
+
+    }
+  );
+
+  const page =
+    document.getElementById(pageName);
+
+  if(!page) return;
+
+  setTimeout(
+    () => {
+
+      page.classList.add("active");
+
+    },
+    120
+  );
+
+}
+
+
+/* =========================================================
+   VOLTAR
+========================================================= */
+
+function goHome(){
+
+  internalPages.forEach(
+    page => {
+
+      page.classList.remove("active");
+
+    }
+  );
+
+  closeMenu();
+
+  setTimeout(
+    () => {
+
+      home.classList.remove("hidden");
+
+    },
+    120
+  );
+
+}
+
+
+/* =========================================================
+   BOTÃO ENTRAR
+========================================================= */
+
+enterButton.addEventListener(
+  "click",
+  () => {
+
+    openPage("fraternidades");
+
+  }
+);
+
+
+/* =========================================================
+   LINKS DO MENU
+========================================================= */
+
+menuLinks.forEach(
+  link => {
+
+    link.addEventListener(
+      "click",
+      event => {
+
+        event.preventDefault();
+
+        const page =
+          link.dataset.page;
+
+        openPage(page);
+
+      }
+    );
+
+  }
+);
+
+
+/* =========================================================
+   BOTÕES VOLTAR
+========================================================= */
+
+backButtons.forEach(
+  button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        if(
+          button.classList.contains(
+            "fraternity-back"
+          )
+        ){
+
+          document
+            .querySelectorAll(".fraternity-detail")
+            .forEach(
+              detail => {
+
+                detail.classList.remove("active");
+
+              }
+            );
+
+          document
+            .querySelector("#fraternidades .house-grid")
+            .style.display = "grid";
+
+          return;
+
+        }
+
+        goHome();
+
+      }
+    );
+
+  }
+);
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+logoHome.addEventListener(
+  "click",
+  event => {
+
+    event.preventDefault();
+
+    goHome();
+
+  }
+);
+
+
+/* =========================================================
+   FRATERNIDADES
+========================================================= */
+
+const fraternityCards =
+  document.querySelectorAll(
+    ".fraternity-card"
+  );
+
+const fraternityGrid =
+  document.querySelector(
+    "#fraternidades .house-grid"
+  );
+
+const fraternityDetails =
+  document.querySelectorAll(
+    ".fraternity-detail"
+  );
+
+fraternityCards.forEach(
+  card => {
+
+    card.addEventListener(
+      "click",
+      () => {
+
+        const name =
+          card.dataset.fraternity;
+
+        fraternityGrid.style.display =
+          "none";
+
+        fraternityDetails.forEach(
+          detail => {
+
+            detail.classList.remove("active");
+
+          }
+        );
+
+        const detail =
+          document.getElementById(name);
+
+        if(detail){
+
+          detail.classList.add("active");
+
+        }
+
+      }
+    );
+
+  }
+);
+
+
+/* =========================================================
+   HOME INICIAL
+========================================================= */
+
+home.classList.remove("hidden");
+
+</script>
 
 </body>
 </html>
