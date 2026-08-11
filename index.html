@@ -1,408 +1,535 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#060506">
 
-<title>RED MASQUERADE</title>
+<title>Red Masquerade</title>
 
 <style>
 
 /* =========================================================
-   RED MASQUERADE — ESTILO GERAL
+   RED MASQUERADE
+   PORTAL COMPLETO
    ========================================================= */
 
-:root{
-  --black:#060506;
-  --black2:#0d090b;
-  --wine:#280910;
-  --wine2:#3b0c17;
-  --red:#9b2638;
-  --red-light:#c13b51;
-  --gold:#b69a63;
-  --gold-light:#d7bd82;
-  --cream:#eee6da;
-  --gray:#a49a91;
-  --line:rgba(238,230,218,.14);
+:root {
+  --black: #060506;
+  --black-2: #0c090a;
+  --wine: #310b13;
+  --red: #9b2638;
+  --gold: #b69a63;
+  --gold-light: #d3bb82;
+  --cream: #eee6da;
+  --gray: #a49a91;
+  --line: rgba(238,230,218,.14);
 }
 
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-html{
-  scroll-behavior:smooth;
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  background: var(--black);
 }
 
-body{
-  min-height:100vh;
-  background:var(--black);
-  color:var(--cream);
-  font-family:Georgia,"Times New Roman",serif;
-  overflow-x:hidden;
+body {
+  color: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
+  overflow-x: hidden;
 }
 
 button,
-a{
-  font-family:inherit;
+a {
+  font: inherit;
 }
 
-button{
-  color:inherit;
+button {
+  cursor: pointer;
 }
 
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:0;
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* =========================================================
+   FUNDO
+   ========================================================= */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+  z-index: 0;
 
   background:
     radial-gradient(
-      circle at 80% 35%,
-      rgba(155,38,56,.16),
+      circle at 75% 45%,
+      rgba(155,38,56,.17),
       transparent 32%
     ),
     radial-gradient(
-      circle at 10% 85%,
-      rgba(75,13,22,.18),
+      circle at 15% 85%,
+      rgba(75,13,22,.20),
       transparent 35%
     );
 }
+
 
 /* =========================================================
    PARTÍCULAS
    ========================================================= */
 
-#particles{
-  position:fixed;
-  inset:0;
-  overflow:hidden;
-  pointer-events:none;
-  z-index:1;
+#particles {
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+  overflow: hidden;
+
+  z-index: 1;
 }
 
-.particle{
-  position:absolute;
-  width:2px;
-  height:2px;
-  border-radius:50%;
-  background:var(--gold-light);
-  opacity:.35;
-  animation:floatParticle linear infinite;
+.particle {
+  position: absolute;
+
+  width: 2px;
+  height: 2px;
+
+  border-radius: 50%;
+
+  background: var(--gold-light);
+
+  opacity: .35;
+
+  animation:
+    particleFloat linear infinite;
 }
 
-@keyframes floatParticle{
-  from{
-    transform:translateY(110vh);
-    opacity:0;
+@keyframes particleFloat {
+
+  from {
+    transform: translateY(110vh);
+    opacity: 0;
   }
 
-  15%{
-    opacity:.4;
+  15% {
+    opacity: .35;
   }
 
-  85%{
-    opacity:.4;
+  85% {
+    opacity: .35;
   }
 
-  to{
-    transform:translateY(-10vh);
-    opacity:0;
+  to {
+    transform: translateY(-10vh);
+    opacity: 0;
   }
 }
+
 
 /* =========================================================
-   CÍRCULOS DECORATIVOS
+   CÍRCULOS
    ========================================================= */
 
-.decor-circle{
-  position:fixed;
-  border-radius:50%;
-  pointer-events:none;
-  z-index:1;
+.circle {
+  position: fixed;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  z-index: 1;
 }
 
-.circle-one{
-  width:760px;
-  height:760px;
-  right:-350px;
-  top:25%;
-  border:1px solid rgba(182,154,99,.12);
-  animation:rotateSlow 30s linear infinite;
+.circle.one {
+  width: 760px;
+  height: 760px;
+
+  right: -360px;
+  top: 20%;
+
+  border: 1px solid rgba(182,154,99,.14);
+
+  animation:
+    rotateCircle 28s linear infinite;
 }
 
-.circle-two{
-  width:510px;
-  height:510px;
-  right:-150px;
-  top:40%;
-  border:1px solid rgba(155,38,56,.16);
-  animation:rotateReverse 22s linear infinite;
+.circle.two {
+  width: 500px;
+  height: 500px;
+
+  right: -160px;
+  top: 40%;
+
+  border: 1px solid rgba(155,38,56,.22);
+
+  animation:
+    rotateCircleReverse 22s linear infinite;
 }
 
-.circle-three{
-  width:250px;
-  height:250px;
-  right:8%;
-  top:55%;
-  border:1px solid rgba(182,154,99,.08);
-  animation:pulseCircle 6s ease-in-out infinite;
+.circle.three {
+  width: 250px;
+  height: 250px;
+
+  right: 8%;
+  top: 56%;
+
+  border: 1px solid rgba(182,154,99,.10);
+
+  animation:
+    pulseCircle 6s ease-in-out infinite;
 }
 
-@keyframes rotateSlow{
-  to{
-    transform:rotate(360deg);
+@keyframes rotateCircle {
+  to {
+    transform: rotate(360deg);
   }
 }
 
-@keyframes rotateReverse{
-  to{
-    transform:rotate(-360deg);
+@keyframes rotateCircleReverse {
+  to {
+    transform: rotate(-360deg);
   }
 }
 
-@keyframes pulseCircle{
-  0%,100%{
-    transform:scale(1);
-    opacity:.4;
+@keyframes pulseCircle {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: .3;
   }
 
-  50%{
-    transform:scale(1.08);
-    opacity:.8;
+  50% {
+    transform: scale(1.08);
+    opacity: .7;
   }
 }
+
+
+/* =========================================================
+   CARTAS DECORATIVAS
+   ========================================================= */
+
+.cards {
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+
+  z-index: 2;
+}
+
+.card {
+  position: absolute;
+
+  width: 105px;
+  height: 150px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(238,230,218,.10);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(155,38,56,.07),
+      rgba(0,0,0,.45)
+    );
+
+  color: var(--red);
+
+  font-size: 38px;
+
+  opacity: .28;
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.35);
+}
+
+.card::before {
+  content: "RED MASQUERADE";
+
+  position: absolute;
+  inset: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(182,154,99,.10);
+
+  font-family: Arial, sans-serif;
+  font-size: 6px;
+  letter-spacing: 2px;
+
+  color: rgba(238,230,218,.22);
+}
+
+.card:nth-child(1) {
+  left: -30px;
+  top: 42%;
+  transform: rotate(-17deg);
+}
+
+.card:nth-child(2) {
+  right: -30px;
+  top: 38%;
+  transform: rotate(15deg);
+}
+
+.card:nth-child(3) {
+  left: -35px;
+  bottom: -20px;
+  transform: rotate(12deg);
+}
+
+.card:nth-child(4) {
+  right: -30px;
+  bottom: -20px;
+  transform: rotate(-12deg);
+}
+
 
 /* =========================================================
    HEADER
    ========================================================= */
 
-header{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:82px;
+header {
+  position: fixed;
 
-  padding:0 6%;
+  top: 0;
+  left: 0;
 
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+  width: 100%;
+  height: 82px;
 
-  border-bottom:1px solid var(--line);
+  padding: 0 6%;
 
-  background:rgba(6,5,6,.92);
-  backdrop-filter:blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-  z-index:100;
+  background: rgba(6,5,6,.88);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border-bottom: 1px solid var(--line);
+
+  z-index: 100;
 }
 
-.logo{
-  color:var(--cream);
-  text-decoration:none;
-  font-size:17px;
-  font-weight:bold;
-  letter-spacing:5px;
+.logo {
+  font-family: Georgia, serif;
+
+  font-size: 17px;
+  font-weight: bold;
+
+  letter-spacing: 5px;
+
+  color: var(--cream);
 }
 
-.menu-button{
-  width:50px;
-  height:50px;
+.menu-button {
+  width: 50px;
+  height: 50px;
 
-  border:1px solid rgba(238,230,218,.18);
-  background:transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  cursor:pointer;
+  border: 1px solid var(--line);
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  background: transparent;
 
-  transition:.3s ease;
+  color: var(--cream);
+
+  transition: .3s ease;
 }
 
-.menu-button:hover{
-  border-color:var(--gold);
+.menu-button:hover {
+  border-color: var(--gold);
+
+  background:
+    rgba(182,154,99,.07);
 }
 
-.menu-icon{
-  width:24px;
-  display:flex;
-  flex-direction:column;
-  gap:6px;
+.menu-icon {
+  width: 23px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 6px;
 }
 
-.menu-icon span{
-  width:100%;
-  height:2px;
-  background:var(--cream);
-  transition:.3s ease;
+.menu-icon span {
+  width: 100%;
+  height: 2px;
+
+  display: block;
+
+  background: var(--cream);
+
+  transition: .3s ease;
 }
 
-.menu-button.active .menu-icon span:nth-child(1){
-  transform:translateY(8px) rotate(45deg);
+.menu-button.active
+.menu-icon span:nth-child(1) {
+  transform:
+    translateY(8px)
+    rotate(45deg);
 }
 
-.menu-button.active .menu-icon span:nth-child(2){
-  opacity:0;
+.menu-button.active
+.menu-icon span:nth-child(2) {
+  opacity: 0;
 }
 
-.menu-button.active .menu-icon span:nth-child(3){
-  transform:translateY(-8px) rotate(-45deg);
+.menu-button.active
+.menu-icon span:nth-child(3) {
+  transform:
+    translateY(-8px)
+    rotate(-45deg);
 }
+
 
 /* =========================================================
-   MENU
+   TODAS AS PÁGINAS
    ========================================================= */
 
-.menu-overlay{
-  position:fixed;
-  inset:0;
+.page {
+  position: fixed;
 
-  padding:120px 6% 50px;
+  inset: 0;
+
+  padding:
+    82px 6% 40px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  opacity: 0;
+  visibility: hidden;
+
+  pointer-events: none;
+
+  transform: translateX(35px);
+
+  transition:
+    opacity .45s ease,
+    transform .45s ease,
+    visibility .45s ease;
+
+  z-index: 20;
 
   background:
     radial-gradient(
-      circle at 75% 50%,
-      rgba(75,13,22,.42),
-      transparent 42%
+      circle at 75% 45%,
+      rgba(155,38,56,.15),
+      transparent 35%
     ),
-    rgba(6,5,6,.98);
-
-  z-index:90;
-
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
-
-  transition:.45s ease;
-
-  overflow-y:auto;
+    var(--black);
 }
 
-.menu-overlay.open{
-  opacity:1;
-  visibility:visible;
-  pointer-events:auto;
+.page.active {
+  opacity: 1;
+  visibility: visible;
+
+  pointer-events: auto;
+
+  transform: translateX(0);
 }
 
-.menu-inner{
-  width:min(1050px,100%);
-  margin:auto;
+.page-content {
+  position: relative;
+
+  width: min(1100px, 100%);
+
+  min-height: calc(100vh - 122px);
+
+  margin: 0 auto;
+
+  padding-top: 35px;
+
+  z-index: 5;
 }
 
-.menu-eyebrow{
-  color:var(--red);
-  font-family:Arial,sans-serif;
-  font-size:10px;
-  letter-spacing:7px;
-  margin-bottom:18px;
-}
-
-.menu-title{
-  font-size:clamp(50px,8vw,90px);
-  line-height:.9;
-  margin-bottom:40px;
-}
-
-.menu-title span{
-  color:var(--gold);
-}
-
-.menu-link{
-  width:100%;
-  padding:19px 5px;
-
-  border-top:1px solid var(--line);
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  color:var(--cream);
-  text-decoration:none;
-
-  font-size:clamp(20px,3vw,30px);
-
-  transition:.3s ease;
-}
-
-.menu-link:last-child{
-  border-bottom:1px solid var(--line);
-}
-
-.menu-link:hover{
-  padding-left:20px;
-  color:var(--gold);
-}
-
-.menu-number{
-  color:var(--red);
-  font-family:Arial,sans-serif;
-  font-size:10px;
-  letter-spacing:3px;
-}
 
 /* =========================================================
    HOME
    ========================================================= */
 
-.home{
-  position:relative;
-  min-height:100vh;
+#home {
+  display: flex;
+  align-items: center;
 
-  padding:150px 7% 80px;
+  overflow: hidden;
 
-  display:flex;
-  align-items:center;
-
-  z-index:5;
+  padding-top: 82px;
 }
 
-.hero{
-  position:relative;
-  width:min(950px,100%);
-  margin:auto;
-  z-index:4;
+.home-content {
+  width: min(900px, 88%);
+
+  margin: 0 auto;
+
+  position: relative;
+
+  z-index: 10;
+
+  transform: translateY(10px);
 }
 
-.eyebrow{
-  color:var(--red);
-  font-family:Arial,sans-serif;
-  font-size:10px;
-  font-weight:bold;
-  letter-spacing:7px;
-  margin-bottom:28px;
+.eyebrow {
+  margin-bottom: 22px;
+
+  color: var(--red);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 11px;
+  font-weight: bold;
+
+  letter-spacing: 7px;
 }
 
-.hero-title{
-  font-size:clamp(65px,11vw,145px);
-  line-height:.78;
-  letter-spacing:-7px;
+.home-title {
+  font-size: clamp(58px, 9vw, 115px);
+
+  line-height: .80;
+
+  letter-spacing: -4px;
 }
 
-.hero-title .white{
-  display:block;
-  color:var(--cream);
+.home-title span {
+  display: block;
 }
 
-.hero-title .gold{
-  display:block;
-  color:var(--gold);
-  margin-left:4vw;
+.home-title .gold {
+  color: var(--gold);
 }
 
-.title-line{
-  width:min(540px,80%);
-  height:1px;
-  margin-top:38px;
+.home-line {
+  width: min(470px, 75%);
+
+  height: 1px;
+
+  margin-top: 25px;
 
   background:
     linear-gradient(
@@ -412,869 +539,1234 @@ header{
     );
 }
 
-.subtitle{
-  max-width:680px;
-  margin-top:30px;
+.home-subtitle {
+  max-width: 540px;
 
-  color:var(--cream);
+  margin-top: 28px;
 
-  font-size:clamp(20px,3vw,28px);
-  line-height:1.45;
+  color: var(--gray);
+
+  font-size: clamp(18px, 2.3vw, 25px);
+
+  line-height: 1.45;
 }
 
-.quote{
-  margin-top:16px;
-  color:var(--gold);
-  font-size:15px;
-  letter-spacing:3px;
-  font-style:italic;
+.home-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 300px;
+  height: 60px;
+
+  margin-top: 38px;
+
+  padding: 0 30px;
+
+  border: 1px solid var(--gold);
+
+  background: transparent;
+
+  color: var(--cream);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 11px;
+
+  letter-spacing: 4px;
+
+  transition: .35s ease;
 }
 
-.hero-meta{
-  display:flex;
-  align-items:center;
-  gap:17px;
+.home-button:hover {
+  color: var(--black);
 
-  margin-top:32px;
+  background: var(--gold);
 
-  color:var(--gray);
-
-  font-family:Arial,sans-serif;
-  font-size:9px;
-  letter-spacing:4px;
+  transform: translateY(-2px);
 }
 
-.hero-meta i{
-  width:3px;
-  height:3px;
-  border-radius:50%;
-  background:var(--red);
-}
-
-.enter-button{
-  position:relative;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  width:min(570px,100%);
-  height:67px;
-
-  margin-top:42px;
-  padding:0 25px;
-
-  border:1px solid var(--gold);
-  background:rgba(6,5,6,.45);
-
-  color:var(--cream);
-
-  font-family:Arial,sans-serif;
-  font-size:10px;
-  letter-spacing:5px;
-
-  cursor:pointer;
-  overflow:hidden;
-
-  transition:.35s ease;
-}
-
-.enter-button span{
-  color:var(--gold);
-  font-size:20px;
-  transition:.35s ease;
-}
-
-.enter-button::before{
-  content:"";
-  position:absolute;
-  inset:0;
-
-  background:var(--gold);
-
-  transform:translateX(-101%);
-  transition:.45s ease;
-
-  z-index:-1;
-}
-
-.enter-button:hover{
-  color:var(--black);
-}
-
-.enter-button:hover::before{
-  transform:translateX(0);
-}
-
-.enter-button:hover span{
-  color:var(--black);
-  transform:translateX(7px);
-}
-
-.hero-bottom{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-
-  max-width:700px;
-
-  margin-top:58px;
-
-  border-top:1px solid var(--line);
-}
-
-.hero-bottom div{
-  padding:20px 25px 0 0;
-}
-
-.hero-bottom div+div{
-  padding-left:25px;
-  border-left:1px solid var(--line);
-}
-
-.hero-bottom small{
-  display:block;
-  margin-bottom:8px;
-
-  color:var(--red);
-
-  font-family:Arial,sans-serif;
-  font-size:9px;
-  letter-spacing:4px;
-}
-
-.hero-bottom strong{
-  color:var(--cream);
-  font-size:15px;
-  font-weight:normal;
-}
 
 /* =========================================================
-   PÁGINAS
+   MENU
    ========================================================= */
 
-.page{
-  position:relative;
-
-  display:none;
-
-  min-height:100vh;
-
-  padding:125px 6% 80px;
-
-  z-index:5;
-
-  animation:pageIn .45s ease;
-}
-
-.page.active{
-  display:block;
-}
-
-@keyframes pageIn{
-  from{
-    opacity:0;
-    transform:translateY(15px);
-  }
-
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-
-.container{
-  width:min(1100px,100%);
-  margin:auto;
-}
-
-.back-button{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-
-  padding:12px 18px;
-
-  border:1px solid var(--line);
-  background:transparent;
-
-  color:var(--cream);
-
-  font-family:Arial,sans-serif;
-  font-size:10px;
-  letter-spacing:3px;
-
-  cursor:pointer;
-
-  transition:.3s ease;
-}
-
-.back-button:hover{
-  border-color:var(--gold);
-  color:var(--gold);
-}
-
-.page-eyebrow{
-  margin-top:35px;
-  margin-bottom:15px;
-
-  color:var(--red);
-
-  font-family:Arial,sans-serif;
-  font-size:10px;
-  letter-spacing:6px;
-}
-
-.page-title{
-  font-size:clamp(46px,7vw,85px);
-  line-height:.9;
-}
-
-.page-title span{
-  color:var(--gold);
-}
-
-.page-intro{
-  max-width:760px;
-  margin-top:22px;
-
-  color:var(--gray);
-
-  font-size:18px;
-  line-height:1.6;
-}
-
-.section{
-  margin-top:55px;
-}
-
-.section h3{
-  margin-bottom:20px;
-
-  color:var(--gold);
-
-  font-family:Arial,sans-serif;
-  font-size:10px;
-  letter-spacing:4px;
-  text-transform:uppercase;
-}
-
-.text{
-  margin-bottom:16px;
-
-  color:var(--gray);
-
-  font-size:16px;
-  line-height:1.7;
-}
-
-/* =========================================================
-   CARDS
-   ========================================================= */
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px;
-}
-
-.card{
-  padding:25px;
-
-  border:1px solid var(--line);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(155,38,56,.10),
-      rgba(0,0,0,.18)
-    );
-
-  transition:.35s ease;
-}
-
-.card:hover{
-  transform:translateY(-4px);
-  border-color:rgba(182,154,99,.5);
-}
-
-.card-number{
-  color:var(--red);
-
-  font-family:Arial,sans-serif;
-  font-size:10px;
-  letter-spacing:4px;
-}
-
-.card h3{
-  margin-top:15px;
-  color:var(--cream);
-  font-size:25px;
-}
-
-.card p{
-  margin-top:10px;
-  color:var(--gray);
-  line-height:1.55;
-}
-
-/* =========================================================
-   LISTAS
-   ========================================================= */
-
-.list{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-}
-
-.list-item{
-  padding:15px 18px;
-  border-bottom:1px solid var(--line);
-  color:var(--gray);
-}
-
-/* =========================================================
-   FRATERNIDADES
-   ========================================================= */
-
-.fraternity-card{
-  display:grid;
-  grid-template-columns:minmax(280px,390px) 1fr;
-
-  margin-top:30px;
-
-  border:1px solid var(--line);
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(155,38,56,.10),
-      rgba(0,0,0,.20)
-    );
-
-  overflow:hidden;
-}
-
-.fraternity-image{
-  min-height:390px;
-  padding:25px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
+#menu {
+  z-index: 90;
 
   background:
     radial-gradient(
-      circle,
-      rgba(182,154,99,.08),
-      transparent 65%
-    );
+      circle at 70% 50%,
+      rgba(75,13,22,.32),
+      transparent 38%
+    ),
+    rgba(6,5,6,.98);
 }
 
-.fraternity-image img{
-  display:block;
+.menu-content {
+  width: min(950px, 90%);
 
-  width:100%;
-  max-width:350px;
-  max-height:380px;
+  min-height: 100%;
 
-  object-fit:contain;
+  margin: 0 auto;
 
-  filter:
-    drop-shadow(
-      0 20px 30px rgba(0,0,0,.55)
-    );
-
-  transition:.5s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.fraternity-card:hover .fraternity-image img{
-  transform:scale(1.03);
+.menu-eyebrow {
+  color: var(--red);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 11px;
+
+  letter-spacing: 7px;
+
+  margin-bottom: 22px;
 }
 
-.fraternity-info{
-  padding:38px;
+.menu-title {
+  font-size: clamp(50px, 8vw, 90px);
+
+  line-height: .9;
+
+  margin-bottom: 38px;
 }
 
-.fraternity-number{
-  color:var(--red);
-  font-family:Arial,sans-serif;
-  font-size:10px;
-  letter-spacing:4px;
+.menu-title span {
+  color: var(--gold);
 }
 
-.fraternity-name{
-  margin-top:14px;
-  font-size:clamp(32px,4vw,48px);
-  line-height:1;
+.menu-list {
+  border-top: 1px solid var(--line);
 }
 
-.fraternity-motto{
-  margin-top:10px;
+.menu-item {
+  width: 100%;
 
-  color:var(--gold);
+  min-height: 70px;
 
-  font-family:Arial,sans-serif;
-  font-size:10px;
-  letter-spacing:3px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 18px 5px;
+
+  border-bottom: 1px solid var(--line);
+
+  background: transparent;
+
+  color: var(--cream);
+
+  font-size: clamp(20px, 3vw, 30px);
+
+  text-align: left;
+
+  transition: .3s ease;
 }
 
-.details{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:15px;
-  margin-top:30px;
-}
+.menu-item:hover {
+  padding-left: 22px;
 
-.detail{
-  padding-top:11px;
-  border-top:1px solid var(--line);
-}
-
-.detail-label{
-  color:var(--red);
-  font-family:Arial,sans-serif;
-  font-size:9px;
-  letter-spacing:3px;
-  text-transform:uppercase;
-}
-
-.detail-value{
-  margin-top:5px;
-  color:var(--cream);
-  font-size:15px;
-  line-height:1.45;
-}
-
-.fraternity-section{
-  margin-top:25px;
-}
-
-.fraternity-section h4{
-  color:var(--gold);
-  font-family:Arial,sans-serif;
-  font-size:10px;
-  letter-spacing:3px;
-  text-transform:uppercase;
-}
-
-.fraternity-section p{
-  margin-top:7px;
-  color:var(--gray);
-  font-size:15px;
-  line-height:1.55;
-}
-
-.note{
-  margin-top:35px;
-  padding:20px;
-
-  border-left:1px solid var(--gold);
+  color: var(--gold);
 
   background:
     linear-gradient(
       90deg,
-      rgba(155,38,56,.08),
+      rgba(182,154,99,.05),
       transparent
     );
-
-  color:var(--gray);
-  line-height:1.55;
 }
+
+.menu-number {
+  color: var(--red);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 11px;
+
+  letter-spacing: 3px;
+}
+
 
 /* =========================================================
-   TIMELINE
+   CABEÇALHO INTERNO
    ========================================================= */
 
-.timeline{
-  margin-top:40px;
-
-  border-left:1px solid var(--gold);
-  padding-left:28px;
+.inner-header {
+  margin-bottom: 35px;
 }
 
-.timeline-item{
-  position:relative;
-  margin-bottom:40px;
+.back {
+  display: inline-flex;
+
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: 35px;
+
+  padding: 11px 17px;
+
+  border: 1px solid var(--line);
+
+  background: transparent;
+
+  color: var(--cream);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 10px;
+
+  letter-spacing: 3px;
+
+  transition: .3s ease;
 }
 
-.timeline-item::before{
-  content:"";
+.back:hover {
+  border-color: var(--gold);
 
-  position:absolute;
-  left:-34px;
-  top:4px;
-
-  width:10px;
-  height:10px;
-
-  border-radius:50%;
-
-  background:var(--red);
-  border:2px solid var(--black);
+  color: var(--gold);
 }
 
-.timeline-year{
-  color:var(--gold);
+.section-label {
+  margin-bottom: 14px;
 
-  font-family:Arial,sans-serif;
-  font-size:11px;
-  letter-spacing:3px;
+  color: var(--red);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 11px;
+
+  letter-spacing: 6px;
 }
 
-.timeline-item h3{
-  margin-top:8px;
-  font-size:27px;
+.section-title {
+  font-size: clamp(48px, 7vw, 82px);
+
+  line-height: .9;
 }
 
-.timeline-item p{
-  margin-top:8px;
-  color:var(--gray);
-  line-height:1.55;
+.section-title span {
+  color: var(--gold);
 }
+
+.section-description {
+  max-width: 700px;
+
+  margin-top: 20px;
+
+  color: var(--gray);
+
+  font-size: 18px;
+
+  line-height: 1.6;
+}
+
 
 /* =========================================================
-   REGRAS
+   HOME DO PORTAL / CARDS
    ========================================================= */
 
-.rules{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:15px;
-  margin-top:40px;
+.portal-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 16px;
 }
 
-.rule{
-  padding:25px;
+.portal-card {
+  min-height: 180px;
 
-  border:1px solid var(--line);
+  padding: 26px;
+
+  border: 1px solid var(--line);
 
   background:
     linear-gradient(
       145deg,
-      rgba(155,38,56,.08),
-      transparent
+      rgba(155,38,56,.11),
+      rgba(0,0,0,.12)
+    );
+
+  text-align: left;
+
+  transition:
+    transform .35s ease,
+    border-color .35s ease,
+    background .35s ease;
+}
+
+button.portal-card {
+  color: var(--cream);
+}
+
+.portal-card:hover {
+  transform: translateY(-5px);
+
+  border-color:
+    rgba(182,154,99,.7);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(155,38,56,.18),
+      rgba(0,0,0,.20)
     );
 }
 
-.rule-number{
-  color:var(--red);
+.card-number {
+  color: var(--red);
 
-  font-family:Arial,sans-serif;
-  font-size:10px;
-  letter-spacing:4px;
+  font-family: Arial, sans-serif;
+
+  font-size: 11px;
+
+  letter-spacing: 4px;
 }
 
-.rule h3{
-  margin-top:12px;
-  font-size:23px;
+.card-title {
+  margin-top: 38px;
+
+  font-size: 27px;
+
+  line-height: 1;
 }
 
-.rule p{
-  margin-top:9px;
-  color:var(--gray);
-  line-height:1.6;
+.card-text {
+  margin-top: 10px;
+
+  color: var(--gray);
+
+  font-size: 15px;
+
+  line-height: 1.45;
 }
+
 
 /* =========================================================
-   MAPA
+   UNIVERSIDADE
    ========================================================= */
 
-.map{
-  position:relative;
+.info-block {
+  padding: 28px;
 
-  width:100%;
-  min-height:560px;
+  margin-bottom: 18px;
 
-  margin-top:40px;
+  border: 1px solid var(--line);
 
-  border:1px solid var(--line);
+  background:
+    rgba(255,255,255,.015);
+}
+
+.info-block h3 {
+  margin-bottom: 14px;
+
+  color: var(--gold);
+
+  font-size: 27px;
+}
+
+.info-block p {
+  color: var(--gray);
+
+  font-size: 17px;
+
+  line-height: 1.65;
+}
+
+.list-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 10px;
+
+  margin-top: 20px;
+}
+
+.list-item {
+  padding: 13px 15px;
+
+  border: 1px solid var(--line);
+
+  background:
+    rgba(255,255,255,.015);
+
+  color: var(--cream);
+
+  font-size: 15px;
+}
+
+.list-item::before {
+  content: "◆";
+
+  margin-right: 8px;
+
+  color: var(--red);
+
+  font-size: 8px;
+}
+
+
+/* =========================================================
+   FRATERNIDADES — VISÃO GERAL
+   ========================================================= */
+
+.fraternity-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 18px;
+}
+
+.fraternity-card {
+  position: relative;
+
+  min-height: 340px;
+
+  padding: 25px;
+
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid var(--line);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(155,38,56,.12),
+      rgba(0,0,0,.18)
+    );
+
+  text-align: left;
+
+  overflow: hidden;
+
+  transition: .4s ease;
+}
+
+.fraternity-card:hover {
+  transform: translateY(-7px);
+
+  border-color: var(--gold);
+}
+
+.fraternity-image {
+  width: 105px;
+  height: 105px;
+
+  object-fit: contain;
+
+  margin-bottom: 18px;
+
+  filter:
+    drop-shadow(
+      0 10px 20px rgba(0,0,0,.45)
+    );
+}
+
+.fraternity-number {
+  color: var(--red);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 10px;
+
+  letter-spacing: 4px;
+}
+
+.fraternity-name {
+  margin-top: 14px;
+
+  font-size: 28px;
+
+  line-height: 1;
+}
+
+.fraternity-motto {
+  margin-top: 12px;
+
+  color: var(--gold);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 10px;
+
+  letter-spacing: 2px;
+}
+
+.fraternity-summary {
+  margin-top: auto;
+
+  padding-top: 20px;
+
+  color: var(--gray);
+
+  line-height: 1.5;
+
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   PÁGINA INDIVIDUAL DA FRATERNIDADE
+   ========================================================= */
+
+.fraternity-profile {
+  display: grid;
+
+  grid-template-columns:
+    280px 1fr;
+
+  gap: 50px;
+
+  align-items: start;
+}
+
+.fraternity-hero {
+  min-height: 360px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  border: 1px solid var(--line);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(155,38,56,.13),
+      transparent 65%
+    );
+}
+
+.fraternity-hero img {
+  width: 190px;
+  height: 190px;
+
+  object-fit: contain;
+
+  filter:
+    drop-shadow(
+      0 15px 30px rgba(0,0,0,.55)
+    );
+}
+
+.fraternity-hero h3 {
+  margin-top: 20px;
+
+  color: var(--gold);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 10px;
+
+  letter-spacing: 3px;
+}
+
+.profile-content h3 {
+  margin-bottom: 12px;
+
+  color: var(--gold);
+
+  font-size: 27px;
+}
+
+.profile-content p {
+  margin-bottom: 25px;
+
+  color: var(--gray);
+
+  font-size: 17px;
+
+  line-height: 1.65;
+}
+
+.detail-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 12px;
+
+  margin-bottom: 28px;
+}
+
+.detail {
+  padding: 18px;
+
+  border: 1px solid var(--line);
+
+  background:
+    rgba(255,255,255,.015);
+}
+
+.detail-label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: var(--red);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 9px;
+
+  letter-spacing: 3px;
+}
+
+.detail-value {
+  color: var(--cream);
+
+  font-size: 16px;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   ECHO / RED MASQUERADE / REGRAS
+   ========================================================= */
+
+.article {
+  max-width: 850px;
+}
+
+.article h3 {
+  margin:
+    35px 0 12px;
+
+  color: var(--gold);
+
+  font-size: 28px;
+}
+
+.article p {
+  margin-bottom: 18px;
+
+  color: var(--gray);
+
+  font-size: 17px;
+
+  line-height: 1.7;
+}
+
+.rule-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.rule {
+  padding: 18px 20px;
+
+  border-left: 2px solid var(--red);
+
+  background:
+    rgba(255,255,255,.018);
+
+  color: var(--gray);
+
+  font-size: 16px;
+
+  line-height: 1.55;
+}
+
+.rule strong {
+  color: var(--cream);
+}
+
+
+/* =========================================================
+   MAPA / LOCAIS
+   ========================================================= */
+
+.map-box {
+  position: relative;
+
+  width: 100%;
+
+  min-height: 530px;
+
+  margin-top: 25px;
+
+  border: 1px solid var(--line);
 
   background:
     radial-gradient(
       circle at center,
       rgba(155,38,56,.12),
-      transparent 55%
+      transparent 50%
     ),
-    #0b0809;
+    #090708;
 
-  overflow:hidden;
+  overflow: hidden;
 }
 
-.map::before{
-  content:"";
+.map-box::before,
+.map-box::after {
+  content: "";
 
-  position:absolute;
-  inset:40px;
+  position: absolute;
 
-  border:1px solid rgba(182,154,99,.12);
+  pointer-events: none;
+}
+
+.map-box::before {
+  inset: 12%;
+
+  border:
+    1px solid rgba(182,154,99,.10);
+
+  transform:
+    rotate(-8deg);
+}
+
+.map-box::after {
+  width: 70%;
+  height: 1px;
+
+  left: 15%;
+  top: 50%;
+
+  background:
+    rgba(182,154,99,.12);
+
+  box-shadow:
+    0 -130px 0 rgba(182,154,99,.08),
+    0 130px 0 rgba(182,154,99,.08);
+}
+
+.map-title {
+  position: absolute;
+
+  top: 25px;
+  left: 30px;
+
+  color: rgba(238,230,218,.25);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 10px;
+
+  letter-spacing: 4px;
+}
+
+.map-location {
+  position: absolute;
+
+  padding: 10px 14px;
+
+  border: 1px solid var(--line);
+
+  background: rgba(6,5,6,.92);
+
+  color: var(--cream);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 9px;
+
+  letter-spacing: 1px;
+
+  transition: .3s ease;
+}
+
+.map-location:hover {
+  border-color: var(--gold);
+
+  color: var(--gold);
+
+  transform: scale(1.04);
+}
+
+.map-location.campus {
+  left: 43%;
+  top: 35%;
+}
+
+.map-location.library {
+  left: 25%;
+  top: 48%;
+}
+
+.map-location.theater {
+  left: 62%;
+  top: 48%;
+}
+
+.map-location.hockey {
+  left: 39%;
+  top: 68%;
+}
+
+.map-location.echo {
+  left: 58%;
+  top: 68%;
+}
+
+.map-location.knights {
+  left: 8%;
+  top: 27%;
+}
+
+.map-location.crows {
+  right: 8%;
+  top: 27%;
+}
+
+
+/* =========================================================
+   EVENTOS / TIMELINE
+   ========================================================= */
+
+.event-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 15px;
+}
+
+.event-card {
+  padding: 25px;
+
+  border: 1px solid var(--line);
+
+  background:
+    rgba(255,255,255,.015);
+
+  transition: .3s ease;
+}
+
+.event-card:hover {
+  border-color: var(--gold);
+
+  transform: translateY(-4px);
+}
+
+.event-date {
+  color: var(--red);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 10px;
+
+  letter-spacing: 3px;
+}
+
+.event-name {
+  margin-top: 15px;
+
+  font-size: 25px;
+}
+
+.event-text {
+  margin-top: 9px;
+
+  color: var(--gray);
+
+  line-height: 1.5;
+}
+
+.timeline {
+  position: relative;
+
+  max-width: 800px;
+
+  margin-top: 25px;
+
+  padding-left: 30px;
+
+  border-left: 1px solid var(--line);
+}
+
+.timeline-item {
+  position: relative;
+
+  padding: 0 0 35px 25px;
+}
+
+.timeline-item::before {
+  content: "";
+
+  position: absolute;
+
+  left: -36px;
+  top: 3px;
+
+  width: 11px;
+  height: 11px;
+
+  border-radius: 50%;
+
+  background: var(--red);
+
+  border: 2px solid var(--black);
+}
+
+.timeline-year {
+  color: var(--gold);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 11px;
+
+  letter-spacing: 3px;
+}
+
+.timeline-title {
+  margin-top: 7px;
+
+  font-size: 24px;
+}
+
+.timeline-text {
+  margin-top: 7px;
+
+  color: var(--gray);
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   PARTICIPAÇÃO / CANAIS
+   ========================================================= */
+
+.callout {
+  max-width: 750px;
+
+  padding: 35px;
+
+  border: 1px solid var(--gold);
 
   background:
     linear-gradient(
-      30deg,
-      transparent 49%,
-      rgba(182,154,99,.08) 50%,
-      transparent 51%
-    ),
-    linear-gradient(
-      120deg,
-      transparent 49%,
-      rgba(182,154,99,.06) 50%,
-      transparent 51%
+      135deg,
+      rgba(182,154,99,.07),
+      rgba(0,0,0,.12)
     );
 }
 
-.map-title{
-  position:absolute;
-  top:25px;
-  left:30px;
+.callout p {
+  color: var(--gray);
 
-  color:var(--gold);
+  font-size: 19px;
 
-  font-family:Arial,sans-serif;
-  font-size:10px;
-  letter-spacing:4px;
-
-  z-index:2;
+  line-height: 1.65;
 }
 
-.map-button{
-  position:absolute;
-
-  padding:12px 15px;
-
-  border:1px solid var(--line);
-
-  background:rgba(6,5,6,.92);
-
-  color:var(--cream);
-
-  cursor:pointer;
-
-  font-family:Arial,sans-serif;
-  font-size:9px;
-  letter-spacing:2px;
-
-  transition:.3s ease;
-
-  z-index:3;
+.callout strong {
+  color: var(--cream);
 }
 
-.map-button:hover{
-  border-color:var(--gold);
-  color:var(--gold);
+.action-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 52px;
+
+  margin-top: 25px;
+
+  padding: 0 25px;
+
+  border: 1px solid var(--gold);
+
+  background: transparent;
+
+  color: var(--cream);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 10px;
+
+  letter-spacing: 3px;
+
+  transition: .3s ease;
 }
 
-.m1{left:20%;top:25%}
-.m2{left:42%;top:20%}
-.m3{left:65%;top:30%}
-.m4{left:30%;top:45%}
-.m5{left:55%;top:50%}
-.m6{left:75%;top:60%}
-.m7{left:15%;top:70%}
-.m8{left:45%;top:72%}
-.m9{left:68%;top:78%}
-.m10{left:35%;top:85%}
+.action-button:hover {
+  background: var(--gold);
+
+  color: var(--black);
+}
+
 
 /* =========================================================
-   MODAL
+   NPC
    ========================================================= */
 
-.modal{
-  position:fixed;
-  inset:0;
+.empty-state {
+  max-width: 700px;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  margin-top: 25px;
 
-  padding:25px;
+  padding: 50px 30px;
 
-  background:rgba(0,0,0,.85);
+  border: 1px solid var(--line);
 
-  z-index:200;
+  text-align: center;
 
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
-
-  transition:.3s ease;
+  background:
+    rgba(255,255,255,.012);
 }
 
-.modal.open{
-  opacity:1;
-  visibility:visible;
-  pointer-events:auto;
+.empty-state h3 {
+  color: var(--gold);
+
+  font-size: 30px;
 }
 
-.modal-box{
-  width:min(600px,100%);
+.empty-state p {
+  margin-top: 15px;
 
-  padding:35px;
+  color: var(--gray);
 
-  border:1px solid var(--gold);
-
-  background:var(--black2);
+  line-height: 1.6;
 }
 
-.modal-close{
-  float:right;
-
-  border:0;
-  background:transparent;
-
-  color:var(--gray);
-
-  font-size:25px;
-  cursor:pointer;
-}
-
-.modal-box h3{
-  color:var(--gold);
-  font-size:28px;
-}
-
-.modal-box p{
-  margin-top:15px;
-  color:var(--gray);
-  line-height:1.6;
-}
 
 /* =========================================================
    RESPONSIVO
    ========================================================= */
 
-@media(max-width:800px){
+@media (max-width: 800px) {
 
-  .grid,
-  .list{
-    grid-template-columns:repeat(2,1fr);
+  header {
+    height: 72px;
+
+    padding: 0 22px;
   }
 
-  .fraternity-card{
-    grid-template-columns:1fr;
+  .logo {
+    font-size: 13px;
+
+    letter-spacing: 4px;
   }
 
-  .fraternity-image{
-    min-height:300px;
+  .menu-button {
+    width: 46px;
+    height: 46px;
   }
 
-  .rules{
-    grid-template-columns:1fr;
-  }
-
-  .circle-one{
-    width:500px;
-    height:500px;
-  }
-
-}
-
-@media(max-width:600px){
-
-  header{
-    height:75px;
-  }
-
-  .home{
+  .page {
     padding:
-      125px 7% 65px;
-    align-items:flex-start;
+      72px 22px 30px;
   }
 
-  .hero-title{
-    font-size:clamp(60px,18vw,100px);
-    letter-spacing:-5px;
+  .page-content {
+    padding-top: 20px;
   }
 
-  .hero-title .gold{
-    margin-left:0;
+  #home {
+    padding-top: 72px;
   }
 
-  .eyebrow{
-    font-size:8px;
-    letter-spacing:5px;
+  .home-content {
+    width: calc(100% - 10px);
   }
 
-  .subtitle{
-    font-size:20px;
+  .home-title {
+    font-size: clamp(52px, 15vw, 78px);
+
+    line-height: .82;
+
+    letter-spacing: -3px;
   }
 
-  .hero-meta{
-    gap:9px;
-    font-size:7px;
-    letter-spacing:2px;
+  .home-subtitle {
+    font-size: 18px;
   }
 
-  .hero-bottom{
-    grid-template-columns:1fr;
+  .home-button {
+    width: 100%;
+
+    min-width: 0;
+
+    height: 57px;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
   }
 
-  .hero-bottom div+div{
-    padding-left:0;
-    padding-top:18px;
-    margin-top:18px;
-    border-left:0;
-    border-top:1px solid var(--line);
+  .menu-content {
+    width: 100%;
   }
 
-  .grid,
-  .list{
-    grid-template-columns:1fr;
+  .menu-title {
+    font-size: 54px;
   }
 
-  .details{
-    grid-template-columns:1fr;
+  .menu-item {
+    min-height: 62px;
+
+    font-size: 21px;
   }
 
-  .fraternity-info{
-    padding:25px;
+  .portal-grid,
+  .fraternity-grid {
+    grid-template-columns: 1fr;
   }
 
-  .map{
-    min-height:520px;
+  .list-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
   }
 
-  .map-button{
-    padding:9px 8px;
-    font-size:7px;
+  .fraternity-profile {
+    grid-template-columns: 1fr;
+
+    gap: 25px;
   }
 
-  .menu-overlay{
-    padding-top:105px;
+  .fraternity-hero {
+    min-height: 280px;
   }
 
+  .fraternity-hero img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .event-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .map-box {
+    min-height: 470px;
+  }
+
+  .map-location {
+    font-size: 8px;
+
+    padding: 8px 10px;
+  }
 }
 
-/* =========================================================
-   FIM DO CSS
-   ========================================================= */
+
+@media (max-width: 450px) {
+
+  .list-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-title {
+    font-size: 46px;
+  }
+
+  .section-description {
+    font-size: 16px;
+  }
+
+  .info-block {
+    padding: 22px;
+  }
+
+  .fraternity-card {
+    min-height: 310px;
+  }
+
+  .map-location.campus {
+    left: 35%;
+  }
+
+  .map-location.library {
+    left: 8%;
+  }
+
+  .map-location.theater {
+    right: 5%;
+    left: auto;
+  }
+
+  .map-location.hockey {
+    left: 20%;
+  }
+
+  .map-location.echo {
+    right: 8%;
+    left: auto;
+  }
+
+  .map-location.knights {
+    left: 5%;
+    top: 18%;
+  }
+
+  .map-location.crows {
+    right: 5%;
+    top: 18%;
+  }
+}
 
 </style>
-
 </head>
+
 
 <body>
 
+
+<!-- ======================================================
+     PARTÍCULAS
+     ====================================================== -->
+
 <div id="particles"></div>
 
-<div class="decor-circle circle-one"></div>
-<div class="decor-circle circle-two"></div>
-<div class="decor-circle circle-three"></div>
+<div class="circle one"></div>
+<div class="circle two"></div>
+<div class="circle three"></div>
 
-<!-- ========================================================
+
+<!-- ======================================================
+     CARTAS
+     ====================================================== -->
+
+<div class="cards">
+
+  <div class="card">♠</div>
+  <div class="card">♠</div>
+  <div class="card">♠</div>
+  <div class="card">♠</div>
+
+</div>
+
+
+<!-- ======================================================
      HEADER
-     ======================================================== -->
+     ====================================================== -->
 
 <header>
 
-  <a
-    href="#"
+  <button
     class="logo"
-    onclick="showPage('home');return false;"
+    id="logo"
+    style="border:0;background:transparent;"
   >
     RED MASQUERADE
-  </a>
+  </button>
 
   <button
     class="menu-button"
@@ -1293,113 +1785,24 @@ header{
 </header>
 
 
-<!-- ========================================================
-     MENU
-     ======================================================== -->
-
-<div
-  class="menu-overlay"
-  id="menuOverlay"
->
-
-  <div class="menu-inner">
-
-    <div class="menu-eyebrow">
-      RED MASQUERADE · UNIVERSO
-    </div>
-
-    <h2 class="menu-title">
-      O <span>Universo</span>
-    </h2>
-
-    <a class="menu-link" href="#" data-page="home">
-      <span>Início</span>
-      <span class="menu-number">00</span>
-    </a>
-
-    <a class="menu-link" href="#" data-page="universidade">
-      <span>Universidade</span>
-      <span class="menu-number">01</span>
-    </a>
-
-    <a class="menu-link" href="#" data-page="fraternidades">
-      <span>Fraternidades</span>
-      <span class="menu-number">02</span>
-    </a>
-
-    <a class="menu-link" href="#" data-page="jornal">
-      <span>The University Echo</span>
-      <span class="menu-number">03</span>
-    </a>
-
-    <a class="menu-link" href="#" data-page="redmasquerade">
-      <span>Red Masquerade</span>
-      <span class="menu-number">04</span>
-    </a>
-
-    <a class="menu-link" href="#" data-page="npcs">
-      <span>NPCs</span>
-      <span class="menu-number">05</span>
-    </a>
-
-    <a class="menu-link" href="#" data-page="locais">
-      <span>Locais</span>
-      <span class="menu-number">06</span>
-    </a>
-
-    <a class="menu-link" href="#" data-page="eventos">
-      <span>Eventos</span>
-      <span class="menu-number">07</span>
-    </a>
-
-    <a class="menu-link" href="#" data-page="timeline">
-      <span>Linha do Tempo</span>
-      <span class="menu-number">08</span>
-    </a>
-
-    <a class="menu-link" href="#" data-page="regras">
-      <span>Regras</span>
-      <span class="menu-number">09</span>
-    </a>
-
-    <a class="menu-link" href="#" data-page="participar">
-      <span>Participar</span>
-      <span class="menu-number">10</span>
-    </a>
-
-    <a class="menu-link" href="#" data-page="canais">
-      <span>Canais</span>
-      <span class="menu-number">11</span>
-    </a>
-
-    <a class="menu-link" href="#" data-page="mapa">
-      <span>Mapa</span>
-      <span class="menu-number">12</span>
-    </a>
-
-  </div>
-
-</div>
-
-
-<!-- ========================================================
+<!-- ======================================================
      HOME
-     ======================================================== -->
+     ====================================================== -->
 
 <section
-  class="home"
+  class="page active"
   id="home"
 >
 
-  <div class="hero">
+  <div class="home-content">
 
-    <div class="eyebrow">
-      MOSCOW · RUSSIA
-    </div>
+    <p class="eyebrow">
+      MOSCOW · RUSSIA · 2026
+    </p>
 
-    <h1 class="hero-title">
+    <h1 class="home-title">
 
-      <span class="white">
+      <span>
         RED
       </span>
 
@@ -1409,69 +1812,132 @@ header{
 
     </h1>
 
-    <div class="title-line"></div>
+    <div class="home-line"></div>
 
-    <p class="subtitle">
-      Um universo de histórias, segredos,
-      escolhas e consequências.
+    <p class="home-subtitle">
+      The jester always laughs last.
     </p>
-
-    <p class="quote">
-      “The jester always laughs last.”
-    </p>
-
-    <div class="hero-meta">
-
-      <span>RPG TEXTUAL</span>
-      <i></i>
-
-      <span>+18</span>
-      <i></i>
-
-      <span>MISTÉRIO</span>
-
-    </div>
 
     <button
-      class="enter-button"
-      id="enterButton"
+      class="home-button"
+      data-open="menu"
     >
-
-      <span>
-        ENTRAR NO UNIVERSO
-      </span>
-
-      <span>
-        →
-      </span>
-
+      ENTRAR NO UNIVERSO
     </button>
 
-    <div class="hero-bottom">
+  </div>
 
-      <div>
+</section>
 
-        <small>
-          STATUS
-        </small>
 
-        <strong>
-          RPG EM ANDAMENTO
-        </strong>
+<!-- ======================================================
+     MENU
+     ====================================================== -->
 
-      </div>
+<section
+  class="page"
+  id="menu"
+>
 
-      <div>
+  <div class="menu-content">
 
-        <small>
-          NÚCLEO
-        </small>
+    <p class="menu-eyebrow">
+      RED MASQUERADE
+    </p>
 
-        <strong>
-          UNIVERSIDADE LOMONOSOV
-        </strong>
+    <h1 class="menu-title">
+      O <span>UNIVERSO</span>
+    </h1>
 
-      </div>
+    <div class="menu-list">
+
+      <button
+        class="menu-item"
+        data-open="universidade"
+      >
+        <span>Universidade</span>
+        <span class="menu-number">01</span>
+      </button>
+
+      <button
+        class="menu-item"
+        data-open="fraternidades"
+      >
+        <span>Fraternidades</span>
+        <span class="menu-number">02</span>
+      </button>
+
+      <button
+        class="menu-item"
+        data-open="echo"
+      >
+        <span>The University Echo</span>
+        <span class="menu-number">03</span>
+      </button>
+
+      <button
+        class="menu-item"
+        data-open="masquerade"
+      >
+        <span>Red Masquerade</span>
+        <span class="menu-number">04</span>
+      </button>
+
+      <button
+        class="menu-item"
+        data-open="npcs"
+      >
+        <span>NPCs</span>
+        <span class="menu-number">05</span>
+      </button>
+
+      <button
+        class="menu-item"
+        data-open="locais"
+      >
+        <span>Locais</span>
+        <span class="menu-number">06</span>
+      </button>
+
+      <button
+        class="menu-item"
+        data-open="eventos"
+      >
+        <span>Eventos</span>
+        <span class="menu-number">07</span>
+      </button>
+
+      <button
+        class="menu-item"
+        data-open="timeline"
+      >
+        <span>Linha do Tempo</span>
+        <span class="menu-number">08</span>
+      </button>
+
+      <button
+        class="menu-item"
+        data-open="regras"
+      >
+        <span>Regras</span>
+        <span class="menu-number">09</span>
+      </button>
+
+      <button
+        class="menu-item"
+        data-open="participar"
+      >
+        <span>Participar</span>
+        <span class="menu-number">10</span>
+      </button>
+
+      <button
+        class="menu-item"
+        data-open="canais"
+      >
+        <span>Canais</span>
+        <span class="menu-number">11</span>
+      </button>
 
     </div>
 
@@ -1480,186 +1946,211 @@ header{
 </section>
 
 
-<!-- ========================================================
+<!-- ======================================================
      UNIVERSIDADE
-     ======================================================== -->
+     ====================================================== -->
 
 <section
   class="page"
   id="universidade"
 >
 
-  <div class="container">
+  <div class="page-content">
 
-    <button class="back-button">
-      ← INÍCIO
-    </button>
+    <div class="inner-header">
 
-    <p class="page-eyebrow">
-      RED MASQUERADE · UNIVERSIDADE
-    </p>
+      <button
+        class="back"
+        data-back
+      >
+        ← VOLTAR
+      </button>
 
-    <h2 class="page-title">
-      Universidade <span>Lomonosov</span>
-    </h2>
-
-    <p class="page-intro">
-      Uma instituição marcada por tradição, prestígio,
-      vida acadêmica e uma comunidade muito maior
-      do que aquilo que aparece nos corredores.
-    </p>
-
-
-    <div class="section">
-
-      <h3>
-        Sobre a Universidade
-      </h3>
-
-      <p class="text">
-        A Universidade Lomonosov foi fundada em 1755
-        e possui uma longa tradição acadêmica.
-        Sua estrutura pública e seu prestígio fizeram
-        da instituição uma referência dentro de Moscou.
+      <p class="section-label">
+        UNIVERSIDADE LOMONOSOV
       </p>
 
-      <p class="text">
-        Ao longo de sua história, a universidade
-        desenvolveu relações com famílias tradicionais,
-        empresas e organizações privadas, criando uma
-        rede de influência que ultrapassa a vida acadêmica.
-      </p>
+      <h1 class="section-title">
+        A <span>Universidade</span>
+      </h1>
 
-      <p class="text">
-        Para os estudantes, a Lomonosov também representa
-        uma vida social própria, formada por alojamentos,
-        atividades extracurriculares, eventos,
-        fraternidades e espaços culturais.
+      <p class="section-description">
+        Uma instituição marcada por tradição,
+        prestígio, poder e uma vida acadêmica
+        que ultrapassa os limites das salas de aula.
       </p>
 
     </div>
 
 
-    <div class="section">
+    <div class="portal-grid">
 
-      <h3>
-        Cursos
-      </h3>
+      <button
+        class="portal-card"
+        data-open="historia-universidade"
+      >
+        <span class="card-number">01</span>
 
-      <div class="list">
+        <h3 class="card-title">
+          História
+        </h3>
 
-        <div class="list-item">Medicina</div>
-        <div class="list-item">Enfermagem</div>
-        <div class="list-item">Administração</div>
-        <div class="list-item">Economia</div>
-        <div class="list-item">Relações Internacionais</div>
-        <div class="list-item">Ciência Política</div>
-        <div class="list-item">Perícia Criminal</div>
-        <div class="list-item">Criminologia</div>
-        <div class="list-item">Biologia</div>
-        <div class="list-item">Biomedicina</div>
-        <div class="list-item">Arquitetura</div>
-        <div class="list-item">Engenharia</div>
-        <div class="list-item">Ciência da Computação</div>
-        <div class="list-item">Artes</div>
-        <div class="list-item">Fotografia</div>
-        <div class="list-item">Moda</div>
-        <div class="list-item">Design</div>
-        <div class="list-item">Jornalismo</div>
-        <div class="list-item">Direito</div>
-        <div class="list-item">Agricultura</div>
-        <div class="list-item">Medicina Veterinária</div>
-        <div class="list-item">História</div>
+        <p class="card-text">
+          Fundação, tradição e estrutura
+          da Universidade Lomonosov.
+        </p>
+      </button>
+
+
+      <button
+        class="portal-card"
+        data-open="cursos"
+      >
+        <span class="card-number">02</span>
+
+        <h3 class="card-title">
+          Cursos
+        </h3>
+
+        <p class="card-text">
+          As áreas acadêmicas disponíveis
+          dentro da universidade.
+        </p>
+      </button>
+
+
+      <button
+        class="portal-card"
+        data-open="extracurriculares"
+      >
+        <span class="card-number">03</span>
+
+        <h3 class="card-title">
+          Extracurriculares
+        </h3>
+
+        <p class="card-text">
+          Clubes, atividades e vida
+          universitária.
+        </p>
+      </button>
+
+
+      <button
+        class="portal-card"
+        data-open="moradia"
+      >
+        <span class="card-number">04</span>
+
+        <h3 class="card-title">
+          Moradia
+        </h3>
+
+        <p class="card-text">
+          Alojamentos, fraternidades
+          e moradia fora do campus.
+        </p>
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ======================================================
+     HISTÓRIA UNIVERSIDADE
+     ====================================================== -->
+
+<section
+  class="page"
+  id="historia-universidade"
+>
+
+  <div class="page-content">
+
+    <div class="inner-header">
+
+      <button
+        class="back"
+        data-back="universidade"
+      >
+        ← UNIVERSIDADE
+      </button>
+
+      <p class="section-label">
+        LOMONOSOV
+      </p>
+
+      <h1 class="section-title">
+        História da <span>Universidade</span>
+      </h1>
+
+    </div>
+
+
+    <div class="article">
+
+      <div class="info-block">
+
+        <h3>
+          Fundação
+        </h3>
+
+        <p>
+          A Universidade Lomonosov foi fundada em
+          1755 e se consolidou ao longo dos séculos
+          como uma instituição marcada por prestígio,
+          tradição e excelência acadêmica.
+        </p>
 
       </div>
 
-    </div>
 
+      <div class="info-block">
 
-    <div class="section">
+        <h3>
+          Estrutura
+        </h3>
 
-      <h3>
-        Atividades Extracurriculares
-      </h3>
-
-      <div class="list">
-
-        <div class="list-item">Boxe</div>
-        <div class="list-item">Jornal</div>
-        <div class="list-item">Hóquei</div>
-        <div class="list-item">Patinação no gelo</div>
-        <div class="list-item">Pintura</div>
-        <div class="list-item">Botânica</div>
-        <div class="list-item">Debate</div>
-        <div class="list-item">Teatro</div>
-        <div class="list-item">Dança</div>
-        <div class="list-item">Música</div>
-        <div class="list-item">Esgrima</div>
-        <div class="list-item">Xadrez</div>
-        <div class="list-item">Clube de idiomas</div>
+        <p>
+          A universidade possui estrutura pública,
+          reunindo diferentes áreas de formação,
+          pesquisa, atividades culturais e esportivas.
+        </p>
 
       </div>
 
-    </div>
+
+      <div class="info-block">
+
+        <h3>
+          Vida acadêmica e social
+        </h3>
+
+        <p>
+          A vida dentro da Lomonosov não se limita
+          às salas de aula. Fraternidades, clubes,
+          eventos, organizações estudantis e relações
+          sociais fazem parte do cotidiano universitário.
+        </p>
+
+      </div>
 
 
-    <div class="section">
+      <div class="info-block">
 
-      <h3>
-        Moradia
-      </h3>
+        <h3>
+          Relações externas
+        </h3>
 
-      <div class="grid">
-
-        <article class="card">
-
-          <span class="card-number">
-            01
-          </span>
-
-          <h3>
-            Alojamentos
-          </h3>
-
-          <p>
-            Moradia estudantil ligada à universidade.
-          </p>
-
-        </article>
-
-        <article class="card">
-
-          <span class="card-number">
-            02
-          </span>
-
-          <h3>
-            Casas das Fraternidades
-          </h3>
-
-          <p>
-            Espaços associados às fraternidades,
-            com suas próprias regras e tradições.
-          </p>
-
-        </article>
-
-        <article class="card">
-
-          <span class="card-number">
-            03
-          </span>
-
-          <h3>
-            Moradia fora do campus
-          </h3>
-
-          <p>
-            Estudantes também podem viver
-            em outras regiões de Moscou.
-          </p>
-
-        </article>
+        <p>
+          A universidade também mantém relações com
+          famílias, empresas e organizações privadas,
+          fazendo com que sua influência ultrapasse
+          os limites do campus.
+        </p>
 
       </div>
 
@@ -1670,383 +2161,845 @@ header{
 </section>
 
 
-<!-- ========================================================
+<!-- ======================================================
+     CURSOS
+     ====================================================== -->
+
+<section
+  class="page"
+  id="cursos"
+>
+
+  <div class="page-content">
+
+    <div class="inner-header">
+
+      <button
+        class="back"
+        data-back="universidade"
+      >
+        ← UNIVERSIDADE
+      </button>
+
+      <p class="section-label">
+        FORMAÇÃO
+      </p>
+
+      <h1 class="section-title">
+        <span>Cursos</span>
+      </h1>
+
+    </div>
+
+
+    <div class="list-grid">
+
+      <div class="list-item">Medicina</div>
+      <div class="list-item">Enfermagem</div>
+      <div class="list-item">Administração</div>
+      <div class="list-item">Economia</div>
+      <div class="list-item">Relações Internacionais</div>
+      <div class="list-item">Ciência Política</div>
+      <div class="list-item">Perícia Criminal</div>
+      <div class="list-item">Criminologia</div>
+      <div class="list-item">Biologia</div>
+      <div class="list-item">Biomedicina</div>
+      <div class="list-item">Arquitetura</div>
+      <div class="list-item">Engenharia</div>
+      <div class="list-item">Ciência da Computação</div>
+      <div class="list-item">Artes</div>
+      <div class="list-item">Fotografia</div>
+      <div class="list-item">Moda</div>
+      <div class="list-item">Design</div>
+      <div class="list-item">Jornalismo</div>
+      <div class="list-item">Direito</div>
+      <div class="list-item">Agricultura</div>
+      <div class="list-item">Medicina Veterinária</div>
+      <div class="list-item">História</div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ======================================================
+     EXTRACURRICULARES
+     ====================================================== -->
+
+<section
+  class="page"
+  id="extracurriculares"
+>
+
+  <div class="page-content">
+
+    <div class="inner-header">
+
+      <button
+        class="back"
+        data-back="universidade"
+      >
+        ← UNIVERSIDADE
+      </button>
+
+      <p class="section-label">
+        VIDA UNIVERSITÁRIA
+      </p>
+
+      <h1 class="section-title">
+        <span>Extracurriculares</span>
+      </h1>
+
+    </div>
+
+
+    <div class="list-grid">
+
+      <div class="list-item">Boxe</div>
+      <div class="list-item">Jornal</div>
+      <div class="list-item">Hóquei</div>
+      <div class="list-item">Patinação no gelo</div>
+      <div class="list-item">Pintura</div>
+      <div class="list-item">Botânica</div>
+      <div class="list-item">Debate</div>
+      <div class="list-item">Teatro</div>
+      <div class="list-item">Dança</div>
+      <div class="list-item">Música</div>
+      <div class="list-item">Esgrima</div>
+      <div class="list-item">Xadrez</div>
+      <div class="list-item">Clube de idiomas</div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ======================================================
+     MORADIA
+     ====================================================== -->
+
+<section
+  class="page"
+  id="moradia"
+>
+
+  <div class="page-content">
+
+    <div class="inner-header">
+
+      <button
+        class="back"
+        data-back="universidade"
+      >
+        ← UNIVERSIDADE
+      </button>
+
+      <p class="section-label">
+        VIDA UNIVERSITÁRIA
+      </p>
+
+      <h1 class="section-title">
+        <span>Moradia</span>
+      </h1>
+
+    </div>
+
+
+    <div class="portal-grid">
+
+      <div class="info-block">
+        <h3>Alojamentos</h3>
+        <p>
+          Moradia estudantil vinculada à universidade.
+        </p>
+      </div>
+
+      <div class="info-block">
+        <h3>Casas das fraternidades</h3>
+        <p>
+          Espaços relacionados às fraternidades
+          e suas respectivas estruturas.
+        </p>
+      </div>
+
+      <div class="info-block">
+        <h3>Fora do campus</h3>
+        <p>
+          Estudantes também podem residir
+          fora das dependências universitárias.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ======================================================
      FRATERNIDADES
-     ======================================================== -->
+     ====================================================== -->
 
 <section
   class="page"
   id="fraternidades"
 >
 
-  <div class="container">
+  <div class="page-content">
 
-    <button class="back-button">
-      ← INÍCIO
-    </button>
+    <div class="inner-header">
 
-    <p class="page-eyebrow">
-      RED MASQUERADE · FRATERNIDADES
-    </p>
+      <button
+        class="back"
+        data-back="menu"
+      >
+        ← MENU
+      </button>
 
-    <h2 class="page-title">
-      As <span>Fraternidades</span>
-    </h2>
+      <p class="section-label">
+        AS FRATERNIDADES
+      </p>
 
-    <p class="page-intro">
-      Três grupos. Três histórias. Três maneiras
-      diferentes de enxergar lealdade, poder,
-      liberdade e sobrevivência.
-    </p>
+      <h1 class="section-title">
+        As <span>Casas</span>
+      </h1>
+
+      <p class="section-description">
+        Três fraternidades. Três histórias.
+        Três formas diferentes de existir
+        dentro do universo da Lomonosov.
+      </p>
+
+    </div>
 
 
-    <!-- GOLDEN KNIGHTS -->
+    <div class="fraternity-grid">
 
-    <article class="fraternity-card">
 
-      <div class="fraternity-image">
+      <!-- GOLDEN KNIGHTS -->
+
+      <button
+        class="fraternity-card"
+        data-open="golden-knights"
+      >
 
         <img
-          src="img/Golden_Knights_escudo_v2.jpg"
+          src="img/golden-knights.png"
+          class="fraternity-image"
+          alt="Escudo Golden Knights"
+        >
+
+        <span class="fraternity-number">
+          01 · 1907
+        </span>
+
+        <h2 class="fraternity-name">
+          Golden Knights
+        </h2>
+
+        <p class="fraternity-motto">
+          STRENGTH & HONOR
+        </p>
+
+        <p class="fraternity-summary">
+          Força, honra, tradição, hierarquia
+          e proteção da fraternidade.
+        </p>
+
+      </button>
+
+
+      <!-- WINTER FOXES -->
+
+      <button
+        class="fraternity-card"
+        data-open="winter-foxes"
+      >
+
+        <img
+          src="img/winter-foxes.png"
+          class="fraternity-image"
+          alt="Escudo Winter Foxes"
+        >
+
+        <span class="fraternity-number">
+          02 · 1957
+        </span>
+
+        <h2 class="fraternity-name">
+          Winter Foxes
+        </h2>
+
+        <p class="fraternity-motto">
+          ENDURANCE & CUNNING
+        </p>
+
+        <p class="fraternity-summary">
+          Estratégia, lealdade, discrição
+          e informação.
+        </p>
+
+      </button>
+
+
+      <!-- IRON CROWS -->
+
+      <button
+        class="fraternity-card"
+        data-open="iron-crows"
+      >
+
+        <img
+          src="img/iron-crows.png"
+          class="fraternity-image"
+          alt="Escudo Iron Crows"
+        >
+
+        <span class="fraternity-number">
+          03 · 1982
+        </span>
+
+        <h2 class="fraternity-name">
+          Iron Crows
+        </h2>
+
+        <p class="fraternity-motto">
+          STRENGTH & RELENTLESS
+        </p>
+
+        <p class="fraternity-summary">
+          Liberdade, lealdade, risco
+          e responsabilidade.
+        </p>
+
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ======================================================
+     GOLDEN KNIGHTS
+     ====================================================== -->
+
+<section
+  class="page"
+  id="golden-knights"
+>
+
+  <div class="page-content">
+
+    <div class="inner-header">
+
+      <button
+        class="back"
+        data-back="fraternidades"
+      >
+        ← FRATERNIDADES
+      </button>
+
+      <p class="section-label">
+        THE GOLDEN KNIGHTS
+      </p>
+
+      <h1 class="section-title">
+        Golden <span>Knights</span>
+      </h1>
+
+    </div>
+
+
+    <div class="fraternity-profile">
+
+      <div class="fraternity-hero">
+
+        <img
+          src="img/golden-knights.png"
           alt="Escudo dos Golden Knights"
         >
 
-      </div>
-
-      <div class="fraternity-info">
-
-        <div class="fraternity-number">
-          01 · GOLDEN KNIGHTS
-        </div>
-
-        <h3 class="fraternity-name">
-          The Golden Knights
+        <h3>
+          STRENGTH & HONOR
         </h3>
 
-        <div class="fraternity-motto">
-          STRENGTH & HONOR
-        </div>
+      </div>
 
-        <div class="details">
+
+      <div class="profile-content">
+
+        <div class="detail-grid">
 
           <div class="detail">
-            <div class="detail-label">Fundação</div>
-            <div class="detail-value">1907</div>
+            <span class="detail-label">
+              FUNDAÇÃO
+            </span>
+            <span class="detail-value">
+              1907
+            </span>
           </div>
 
           <div class="detail">
-            <div class="detail-label">Perfil</div>
-            <div class="detail-value">
+            <span class="detail-label">
+              PERFIL
+            </span>
+            <span class="detail-value">
               Exclusivamente masculina
-            </div>
+            </span>
           </div>
 
           <div class="detail">
-            <div class="detail-label">Cores</div>
-            <div class="detail-value">
+            <span class="detail-label">
+              CORES
+            </span>
+            <span class="detail-value">
               Dourado e preto
-            </div>
+            </span>
           </div>
 
           <div class="detail">
-            <div class="detail-label">Símbolo</div>
-            <div class="detail-value">
+            <span class="detail-label">
+              SÍMBOLO
+            </span>
+            <span class="detail-value">
               Leão
-            </div>
+            </span>
           </div>
 
           <div class="detail">
-            <div class="detail-label">Sede</div>
-            <div class="detail-value">
+            <span class="detail-label">
+              SEDE
+            </span>
+            <span class="detail-value">
               Clube privado de elite em Moscou
-            </div>
+            </span>
           </div>
 
           <div class="detail">
-            <div class="detail-label">Entrada</div>
-            <div class="detail-value">
-              Candidatura aberta, sem período específico
-            </div>
+            <span class="detail-label">
+              ENTRADA
+            </span>
+            <span class="detail-value">
+              Candidatura aberta
+            </span>
           </div>
 
         </div>
 
-        <div class="fraternity-section">
 
-          <h4>
-            Hierarquia
-          </h4>
+        <h3>
+          História
+        </h3>
 
-          <p>
-            Líder, Vice-líder, Conselho, Membros,
-            Novatos/Candidatos e Mentor.
-          </p>
+        <p>
+          Fundada em 1907, a Golden Knights é uma
+          fraternidade marcada pela tradição, força
+          institucional e uma rígida cultura de
+          hierarquia.
+        </p>
 
-        </div>
 
-        <div class="fraternity-section">
+        <h3>
+          Hierarquia
+        </h3>
 
-          <h4>
-            Princípios
-          </h4>
+        <p>
+          Líder, Vice-líder, Conselho, Membros,
+          Novatos/Candidatos e Mentor.
+        </p>
 
-          <p>
-            Lealdade, honra, discrição, hierarquia
-            e proteção da fraternidade.
-          </p>
 
-        </div>
+        <h3>
+          Princípios
+        </h3>
 
-        <div class="fraternity-section">
+        <p>
+          Lealdade, honra, discrição, hierarquia
+          e proteção da fraternidade.
+        </p>
 
-          <h4>
-            Tradições
-          </h4>
 
-          <p>
-            Jantares de gala e reuniões secretas
-            em porões históricos.
-          </p>
+        <h3>
+          Tradições
+        </h3>
 
-        </div>
+        <p>
+          Jantares de gala e reuniões secretas
+          em porões históricos.
+        </p>
+
+
+        <h3>
+          Entrada
+        </h3>
+
+        <p>
+          A candidatura é aberta e não existe
+          período específico de entrada.
+          O desafio de entrada não é divulgado
+          no site.
+        </p>
 
       </div>
 
-    </article>
+    </div>
+
+  </div>
+
+</section>
 
 
-    <!-- WINTER FOXES -->
+<!-- ======================================================
+     WINTER FOXES
+     ====================================================== -->
 
-    <article class="fraternity-card">
+<section
+  class="page"
+  id="winter-foxes"
+>
 
-      <div class="fraternity-image">
+  <div class="page-content">
+
+    <div class="inner-header">
+
+      <button
+        class="back"
+        data-back="fraternidades"
+      >
+        ← FRATERNIDADES
+      </button>
+
+      <p class="section-label">
+        THE WINTER FOXES
+      </p>
+
+      <h1 class="section-title">
+        Winter <span>Foxes</span>
+      </h1>
+
+    </div>
+
+
+    <div class="fraternity-profile">
+
+      <div class="fraternity-hero">
 
         <img
-          src="img/Winter_Foxes_escudo_v2.jpg"
-          alt="Escudo dos Winter Foxes"
+          src="img/winter-foxes.png"
+          alt="Escudo das Winter Foxes"
         >
 
-      </div>
-
-      <div class="fraternity-info">
-
-        <div class="fraternity-number">
-          02 · WINTER FOXES
-        </div>
-
-        <h3 class="fraternity-name">
-          The Winter Foxes
+        <h3>
+          ENDURANCE & CUNNING
         </h3>
 
-        <div class="fraternity-motto">
-          ENDURANCE & CUNNING
-        </div>
+      </div>
 
-        <div class="details">
+
+      <div class="profile-content">
+
+        <div class="detail-grid">
 
           <div class="detail">
-            <div class="detail-label">Fundação</div>
-            <div class="detail-value">1957</div>
+            <span class="detail-label">
+              FUNDAÇÃO
+            </span>
+            <span class="detail-value">
+              1957
+            </span>
           </div>
 
           <div class="detail">
-            <div class="detail-label">Perfil</div>
-            <div class="detail-value">
+            <span class="detail-label">
+              PERFIL
+            </span>
+            <span class="detail-value">
               Exclusivamente feminina
-            </div>
+            </span>
           </div>
 
           <div class="detail">
-            <div class="detail-label">Cores</div>
-            <div class="detail-value">
+            <span class="detail-label">
+              CORES
+            </span>
+            <span class="detail-value">
               Prata e azul-gelo
-            </div>
+            </span>
           </div>
 
           <div class="detail">
-            <div class="detail-label">Símbolo</div>
-            <div class="detail-value">
+            <span class="detail-label">
+              SÍMBOLO
+            </span>
+            <span class="detail-value">
               Raposa
-            </div>
+            </span>
           </div>
 
           <div class="detail">
-            <div class="detail-label">Sede</div>
-            <div class="detail-value">
+            <span class="detail-label">
+              SEDE
+            </span>
+            <span class="detail-value">
               Ala histórica da Universidade Lomonosov
-            </div>
+            </span>
           </div>
 
           <div class="detail">
-            <div class="detail-label">Entrada</div>
-            <div class="detail-value">
-              Candidatura aberta, sem período específico
-            </div>
+            <span class="detail-label">
+              ENTRADA
+            </span>
+            <span class="detail-value">
+              Candidatura aberta
+            </span>
           </div>
 
         </div>
 
-        <div class="fraternity-section">
 
-          <h4>
-            Hierarquia
-          </h4>
+        <h3>
+          História
+        </h3>
 
-          <p>
-            Líder, Vice-líder, Conselho, Membros,
-            Novatas/Candidatas e Mentor.
-          </p>
+        <p>
+          Fundada em 1957, a Winter Foxes construiu
+          sua identidade em torno da estratégia,
+          discrição e controle das informações.
+        </p>
 
-        </div>
 
-        <div class="fraternity-section">
+        <h3>
+          Hierarquia
+        </h3>
 
-          <h4>
-            Princípios
-          </h4>
+        <p>
+          Líder, Vice-líder, Conselho, Membros,
+          Novatas/Candidatas e Mentor.
+        </p>
 
-          <p>
-            Lealdade, discrição, proteção, hierarquia
-            e cuidado com informações internas.
-          </p>
 
-        </div>
+        <h3>
+          Princípios
+        </h3>
 
-        <div class="fraternity-section">
+        <p>
+          Lealdade, discrição, proteção,
+          hierarquia e cuidado com informações
+          internas.
+        </p>
 
-          <h4>
-            Tradições
-          </h4>
 
-          <p>
-            Coleta e troca de informações, uso estratégico
-            de segredos e circulação de informações privilegiadas.
-          </p>
+        <h3>
+          Tradições
+        </h3>
 
-        </div>
+        <p>
+          Coleta e troca de informações, uso
+          estratégico de segredos e circulação
+          de informações privilegiadas.
+        </p>
+
+
+        <h3>
+          Entrada
+        </h3>
+
+        <p>
+          A candidatura é aberta e não existe
+          período específico de entrada.
+          O desafio de entrada não é divulgado
+          no site.
+        </p>
 
       </div>
 
-    </article>
+    </div>
+
+  </div>
+
+</section>
 
 
-    <!-- IRON CROWS -->
+<!-- ======================================================
+     IRON CROWS
+     ====================================================== -->
 
-    <article class="fraternity-card">
+<section
+  class="page"
+  id="iron-crows"
+>
 
-      <div class="fraternity-image">
+  <div class="page-content">
+
+    <div class="inner-header">
+
+      <button
+        class="back"
+        data-back="fraternidades"
+      >
+        ← FRATERNIDADES
+      </button>
+
+      <p class="section-label">
+        THE IRON CROWS
+      </p>
+
+      <h1 class="section-title">
+        Iron <span>Crows</span>
+      </h1>
+
+    </div>
+
+
+    <div class="fraternity-profile">
+
+      <div class="fraternity-hero">
 
         <img
-          src="img/Iron_Crows_escudo_v2.jpg"
+          src="img/iron-crows.png"
           alt="Escudo dos Iron Crows"
         >
 
-      </div>
-
-      <div class="fraternity-info">
-
-        <div class="fraternity-number">
-          03 · IRON CROWS
-        </div>
-
-        <h3 class="fraternity-name">
-          The Iron Crows
+        <h3>
+          STRENGTH & RELENTLESS
         </h3>
 
-        <div class="fraternity-motto">
-          STRENGTH & RELENTLESS
-        </div>
+      </div>
 
-        <div class="details">
+
+      <div class="profile-content">
+
+        <div class="detail-grid">
 
           <div class="detail">
-            <div class="detail-label">Fundação</div>
-            <div class="detail-value">1982</div>
+            <span class="detail-label">
+              FUNDAÇÃO
+            </span>
+            <span class="detail-value">
+              1982
+            </span>
           </div>
 
           <div class="detail">
-            <div class="detail-label">Perfil</div>
-            <div class="detail-value">
+            <span class="detail-label">
+              PERFIL
+            </span>
+            <span class="detail-value">
               Grupo misto
-            </div>
+            </span>
           </div>
 
           <div class="detail">
-            <div class="detail-label">Cores</div>
-            <div class="detail-value">
+            <span class="detail-label">
+              CORES
+            </span>
+            <span class="detail-value">
               Cinza e vermelho-sangue
-            </div>
+            </span>
           </div>
 
           <div class="detail">
-            <div class="detail-label">Símbolo</div>
-            <div class="detail-value">
+            <span class="detail-label">
+              SÍMBOLO
+            </span>
+            <span class="detail-value">
               Corvo
-            </div>
+            </span>
           </div>
 
           <div class="detail">
-            <div class="detail-label">Sede</div>
-            <div class="detail-value">
+            <span class="detail-label">
+              SEDE
+            </span>
+            <span class="detail-value">
               Clube noturno privado em Moscou
-            </div>
+            </span>
           </div>
 
           <div class="detail">
-            <div class="detail-label">Entrada</div>
-            <div class="detail-value">
-              Candidatura aberta, sem período específico
-            </div>
+            <span class="detail-label">
+              ENTRADA
+            </span>
+            <span class="detail-value">
+              Candidatura aberta
+            </span>
           </div>
 
         </div>
 
-        <div class="fraternity-section">
 
-          <h4>
-            Hierarquia
-          </h4>
+        <h3>
+          História
+        </h3>
 
-          <p>
-            Líder, Vice-líder, Conselho, Membros,
-            Novatos/Candidatos e Mentor.
-          </p>
+        <p>
+          Fundada em 1982, a Iron Crows nasceu
+          com uma identidade mais livre e menos
+          rígida, valorizando risco, autonomia
+          e responsabilidade individual.
+        </p>
 
-        </div>
 
-        <div class="fraternity-section">
+        <h3>
+          Hierarquia
+        </h3>
 
-          <h4>
-            Princípios
-          </h4>
+        <p>
+          Líder, Vice-líder, Conselho, Membros,
+          Novatos/Candidatos e Mentor.
+        </p>
 
-          <p>
-            Liberdade, lealdade e responsabilidade
-            pelas próprias escolhas.
-          </p>
 
-        </div>
+        <h3>
+          Princípios
+        </h3>
 
-        <div class="fraternity-section">
+        <p>
+          Liberdade, lealdade e responsabilidade
+          pelas próprias escolhas.
+        </p>
 
-          <h4>
-            Tradições
-          </h4>
 
-          <p>
-            Festas, jogos de azar, desafios de risco
-            e eventos exclusivos ou secretos.
-          </p>
+        <h3>
+          Tradições
+        </h3>
 
-        </div>
+        <p>
+          Festas, jogos de azar, desafios de risco
+          e eventos exclusivos ou secretos.
+        </p>
+
+
+        <h3>
+          Regras
+        </h3>
+
+        <p>
+          A fraternidade possui poucas regras
+          e muita liberdade.
+        </p>
+
+
+        <h3>
+          Entrada
+        </h3>
+
+        <p>
+          A candidatura é aberta e não existe
+          período específico de entrada.
+          O desafio de entrada não é divulgado
+          no site.
+        </p>
 
       </div>
 
-    </article>
-
-
-    <div class="note">
-      Os desafios de entrada das fraternidades não aparecem no site.
     </div>
 
   </div>
@@ -2054,139 +3007,98 @@ header{
 </section>
 
 
-<!-- ========================================================
-     THE UNIVERSITY ECHO
-     ======================================================== -->
+<!-- ======================================================
+     UNIVERSITY ECHO
+     ====================================================== -->
 
 <section
   class="page"
-  id="jornal"
+  id="echo"
 >
 
-  <div class="container">
+  <div class="page-content">
 
-    <button class="back-button">
-      ← INÍCIO
-    </button>
+    <div class="inner-header">
 
-    <p class="page-eyebrow">
-      RED MASQUERADE · IMPRENSA
-    </p>
+      <button
+        class="back"
+        data-back="menu"
+      >
+        ← MENU
+      </button>
 
-    <h2 class="page-title">
-      The University <span>Echo</span>
-    </h2>
+      <p class="section-label">
+        IMPRENSA UNIVERSITÁRIA
+      </p>
 
-    <p class="page-intro">
-      O jornal da Universidade Lomonosov.
-      Informação, rumores, acontecimentos e
-      aquilo que alguém preferia que permanecesse em silêncio.
-    </p>
+      <h1 class="section-title">
+        The University <span>Echo</span>
+      </h1>
+
+      <p class="section-description">
+        O jornal da Universidade Lomonosov.
+        Informação, acontecimentos, rumores
+        e tudo aquilo que circula pelos corredores.
+      </p>
+
+    </div>
 
 
-    <div class="section">
+    <div class="article">
 
-      <h3>
-        Estrutura
-      </h3>
+      <div class="info-block">
 
-      <div class="grid">
+        <h3>
+          Editora-chefe
+        </h3>
 
-        <article class="card">
-
-          <span class="card-number">
-            EDITORA-CHEFE
-          </span>
-
-          <h3>
-            Taryn Frost Durant
-          </h3>
-
-          <p>
-            Responsável pela administração editorial
-            do jornal.
-          </p>
-
-        </article>
-
-        <article class="card">
-
-          <span class="card-number">
-            REDAÇÃO
-          </span>
-
-          <h3>
-            Cargos
-          </h3>
-
-          <p>
-            A redação possui diferentes funções
-            relacionadas à produção das publicações.
-          </p>
-
-        </article>
-
-        <article class="card">
-
-          <span class="card-number">
-            PARTICIPAÇÃO
-          </span>
-
-          <h3>
-            Vagas limitadas
-          </h3>
-
-          <p>
-            A participação na equipe do jornal
-            possui vagas limitadas.
-          </p>
-
-        </article>
+        <p>
+          Taryn Frost Durant.
+        </p>
 
       </div>
 
-    </div>
+
+      <div class="info-block">
+
+        <h3>
+          Estrutura da redação
+        </h3>
+
+        <p>
+          A redação é composta por cargos
+          específicos e possui vagas limitadas.
+        </p>
+
+      </div>
 
 
-    <div class="section">
+      <div class="info-block">
 
-      <h3>
-        Burn Book
-      </h3>
+        <h3>
+          Burn Book
+        </h3>
 
-      <p class="text">
-        Espaço destinado às informações e rumores
-        enviados para publicação dentro do universo
-        do jornal.
-      </p>
+        <p>
+          Espaço dedicado às informações,
+          comentários e conteúdos enviados
+          pelos participantes conforme as
+          regras do jornal.
+        </p>
 
-    </div>
-
-
-    <div class="section">
-
-      <h3>
-        Envio de informações
-      </h3>
-
-      <p class="text">
-        Os jogadores poderão enviar informações
-        através do formulário disponibilizado
-        pela administração.
-      </p>
-
-      <p class="text">
-        Notícias, fofocas e informações enviadas
-        passam por seleção antes de serem publicadas.
-      </p>
-
-    </div>
+      </div>
 
 
-    <div class="note">
-      A relação entre o The University Echo e a RED MASQUERADE
-      faz parte do universo do RPG e poderá aparecer
-      através das publicações.
+      <div class="callout">
+
+        <p>
+          Informações para o jornal podem ser
+          enviadas através do formulário definido
+          pela administração.
+        </p>
+
+      </div>
+
     </div>
 
   </div>
@@ -2194,141 +3106,119 @@ header{
 </section>
 
 
-<!-- ========================================================
+<!-- ======================================================
      RED MASQUERADE
-     ======================================================== -->
+     ====================================================== -->
 
 <section
   class="page"
-  id="redmasquerade"
+  id="masquerade"
 >
 
-  <div class="container">
+  <div class="page-content">
 
-    <button class="back-button">
-      ← INÍCIO
-    </button>
+    <div class="inner-header">
 
-    <p class="page-eyebrow">
-      RED MASQUERADE · MISTÉRIO
-    </p>
+      <button
+        class="back"
+        data-back="menu"
+      >
+        ← MENU
+      </button>
 
-    <h2 class="page-title">
-      RED <span>MASQUERADE</span>
-    </h2>
+      <p class="section-label">
+        O MISTÉRIO
+      </p>
 
-    <p class="page-intro">
-      Uma presença anônima ligada aos segredos,
-      acontecimentos e informações que circulam
-      pelo universo do RPG.
-    </p>
+      <h1 class="section-title">
+        RED <span>MASQUERADE</span>
+      </h1>
 
+      <p class="section-description">
+        A parte do universo onde informação,
+        segredo e investigação se encontram.
+      </p>
 
-    <div class="section">
-
-      <div class="grid">
-
-        <article class="card">
-
-          <span class="card-number">
-            01
-          </span>
-
-          <h3>
-            O Jester
-          </h3>
-
-          <p>
-            A identidade do Jester não será revelada.
-            Suas motivações e a extensão de seu
-            conhecimento fazem parte do mistério.
-          </p>
-
-        </article>
+    </div>
 
 
-        <article class="card">
+    <div class="article">
 
-          <span class="card-number">
-            02
-          </span>
+      <div class="info-block">
 
-          <h3>
-            Ekaterina Volkov
-          </h3>
+        <h3>
+          O que é a RED MASQUERADE
+        </h3>
 
-          <p>
-            O surgimento da RED MASQUERADE está
-            relacionado aos acontecimentos envolvendo
-            Ekaterina Volkov e ao retorno dos estudantes
-            em 2026.
-          </p>
-
-        </article>
-
-
-        <article class="card">
-
-          <span class="card-number">
-            03
-          </span>
-
-          <h3>
-            Publicações
-          </h3>
-
-          <p>
-            Informações e acontecimentos podem aparecer
-            através da página e alterar a maneira como
-            os personagens enxergam o universo.
-          </p>
-
-        </article>
-
-
-        <article class="card">
-
-          <span class="card-number">
-            04
-          </span>
-
-          <h3>
-            Segredos
-          </h3>
-
-          <p>
-            Segredos poderão ser utilizados dentro
-            da narrativa e poderão ter consequências.
-          </p>
-
-        </article>
+        <p>
+          Uma presença misteriosa ligada aos
+          acontecimentos do universo e às
+          informações que chegam aos jogadores.
+        </p>
 
       </div>
 
-    </div>
+
+      <div class="info-block">
+
+        <h3>
+          O Jester
+        </h3>
+
+        <p>
+          A figura associada à RED MASQUERADE.
+          Sua identidade e seus segredos não
+          serão revelados.
+        </p>
+
+      </div>
 
 
-    <div class="section">
+      <div class="info-block">
 
-      <h3>
-        Envio de informações
-      </h3>
+        <h3>
+          Ekaterina Volkov
+        </h3>
 
-      <p class="text">
-        Informações poderão ser enviadas à administração
-        através dos canais e formulários definidos para o RPG.
-      </p>
+        <p>
+          Seu nome está diretamente relacionado
+          aos acontecimentos de 2026 e ao
+          surgimento da RED MASQUERADE.
+        </p>
 
-      <p class="text">
-        A administração será responsável pela seleção
-        das informações utilizadas nas publicações.
-      </p>
-
-    </div>
+      </div>
 
 
-    <div class="note">
-      THE JESTER ALWAYS LAUGHS LAST.
+      <div class="info-block">
+
+        <h3>
+          Publicações
+        </h3>
+
+        <p>
+          A página poderá receber publicações,
+          segredos e informações selecionadas
+          pela administração.
+        </p>
+
+      </div>
+
+
+      <div class="info-block">
+
+        <h3>
+          Envio de informações
+        </h3>
+
+        <p>
+          Informações podem ser enviadas conforme
+          os canais disponibilizados pela administração.
+          A seleção e publicação ficam sob responsabilidade
+          da administração.
+        </p>
+
+      </div>
+
     </div>
 
   </div>
@@ -2336,165 +3226,52 @@ header{
 </section>
 
 
-<!-- ========================================================
-     NPCS
-     ======================================================== -->
+<!-- ======================================================
+     NPCs
+     ====================================================== -->
 
 <section
   class="page"
   id="npcs"
 >
 
-  <div class="container">
+  <div class="page-content">
 
-    <button class="back-button">
-      ← INÍCIO
-    </button>
+    <div class="inner-header">
 
-    <p class="page-eyebrow">
-      RED MASQUERADE · PERSONAGENS
-    </p>
+      <button
+        class="back"
+        data-back="menu"
+      >
+        ← MENU
+      </button>
 
-    <h2 class="page-title">
-      Personagens do <span>Universo</span>
-    </h2>
+      <p class="section-label">
+        PERSONAGENS OFICIAIS
+      </p>
 
-    <p class="page-intro">
-      Os personagens oficiais que fazem parte
-      da história da Universidade Lomonosov
-      e do universo da Red Masquerade.
-    </p>
+      <h1 class="section-title">
+        Os <span>NPCs</span>
+      </h1>
 
-
-    <div class="section">
-
-      <div class="card">
-
-        <span class="card-number">
-          EM BREVE
-        </span>
-
-        <h3>
-          Lista de NPCs
-        </h3>
-
-        <p>
-          A lista oficial de NPCs será adicionada
-          pela administração quando o conteúdo
-          for definido.
-        </p>
-
-        <p>
-          Os NPCs são personagens oficiais do universo
-          e não correspondem aos personagens criados
-          pelos jogadores.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ========================================================
-     LOCAIS
-     ======================================================== -->
-
-<section
-  class="page"
-  id="locais"
->
-
-  <div class="container">
-
-    <button class="back-button">
-      ← INÍCIO
-    </button>
-
-    <p class="page-eyebrow">
-      RED MASQUERADE · LOCAIS
-    </p>
-
-    <h2 class="page-title">
-      Os <span>Locais</span>
-    </h2>
-
-    <p class="page-intro">
-      Moscou e a Universidade Lomonosov formam
-      o cenário onde as histórias acontecem.
-    </p>
-
-
-    <div class="section">
-
-      <h3>
-        Campus
-      </h3>
-
-      <div class="list">
-
-        <div class="list-item">Prédio Principal</div>
-        <div class="list-item">Biblioteca</div>
-        <div class="list-item">Teatro</div>
-        <div class="list-item">Antigo Teatro</div>
-        <div class="list-item">Laboratórios</div>
-        <div class="list-item">Centro Esportivo</div>
-        <div class="list-item">Pista de Hóquei</div>
-        <div class="list-item">Pista de Patinação</div>
-        <div class="list-item">Alojamentos</div>
-        <div class="list-item">Restaurante</div>
-        <div class="list-item">Café</div>
-        <div class="list-item">Jardim Botânico</div>
-        <div class="list-item">Centro de Artes</div>
-        <div class="list-item">Redação</div>
-        <div class="list-item">Praça Central</div>
-        <div class="list-item">Sede das Winter Foxes</div>
-
-      </div>
+      <p class="section-description">
+        Personagens oficiais que fazem parte
+        do universo da Lomonosov.
+      </p>
 
     </div>
 
 
-    <div class="section">
+    <div class="empty-state">
 
       <h3>
-        Moscou
+        Em breve
       </h3>
 
-      <div class="list">
-
-        <div class="list-item">Hospital</div>
-        <div class="list-item">Instituto Médico / Morgue</div>
-        <div class="list-item">Delegacia</div>
-        <div class="list-item">Instituto de Perícia</div>
-        <div class="list-item">Restaurantes</div>
-        <div class="list-item">Cafés</div>
-        <div class="list-item">Bares</div>
-        <div class="list-item">Casas noturnas</div>
-        <div class="list-item">Hotéis</div>
-        <div class="list-item">Parques</div>
-        <div class="list-item">Praças</div>
-        <div class="list-item">Centro comercial</div>
-        <div class="list-item">Sede dos Golden Knights</div>
-        <div class="list-item">Sede dos Iron Crows</div>
-
-      </div>
-
-    </div>
-
-
-    <div class="section">
-
-      <h3>
-        Locais restritos
-      </h3>
-
-      <p class="text">
-        Alguns espaços do universo podem possuir
-        acesso limitado ou restrito dentro da narrativa.
+      <p>
+        A lista de NPCs será adicionada pela
+        administração quando o conteúdo oficial
+        estiver disponível.
       </p>
 
     </div>
@@ -2504,112 +3281,230 @@ header{
 </section>
 
 
-<!-- ========================================================
+<!-- ======================================================
+     LOCAIS
+     ====================================================== -->
+
+<section
+  class="page"
+  id="locais"
+>
+
+  <div class="page-content">
+
+    <div class="inner-header">
+
+      <button
+        class="back"
+        data-back="menu"
+      >
+        ← MENU
+      </button>
+
+      <p class="section-label">
+        MOSCOU
+      </p>
+
+      <h1 class="section-title">
+        <span>Locais</span>
+      </h1>
+
+      <p class="section-description">
+        O mapa do universo da RED MASQUERADE.
+        Os pontos abaixo representam locais
+        importantes do RPG.
+      </p>
+
+    </div>
+
+
+    <div class="map-box">
+
+      <span class="map-title">
+        LOMONOSOV · MOSCOW
+      </span>
+
+
+      <button class="map-location campus">
+        PRÉDIO PRINCIPAL
+      </button>
+
+      <button class="map-location library">
+        BIBLIOTECA
+      </button>
+
+      <button class="map-location theater">
+        TEATRO
+      </button>
+
+      <button class="map-location hockey">
+        PISTA DE HÓQUEI
+      </button>
+
+      <button class="map-location echo">
+        REDAÇÃO
+      </button>
+
+      <button class="map-location knights">
+        GOLDEN KNIGHTS
+      </button>
+
+      <button class="map-location crows">
+        IRON CROWS
+      </button>
+
+    </div>
+
+
+    <div class="info-block" style="margin-top:20px;">
+
+      <h3>
+        Campus
+      </h3>
+
+      <p>
+        Prédio Principal · Biblioteca · Teatro ·
+        Antigo Teatro · Laboratórios · Centro Esportivo ·
+        Pista de Hóquei · Pista de Patinação ·
+        Alojamentos · Restaurante · Café ·
+        Jardim Botânico · Centro de Artes ·
+        Redação · Praça Central ·
+        Sede das Winter Foxes.
+      </p>
+
+    </div>
+
+
+    <div class="info-block">
+
+      <h3>
+        Moscou
+      </h3>
+
+      <p>
+        Hospital · Instituto Médico/Morgue ·
+        Delegacia · Instituto de Perícia ·
+        Restaurantes · Cafés · Bares ·
+        Casas noturnas · Hotéis · Parques ·
+        Praças · Centro comercial ·
+        Sede dos Golden Knights ·
+        Sede dos Iron Crows.
+      </p>
+
+    </div>
+
+
+    <div class="info-block">
+
+      <h3>
+        Locais restritos
+      </h3>
+
+      <p>
+        Alguns pontos do universo podem possuir
+        acesso restrito conforme a narrativa
+        e as regras do RPG.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ======================================================
      EVENTOS
-     ======================================================== -->
+     ====================================================== -->
 
 <section
   class="page"
   id="eventos"
 >
 
-  <div class="container">
+  <div class="page-content">
 
-    <button class="back-button">
-      ← INÍCIO
-    </button>
+    <div class="inner-header">
 
-    <p class="page-eyebrow">
-      RED MASQUERADE · EVENTOS
-    </p>
+      <button
+        class="back"
+        data-back="menu"
+      >
+        ← MENU
+      </button>
 
-    <h2 class="page-title">
-      Eventos do <span>Universo</span>
-    </h2>
+      <p class="section-label">
+        CALENDÁRIO
+      </p>
 
-    <p class="page-intro">
-      Acontecimentos acadêmicos, sociais e especiais
-      fazem parte da vida da Lomonosov.
-    </p>
+      <h1 class="section-title">
+        <span>Eventos</span>
+      </h1>
+
+      <p class="section-description">
+        Eventos oficiais que movimentam a
+        vida universitária e o universo do RPG.
+      </p>
+
+    </div>
 
 
-    <div class="section">
+    <div class="event-grid">
 
-      <div class="grid">
+      <div class="event-card">
+        <span class="event-date">EVENTO 01</span>
+        <h3 class="event-name">Baile de Boas-Vindas</h3>
+      </div>
 
-        <article class="card">
-          <span class="card-number">01</span>
-          <h3>Baile de Boas-Vindas</h3>
-          <p>
-            Evento de recepção e início do período.
-          </p>
-        </article>
+      <div class="event-card">
+        <span class="event-date">EVENTO 02</span>
+        <h3 class="event-name">Baile de Inverno</h3>
+      </div>
 
-        <article class="card">
-          <span class="card-number">02</span>
-          <h3>Baile de Inverno</h3>
-          <p>
-            Um dos eventos sociais tradicionais
-            do calendário universitário.
-          </p>
-        </article>
+      <div class="event-card">
+        <span class="event-date">EVENTO 03</span>
+        <h3 class="event-name">Jogos Universitários</h3>
+      </div>
 
-        <article class="card">
-          <span class="card-number">03</span>
-          <h3>Jogos Universitários</h3>
-          <p>
-            Competições e atividades esportivas.
-          </p>
-        </article>
+      <div class="event-card">
+        <span class="event-date">EVENTO 04</span>
+        <h3 class="event-name">Festival de Artes</h3>
+      </div>
 
-        <article class="card">
-          <span class="card-number">04</span>
-          <h3>Festival de Artes</h3>
-          <p>
-            Evento dedicado às manifestações artísticas.
-          </p>
-        </article>
+      <div class="event-card">
+        <span class="event-date">EVENTO 05</span>
+        <h3 class="event-name">Semana do The University Echo</h3>
+      </div>
 
-        <article class="card">
-          <span class="card-number">05</span>
-          <h3>Semana do The University Echo</h3>
-          <p>
-            Programação relacionada ao jornal universitário.
-          </p>
-        </article>
+      <div class="event-card">
+        <span class="event-date">EVENTO 06</span>
+        <h3 class="event-name">Gala das Fraternidades</h3>
+      </div>
 
-        <article class="card">
-          <span class="card-number">06</span>
-          <h3>Gala das Fraternidades</h3>
-          <p>
-            Evento envolvendo as três fraternidades.
-          </p>
-        </article>
+      <div class="event-card">
+        <span class="event-date">EVENTO 07</span>
+        <h3 class="event-name">Festival de Primavera</h3>
+      </div>
 
-        <article class="card">
-          <span class="card-number">07</span>
-          <h3>Festival de Primavera</h3>
-          <p>
-            Celebração durante o período de primavera.
-          </p>
-        </article>
+      <div class="event-card">
+        <span class="event-date">EVENTO 08</span>
+        <h3 class="event-name">Cerimônia de Encerramento</h3>
+      </div>
 
-        <article class="card">
-          <span class="card-number">08</span>
-          <h3>Cerimônia de Encerramento</h3>
-          <p>
-            Encerramento do período universitário.
-          </p>
-        </article>
+      <div class="event-card">
 
-        <article class="card">
-          <span class="card-number">09</span>
-          <h3>Eventos da RED MASQUERADE</h3>
-          <p>
-            Eventos especiais ligados diretamente
-            ao mistério do RPG.
-          </p>
-        </article>
+        <span class="event-date">
+          EVENTOS ESPECIAIS
+        </span>
+
+        <h3 class="event-name">
+          RED MASQUERADE
+        </h3>
+
+        <p class="event-text">
+          Eventos especiais poderão ser
+          adicionados conforme o RPG avançar.
+        </p>
 
       </div>
 
@@ -2620,119 +3515,104 @@ header{
 </section>
 
 
-<!-- ========================================================
+<!-- ======================================================
      LINHA DO TEMPO
-     ======================================================== -->
+     ====================================================== -->
 
 <section
   class="page"
   id="timeline"
 >
 
-  <div class="container">
+  <div class="page-content">
 
-    <button class="back-button">
-      ← INÍCIO
-    </button>
+    <div class="inner-header">
 
-    <p class="page-eyebrow">
-      RED MASQUERADE · HISTÓRIA
-    </p>
+      <button
+        class="back"
+        data-back="menu"
+      >
+        ← MENU
+      </button>
 
-    <h2 class="page-title">
-      Linha do <span>Tempo</span>
-    </h2>
+      <p class="section-label">
+        HISTÓRIA
+      </p>
 
-    <p class="page-intro">
-      Os principais marcos históricos conhecidos
-      do universo.
-    </p>
+      <h1 class="section-title">
+        Linha do <span>Tempo</span>
+      </h1>
+
+    </div>
 
 
     <div class="timeline">
 
       <div class="timeline-item">
 
-        <div class="timeline-year">
+        <span class="timeline-year">
           1755
-        </div>
+        </span>
 
-        <h3>
+        <h3 class="timeline-title">
           Fundação da Universidade
         </h3>
 
-        <p>
-          Fundação da Universidade Lomonosov.
-        </p>
-
       </div>
 
 
       <div class="timeline-item">
 
-        <div class="timeline-year">
+        <span class="timeline-year">
           1907
-        </div>
+        </span>
 
-        <h3>
+        <h3 class="timeline-title">
           Golden Knights
         </h3>
 
-        <p>
-          Fundação da fraternidade The Golden Knights.
-        </p>
-
       </div>
 
 
       <div class="timeline-item">
 
-        <div class="timeline-year">
+        <span class="timeline-year">
           1957
-        </div>
+        </span>
 
-        <h3>
+        <h3 class="timeline-title">
           Winter Foxes
         </h3>
 
-        <p>
-          Fundação da fraternidade The Winter Foxes.
-        </p>
-
       </div>
 
 
       <div class="timeline-item">
 
-        <div class="timeline-year">
+        <span class="timeline-year">
           1982
-        </div>
+        </span>
 
-        <h3>
+        <h3 class="timeline-title">
           Iron Crows
         </h3>
 
-        <p>
-          Fundação da fraternidade The Iron Crows.
-        </p>
-
       </div>
 
 
       <div class="timeline-item">
 
-        <div class="timeline-year">
+        <span class="timeline-year">
           2026
-        </div>
+        </span>
 
-        <h3>
+        <h3 class="timeline-title">
           Retorno dos estudantes
         </h3>
 
-        <p>
-          Os estudantes retornam à Universidade
-          Lomonosov. O período também é marcado
-          pela morte de Ekaterina Volkov.
+        <p class="timeline-text">
+          Retorno dos estudantes e morte de
+          Ekaterina Volkov.
         </p>
 
       </div>
@@ -2740,27 +3620,16 @@ header{
 
       <div class="timeline-item">
 
-        <div class="timeline-year">
+        <span class="timeline-year">
           2026
-        </div>
+        </span>
 
-        <h3>
+        <h3 class="timeline-title">
           Surgimento da RED MASQUERADE
         </h3>
 
-        <p>
-          O mistério da RED MASQUERADE começa
-          a ganhar espaço dentro do universo.
-        </p>
-
       </div>
 
-    </div>
-
-
-    <div class="note">
-      Novos acontecimentos poderão ser adicionados
-      conforme o RPG avançar.
     </div>
 
   </div>
@@ -2768,357 +3637,135 @@ header{
 </section>
 
 
-<!-- ========================================================
+<!-- ======================================================
      REGRAS
-     ======================================================== -->
+     ====================================================== -->
 
 <section
   class="page"
   id="regras"
 >
 
-  <div class="container">
-
-    <button class="back-button">
-      ← INÍCIO
-    </button>
-
-    <p class="page-eyebrow">
-      RED MASQUERADE · REGULAMENTO
-    </p>
-
-    <h2 class="page-title">
-      Regras do <span>RPG</span>
-    </h2>
-
-    <p class="page-intro">
-      Leia as regras antes de participar.
-      O objetivo é manter uma experiência narrativa
-      organizada, justa e confortável para todos.
-    </p>
-
-
-    <div class="rules">
-
-
-      <article class="rule">
-
-        <span class="rule-number">01</span>
-
-        <h3>
-          RPG textual
-        </h3>
-
-        <p>
-          O Red Masquerade é um RPG textual.
-          As ações, falas, relações e acontecimentos
-          devem ser desenvolvidos através da interpretação
-          dos personagens.
-        </p>
-
-      </article>
-
-
-      <article class="rule">
-
-        <span class="rule-number">02</span>
-
-        <h3>
-          Mínimo de 20 linhas
-        </h3>
-
-        <p>
-          As cenas devem respeitar o mínimo de
-          20 linhas definido pela administração.
-          O objetivo é manter uma narrativa desenvolvida
-          e evitar respostas excessivamente curtas.
-        </p>
-
-      </article>
-
-
-      <article class="rule">
-
-        <span class="rule-number">03</span>
-
-        <h3>
-          Até dois personagens
-        </h3>
-
-        <p>
-          Cada jogador poderá possuir até dois
-          personagens, respeitando as regras e os
-          períodos definidos pela administração.
-        </p>
-
-      </article>
-
-
-      <article class="rule">
-
-        <span class="rule-number">04</span>
-
-        <h3>
-          Metagame proibido
-        </h3>
-
-        <p>
-          Informações descobertas pelo jogador fora
-          da interpretação não podem ser utilizadas
-          automaticamente pelo personagem.
-          O personagem deve agir somente com aquilo
-          que ele teria condições de saber dentro da história.
-        </p>
-
-      </article>
-
-
-      <article class="rule">
-
-        <span class="rule-number">05</span>
-
-        <h3>
-          Consequências narrativas
-        </h3>
-
-        <p>
-          As escolhas dos personagens podem gerar
-          consequências dentro da narrativa.
-          Ações importantes não devem ser tratadas
-          como se não tivessem impacto sobre a história.
-        </p>
-
-      </article>
-
-
-      <article class="rule">
-
-        <span class="rule-number">06</span>
-
-        <h3>
-          Morte de personagem
-        </h3>
-
-        <p>
-          A morte de um personagem depende de acordo
-          quando não estiver diretamente ligada ao
-          plot central. Situações narrativas envolvendo
-          acontecimentos centrais serão conduzidas
-          pela administração.
-        </p>
-
-      </article>
-
-
-      <article class="rule">
-
-        <span class="rule-number">07</span>
-
-        <h3>
-          Ninguém está protegido
-        </h3>
-
-        <p>
-          Nenhum personagem deve ser considerado
-          automaticamente protegido por ser importante
-          para um jogador, NPC ou administração.
-          A narrativa pode gerar consequências para todos.
-        </p>
-
-      </article>
-
-
-      <article class="rule">
-
-        <span class="rule-number">08</span>
-
-        <h3>
-          Troca de personagem
-        </h3>
-
-        <p>
-          A troca de personagem somente poderá ocorrer
-          durante o período de abertura das fichas,
-          conforme definido pela administração.
-        </p>
-
-      </article>
-
-
-      <article class="rule">
-
-        <span class="rule-number">09</span>
-
-        <h3>
-          Reservas
-        </h3>
-
-        <p>
-          As reservas serão realizadas durante a semana
-          definida pela administração.
-          Fora desse período, o jogador deverá aguardar
-          a próxima abertura oficial.
-        </p>
-
-      </article>
-
-
-      <article class="rule">
-
-        <span class="rule-number">10</span>
-
-        <h3>
-          Conteúdo +18
-        </h3>
-
-        <p>
-          Conteúdo +18 deve ser sinalizado e permanecer
-          em espaço privado apropriado.
-          O conteúdo não deve ser exposto de maneira
-          inadequada aos demais participantes.
-        </p>
-
-      </article>
-
-
-      <article class="rule">
-
-        <span class="rule-number">11</span>
-
-        <h3>
-          Plágio
-        </h3>
-
-        <p>
-          Plágio de personagens, conceitos, textos,
-          materiais ou trabalhos de outros jogadores
-          ou projetos não é permitido.
-        </p>
-
-      </article>
-
-
-      <article class="rule">
-
-        <span class="rule-number">12</span>
-
-        <h3>
-          Saída do RPG
-        </h3>
-
-        <p>
-          Caso um jogador decida deixar o RPG,
-          deverá avisar a administração para que
-          a situação do personagem possa ser organizada
-          dentro da narrativa.
-        </p>
-
-      </article>
-
-
-      <article class="rule">
-
-        <span class="rule-number">13</span>
-
-        <h3>
-          Ausência
-        </h3>
-
-        <p>
-          A ausência prolongada sem comunicação poderá
-          resultar na remoção do jogador ou do personagem,
-          conforme avaliação da administração.
-        </p>
-
-      </article>
-
-
-      <article class="rule">
-
-        <span class="rule-number">14</span>
-
-        <h3>
-          Descumprimento
-        </h3>
-
-        <p>
-          O descumprimento das regras poderá resultar
-          em advertência ou remoção do RPG,
-          dependendo da gravidade e da situação.
-        </p>
-
-      </article>
-
-
-      <article class="rule">
-
-        <span class="rule-number">15</span>
-
-        <h3>
-          Respeito
-        </h3>
-
-        <p>
-          Conflitos entre personagens fazem parte
-          da narrativa, mas isso não significa que
-          conflitos entre jogadores sejam permitidos.
-          O respeito entre participantes é obrigatório.
-        </p>
-
-      </article>
-
-
-      <article class="rule">
-
-        <span class="rule-number">16</span>
-
-        <h3>
-          Ouvidoria
-        </h3>
-
-        <p>
-          Problemas, conflitos ou situações que
-          precisem de intervenção devem ser levados
-          à administração através da ouvidoria.
-        </p>
-
-      </article>
-
-
-      <article class="rule">
-
-        <span class="rule-number">17</span>
-
-        <h3>
-          Administração
-        </h3>
-
-        <p>
-          A administração possui responsabilidade
-          sobre a organização do RPG, manutenção das
-          regras e condução dos elementos centrais
-          da narrativa.
-        </p>
-
-      </article>
-
-
-      <article class="rule">
-
-        <span class="rule-number">18</span>
-
-        <h3>
-          Narrativa coletiva
-        </h3>
-
-        <p>
-          O universo é construído através da interação
-          entre jogadores, NPCs, eventos e administração.
-          Nenhum jogador deve controlar personagens
-          pertencentes a outro jogador sem autorização.
-        </p>
-
-      </article>
+  <div class="page-content">
+
+    <div class="inner-header">
+
+      <button
+        class="back"
+        data-back="menu"
+      >
+        ← MENU
+      </button>
+
+      <p class="section-label">
+        O JOGO
+      </p>
+
+      <h1 class="section-title">
+        Regras do <span>RPG</span>
+      </h1>
+
+      <p class="section-description">
+        As regras existem para manter o jogo
+        organizado, justo e narrativamente
+        consistente.
+      </p>
+
+    </div>
+
+
+    <div class="rule-list">
+
+      <div class="rule">
+        <strong>01 · Formato:</strong>
+        O RPG é textual.
+      </div>
+
+      <div class="rule">
+        <strong>02 · Mínimo de linhas:</strong>
+        As respostas devem possuir no mínimo
+        20 linhas.
+      </div>
+
+      <div class="rule">
+        <strong>03 · Personagens:</strong>
+        Cada participante poderá possuir até
+        dois personagens.
+      </div>
+
+      <div class="rule">
+        <strong>04 · Metagame:</strong>
+        Metagame é proibido. Informações obtidas
+        fora da narrativa não devem ser utilizadas
+        indevidamente dentro dela.
+      </div>
+
+      <div class="rule">
+        <strong>05 · Consequências:</strong>
+        As escolhas dos personagens podem gerar
+        consequências narrativas.
+      </div>
+
+      <div class="rule">
+        <strong>06 · Morte:</strong>
+        A morte de personagem ocorre mediante
+        acordo quando não estiver ligada ao
+        plot central.
+      </div>
+
+      <div class="rule">
+        <strong>07 · Proteção:</strong>
+        Ninguém está protegido das consequências,
+        incluindo ADMs.
+      </div>
+
+      <div class="rule">
+        <strong>08 · Troca de personagem:</strong>
+        A troca de personagem somente poderá
+        ocorrer durante o período de abertura
+        das fichas.
+      </div>
+
+      <div class="rule">
+        <strong>09 · Reservas:</strong>
+        As reservas acontecem na semana definida
+        pelos ADMs.
+      </div>
+
+      <div class="rule">
+        <strong>10 · Conteúdo +18:</strong>
+        Conteúdo +18 deve ser sinalizado e mantido
+        em espaço privado conforme as regras.
+      </div>
+
+      <div class="rule">
+        <strong>11 · Plágio:</strong>
+        Plágio é proibido.
+      </div>
+
+      <div class="rule">
+        <strong>12 · Saída:</strong>
+        O participante deve avisar os ADMs
+        ao deixar o RPG.
+      </div>
+
+      <div class="rule">
+        <strong>13 · Ausência:</strong>
+        A ausência prolongada poderá resultar
+        em remoção.
+      </div>
+
+      <div class="rule">
+        <strong>14 · Descumprimento:</strong>
+        O descumprimento das regras poderá
+        resultar em remoção do RPG.
+      </div>
+
+      <div class="rule">
+        <strong>15 · Ouvidoria:</strong>
+        Questões e problemas poderão ser
+        encaminhados à ouvidoria para resolução.
+      </div>
 
     </div>
 
@@ -3127,79 +3774,52 @@ header{
 </section>
 
 
-<!-- ========================================================
-     PARTICIPE
-     ======================================================== -->
+<!-- ======================================================
+     PARTICIPAR
+     ====================================================== -->
 
 <section
   class="page"
   id="participar"
 >
 
-  <div class="container">
+  <div class="page-content">
 
-    <button class="back-button">
-      ← INÍCIO
-    </button>
+    <div class="inner-header">
 
-    <p class="page-eyebrow">
-      RED MASQUERADE · PARTICIPAÇÃO
-    </p>
+      <button
+        class="back"
+        data-back="menu"
+      >
+        ← MENU
+      </button>
 
-    <h2 class="page-title">
-      <span>Participe</span>
-    </h2>
+      <p class="section-label">
+        PARTICIPAÇÃO
+      </p>
 
-    <p class="page-intro">
-      As fichas e reservas são disponibilizadas
-      pela administração durante os períodos definidos.
-    </p>
-
-
-    <div class="section">
-
-      <div class="card">
-
-        <span class="card-number">
-          COMO PARTICIPAR
-        </span>
-
-        <h3>
-          Fichas e reservas
-        </h3>
-
-        <p>
-          As fichas e reservas não ficam disponíveis
-          diretamente no site.
-        </p>
-
-        <p>
-          Elas são disponibilizadas pela administração
-          no canal oficial do WhatsApp durante os
-          períodos determinados.
-        </p>
-
-      </div>
+      <h1 class="section-title">
+        <span>Participe</span>
+      </h1>
 
     </div>
 
 
-    <div class="section">
+    <div class="callout">
 
-      <button
-        class="enter-button"
-        onclick="openChannel()"
+      <p>
+        As fichas e reservas são disponibilizadas
+        pela administração no canal oficial do
+        WhatsApp durante os períodos determinados.
+      </p>
+
+
+      <a
+        href="#"
+        class="action-button"
       >
-
-        <span>
-          ENTRAR NO CANAL OFICIAL
-        </span>
-
-        <span>
-          →
-        </span>
-
-      </button>
+        ENTRAR NO CANAL OFICIAL
+      </a>
 
     </div>
 
@@ -3208,74 +3828,69 @@ header{
 </section>
 
 
-<!-- ========================================================
+<!-- ======================================================
      CANAIS
-     ======================================================== -->
+     ====================================================== -->
 
 <section
   class="page"
   id="canais"
 >
 
-  <div class="container">
+  <div class="page-content">
 
-    <button class="back-button">
-      ← INÍCIO
-    </button>
+    <div class="inner-header">
 
-    <p class="page-eyebrow">
-      RED MASQUERADE · COMUNIDADE
-    </p>
+      <button
+        class="back"
+        data-back="menu"
+      >
+        ← MENU
+      </button>
 
-    <h2 class="page-title">
-      <span>Canais</span>
-    </h2>
+      <p class="section-label">
+        COMUNICAÇÃO
+      </p>
 
-    <p class="page-intro">
-      Os canais oficiais utilizados para comunicação
-      e organização do RPG.
-    </p>
+      <h1 class="section-title">
+        <span>Canais</span>
+      </h1>
 
-
-    <div class="section">
-
-      <div class="grid">
-
-        <article class="card">
-
-          <span class="card-number">
-            OFICIAL
-          </span>
-
-          <h3>
-            WhatsApp
-          </h3>
-
-          <p>
-            Canal oficial do RPG.
-            Informações, avisos, fichas e reservas
-            serão divulgados pela administração.
-          </p>
-
-        </article>
+    </div>
 
 
-        <article class="card">
+    <div class="portal-grid">
 
-          <span class="card-number">
-            FUTURO
-          </span>
+      <div class="info-block">
 
-          <h3>
-            Outros canais
-          </h3>
+        <h3>
+          Canal oficial
+        </h3>
 
-          <p>
-            Outros canais poderão ser adicionados
-            futuramente pela administração.
-          </p>
+        <p>
+          WhatsApp.
+        </p>
 
-        </article>
+        <a
+          href="#"
+          class="action-button"
+        >
+          ENTRAR NO CANAL
+        </a>
+
+      </div>
+
+
+      <div class="info-block">
+
+        <h3>
+          Outros canais
+        </h3>
+
+        <p>
+          Outros canais poderão ser adicionados
+          futuramente pela administração.
+        </p>
 
       </div>
 
@@ -3286,162 +3901,9 @@ header{
 </section>
 
 
-<!-- ========================================================
-     MAPA
-     ======================================================== -->
-
-<section
-  class="page"
-  id="mapa"
->
-
-  <div class="container">
-
-    <button class="back-button">
-      ← INÍCIO
-    </button>
-
-    <p class="page-eyebrow">
-      RED MASQUERADE · MAPA
-    </p>
-
-    <h2 class="page-title">
-      Mapa de <span>Moscou</span>
-    </h2>
-
-    <p class="page-intro">
-      Explore os principais pontos do universo.
-      Clique nos locais para descobrir mais.
-    </p>
-
-
-    <div class="map">
-
-      <div class="map-title">
-        LOMONOSOV · MOSCOU
-      </div>
-
-
-      <button
-        class="map-button m1"
-        data-location="Prédio Principal"
-      >
-        PRÉDIO PRINCIPAL
-      </button>
-
-
-      <button
-        class="map-button m2"
-        data-location="Biblioteca"
-      >
-        BIBLIOTECA
-      </button>
-
-
-      <button
-        class="map-button m3"
-        data-location="Teatro"
-      >
-        TEATRO
-      </button>
-
-
-      <button
-        class="map-button m4"
-        data-location="Centro Esportivo"
-      >
-        CENTRO ESPORTIVO
-      </button>
-
-
-      <button
-        class="map-button m5"
-        data-location="Alojamentos"
-      >
-        ALOJAMENTOS
-      </button>
-
-
-      <button
-        class="map-button m6"
-        data-location="Redação"
-      >
-        REDAÇÃO
-      </button>
-
-
-      <button
-        class="map-button m7"
-        data-location="Hospital"
-      >
-        HOSPITAL
-      </button>
-
-
-      <button
-        class="map-button m8"
-        data-location="Delegacia"
-      >
-        DELEGACIA
-      </button>
-
-
-      <button
-        class="map-button m9"
-        data-location="Sede dos Golden Knights"
-      >
-        GOLDEN KNIGHTS
-      </button>
-
-
-      <button
-        class="map-button m10"
-        data-location="Sede dos Iron Crows"
-      >
-        IRON CROWS
-      </button>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ========================================================
-     MODAL
-     ======================================================== -->
-
-<div
-  class="modal"
-  id="modal"
->
-
-  <div class="modal-box">
-
-    <button
-      class="modal-close"
-      id="modalClose"
-    >
-      ×
-    </button>
-
-    <h3 id="modalTitle">
-      Local
-    </h3>
-
-    <p id="modalText">
-      Informação.
-    </p>
-
-  </div>
-
-</div>
-
-
-<!-- ========================================================
+<!-- ======================================================
      JAVASCRIPT
-     ======================================================== -->
+     ====================================================== -->
 
 <script>
 
@@ -3452,104 +3914,152 @@ header{
 const particleContainer =
   document.getElementById("particles");
 
-for(let i=0;i<35;i++){
+for (let i = 0; i < 35; i++) {
 
   const particle =
     document.createElement("div");
 
-  particle.className="particle";
+  particle.className =
+    "particle";
 
   particle.style.left =
-    Math.random()*100+"%";
+    Math.random() * 100 + "%";
 
   particle.style.animationDuration =
-    (8+Math.random()*14)+"s";
+    (8 + Math.random() * 14) + "s";
 
   particle.style.animationDelay =
-    (-Math.random()*15)+"s";
+    (-Math.random() * 15) + "s";
 
-  particleContainer.appendChild(particle);
-
+  particleContainer.appendChild(
+    particle
+  );
 }
 
 
 /* =========================================================
-   ELEMENTOS
+   PÁGINAS
    ========================================================= */
-
-const menuButton =
-  document.getElementById("menuButton");
-
-const menuOverlay =
-  document.getElementById("menuOverlay");
-
-const enterButton =
-  document.getElementById("enterButton");
 
 const pages =
   document.querySelectorAll(".page");
 
-const menuLinks =
-  document.querySelectorAll(".menu-link");
 
-const backButtons =
-  document.querySelectorAll(".back-button");
+/* =========================================================
+   HISTÓRICO DE NAVEGAÇÃO
+   ========================================================= */
 
-const modal =
-  document.getElementById("modal");
+let currentPage =
+  "home";
 
-const modalTitle =
-  document.getElementById("modalTitle");
-
-const modalText =
-  document.getElementById("modalText");
-
-const modalClose =
-  document.getElementById("modalClose");
+let previousPages = [];
 
 
 /* =========================================================
-   ABRIR / FECHAR MENU
+   ABRIR PÁGINA
    ========================================================= */
 
-function toggleMenu(){
-
-  menuButton.classList.toggle("active");
-
-  menuOverlay.classList.toggle("open");
-
-}
-
-menuButton.addEventListener(
-  "click",
-  toggleMenu
-);
-
-
-/* =========================================================
-   MOSTRAR PÁGINA
-   ========================================================= */
-
-function showPage(pageId){
-
-  pages.forEach(page=>{
-    page.classList.remove("active");
-  });
+function openPage(
+  pageId,
+  saveHistory = true
+) {
 
   const target =
     document.getElementById(pageId);
 
-  if(target){
-    target.classList.add("active");
+  if (!target) return;
+
+
+  if (
+    saveHistory &&
+    currentPage !== pageId
+  ) {
+
+    previousPages.push(
+      currentPage
+    );
+
   }
 
-  menuOverlay.classList.remove("open");
-  menuButton.classList.remove("active");
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
+  pages.forEach(page => {
+
+    page.classList.remove(
+      "active"
+    );
+
   });
+
+
+  target.classList.add(
+    "active"
+  );
+
+
+  currentPage =
+    pageId;
+
+
+  document
+    .querySelectorAll(".page")
+    .forEach(page => {
+
+      page.scrollTop = 0;
+
+    });
+
+
+  const menuButton =
+    document.getElementById(
+      "menuButton"
+    );
+
+  menuButton.classList.remove(
+    "active"
+  );
+
+}
+
+
+/* =========================================================
+   VOLTAR
+   ========================================================= */
+
+function goBack(
+  forcedPage = null
+) {
+
+  if (forcedPage) {
+
+    previousPages = [];
+
+    openPage(
+      forcedPage,
+      false
+    );
+
+    return;
+  }
+
+
+  if (previousPages.length > 0) {
+
+    const previous =
+      previousPages.pop();
+
+    openPage(
+      previous,
+      false
+    );
+
+  } else {
+
+    openPage(
+      "home",
+      false
+    );
+
+  }
 
 }
 
@@ -3558,191 +4068,163 @@ function showPage(pageId){
    MENU
    ========================================================= */
 
-menuLinks.forEach(link=>{
+const menuButton =
+  document.getElementById(
+    "menuButton"
+  );
 
-  link.addEventListener(
+
+menuButton.addEventListener(
+  "click",
+  () => {
+
+    if (
+      currentPage === "menu"
+    ) {
+
+      goBack();
+
+    } else {
+
+      openPage(
+        "menu"
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+document
+  .getElementById("logo")
+  .addEventListener(
     "click",
-    function(event){
+    () => {
 
-      event.preventDefault();
+      previousPages = [];
 
-      const page =
-        this.dataset.page;
-
-      showPage(page);
+      openPage(
+        "home",
+        false
+      );
 
     }
   );
 
-});
-
 
 /* =========================================================
-   BOTÃO DA HOME
+   TODOS OS BOTÕES data-open
    ========================================================= */
 
-enterButton.addEventListener(
-  "click",
-  function(){
+document
+  .querySelectorAll(
+    "[data-open]"
+  )
+  .forEach(element => {
 
-    showPage("universidade");
+    element.addEventListener(
+      "click",
+      event => {
 
-  }
-);
+        event.preventDefault();
+
+        const target =
+          element.dataset.open;
+
+        openPage(
+          target
+        );
+
+      }
+    );
+
+  });
 
 
 /* =========================================================
    BOTÕES VOLTAR
    ========================================================= */
 
-backButtons.forEach(button=>{
+document
+  .querySelectorAll(
+    "[data-back]"
+  )
+  .forEach(button => {
 
-  button.addEventListener(
-    "click",
-    function(){
+    button.addEventListener(
+      "click",
+      event => {
 
-      showPage("home");
+        event.preventDefault();
 
-    }
-  );
+        const destination =
+          button.dataset.back;
 
-});
+        goBack(
+          destination
+        );
 
-
-/* =========================================================
-   MAPA
-   ========================================================= */
-
-const locationInfo = {
-
-  "Prédio Principal":
-    "Principal edifício acadêmico da Universidade Lomonosov.",
-
-  "Biblioteca":
-    "Um dos principais espaços de estudo e pesquisa do campus.",
-
-  "Teatro":
-    "Espaço cultural utilizado para apresentações e eventos.",
-
-  "Centro Esportivo":
-    "Área dedicada às atividades esportivas da universidade.",
-
-  "Alojamentos":
-    "Moradia estudantil ligada à Universidade Lomonosov.",
-
-  "Redação":
-    "Espaço utilizado pelo The University Echo.",
-
-  "Hospital":
-    "Hospital localizado em Moscou.",
-
-  "Delegacia":
-    "Delegacia localizada em Moscou.",
-
-  "Sede dos Golden Knights":
-    "Clube privado de elite associado aos Golden Knights.",
-
-  "Sede dos Iron Crows":
-    "Clube noturno privado associado aos Iron Crows."
-
-};
-
-
-const mapButtons =
-  document.querySelectorAll(".map-button");
-
-
-mapButtons.forEach(button=>{
-
-  button.addEventListener(
-    "click",
-    function(){
-
-      const location =
-        this.dataset.location;
-
-      modalTitle.textContent =
-        location;
-
-      modalText.textContent =
-        locationInfo[location] ||
-        "Informações sobre este local serão adicionadas.";
-
-      modal.classList.add("open");
-
-    }
-  );
-
-});
-
-
-/* =========================================================
-   MODAL
-   ========================================================= */
-
-modalClose.addEventListener(
-  "click",
-  function(){
-
-    modal.classList.remove("open");
-
-  }
-);
-
-
-modal.addEventListener(
-  "click",
-  function(event){
-
-    if(event.target === modal){
-
-      modal.classList.remove("open");
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   CANAL
-   ========================================================= */
-
-function openChannel(){
-
-  /*
-    COLOQUE AQUI O LINK OFICIAL DO WHATSAPP
-    QUANDO ELE ESTIVER DEFINIDO.
-
-    Exemplo:
-
-    window.open(
-      "https://chat.whatsapp.com/SEU-LINK",
-      "_blank"
+      }
     );
-  */
 
-  alert(
-    "O link do canal oficial será disponibilizado pela administração."
+  });
+
+
+document
+  .querySelectorAll(
+    "[data-back]:not([data-back])"
   );
-
-}
 
 
 /* =========================================================
-   ESC
+   BOTÕES SEM DESTINO ESPECÍFICO
+   ========================================================= */
+
+document
+  .querySelectorAll(
+    ".back:not([data-back])"
+  )
+  .forEach(button => {
+
+    button.addEventListener(
+      "click",
+      event => {
+
+        event.preventDefault();
+
+        goBack();
+
+      }
+
+    );
+
+  });
+
+
+/* =========================================================
+   TECLA ESC
    ========================================================= */
 
 document.addEventListener(
   "keydown",
-  function(event){
+  event => {
 
-    if(event.key === "Escape"){
+    if (
+      event.key === "Escape"
+    ) {
 
-      menuOverlay.classList.remove("open");
-      menuButton.classList.remove("active");
+      if (
+        currentPage !== "home"
+      ) {
 
-      modal.classList.remove("open");
+        goBack();
+
+      }
 
     }
 
@@ -3751,10 +4233,56 @@ document.addEventListener(
 
 
 /* =========================================================
-   INÍCIO
+   MOVIMENTO DAS CARTAS
    ========================================================= */
 
-showPage("home");
+document.addEventListener(
+  "mousemove",
+  event => {
+
+    const x =
+      event.clientX /
+      window.innerWidth -
+      .5;
+
+    const y =
+      event.clientY /
+      window.innerHeight -
+      .5;
+
+    document
+      .querySelectorAll(
+        ".card"
+      )
+      .forEach(
+        (card, index) => {
+
+          const strength =
+            (index + 1) * 4;
+
+          card.style.marginLeft =
+            (x * strength) +
+            "px";
+
+          card.style.marginTop =
+            (y * strength) +
+            "px";
+
+        }
+      );
+
+  }
+);
+
+
+/* =========================================================
+   INICIALIZAÇÃO
+   ========================================================= */
+
+openPage(
+  "home",
+  false
+);
 
 </script>
 
