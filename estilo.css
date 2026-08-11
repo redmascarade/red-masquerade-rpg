@@ -21,6 +21,8 @@ body {
 }
 
 body {
+  min-height: 100vh;
+  overflow: hidden;
   background: var(--preto);
   color: var(--creme);
   font-family: Georgia, "Times New Roman", serif;
@@ -33,10 +35,6 @@ a {
 
 button {
   font: inherit;
-}
-body {
-  min-height: 100vh;
-  overflow: hidden;
 }
 
 .topo {
@@ -132,15 +130,14 @@ body {
 }
 
 .hero h1 {
-  font-size: 34px;
-  line-height: .95;
-  letter-spacing: 0;
-  white-space: nowrap;
+  font-size: clamp(60px, 11vw, 125px);
+  line-height: .82;
+  letter-spacing: -4px;
 }
 
 .hero h1 span {
-  display: block;
-  }
+  color: var(--dourado);
+}
 
 .subtitulo {
   max-width: 500px;
@@ -193,9 +190,10 @@ body {
   }
 
   .hero h1 {
-    font-size: 48px;
-    line-height: .9;
-    letter-spacing: -1px;
+    font-size: 34px;
+    line-height: .95;
+    letter-spacing: 0;
+    white-space: nowrap;
   }
 
   .hero h1 span {
@@ -204,11 +202,11 @@ body {
 
   .subtitulo {
     font-size: 17px;
+    line-height: 1.55;
     max-width: 340px;
   }
 
   .botao {
     width: 100%;
   }
-
 }
