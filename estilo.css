@@ -34,3 +34,175 @@ a {
 button {
   font: inherit;
 }
+body {
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.topo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 82px;
+  padding: 0 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+  border-bottom: 1px solid var(--linha);
+  background: rgba(7, 6, 7, .82);
+  backdrop-filter: blur(10px);
+}
+
+.logo {
+  color: var(--creme);
+  font-size: 17px;
+  font-weight: bold;
+  letter-spacing: 5px;
+}
+
+.menu-btn {
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--linha);
+  background: transparent;
+  color: var(--creme);
+  cursor: pointer;
+  font-size: 22px;
+}
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 75% 45%,
+      rgba(155, 38, 56, .20),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 20% 80%,
+      rgba(75, 13, 22, .25),
+      transparent 35%
+    ),
+    var(--preto);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  right: -190px;
+  top: 20%;
+  border: 1px solid rgba(182, 154, 99, .18);
+  border-radius: 50%;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  right: -90px;
+  top: 31%;
+  border: 1px solid rgba(155, 38, 56, .25);
+  border-radius: 50%;
+}
+
+.hero-conteudo {
+  position: relative;
+  z-index: 2;
+  width: min(850px, 88%);
+  margin: 0 auto;
+  padding-top: 50px;
+}
+
+.eyebrow {
+  color: var(--vermelho);
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 5px;
+  margin-bottom: 22px;
+}
+
+.hero h1 {
+  font-size: clamp(60px, 11vw, 125px);
+  line-height: .82;
+  letter-spacing: -4px;
+}
+
+.hero h1 span {
+  color: var(--dourado);
+}
+
+.subtitulo {
+  max-width: 500px;
+  margin-top: 32px;
+  color: var(--cinza);
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 38px;
+  min-height: 52px;
+  padding: 0 28px;
+  border: 1px solid var(--dourado);
+  color: var(--creme);
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  transition: .3s ease;
+}
+
+.botao:hover {
+  background: var(--dourado);
+  color: var(--preto);
+}
+
+@media (max-width: 600px) {
+
+  .topo {
+    height: 72px;
+    padding: 0 22px;
+  }
+
+  .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+  }
+
+  .menu-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .hero-conteudo {
+    width: 86%;
+    padding-top: 30px;
+  }
+
+  .hero h1 {
+    font-size: 60px;
+    letter-spacing: -2px;
+  }
+
+  .subtitulo {
+    font-size: 17px;
+    max-width: 340px;
+  }
+
+  .botao {
+    width: 100%;
+  }
+
+    }
