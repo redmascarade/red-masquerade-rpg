@@ -132,9 +132,10 @@ body {
 }
 
 .hero h1 {
-  font-size: 48px;
+  font-size: 40px;
   line-height: .9;
   letter-spacing: -1px;
+  white-space: nowrap;
 }
 .hero h1 span {
   display: block;
