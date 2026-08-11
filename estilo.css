@@ -1,6 +1,5 @@
 /* =========================================================
-   RED MASQUERADE
-   CSS COMPLETO — RESPONSIVO
+   RED MASQUERADE — ESTILO COMPLETO
    ========================================================= */
 
 * {
@@ -14,9 +13,7 @@
   --preto-2: #0d090b;
   --vinho: #4b0d16;
   --vermelho: #9b2638;
-  --vermelho-claro: #c13b51;
   --dourado: #b69a63;
-  --dourado-claro: #d0b77c;
   --creme: #eee6da;
   --cinza: #9b9188;
   --linha: rgba(238, 230, 218, .15);
@@ -26,29 +23,16 @@ html {
   width: 100%;
   min-height: 100%;
   background: var(--preto);
+  overflow-x: hidden;
 }
 
 body {
   width: 100%;
   min-height: 100vh;
-  background:
-    radial-gradient(
-      circle at 75% 45%,
-      rgba(155, 38, 56, .13),
-      transparent 34%
-    ),
-    radial-gradient(
-      circle at 20% 85%,
-      rgba(75, 13, 22, .18),
-      transparent 38%
-    ),
-    var(--preto);
-
-  color: var(--creme);
-
-  font-family: Georgia, "Times New Roman", serif;
-
   overflow-x: hidden;
+  background: var(--preto);
+  color: var(--creme);
+  font-family: Georgia, "Times New Roman", serif;
 }
 
 a {
@@ -60,11 +44,6 @@ button {
   font: inherit;
 }
 
-img {
-  max-width: 100%;
-  display: block;
-}
-
 
 /* =========================================================
    CABEÇALHO
@@ -72,7 +51,6 @@ img {
 
 .topo {
   position: fixed;
-
   top: 0;
   left: 0;
 
@@ -104,12 +82,6 @@ img {
   letter-spacing: 5px;
 
   white-space: nowrap;
-
-  transition: .3s ease;
-}
-
-.logo:hover {
-  color: var(--dourado);
 }
 
 .menu-btn {
@@ -123,24 +95,28 @@ img {
   border: 1px solid var(--linha);
 
   background: transparent;
-
   color: var(--creme);
 
   cursor: pointer;
 
   font-size: 22px;
 
-  transition: .3s ease;
+  transition:
+    background .3s ease,
+    border-color .3s ease,
+    color .3s ease,
+    transform .3s ease;
 }
 
 .menu-btn:hover {
   border-color: var(--dourado);
   color: var(--dourado);
+  transform: rotate(3deg);
 }
 
 
 /* =========================================================
-   HERO
+   PÁGINA INICIAL
    ========================================================= */
 
 .hero {
@@ -152,139 +128,106 @@ img {
   display: flex;
   align-items: center;
 
-  padding-top: 82px;
-
   overflow: hidden;
 
-  isolation: isolate;
+  padding-top: 82px;
 
   background:
     radial-gradient(
       circle at 75% 45%,
       rgba(155, 38, 56, .20),
-      transparent 34%
+      transparent 32%
     ),
     radial-gradient(
-      circle at 18% 85%,
-      rgba(75, 13, 22, .25),
-      transparent 38%
+      circle at 20% 80%,
+      rgba(75, 13, 22, .28),
+      transparent 35%
     ),
     var(--preto);
 }
 
 
-/* =========================================================
-   CÍRCULOS
-   ========================================================= */
+/* círculo maior */
 
 .hero::before {
   content: "";
 
   position: absolute;
 
-  width: 760px;
-  height: 760px;
+  width: 620px;
+  height: 620px;
 
-  right: -280px;
+  right: -250px;
   top: 18%;
 
   border: 1px solid rgba(182, 154, 99, .18);
 
   border-radius: 50%;
 
-  z-index: -2;
-
   pointer-events: none;
-
-  animation: circuloGrande 18s ease-in-out infinite alternate;
 }
+
+
+/* círculo vermelho */
 
 .hero::after {
   content: "";
 
   position: absolute;
 
-  width: 520px;
-  height: 520px;
+  width: 390px;
+  height: 390px;
 
-  right: -90px;
+  right: -130px;
   top: 32%;
 
   border: 1px solid rgba(155, 38, 56, .28);
 
   border-radius: 50%;
 
-  z-index: -2;
-
   pointer-events: none;
-
-  animation: circuloPequeno 13s ease-in-out infinite alternate;
-}
-
-@keyframes circuloGrande {
-  from {
-    transform: rotate(0deg) scale(1);
-  }
-
-  to {
-    transform: rotate(8deg) scale(1.04);
-  }
-}
-
-@keyframes circuloPequeno {
-  from {
-    transform: rotate(0deg) translate(0, 0);
-  }
-
-  to {
-    transform: rotate(-8deg) translate(-12px, 8px);
-  }
 }
 
 
 /* =========================================================
-   CONTEÚDO
+   CONTEÚDO DA HOME
    ========================================================= */
 
 .hero-conteudo {
   position: relative;
-
   z-index: 5;
 
   width: min(850px, 88%);
 
   margin: 0 auto;
 
-  padding-top: 30px;
+  padding-top: 40px;
 }
 
 
-/* =========================================================
-   EYEBROW
-   ========================================================= */
+/* localização */
 
 .eyebrow {
   color: var(--vermelho);
 
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, sans-serif;
 
   font-size: 11px;
-
   font-weight: bold;
 
   letter-spacing: 5px;
 
   margin-bottom: 22px;
-
-  text-transform: uppercase;
 }
 
 
 /* =========================================================
-   TÍTULO DA HOME
+   TÍTULO PRINCIPAL
    ========================================================= */
 
 .hero h1 {
+  display: block;
+
   width: 100%;
   max-width: 100%;
 
@@ -292,13 +235,13 @@ img {
 
   color: var(--creme);
 
-  font-size: clamp(48px, 7vw, 88px);
+  font-size: clamp(42px, 7vw, 90px);
 
   line-height: .88;
 
   letter-spacing: -2px;
 
-  font-weight: 700;
+  white-space: normal;
 
   overflow: visible;
 }
@@ -310,31 +253,8 @@ img {
   max-width: 100%;
 
   color: var(--dourado);
-}
 
-
-/* =========================================================
-   LINHA ABAIXO DO TÍTULO
-   ========================================================= */
-
-.hero h1::after {
-  content: "";
-
-  display: block;
-
-  width: min(620px, 100%);
-
-  height: 1px;
-
-  margin-top: 25px;
-
-  background:
-    linear-gradient(
-      90deg,
-      var(--dourado),
-      rgba(182,154,99,.08),
-      transparent
-    );
+  white-space: normal;
 }
 
 
@@ -343,16 +263,15 @@ img {
    ========================================================= */
 
 .subtitulo {
-  width: 100%;
-  max-width: 540px;
+  max-width: 500px;
 
-  margin-top: 28px;
+  margin-top: 32px;
 
   color: var(--cinza);
 
   font-size: 20px;
 
-  line-height: 1.55;
+  line-height: 1.6;
 }
 
 
@@ -380,7 +299,7 @@ img {
 
   color: var(--creme);
 
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, sans-serif;
 
   font-size: 11px;
 
@@ -388,7 +307,10 @@ img {
 
   overflow: hidden;
 
-  transition: .35s ease;
+  transition:
+    color .35s ease,
+    background .35s ease,
+    transform .3s ease;
 }
 
 .botao::before {
@@ -396,275 +318,46 @@ img {
 
   position: absolute;
 
-  left: -110%;
-  top: 0;
-
-  width: 100%;
-  height: 100%;
+  inset: 0;
 
   background: var(--dourado);
 
-  transition: .4s ease;
+  transform: translateX(-101%);
+
+  transition: transform .35s ease;
 
   z-index: -1;
 }
 
 .botao:hover::before {
-  left: 0;
+  transform: translateX(0);
 }
 
 .botao:hover {
   color: var(--preto);
-
-  box-shadow:
-    0 0 30px rgba(182,154,99,.18);
+  transform: translateY(-2px);
 }
 
 
 /* =========================================================
-   CARTAS
-   ========================================================= */
-
-.hero .carta,
-.carta-decorativa {
-  position: absolute;
-
-  width: 100px;
-  height: 150px;
-
-  border: 1px solid rgba(182,154,99,.13);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.025),
-      rgba(75,13,22,.08)
-    );
-
-  opacity: .35;
-
-  pointer-events: none;
-
-  box-shadow:
-    0 0 30px rgba(0,0,0,.35);
-
-  animation:
-    cartaFlutuando 8s ease-in-out infinite;
-}
-
-.hero .carta::before,
-.carta-decorativa::before {
-  content: "♠";
-
-  position: absolute;
-
-  top: 18px;
-  left: 18px;
-
-  color: var(--vermelho);
-
-  font-size: 28px;
-}
-
-.hero .carta::after,
-.carta-decorativa::after {
-  content: "RED MASQUERADE";
-
-  position: absolute;
-
-  left: 10px;
-  right: 10px;
-  bottom: 16px;
-
-  color: rgba(238,230,218,.35);
-
-  font-family: Arial, sans-serif;
-
-  font-size: 7px;
-
-  letter-spacing: 2px;
-
-  text-align: center;
-}
-
-@keyframes cartaFlutuando {
-  0%,
-  100% {
-    transform: rotate(-12deg) translateY(0);
-  }
-
-  50% {
-    transform: rotate(-8deg) translateY(-15px);
-  }
-}
-
-
-/* =========================================================
-   PARTÍCULAS
-   ========================================================= */
-
-.particula {
-  position: absolute;
-
-  width: 3px;
-  height: 3px;
-
-  border-radius: 50%;
-
-  background: var(--dourado);
-
-  opacity: .5;
-
-  pointer-events: none;
-
-  animation:
-    particulaBrilho 4s ease-in-out infinite;
-}
-
-@keyframes particulaBrilho {
-  0%,
-  100% {
-    opacity: .15;
-    transform: scale(.8);
-  }
-
-  50% {
-    opacity: .8;
-    transform: scale(1.5);
-  }
-}
-
-
-/* =========================================================
-   MENU
-   ========================================================= */
-
-.menu-overlay {
-  position: fixed;
-
-  inset: 0;
-
-  z-index: 200;
-
-  background:
-    radial-gradient(
-      circle at 70% 45%,
-      rgba(155,38,56,.18),
-      transparent 35%
-    ),
-    var(--preto);
-
-  opacity: 0;
-
-  visibility: hidden;
-
-  transform: translateY(-10px);
-
-  transition: .4s ease;
-
-  overflow-y: auto;
-}
-
-.menu-overlay.aberto {
-  opacity: 1;
-
-  visibility: visible;
-
-  transform: translateY(0);
-}
-
-.menu-conteudo {
-  width: min(900px, 88%);
-
-  margin: 0 auto;
-
-  padding: 150px 0 80px;
-}
-
-.menu-titulo {
-  color: var(--creme);
-
-  font-size: clamp(48px, 9vw, 92px);
-
-  line-height: .9;
-
-  margin-bottom: 55px;
-}
-
-.menu-titulo span {
-  color: var(--dourado);
-}
-
-.menu-item {
-  display: flex;
-
-  align-items: center;
-
-  width: 100%;
-
-  padding: 30px 0;
-
-  border-top: 1px solid var(--linha);
-
-  color: var(--creme);
-
-  transition: .3s ease;
-}
-
-.menu-item:last-child {
-  border-bottom: 1px solid var(--linha);
-}
-
-.menu-item:hover {
-  padding-left: 15px;
-
-  color: var(--dourado);
-}
-
-.menu-item-numero {
-  color: var(--vermelho);
-
-  font-family: Arial, sans-serif;
-
-  font-size: 12px;
-
-  letter-spacing: 3px;
-}
-
-.menu-item-nome {
-  flex: 1;
-
-  margin-left: 35px;
-
-  font-size: 28px;
-}
-
-.menu-item-seta {
-  color: var(--dourado);
-
-  font-size: 24px;
-}
-
-
-/* =========================================================
-   PÁGINA FRATERNIDADES
+   PÁGINA DAS FRATERNIDADES
    ========================================================= */
 
 .pagina-fraternidades {
   position: relative;
 
   width: 100%;
-
   min-height: 100vh;
 
-  padding: 140px 6% 80px;
+  padding:
+    120px 6% 80px;
 
   overflow: hidden;
 
   background:
     radial-gradient(
-      circle at 75% 45%,
-      rgba(155,38,56,.16),
+      circle at 80% 45%,
+      rgba(155, 38, 56, .16),
       transparent 35%
     ),
     var(--preto);
@@ -678,10 +371,10 @@ img {
   width: 600px;
   height: 600px;
 
-  right: -220px;
+  right: -250px;
   top: 30%;
 
-  border: 1px solid rgba(182,154,99,.15);
+  border: 1px solid rgba(182, 154, 99, .15);
 
   border-radius: 50%;
 
@@ -696,87 +389,129 @@ img {
   width: 420px;
   height: 420px;
 
-  right: -100px;
-  top: 45%;
+  right: -120px;
+  top: 42%;
 
-  border: 1px solid rgba(155,38,56,.2);
+  border: 1px solid rgba(155, 38, 56, .22);
 
   border-radius: 50%;
 
   pointer-events: none;
 }
 
+
+/* conteúdo */
+
 .conteudo-fraternidades {
   position: relative;
+  z-index: 5;
 
-  z-index: 2;
-
-  width: min(1000px, 100%);
+  width: min(900px, 100%);
 
   margin: 0 auto;
 }
 
-.pagina-fraternidades h1 {
+
+/* =========================================================
+   TÍTULOS INTERNOS
+   ========================================================= */
+
+.conteudo-fraternidades h1 {
   width: 100%;
   max-width: 100%;
 
+  margin: 0;
+
   color: var(--creme);
 
-  font-size: clamp(48px, 8vw, 88px);
+  font-size: clamp(42px, 7vw, 82px);
 
   line-height: .95;
 
-  margin-bottom: 22px;
+  letter-spacing: -2px;
+
+  white-space: normal;
 
   overflow-wrap: break-word;
 }
 
-.pagina-fraternidades .subtitulo {
-  max-width: 650px;
-
-  margin-bottom: 35px;
-}
-
 
 /* =========================================================
-   CARDS
+   CARDS DAS FRATERNIDADES
    ========================================================= */
+
+.fraternidades-lista {
+  position: relative;
+
+  z-index: 5;
+
+  margin-top: 36px;
+
+  display: grid;
+
+  gap: 20px;
+}
 
 .fraternidade-card {
   position: relative;
 
-  width: 100%;
+  min-height: 190px;
 
-  padding: 34px 40px;
-
-  margin-bottom: 30px;
+  padding: 36px 40px;
 
   border: 1px solid var(--linha);
 
   background:
     linear-gradient(
       135deg,
-      rgba(155,38,56,.09),
-      rgba(255,255,255,.01)
+      rgba(75, 13, 22, .35),
+      rgba(7, 6, 7, .65)
     );
 
-  transition: .35s ease;
+  overflow: hidden;
+
+  transition:
+    transform .35s ease,
+    border-color .35s ease,
+    background .35s ease;
+}
+
+.fraternidade-card::after {
+  content: "";
+
+  position: absolute;
+
+  width: 220px;
+  height: 220px;
+
+  right: -90px;
+  bottom: -100px;
+
+  border: 1px solid rgba(182, 154, 99, .20);
+
+  border-radius: 50%;
+
+  transition:
+    transform .5s ease,
+    border-color .5s ease;
 }
 
 .fraternidade-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-5px);
 
-  border-color: var(--dourado);
+  border-color: rgba(182, 154, 99, .65);
 
   background:
     linear-gradient(
       135deg,
-      rgba(155,38,56,.18),
-      rgba(182,154,99,.04)
+      rgba(75, 13, 22, .55),
+      rgba(7, 6, 7, .75)
     );
+}
 
-  box-shadow:
-    0 20px 50px rgba(0,0,0,.35);
+.fraternidade-card:hover::after {
+  transform: scale(1.25);
+  border-color: rgba(155, 38, 56, .45);
 }
 
 .fraternidade-numero {
@@ -786,17 +521,19 @@ img {
 
   font-size: 12px;
 
-  letter-spacing: 4px;
+  letter-spacing: 5px;
 
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
 
 .fraternidade-card h2 {
   color: var(--creme);
 
-  font-size: 36px;
+  font-size: 40px;
 
-  margin-bottom: 12px;
+  line-height: 1;
+
+  margin-bottom: 14px;
 }
 
 .fraternidade-card p {
@@ -809,25 +546,56 @@ img {
 
 
 /* =========================================================
-   CELULAR
+   RESPONSIVO — TABLET
    ========================================================= */
 
-@media (max-width: 600px) {
+@media screen and (max-width: 800px) {
 
+  .hero-conteudo {
+    width: calc(100% - 48px);
+  }
+
+  .hero h1 {
+    font-size: 52px;
+  }
+
+  .subtitulo {
+    font-size: 18px;
+  }
+
+  .pagina-fraternidades {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVO — CELULAR
+   ========================================================= */
+
+@media screen and (max-width: 600px) {
+
+  html,
   body {
     width: 100%;
+    max-width: 100%;
+
     overflow-x: hidden;
   }
+
+
+  /* CABEÇALHO */
 
   .topo {
     height: 72px;
 
-    padding: 0 22px;
+    padding:
+      0 22px;
   }
 
   .logo {
     font-size: 13px;
-
     letter-spacing: 3px;
   }
 
@@ -837,12 +605,10 @@ img {
   }
 
 
-  /* -------------------------
-     HOME
-     ------------------------- */
+  /* HOME */
 
   .hero {
-    min-height: 100svh;
+    min-height: 100vh;
 
     padding-top: 72px;
 
@@ -850,13 +616,14 @@ img {
   }
 
   .hero-conteudo {
-    width: calc(100% - 44px);
+    width: calc(100% - 44px) !important;
 
-    max-width: none;
+    max-width: calc(100% - 44px) !important;
 
-    margin: 0 22px;
+    margin-left: 22px !important;
+    margin-right: 22px !important;
 
-    padding-top: 10px;
+    padding-top: 0;
   }
 
   .eyebrow {
@@ -864,83 +631,77 @@ img {
 
     letter-spacing: 4px;
 
-    margin-bottom: 20px;
-
-    white-space: nowrap;
+    margin-bottom: 18px;
   }
 
 
-  /*
-     IMPORTANTE:
-
-     O título agora pode diminuir
-     de acordo com a largura da tela.
-
-     Não usamos nowrap.
-  */
+  /* =====================================================
+     AQUI ESTÁ A CORREÇÃO DO TÍTULO
+     ===================================================== */
 
   .hero h1 {
-    width: 100%;
+    width: 100% !important;
 
-    max-width: 100%;
+    max-width: 100% !important;
 
-    font-size: 38px;
+    font-size: 34px !important;
 
-    line-height: .9;
+    line-height: .92 !important;
 
-    letter-spacing: -1.5px;
+    letter-spacing: -1px !important;
 
-    white-space: normal;
+    white-space: normal !important;
 
-    overflow-wrap: anywhere;
+    word-break: normal !important;
+
+    overflow-wrap: normal !important;
+
+    display: block !important;
   }
 
   .hero h1 span {
-    display: block;
+    width: 100% !important;
 
-    width: 100%;
+    max-width: 100% !important;
 
-    max-width: 100%;
+    display: block !important;
 
-    font-size: 38px;
+    font-size: 34px !important;
 
-    line-height: .9;
+    line-height: .92 !important;
 
-    letter-spacing: -1.5px;
+    letter-spacing: -1px !important;
 
-    white-space: normal;
+    white-space: normal !important;
 
-    overflow-wrap: anywhere;
-
-    word-break: normal;
+    color: var(--dourado);
   }
 
-  .hero h1::after {
-    width: 100%;
 
-    margin-top: 20px;
-  }
+  /* SUBTÍTULO */
 
   .subtitulo {
     width: 100%;
 
-    max-width: 100%;
+    max-width: 340px;
 
-    margin-top: 24px;
+    margin-top: 28px;
 
     font-size: 17px;
 
     line-height: 1.55;
   }
 
+
+  /* BOTÃO */
+
   .botao {
     width: 100%;
 
-    min-height: 54px;
-
     margin-top: 32px;
 
-    padding: 0 18px;
+    padding:
+      0 18px;
 
     font-size: 10px;
 
@@ -948,100 +709,32 @@ img {
   }
 
 
-  /* -------------------------
-     CÍRCULOS
-     ------------------------- */
+  /* CÍRCULOS */
 
   .hero::before {
-    width: 620px;
-    height: 620px;
+    width: 500px;
+    height: 500px;
 
-    right: -340px;
-    top: 25%;
+    right: -250px;
   }
 
   .hero::after {
-    width: 420px;
-    height: 420px;
+    width: 320px;
+    height: 320px;
 
-    right: -180px;
-    top: 38%;
+    right: -150px;
   }
 
 
-  /* -------------------------
-     CARTAS
-     ------------------------- */
-
-  .hero .carta,
-  .carta-decorativa {
-    width: 70px;
-    height: 105px;
-
-    opacity: .24;
-  }
-
-  .hero .carta::before,
-  .carta-decorativa::before {
-    font-size: 20px;
-  }
-
-  .hero .carta::after,
-  .carta-decorativa::after {
-    font-size: 5px;
-  }
-
-
-  /* -------------------------
-     MENU
-     ------------------------- */
-
-  .menu-conteudo {
-    width: calc(100% - 44px);
-
-    margin: 0 22px;
-
-    padding: 125px 0 60px;
-  }
-
-  .menu-titulo {
-    width: 100%;
-
-    font-size: 46px;
-
-    line-height: .9;
-
-    overflow-wrap: anywhere;
-
-    margin-bottom: 35px;
-  }
-
-  .menu-item {
-    padding: 25px 0;
-  }
-
-  .menu-item-nome {
-    margin-left: 18px;
-
-    font-size: 21px;
-  }
-
-  .menu-item-seta {
-    font-size: 20px;
-  }
-
-
-  /* -------------------------
+  /* =====================================================
      FRATERNIDADES
-     ------------------------- */
+     ===================================================== */
 
   .pagina-fraternidades {
-    width: 100%;
+    min-height: 100vh;
 
     padding:
-      120px
-      22px
-      60px;
+      105px 22px 60px;
   }
 
   .conteudo-fraternidades {
@@ -1049,50 +742,37 @@ img {
     max-width: 100%;
   }
 
-  /*
-     CORREÇÃO DO "FRATERNIDADES"
-  */
+  .conteudo-fraternidades h1 {
+    width: 100% !important;
 
-  .pagina-fraternidades h1 {
-    width: 100%;
+    max-width: 100% !important;
 
-    max-width: 100%;
+    font-size: 42px !important;
 
-    font-size: 43px;
+    line-height: .95 !important;
 
-    line-height: .95;
+    letter-spacing: -1px !important;
 
-    letter-spacing: -1px;
+    white-space: normal !important;
 
-    white-space: normal;
-
-    overflow-wrap: anywhere;
-
-    word-break: normal;
+    overflow-wrap: break-word !important;
   }
 
-  .pagina-fraternidades .subtitulo {
-    width: 100%;
+  .fraternidades-lista {
+    margin-top: 30px;
 
-    max-width: 100%;
-
-    font-size: 17px;
-
-    line-height: 1.55;
-
-    margin-bottom: 30px;
+    gap: 16px;
   }
 
   .fraternidade-card {
-    width: 100%;
+    min-height: 0;
 
-    padding: 30px 40px;
-
-    margin-bottom: 28px;
+    padding:
+      28px 24px;
   }
 
   .fraternidade-card h2 {
-    font-size: 30px;
+    font-size: 31px;
   }
 
   .fraternidade-card p {
@@ -1105,26 +785,22 @@ img {
    CELULARES PEQUENOS
    ========================================================= */
 
-@media (max-width: 380px) {
+@media screen and (max-width: 380px) {
 
   .hero-conteudo {
-    width: calc(100% - 36px);
+    width: calc(100% - 36px) !important;
 
-    margin: 0 18px;
+    max-width: calc(100% - 36px) !important;
+
+    margin-left: 18px !important;
+    margin-right: 18px !important;
   }
 
-  .hero h1 {
-    font-size: 34px;
-  }
-
+  .hero h1,
   .hero h1 span {
-    font-size: 34px;
-  }
+    font-size: 30px !important;
 
-  .eyebrow {
-    font-size: 9px;
-
-    letter-spacing: 3px;
+    letter-spacing: -.8px !important;
   }
 
   .subtitulo {
@@ -1136,94 +812,18 @@ img {
 
     letter-spacing: 2.5px;
   }
-
-
-  .pagina-fraternidades {
-    padding-left: 18px;
-    padding-right: 18px;
-  }
-
-  .pagina-fraternidades h1 {
-    font-size: 38px;
-
-    letter-spacing: -1px;
-  }
-
-  .fraternidade-card {
-    padding-left: 28px;
-    padding-right: 28px;
-  }
 }
 
 
 /* =========================================================
-   ACESSIBILIDADE
+   EVITAR QUALQUER ROLAGEM HORIZONTAL
    ========================================================= */
 
-@media (prefers-reduced-motion: reduce) {
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: .01ms !important;
-
-    animation-iteration-count: 1 !important;
-
-    transition-duration: .01ms !important;
-
-    scroll-behavior: auto !important;
-  }
-}
-/* =========================================================
-   CORREÇÃO FINAL — TÍTULO MOBILE
-   ========================================================= */
-
-@media screen and (max-width: 600px) {
-
-  .hero h1,
-  .hero h1 span {
-    width: 100% !important;
-    max-width: 100% !important;
-
-    font-size: 30px !important;
-    line-height: .92 !important;
-
-    letter-spacing: -1.2px !important;
-
-    white-space: normal !important;
-    overflow: visible !important;
-
-    word-break: normal !important;
-    overflow-wrap: normal !important;
-
-    display: block !important;
-  }
-
-  .hero-conteudo {
-    width: calc(100% - 44px) !important;
-    max-width: 100% !important;
-
-    margin-left: 22px !important;
-    margin-right: 22px !important;
-  }
-
-  .hero h1::after {
-    width: 100% !important;
-  }
-
-}
-
-
-/* =========================================================
-   CELULARES MUITO PEQUENOS
-   ========================================================= */
-
-@media screen and (max-width: 380px) {
-
-  .hero h1,
-  .hero h1 span {
-    font-size: 27px !important;
-    letter-spacing: -1px !important;
-  }
-
+.hero,
+.hero-conteudo,
+.hero h1,
+.hero h1 span,
+.pagina-fraternidades,
+.conteudo-fraternidades {
+  max-width: 100%;
 }
