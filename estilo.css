@@ -11,20 +11,26 @@
   --dourado: #b69a63;
   --creme: #eee6da;
   --cinza: #9b9188;
-  --linha: rgba(238, 230, 218, .15);
+  --linha: rgba(238, 230, 218, 0.15);
 }
 
 html,
 body {
   width: 100%;
-  min-height: 100%;
+  height: 100%;
+}
+
+html {
+  overflow: hidden;
 }
 
 body {
   min-height: 100vh;
   overflow: hidden;
+
   background: var(--preto);
   color: var(--creme);
+
   font-family: Georgia, "Times New Roman", serif;
 }
 
@@ -37,287 +43,61 @@ button {
   font: inherit;
 }
 
+
+/* =========================================
+   CABEÇALHO
+   ========================================= */
+
 .topo {
   position: fixed;
+
   top: 0;
   left: 0;
+
   width: 100%;
   height: 82px;
+
   padding: 0 6%;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  z-index: 10;
+
+  z-index: 100;
+
   border-bottom: 1px solid var(--linha);
-  background: rgba(7, 6, 7, .82);
+
+  background: rgba(7, 6, 7, 0.88);
+
   backdrop-filter: blur(10px);
 }
 
 .logo {
   color: var(--creme);
+
   font-size: 17px;
   font-weight: bold;
+
   letter-spacing: 5px;
 }
 
 .menu-btn {
   width: 48px;
   height: 48px;
-  border: 1px solid var(--linha);
-  background: transparent;
-  color: var(--creme);
-  cursor: pointer;
-  font-size: 22px;
-}
 
-.hero {
-  min-height: 100vh;
   display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  background:
-    radial-gradient(
-      circle at 75% 45%,
-      rgba(155, 38, 56, .20),
-      transparent 32%
-    ),
-    radial-gradient(
-      circle at 20% 80%,
-      rgba(75, 13, 22, .25),
-      transparent 35%
-    ),
-    var(--preto);
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  width: 520px;
-  height: 520px;
-  right: -190px;
-  top: 20%;
-  border: 1px solid rgba(182, 154, 99, .18);
-  border-radius: 50%;
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  width: 320px;
-  height: 320px;
-  right: -90px;
-  top: 31%;
-  border: 1px solid rgba(155, 38, 56, .25);
-  border-radius: 50%;
-}
-
-.hero-conteudo {
-  position: relative;
-  z-index: 2;
-  width: min(850px, 88%);
-  margin: 0 auto;
-  padding-top: 50px;
-}
-
-.eyebrow {
-  color: var(--vermelho);
-  font-family: Arial, sans-serif;
-  font-size: 11px;
-  font-weight: bold;
-  letter-spacing: 5px;
-  margin-bottom: 22px;
-}
-
-.hero h1 {
-  font-size: clamp(60px, 11vw, 125px);
-  line-height: .82;
-  letter-spacing: -4px;
-}
-
-.hero h1 span {
-  color: var(--dourado);
-}
-
-.subtitulo {
-  max-width: 500px;
-  margin-top: 32px;
-  color: var(--cinza);
-  font-size: 20px;
-  line-height: 1.6;
-}
-
-.botao {
-  display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-top: 38px;
-  min-height: 52px;
-  padding: 0 28px;
-  border: 1px solid var(--dourado);
-  color: var(--creme);
-  font-family: Arial, sans-serif;
-  font-size: 11px;
-  letter-spacing: 3px;
-  transition: .3s ease;
-}
-
-.botao:hover {
-  background: var(--dourado);
-  color: var(--preto);
-}
-
-@media (max-width: 600px) {
-
-  .topo {
-    height: 72px;
-    padding: 0 22px;
-  }
-
-  .logo {
-    font-size: 13px;
-    letter-spacing: 3px;
-  }
-
-  .menu-btn {
-    width: 44px;
-    height: 44px;
-  }
-
-  .hero-conteudo {
-    width: 86%;
-    padding-top: 30px;
-  }
-
-  .hero h1 {
-    font-size: 34px;
-    line-height: .95;
-    letter-spacing: 0;
-    white-space: nowrap;
-  }
-
-  .hero h1 span {
-    display: block;
-  }
-
-  .subtitulo {
-    font-size: 17px;
-    line-height: 1.55;
-    max-width: 340px;
-  }
-
-  .botao {
-    width: 100%;
-  }
-}
-
-/* ==============================
-   PÁGINA — FRATERNIDADES
-   ============================== */
-
-.pagina-fraternidades {
-  min-height: 100vh;
-  height: 100vh;
-  overflow: hidden;
-  position: relative;
-
-  display: flex;
-  align-items: center;
-
-  background:
-    radial-gradient(
-      circle at 75% 45%,
-      rgba(155, 38, 56, .16),
-      transparent 35%
-    ),
-    var(--preto);
-}
-
-.pagina-fraternidades::before {
-  content: "";
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  right: -250px;
-  top: 10%;
-  border: 1px solid rgba(182, 154, 99, .12);
-  border-radius: 50%;
-}
-
-.conteudo-fraternidades {
-  position: relative;
-  z-index: 2;
-
-  width: min(1100px, 88%);
-  margin: 0 auto;
-
-  padding-top: 80px;
-}
-
-.conteudo-fraternidades h1 {
-  font-size: clamp(42px, 6vw, 76px);
-  line-height: 1;
-  margin-bottom: 18px;
-}
-
-.descricao {
-  color: var(--cinza);
-  font-size: 17px;
-  line-height: 1.5;
-  max-width: 600px;
-  margin-bottom: 35px;
-}
-
-.casas {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-}
-
-.casa {
-  min-height: 220px;
-
-  padding: 28px;
 
   border: 1px solid var(--linha);
 
-  background: rgba(20, 12, 14, .65);
+  background: transparent;
 
-  transition:
-    transform .3s ease,
-    border-color .3s ease,
-    background .3s ease;
-}
+  color: var(--creme);
 
-.casa:hover {
-  transform: translateY(-6px);
-  border-color: var(--dourado);
-  background: rgba(75, 13, 22, .35);
-}
+  cursor: pointer;
 
-.numero {
-  display: block;
-
-  color: var(--vermelho);
-
-  font-family: Arial, sans-serif;
-  font-size: 10px;
-  font-weight: bold;
-
-  letter-spacing: 4px;
-
-  margin-bottom: 35px;
-}
-
-.casa h2 {
-  font-size: 27px;
-  margin-bottom: 12px;
-}
-
-.casa p {
-  color: var(--cinza);
-  font-size: 15px;
-  line-height: 1.5;
+  font-size: 22px;
 }
 
 .voltar {
@@ -332,9 +112,10 @@ button {
 
   color: var(--creme);
 
-  font-size: 24px;
+  font-family: Arial, sans-serif;
+  font-size: 23px;
 
-  transition: .3s ease;
+  transition: 0.3s ease;
 }
 
 .voltar:hover {
@@ -343,9 +124,376 @@ button {
 }
 
 
-/* CELULAR */
+/* =========================================
+   PÁGINA INICIAL
+   ========================================= */
+
+.hero {
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+
+  position: relative;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 75% 45%,
+      rgba(155, 38, 56, 0.20),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 20% 80%,
+      rgba(75, 13, 22, 0.25),
+      transparent 35%
+    ),
+    var(--preto);
+}
+
+.hero::before {
+  content: "";
+
+  position: absolute;
+
+  width: 520px;
+  height: 520px;
+
+  right: -190px;
+  top: 20%;
+
+  border: 1px solid rgba(182, 154, 99, 0.18);
+
+  border-radius: 50%;
+}
+
+.hero::after {
+  content: "";
+
+  position: absolute;
+
+  width: 320px;
+  height: 320px;
+
+  right: -90px;
+  top: 31%;
+
+  border: 1px solid rgba(155, 38, 56, 0.25);
+
+  border-radius: 50%;
+}
+
+.hero-conteudo {
+  position: relative;
+
+  z-index: 2;
+
+  width: min(850px, 88%);
+
+  margin: 0 auto;
+
+  padding-top: 50px;
+}
+
+.eyebrow {
+  color: var(--vermelho);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 11px;
+  font-weight: bold;
+
+  letter-spacing: 5px;
+
+  margin-bottom: 22px;
+}
+
+.hero h1 {
+  font-size: clamp(48px, 7vw, 90px);
+
+  line-height: 0.9;
+
+  letter-spacing: -2px;
+}
+
+.hero h1 span {
+  display: block;
+
+  color: var(--dourado);
+}
+
+.subtitulo {
+  max-width: 500px;
+
+  margin-top: 32px;
+
+  color: var(--cinza);
+
+  font-size: 20px;
+
+  line-height: 1.6;
+}
+
+.botao {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 38px;
+
+  min-height: 52px;
+
+  padding: 0 28px;
+
+  border: 1px solid var(--dourado);
+
+  color: var(--creme);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 11px;
+
+  letter-spacing: 3px;
+
+  transition: 0.3s ease;
+}
+
+.botao:hover {
+  background: var(--dourado);
+
+  color: var(--preto);
+}
+
+
+/* =========================================
+   PÁGINA — FRATERNIDADES
+   ========================================= */
+
+.pagina-fraternidades {
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+
+  overflow: hidden;
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  background:
+    radial-gradient(
+      circle at 75% 45%,
+      rgba(155, 38, 56, 0.16),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 20% 80%,
+      rgba(75, 13, 22, 0.22),
+      transparent 40%
+    ),
+    var(--preto);
+}
+
+.pagina-fraternidades::before {
+  content: "";
+
+  position: absolute;
+
+  width: 600px;
+  height: 600px;
+
+  right: -250px;
+  top: 10%;
+
+  border: 1px solid rgba(182, 154, 99, 0.12);
+
+  border-radius: 50%;
+}
+
+.pagina-fraternidades::after {
+  content: "";
+
+  position: absolute;
+
+  width: 380px;
+  height: 380px;
+
+  right: -100px;
+  top: 28%;
+
+  border: 1px solid rgba(155, 38, 56, 0.18);
+
+  border-radius: 50%;
+}
+
+.conteudo-fraternidades {
+  position: relative;
+
+  z-index: 2;
+
+  width: min(1100px, 88%);
+
+  margin: 0 auto;
+
+  padding-top: 82px;
+}
+
+.conteudo-fraternidades h1 {
+  font-size: clamp(45px, 6vw, 76px);
+
+  line-height: 1;
+
+  margin-bottom: 15px;
+}
+
+.descricao {
+  max-width: 620px;
+
+  margin-bottom: 34px;
+
+  color: var(--cinza);
+
+  font-size: 17px;
+
+  line-height: 1.5;
+}
+
+.casas {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 18px;
+}
+
+.casa {
+  min-height: 220px;
+
+  padding: 28px;
+
+  display: block;
+
+  border: 1px solid var(--linha);
+
+  background: rgba(20, 12, 14, 0.65);
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+.casa:hover {
+  transform: translateY(-6px);
+
+  border-color: var(--dourado);
+
+  background: rgba(75, 13, 22, 0.35);
+}
+
+.numero {
+  display: block;
+
+  margin-bottom: 35px;
+
+  color: var(--vermelho);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 10px;
+  font-weight: bold;
+
+  letter-spacing: 4px;
+}
+
+.casa h2 {
+  margin-bottom: 12px;
+
+  font-size: 27px;
+
+  line-height: 1.1;
+}
+
+.casa p {
+  color: var(--cinza);
+
+  font-size: 15px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================
+   CELULAR
+   ========================================= */
 
 @media (max-width: 700px) {
+
+  .topo {
+    height: 72px;
+
+    padding: 0 22px;
+  }
+
+  .logo {
+    font-size: 13px;
+
+    letter-spacing: 3px;
+  }
+
+  .menu-btn,
+  .voltar {
+    width: 44px;
+    height: 44px;
+  }
+
+
+  /* HOME */
+
+  .hero {
+    align-items: center;
+  }
+
+  .hero-conteudo {
+    width: 86%;
+
+    padding-top: 30px;
+  }
+
+  .hero h1 {
+    font-size: 60px;
+
+    line-height: 0.92;
+
+    letter-spacing: -2px;
+
+    white-space: normal;
+  }
+
+  .subtitulo {
+    max-width: 340px;
+
+    margin-top: 28px;
+
+    font-size: 17px;
+
+    line-height: 1.55;
+  }
+
+  .botao {
+    width: 100%;
+
+    margin-top: 34px;
+  }
+
+
+  /* FRATERNIDADES */
 
   .pagina-fraternidades {
     align-items: flex-start;
@@ -353,36 +501,45 @@ button {
 
   .conteudo-fraternidades {
     width: 86%;
-    padding-top: 105px;
+
+    padding-top: 100px;
   }
 
   .conteudo-fraternidades h1 {
     font-size: 43px;
+
     margin-bottom: 12px;
   }
 
   .descricao {
     font-size: 15px;
+
+    line-height: 1.45;
+
     margin-bottom: 22px;
   }
 
   .casas {
     grid-template-columns: 1fr;
+
     gap: 10px;
   }
 
   .casa {
     min-height: 0;
+
     height: 125px;
+
     padding: 17px 20px;
   }
 
   .numero {
-    margin-bottom: 10px;
+    margin-bottom: 9px;
   }
 
   .casa h2 {
     font-size: 22px;
+
     margin-bottom: 5px;
   }
 
@@ -390,4 +547,19 @@ button {
     font-size: 13px;
   }
 
+  .pagina-fraternidades::before {
+    width: 420px;
+    height: 420px;
+
+    right: -230px;
+    top: 25%;
+  }
+
+  .pagina-fraternidades::after {
+    width: 280px;
+    height: 280px;
+
+    right: -150px;
+    top: 38%;
+  }
 }
