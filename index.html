@@ -11,33 +11,21 @@
 
 <style>
 
-/* =========================================================
-   RED MASQUERADE
-   ========================================================= */
-
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
 
-
 :root{
-
     --black:#060506;
     --black2:#0c090a;
-
     --wine:#310b13;
     --red:#922238;
     --red-dark:#58101f;
-
     --gold:#b69a63;
     --gold-light:#d8bd82;
-
     --cream:#eee6da;
     --gray:#aaa19a;
     --gray-dark:#6f6863;
-
     --line:rgba(216,189,130,.18);
-
 }
-
 
 *{
     margin:0;
@@ -45,2560 +33,1438 @@
     box-sizing:border-box;
 }
 
-
 html{
     scroll-behavior:smooth;
 }
 
-
 body{
-
     min-height:100vh;
-
     background:
-        radial-gradient(
-            circle at 75% 30%,
-            rgba(146,34,56,.18),
-            transparent 32%
-        ),
-        radial-gradient(
-            circle at 15% 85%,
-            rgba(82,20,31,.18),
-            transparent 35%
-        ),
+        radial-gradient(circle at 75% 30%,rgba(146,34,56,.18),transparent 32%),
+        radial-gradient(circle at 15% 85%,rgba(82,20,31,.18),transparent 35%),
         var(--black);
-
     color:var(--cream);
-
-    font-family:
-        'Cormorant Garamond',
-        Georgia,
-        serif;
-
+    font-family:'Cormorant Garamond',Georgia,serif;
     overflow-x:hidden;
-
 }
-
 
 a{
     color:inherit;
     text-decoration:none;
 }
 
-
 button{
     font-family:inherit;
 }
 
-
 /* =========================================================
    TEXTURA
-   ========================================================= */
+========================================================= */
 
 body:after{
-
     content:"";
-
     position:fixed;
-
     inset:0;
-
     pointer-events:none;
-
     z-index:999;
-
     opacity:.035;
-
-    background-image:
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
-
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
 }
 
-
 /* =========================================================
-   CARTAS DE BARALHO
-   FICAM AO FUNDO, APAGADAS E FLUTUANDO
-   ========================================================= */
+   CARTAS
+========================================================= */
 
 .playing-card{
-
     position:fixed;
-
     width:92px;
     height:132px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(245,239,229,.12),
-            rgba(221,211,196,.07)
-        );
-
-    color:
-        rgba(245,239,229,.38);
-
-    border:
-        1px solid
-        rgba(216,189,130,.13);
-
+    background:linear-gradient(135deg,rgba(245,239,229,.12),rgba(221,211,196,.07));
+    color:rgba(245,239,229,.38);
+    border:1px solid rgba(216,189,130,.13);
     border-radius:7px;
-
-    box-shadow:
-        0 0 35px
-        rgba(146,34,56,.08);
-
+    box-shadow:0 0 35px rgba(146,34,56,.08);
     z-index:2;
-
     pointer-events:auto;
-
     cursor:pointer;
-
     display:flex;
-
     flex-direction:column;
-
     justify-content:space-between;
-
     padding:9px;
-
-    font-family:
-        Georgia,
-        serif;
-
+    font-family:Georgia,serif;
     opacity:.18;
-
-    filter:
-        blur(.2px);
-
-    transition:
-        opacity .8s ease,
-        filter .8s ease;
-
+    filter:blur(.2px);
+    transition:opacity .8s ease,filter .8s ease;
     user-select:none;
-
     -webkit-user-select:none;
-
 }
-
 
 .playing-card:hover{
-
     opacity:.30;
-
     filter:blur(0);
-
 }
-
 
 .playing-card .corner{
-
     font-size:17px;
-
     line-height:.9;
-
     font-weight:bold;
-
 }
-
 
 .playing-card .symbol{
-
     align-self:center;
-
     font-size:38px;
-
     line-height:1;
-
 }
-
 
 .playing-card .bottom{
-
     transform:rotate(180deg);
-
 }
-
-
-/* =========================================================
-   POSIÇÃO DAS CARTAS
-   ========================================================= */
 
 .card-one{
-
     right:5%;
     top:20%;
-
-    animation:
-        floatingCardOne
-        13s
-        ease-in-out
-        infinite;
-
+    animation:floatingCardOne 13s ease-in-out infinite;
 }
-
 
 .card-two{
-
     left:3%;
     bottom:14%;
-
-    animation:
-        floatingCardTwo
-        17s
-        ease-in-out
-        infinite;
-
+    animation:floatingCardTwo 17s ease-in-out infinite;
 }
-
 
 .card-three{
-
     right:12%;
     bottom:9%;
-
-    animation:
-        floatingCardThree
-        15s
-        ease-in-out
-        infinite;
-
+    animation:floatingCardThree 15s ease-in-out infinite;
 }
-
 
 .card-four{
-
     left:8%;
     top:27%;
-
-    animation:
-        floatingCardFour
-        19s
-        ease-in-out
-        infinite;
-
+    animation:floatingCardFour 19s ease-in-out infinite;
 }
-
-
-/* =========================================================
-   MOVIMENTO DAS CARTAS
-   ========================================================= */
 
 @keyframes floatingCardOne{
-
-    0%{
-
-        transform:
-            translate3d(0,0,0)
-            rotate(12deg);
-
-        opacity:.12;
-
-    }
-
-    25%{
-
-        transform:
-            translate3d(-15px,18px,0)
-            rotate(16deg);
-
-        opacity:.19;
-
-    }
-
-    50%{
-
-        transform:
-            translate3d(12px,32px,0)
-            rotate(8deg);
-
-        opacity:.10;
-
-    }
-
-    75%{
-
-        transform:
-            translate3d(-8px,12px,0)
-            rotate(15deg);
-
-        opacity:.21;
-
-    }
-
-    100%{
-
-        transform:
-            translate3d(0,0,0)
-            rotate(12deg);
-
-        opacity:.12;
-
-    }
-
+    0%{transform:translate3d(0,0,0) rotate(12deg);opacity:.12}
+    25%{transform:translate3d(-15px,18px,0) rotate(16deg);opacity:.19}
+    50%{transform:translate3d(12px,32px,0) rotate(8deg);opacity:.10}
+    75%{transform:translate3d(-8px,12px,0) rotate(15deg);opacity:.21}
+    100%{transform:translate3d(0,0,0) rotate(12deg);opacity:.12}
 }
-
 
 @keyframes floatingCardTwo{
-
-    0%{
-
-        transform:
-            translate3d(0,0,0)
-            rotate(-14deg);
-
-        opacity:.10;
-
-    }
-
-    30%{
-
-        transform:
-            translate3d(20px,-22px,0)
-            rotate(-8deg);
-
-        opacity:.18;
-
-    }
-
-    60%{
-
-        transform:
-            translate3d(5px,-40px,0)
-            rotate(-17deg);
-
-        opacity:.08;
-
-    }
-
-    80%{
-
-        transform:
-            translate3d(-15px,-18px,0)
-            rotate(-11deg);
-
-        opacity:.16;
-
-    }
-
-    100%{
-
-        transform:
-            translate3d(0,0,0)
-            rotate(-14deg);
-
-        opacity:.10;
-
-    }
-
+    0%{transform:translate3d(0,0,0) rotate(-14deg);opacity:.10}
+    30%{transform:translate3d(20px,-22px,0) rotate(-8deg);opacity:.18}
+    60%{transform:translate3d(5px,-40px,0) rotate(-17deg);opacity:.08}
+    80%{transform:translate3d(-15px,-18px,0) rotate(-11deg);opacity:.16}
+    100%{transform:translate3d(0,0,0) rotate(-14deg);opacity:.10}
 }
-
 
 @keyframes floatingCardThree{
-
-    0%{
-
-        transform:
-            translate3d(0,0,0)
-            rotate(7deg);
-
-        opacity:.08;
-
-    }
-
-    35%{
-
-        transform:
-            translate3d(-25px,-15px,0)
-            rotate(13deg);
-
-        opacity:.17;
-
-    }
-
-    65%{
-
-        transform:
-            translate3d(-10px,20px,0)
-            rotate(3deg);
-
-        opacity:.10;
-
-    }
-
-    100%{
-
-        transform:
-            translate3d(0,0,0)
-            rotate(7deg);
-
-        opacity:.08;
-
-    }
-
+    0%{transform:translate3d(0,0,0) rotate(7deg);opacity:.08}
+    35%{transform:translate3d(-25px,-15px,0) rotate(13deg);opacity:.17}
+    65%{transform:translate3d(-10px,20px,0) rotate(3deg);opacity:.10}
+    100%{transform:translate3d(0,0,0) rotate(7deg);opacity:.08}
 }
-
 
 @keyframes floatingCardFour{
-
-    0%{
-
-        transform:
-            translate3d(0,0,0)
-            rotate(-9deg);
-
-        opacity:.06;
-
-    }
-
-    30%{
-
-        transform:
-            translate3d(18px,25px,0)
-            rotate(-3deg);
-
-        opacity:.14;
-
-    }
-
-    60%{
-
-        transform:
-            translate3d(-8px,45px,0)
-            rotate(-13deg);
-
-        opacity:.08;
-
-    }
-
-    100%{
-
-        transform:
-            translate3d(0,0,0)
-            rotate(-9deg);
-
-        opacity:.06;
-
-    }
-
+    0%{transform:translate3d(0,0,0) rotate(-9deg);opacity:.06}
+    30%{transform:translate3d(18px,25px,0) rotate(-3deg);opacity:.14}
+    60%{transform:translate3d(-8px,45px,0) rotate(-13deg);opacity:.08}
+    100%{transform:translate3d(0,0,0) rotate(-9deg);opacity:.06}
 }
-
-
-/* =========================================================
-   REAÇÃO AO TOQUE
-   ========================================================= */
 
 .playing-card.touched{
-
     animation:none;
-
     opacity:.40;
-
     filter:blur(0);
-
-    transition:
-        transform 1s cubic-bezier(.2,.8,.2,1),
-        opacity .5s ease;
-
+    transition:transform 1s cubic-bezier(.2,.8,.2,1),opacity .5s ease;
 }
-
 
 .card-one.touched{
-
-    transform:
-        translate3d(-55px,25px,0)
-        rotate(30deg)
-        scale(1.05);
-
+    transform:translate3d(-55px,25px,0) rotate(30deg) scale(1.05);
 }
-
 
 .card-two.touched{
-
-    transform:
-        translate3d(55px,-35px,0)
-        rotate(-30deg)
-        scale(1.05);
-
+    transform:translate3d(55px,-35px,0) rotate(-30deg) scale(1.05);
 }
-
 
 .card-three.touched{
-
-    transform:
-        translate3d(-45px,-35px,0)
-        rotate(-20deg)
-        scale(1.05);
-
+    transform:translate3d(-45px,-35px,0) rotate(-20deg) scale(1.05);
 }
-
 
 .card-four.touched{
-
-    transform:
-        translate3d(45px,35px,0)
-        rotate(25deg)
-        scale(1.05);
-
+    transform:translate3d(45px,35px,0) rotate(25deg) scale(1.05);
 }
-
 
 /* =========================================================
-   CÍRCULOS DECORATIVOS
-   ========================================================= */
+   CÍRCULOS
+========================================================= */
 
 .circle{
-
     position:fixed;
-
     border-radius:50%;
-
     pointer-events:none;
-
     z-index:1;
-
 }
-
 
 .circle-one{
-
     width:700px;
     height:700px;
-
     right:-350px;
     top:20%;
-
-    border:
-        1px solid
-        rgba(182,154,99,.13);
-
-    animation:
-        rotateOne
-        35s
-        linear
-        infinite;
-
+    border:1px solid rgba(182,154,99,.13);
+    animation:rotateOne 35s linear infinite;
 }
-
 
 .circle-two{
-
     width:470px;
     height:470px;
-
     right:-180px;
     top:38%;
-
-    border:
-        1px solid
-        rgba(146,34,56,.20);
-
-    animation:
-        rotateTwo
-        26s
-        linear
-        infinite;
-
+    border:1px solid rgba(146,34,56,.20);
+    animation:rotateTwo 26s linear infinite;
 }
-
 
 @keyframes rotateOne{
-
-    to{
-        transform:rotate(360deg);
-    }
-
+    to{transform:rotate(360deg)}
 }
-
 
 @keyframes rotateTwo{
-
-    to{
-        transform:rotate(-360deg);
-    }
-
+    to{transform:rotate(-360deg)}
 }
-
 
 /* =========================================================
    HEADER
-   ========================================================= */
+========================================================= */
 
 header{
-
     position:fixed;
-
     top:0;
     left:0;
-
     width:100%;
     height:82px;
-
-    padding:
-        0
-        6%;
-
+    padding:0 6%;
     display:flex;
-
     align-items:center;
     justify-content:space-between;
-
-    border-bottom:
-        1px solid
-        var(--line);
-
-    background:
-        rgba(6,5,6,.90);
-
-    backdrop-filter:
-        blur(15px);
-
-    -webkit-backdrop-filter:
-        blur(15px);
-
+    border-bottom:1px solid var(--line);
+    background:rgba(6,5,6,.90);
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
     z-index:500;
-
 }
-
 
 .logo{
-
-    font-family:
-        'Montserrat',
-        Arial,
-        sans-serif;
-
+    font-family:'Montserrat',Arial,sans-serif;
     font-size:14px;
-
     font-weight:500;
-
     letter-spacing:5px;
-
 }
-
 
 .menu-button{
-
     width:50px;
     height:50px;
-
-    border:
-        1px solid
-        rgba(216,189,130,.30);
-
-    background:
-        transparent;
-
+    border:1px solid rgba(216,189,130,.30);
+    background:transparent;
     color:var(--cream);
-
     display:flex;
-
     align-items:center;
     justify-content:center;
-
     cursor:pointer;
-
     transition:.3s;
-
 }
-
 
 .menu-button:hover{
-
     border-color:var(--gold);
-
     color:var(--gold-light);
-
 }
-
 
 .menu-icon{
-
     width:24px;
-
     display:flex;
-
     flex-direction:column;
-
     gap:6px;
-
 }
-
 
 .menu-icon span{
-
     width:100%;
     height:1px;
-
     background:currentColor;
-
     transition:.3s;
-
 }
 
-
-.menu-button.active
-.menu-icon span:nth-child(1){
-
-    transform:
-        translateY(7px)
-        rotate(45deg);
-
+.menu-button.active .menu-icon span:nth-child(1){
+    transform:translateY(7px) rotate(45deg);
 }
 
-
-.menu-button.active
-.menu-icon span:nth-child(2){
-
+.menu-button.active .menu-icon span:nth-child(2){
     opacity:0;
-
 }
 
-
-.menu-button.active
-.menu-icon span:nth-child(3){
-
-    transform:
-        translateY(-7px)
-        rotate(-45deg);
-
+.menu-button.active .menu-icon span:nth-child(3){
+    transform:translateY(-7px) rotate(-45deg);
 }
-
 
 /* =========================================================
    HOME
-   ========================================================= */
+========================================================= */
 
 .home{
-
     position:relative;
-
     min-height:100vh;
-
-    padding:
-        82px
-        6%
-        70px;
-
+    padding:82px 6% 70px;
     display:flex;
-
     align-items:center;
-
     z-index:10;
-
-    transition:
-        opacity .5s,
-        transform .5s;
-
+    transition:opacity .5s,transform .5s;
 }
-
 
 .home.hidden{
-
     opacity:0;
-
     transform:scale(1.03);
-
     pointer-events:none;
-
 }
-
 
 .hero{
-
-    width:min(
-        920px,
-        100%
-    );
-
+    width:min(920px,100%);
     margin:auto;
-
     position:relative;
-
     z-index:10;
-
 }
-
 
 .eyebrow{
-
     color:var(--red);
-
-    font-family:
-        'Montserrat',
-        Arial,
-        sans-serif;
-
+    font-family:'Montserrat',Arial,sans-serif;
     font-size:10px;
-
     letter-spacing:6px;
-
     margin-bottom:21px;
-
 }
-
 
 .hero-title{
-
-    font-size:
-        clamp(
-            65px,
-            10vw,
-            120px
-        );
-
+    font-size:clamp(65px,10vw,120px);
     line-height:.76;
-
     letter-spacing:-4px;
-
     font-weight:600;
-
 }
-
 
 .hero-title .first{
-
     display:block;
-
     color:var(--cream);
-
 }
-
 
 .hero-title .second{
-
     display:block;
-
     color:var(--gold);
-
 }
-
 
 .hero-line{
-
     width:470px;
-
     max-width:75%;
-
     height:1px;
-
-    margin:
-        35px
-        0
-        25px;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--gold),
-            transparent
-        );
-
+    margin:35px 0 25px;
+    background:linear-gradient(90deg,var(--gold),transparent);
 }
-
 
 .hero-description{
-
     max-width:650px;
-
     color:#c5bbb2;
-
-    font-size:
-        clamp(
-            18px,
-            2.4vw,
-            24px
-        );
-
+    font-size:clamp(18px,2.4vw,24px);
     line-height:1.45;
-
 }
-
 
 .hero-quote{
-
     margin-top:17px;
-
     color:var(--gold-light);
-
     font-size:16px;
-
     font-style:italic;
-
     letter-spacing:2px;
-
 }
-
 
 .hero-button{
-
     margin-top:32px;
-
-    width:min(
-        430px,
-        100%
-    );
-
+    width:min(430px,100%);
     height:55px;
-
-    border:
-        1px solid
-        var(--gold);
-
+    border:1px solid var(--gold);
     background:transparent;
-
     color:var(--cream);
-
-    font-family:
-        'Montserrat',
-        Arial,
-        sans-serif;
-
+    font-family:'Montserrat',Arial,sans-serif;
     font-size:9px;
-
     letter-spacing:4px;
-
     cursor:pointer;
-
     transition:.35s;
-
 }
-
 
 .hero-button:hover{
-
     background:var(--gold);
-
     color:var(--black);
-
 }
-
 
 /* =========================================================
    STATUS
-   ========================================================= */
+========================================================= */
 
 .status-row{
-
     margin-top:40px;
-
     display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    border-top:
-        1px solid
-        var(--line);
-
-    border-bottom:
-        1px solid
-        var(--line);
-
+    grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
 }
-
 
 .status{
-
-    padding:
-        17px
-        15px;
-
-    border-right:
-        1px solid
-        var(--line);
-
+    padding:17px 15px;
+    border-right:1px solid var(--line);
 }
-
 
 .status:last-child{
-
     border-right:0;
-
 }
-
 
 .status small{
-
     display:block;
-
     color:var(--red);
-
-    font-family:
-        'Montserrat',
-        Arial,
-        sans-serif;
-
+    font-family:'Montserrat',Arial,sans-serif;
     font-size:8px;
-
     letter-spacing:3px;
-
     margin-bottom:8px;
-
 }
-
 
 .status strong{
-
     font-size:16px;
-
     font-weight:500;
-
 }
-
 
 /* =========================================================
    MENU
-   ========================================================= */
+========================================================= */
 
 .menu-overlay{
-
     position:fixed;
-
     inset:0;
-
     padding-top:82px;
-
     background:
-        radial-gradient(
-            circle at 72% 45%,
-            rgba(91,16,31,.30),
-            transparent 40%
-        ),
+        radial-gradient(circle at 72% 45%,rgba(91,16,31,.30),transparent 40%),
         rgba(6,5,6,.985);
-
     z-index:400;
-
     opacity:0;
-
     visibility:hidden;
-
     pointer-events:none;
-
-    transition:
-        opacity .4s,
-        visibility .4s;
-
+    transition:opacity .4s,visibility .4s;
     overflow-y:auto;
-
 }
-
 
 .menu-overlay.open{
-
     opacity:1;
-
     visibility:visible;
-
     pointer-events:auto;
-
 }
-
 
 .menu-inner{
-
-    width:min(
-        900px,
-        88%
-    );
-
-    min-height:
-        calc(100vh - 82px);
-
+    width:min(900px,88%);
+    min-height:calc(100vh - 82px);
     margin:auto;
-
-    padding:
-        45px
-        0;
-
+    padding:45px 0;
     display:flex;
-
     flex-direction:column;
-
     justify-content:center;
-
 }
-
 
 .menu-eyebrow{
-
     color:var(--red);
-
-    font-family:
-        'Montserrat',
-        Arial,
-        sans-serif;
-
+    font-family:'Montserrat',Arial,sans-serif;
     font-size:9px;
-
     letter-spacing:5px;
-
     margin-bottom:15px;
-
 }
-
 
 .menu-title{
-
-    font-size:
-        clamp(
-            48px,
-            8vw,
-            82px
-        );
-
+    font-size:clamp(48px,8vw,82px);
     line-height:.88;
-
     margin-bottom:28px;
-
 }
-
 
 .menu-title span{
-
     color:var(--gold);
-
 }
-
 
 .menu-link{
-
     width:100%;
-
-    padding:
-        15px
-        4px;
-
-    border-top:
-        1px solid
-        var(--line);
-
+    padding:15px 4px;
+    border-top:1px solid var(--line);
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
-    font-size:
-        clamp(
-            19px,
-            3vw,
-            27px
-        );
-
+    font-size:clamp(19px,3vw,27px);
     transition:.3s;
-
 }
-
 
 .menu-link:last-child{
-
-    border-bottom:
-        1px solid
-        var(--line);
-
+    border-bottom:1px solid var(--line);
 }
-
 
 .menu-link:hover{
-
     padding-left:18px;
-
     color:var(--gold-light);
-
 }
-
 
 .menu-number{
-
     color:var(--red);
-
-    font-family:
-        'Montserrat',
-        Arial,
-        sans-serif;
-
+    font-family:'Montserrat',Arial,sans-serif;
     font-size:8px;
-
     letter-spacing:3px;
-
 }
-
 
 /* =========================================================
    PÁGINAS
-   ========================================================= */
+========================================================= */
 
 .internal{
-
     position:fixed;
-
     inset:0;
-
-    padding:
-        110px
-        6%
-        60px;
-
+    padding:110px 6% 60px;
     overflow-y:auto;
-
     background:
-        radial-gradient(
-            circle at 80% 35%,
-            rgba(146,34,56,.15),
-            transparent 35%
-        ),
+        radial-gradient(circle at 80% 35%,rgba(146,34,56,.15),transparent 35%),
         var(--black);
-
     z-index:300;
-
     opacity:0;
-
     visibility:hidden;
-
     pointer-events:none;
-
     transform:translateX(25px);
-
-    transition:
-        opacity .45s,
-        transform .45s,
-        visibility .45s;
-
+    transition:opacity .45s,transform .45s,visibility .45s;
 }
-
 
 .internal.active{
-
     opacity:1;
-
     visibility:visible;
-
     pointer-events:auto;
-
     transform:translateX(0);
-
 }
-
 
 .internal-inner{
-
-    width:min(
-        1050px,
-        100%
-    );
-
+    width:min(1050px,100%);
     margin:auto;
-
 }
-
 
 .back-button{
-
-    padding:
-        10px
-        16px;
-
-    border:
-        1px solid
-        var(--line);
-
+    padding:10px 16px;
+    border:1px solid var(--line);
     background:transparent;
-
     color:var(--cream);
-
     cursor:pointer;
-
-    font-family:
-        'Montserrat',
-        Arial,
-        sans-serif;
-
+    font-family:'Montserrat',Arial,sans-serif;
     font-size:8px;
-
     letter-spacing:3px;
-
     margin-bottom:35px;
-
 }
-
 
 .back-button:hover{
-
     border-color:var(--gold);
-
     color:var(--gold);
-
 }
-
 
 .internal-eyebrow{
-
     color:var(--red);
-
-    font-family:
-        'Montserrat',
-        Arial,
-        sans-serif;
-
+    font-family:'Montserrat',Arial,sans-serif;
     font-size:9px;
-
     letter-spacing:5px;
-
     margin-bottom:15px;
-
 }
-
 
 .internal-title{
-
-    font-size:
-        clamp(
-            48px,
-            7vw,
-            82px
-        );
-
+    font-size:clamp(48px,7vw,82px);
     line-height:.87;
-
     margin-bottom:24px;
-
 }
-
 
 .internal-title span{
-
     color:var(--gold);
-
 }
-
 
 .internal-intro{
-
     max-width:780px;
-
     color:#c3b9b0;
-
     font-size:19px;
-
     line-height:1.55;
-
 }
-
 
 /* =========================================================
    HISTÓRIA
-   ========================================================= */
+========================================================= */
 
 .story{
-
     margin-top:45px;
-
     max-width:850px;
-
 }
-
 
 .story h3{
-
     color:var(--gold-light);
-
     font-size:29px;
-
     margin-bottom:13px;
-
 }
-
 
 .story p{
-
     color:#b4aaa2;
-
     font-size:18px;
-
     line-height:1.62;
-
     margin-bottom:20px;
-
 }
-
 
 /* =========================================================
    INFORMAÇÕES
-   ========================================================= */
+========================================================= */
 
 .info-grid{
-
     margin-top:42px;
-
     display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
+    grid-template-columns:repeat(2,1fr);
     gap:12px;
-
 }
-
 
 .info-box{
-
     padding:24px;
-
-    border:
-        1px solid
-        var(--line);
-
-    background:
-        rgba(255,255,255,.012);
-
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.012);
 }
-
 
 .info-box h4{
-
     color:var(--gold-light);
-
     font-size:21px;
-
     margin-bottom:10px;
-
 }
-
 
 .info-box p{
-
     color:var(--gray);
-
     font-size:16px;
-
     line-height:1.55;
-
 }
-
 
 /* =========================================================
    LISTAS
-   ========================================================= */
+========================================================= */
 
 .content-list{
-
     margin-top:40px;
-
 }
-
 
 .content-list h3{
-
     color:var(--gold-light);
-
     font-size:29px;
-
     margin-bottom:18px;
-
 }
-
 
 .list-grid{
-
     display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
+    grid-template-columns:repeat(3,1fr);
     gap:8px;
-
 }
-
 
 .list-item{
-
-    padding:
-        13px
-        15px;
-
-    border:
-        1px solid
-        var(--line);
-
-    background:
-        rgba(255,255,255,.012);
-
+    padding:13px 15px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.012);
     color:#c5bbb2;
-
     font-size:15px;
-
 }
-
 
 /* =========================================================
    FRATERNIDADES
-   ========================================================= */
+========================================================= */
 
 .fraternity-grid{
-
     margin-top:42px;
-
     display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
+    grid-template-columns:repeat(3,1fr);
     gap:15px;
-
 }
-
 
 .fraternity-card{
-
     min-height:390px;
-
     padding:24px;
-
-    border:
-        1px solid
-        var(--line);
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(155,38,56,.12),
-            rgba(0,0,0,.2)
-        );
-
+    border:1px solid var(--line);
+    background:linear-gradient(145deg,rgba(155,38,56,.12),rgba(0,0,0,.2));
     cursor:pointer;
-
     display:flex;
-
     flex-direction:column;
-
     align-items:center;
-
     text-align:center;
-
     transition:.35s;
-
 }
-
 
 .fraternity-card:hover{
-
     transform:translateY(-6px);
-
     border-color:var(--gold);
-
 }
-
 
 .fraternity-number{
-
     align-self:flex-start;
-
     color:var(--red);
-
-    font-family:
-        'Montserrat',
-        Arial,
-        sans-serif;
-
+    font-family:'Montserrat',Arial,sans-serif;
     font-size:8px;
-
     letter-spacing:4px;
-
 }
-
 
 .fraternity-image{
-
     width:135px;
     height:135px;
-
     object-fit:cover;
-
-    margin:
-        25px
-        0
-        20px;
-
-    border:
-        1px solid
-        rgba(216,189,130,.35);
-
-    box-shadow:
-        0 15px 35px
-        rgba(0,0,0,.45);
-
+    margin:25px 0 20px;
+    border:1px solid rgba(216,189,130,.35);
+    box-shadow:0 15px 35px rgba(0,0,0,.45);
 }
-
 
 .fraternity-card h3{
-
     font-size:28px;
-
     line-height:1;
-
 }
-
 
 .fraternity-card p{
-
     margin-top:10px;
-
     color:var(--gold-light);
-
-    font-family:
-        'Montserrat',
-        Arial,
-        sans-serif;
-
+    font-family:'Montserrat',Arial,sans-serif;
     font-size:8px;
-
     letter-spacing:3px;
-
 }
-
 
 /* =========================================================
    DETALHES DAS FRATERNIDADES
-   ========================================================= */
+========================================================= */
 
 .fraternity-detail{
-
     display:none;
-
     margin-top:35px;
-
 }
-
 
 .fraternity-detail.active{
-
     display:block;
-
 }
-
 
 .detail-header{
-
     display:grid;
-
-    grid-template-columns:
-        170px
-        1fr;
-
+    grid-template-columns:170px 1fr;
     gap:30px;
-
     align-items:center;
-
     margin-bottom:40px;
-
 }
-
 
 .detail-image{
-
     width:170px;
     height:170px;
-
     object-fit:cover;
-
-    border:
-        1px solid
-        rgba(216,189,130,.35);
-
+    border:1px solid rgba(216,189,130,.35);
 }
-
 
 .detail-title{
-
-    font-size:
-        clamp(
-            40px,
-            6vw,
-            70px
-        );
-
+    font-size:clamp(40px,6vw,70px);
     line-height:.9;
-
 }
-
 
 .detail-title span{
-
     color:var(--gold);
-
 }
-
 
 .motto{
-
     margin-top:13px;
-
     color:var(--gold-light);
-
-    font-family:
-        'Montserrat',
-        Arial,
-        sans-serif;
-
+    font-family:'Montserrat',Arial,sans-serif;
     font-size:9px;
-
     letter-spacing:4px;
-
 }
-
 
 .detail-grid{
-
     display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
+    grid-template-columns:repeat(2,1fr);
     gap:12px;
-
 }
-
 
 .detail-box{
-
     padding:24px;
-
-    border:
-        1px solid
-        var(--line);
-
-    background:
-        rgba(255,255,255,.012);
-
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.012);
 }
-
 
 .detail-box h4{
-
     color:var(--gold-light);
-
     font-size:20px;
-
     margin-bottom:9px;
-
 }
-
 
 .detail-box p{
-
     color:var(--gray);
-
     font-size:16px;
-
     line-height:1.55;
-
 }
-
 
 /* =========================================================
    REGRAS
-   ========================================================= */
+========================================================= */
 
 .rules{
-
     margin-top:40px;
-
     display:grid;
-
     gap:10px;
-
 }
-
 
 .rule{
-
-    padding:
-        21px
-        23px;
-
-    border-left:
-        2px solid
-        var(--red);
-
-    background:
-        rgba(255,255,255,.018);
-
+    padding:21px 23px;
+    border-left:2px solid var(--red);
+    background:rgba(255,255,255,.018);
 }
-
 
 .rule strong{
-
     display:block;
-
     color:var(--gold-light);
-
     font-size:19px;
-
     margin-bottom:6px;
-
 }
-
 
 .rule p{
-
     color:var(--gray);
-
     font-size:16px;
-
     line-height:1.5;
-
 }
-
 
 /* =========================================================
    NPCS
-   ========================================================= */
+========================================================= */
 
-.empty{
-
-    margin-top:40px;
-
-    padding:
-        55px
-        25px;
-
-    border:
-        1px solid
-        var(--line);
-
-    text-align:center;
-
+.npc-grid{
+    margin-top:42px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
 }
 
+.npc-card{
+    position:relative;
+    overflow:hidden;
+    border:1px solid var(--line);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(155,38,56,.10),
+            rgba(255,255,255,.012)
+        );
+    cursor:pointer;
+    transition:.35s;
+}
 
-.empty-symbol{
+.npc-card:hover{
+    border-color:rgba(216,189,130,.55);
+    transform:translateY(-5px);
+}
 
+.npc-photo{
+    width:100%;
+    height:340px;
+    object-fit:cover;
+    display:block;
+    filter:saturate(.88);
+    transition:.5s;
+}
+
+.npc-card:hover .npc-photo{
+    transform:scale(1.025);
+    filter:saturate(1);
+}
+
+.npc-info{
+    padding:21px 22px 23px;
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(6,5,6,.72),
+            rgba(6,5,6,.98)
+        );
+}
+
+.npc-category{
+    color:var(--red);
+    font-family:'Montserrat',Arial,sans-serif;
+    font-size:8px;
+    letter-spacing:3px;
+    margin-bottom:8px;
+}
+
+.npc-info h3{
+    font-size:29px;
+    line-height:1;
+    font-weight:600;
+}
+
+.npc-role{
+    margin-top:9px;
+    color:var(--gold-light);
+    font-family:'Montserrat',Arial,sans-serif;
+    font-size:8px;
+    line-height:1.5;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.npc-card .npc-arrow{
+    position:absolute;
+    right:18px;
+    bottom:20px;
     color:var(--gold);
-
-    font-size:42px;
-
-    margin-bottom:15px;
-
+    font-family:'Montserrat',Arial,sans-serif;
+    font-size:14px;
+    opacity:.7;
+    transition:.3s;
 }
 
-
-.empty h3{
-
-    font-size:27px;
-
-    margin-bottom:10px;
-
+.npc-card:hover .npc-arrow{
+    opacity:1;
+    transform:translateX(4px);
 }
 
+/* =========================================================
+   DETALHE DOS NPCS
+========================================================= */
 
-.empty p{
-
-    color:var(--gray);
-
-    font-size:16px;
-
+.npc-detail{
+    display:none;
+    margin-top:35px;
 }
 
+.npc-detail.active{
+    display:block;
+}
+
+.npc-detail-header{
+    display:grid;
+    grid-template-columns:260px 1fr;
+    gap:32px;
+    align-items:end;
+    padding-bottom:32px;
+    border-bottom:1px solid var(--line);
+}
+
+.npc-detail-photo{
+    width:260px;
+    height:330px;
+    object-fit:cover;
+    border:1px solid rgba(216,189,130,.35);
+    box-shadow:0 20px 45px rgba(0,0,0,.45);
+}
+
+.npc-detail-name{
+    font-size:clamp(42px,6vw,72px);
+    line-height:.88;
+    margin-bottom:13px;
+}
+
+.npc-detail-name span{
+    color:var(--gold);
+}
+
+.npc-detail-role{
+    color:var(--gold-light);
+    font-family:'Montserrat',Arial,sans-serif;
+    font-size:9px;
+    letter-spacing:3px;
+    line-height:1.6;
+}
+
+.npc-detail-description{
+    max-width:780px;
+    margin-top:35px;
+}
+
+.npc-detail-description p{
+    color:#b4aaa2;
+    font-size:18px;
+    line-height:1.65;
+    margin-bottom:20px;
+}
+
+.npc-facts{
+    margin-top:38px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.npc-fact{
+    padding:21px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.012);
+}
+
+.npc-fact small{
+    display:block;
+    color:var(--red);
+    font-family:'Montserrat',Arial,sans-serif;
+    font-size:8px;
+    letter-spacing:3px;
+    margin-bottom:7px;
+}
+
+.npc-fact strong{
+    color:var(--cream);
+    font-size:18px;
+    font-weight:500;
+    line-height:1.4;
+}
+
+.npc-back{
+    margin-bottom:30px;
+}
 
 /* =========================================================
    EVENTOS / LOCAIS
-   ========================================================= */
+========================================================= */
 
 .event-grid{
-
     margin-top:40px;
-
     display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
+    grid-template-columns:repeat(3,1fr);
     gap:12px;
-
 }
-
 
 .event-card{
-
     min-height:180px;
-
     padding:24px;
-
-    border:
-        1px solid
-        var(--line);
-
-    background:
-        rgba(255,255,255,.012);
-
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.012);
     transition:.3s;
-
 }
-
 
 .event-card:hover{
-
     border-color:var(--gold);
-
     transform:translateY(-4px);
-
 }
-
 
 .event-card small{
-
     color:var(--red);
-
-    font-family:
-        'Montserrat',
-        Arial,
-        sans-serif;
-
+    font-family:'Montserrat',Arial,sans-serif;
     font-size:8px;
-
     letter-spacing:3px;
-
 }
-
 
 .event-card h3{
-
     margin-top:25px;
-
     font-size:25px;
-
 }
-
 
 .event-card p{
-
     margin-top:8px;
-
     color:var(--gray);
-
     font-size:15px;
-
     line-height:1.45;
-
 }
-
 
 /* =========================================================
    WHATSAPP
-   ========================================================= */
+========================================================= */
 
 .whatsapp-area{
-
     margin-top:40px;
-
     display:flex;
-
     flex-wrap:wrap;
-
     gap:12px;
-
 }
-
 
 .whatsapp{
-
     min-height:52px;
-
-    padding:
-        0
-        25px;
-
-    border:
-        1px solid
-        var(--gold);
-
+    padding:0 25px;
+    border:1px solid var(--gold);
     display:flex;
-
     align-items:center;
     justify-content:center;
-
-    font-family:
-        'Montserrat',
-        Arial,
-        sans-serif;
-
+    font-family:'Montserrat',Arial,sans-serif;
     font-size:9px;
-
     letter-spacing:3px;
-
     transition:.3s;
-
 }
-
 
 .whatsapp:hover{
-
     background:var(--gold);
-
     color:var(--black);
-
 }
-
 
 .whatsapp.red{
-
     border-color:var(--red);
-
 }
-
 
 .whatsapp.red:hover{
-
     background:var(--red);
-
     color:var(--cream);
-
 }
-
 
 /* =========================================================
    FOOTER
-   ========================================================= */
+========================================================= */
 
 footer{
-
     position:relative;
-
     z-index:20;
-
-    padding:
-        40px
-        6%;
-
-    border-top:
-        1px solid
-        var(--line);
-
+    padding:40px 6%;
+    border-top:1px solid var(--line);
     text-align:center;
-
     color:var(--gray-dark);
-
-    font-family:
-        'Montserrat',
-        Arial,
-        sans-serif;
-
+    font-family:'Montserrat',Arial,sans-serif;
     font-size:8px;
-
     letter-spacing:3px;
-
 }
-
 
 /* =========================================================
    TABLET
-   ========================================================= */
+========================================================= */
 
 @media(max-width:850px){
 
     .fraternity-grid{
-
-        grid-template-columns:
-            1fr 1fr;
-
+        grid-template-columns:1fr 1fr;
     }
 
     .event-grid{
+        grid-template-columns:1fr 1fr;
+    }
 
-        grid-template-columns:
-            1fr 1fr;
+    .npc-grid{
+        grid-template-columns:1fr 1fr;
+    }
 
+    .npc-photo{
+        height:300px;
     }
 
 }
 
-
 /* =========================================================
    CELULAR
-   ========================================================= */
+========================================================= */
 
 @media(max-width:600px){
 
     header{
-
         height:70px;
-
-        padding:
-            0
-            18px;
-
+        padding:0 18px;
     }
-
 
     .logo{
-
         font-size:11px;
-
         letter-spacing:3px;
-
     }
-
 
     .menu-button{
-
         width:44px;
         height:44px;
-
     }
-
 
     .home{
-
         min-height:100svh;
-
-        padding:
-            70px
-            20px
-            40px;
-
+        padding:70px 20px 40px;
     }
-
 
     .eyebrow{
-
         font-size:8px;
-
         letter-spacing:3px;
-
         margin-bottom:15px;
-
     }
-
 
     .hero-title{
-
         font-size:43px;
-
         line-height:.84;
-
         letter-spacing:-1.5px;
-
     }
-
 
     .hero-line{
-
         width:75%;
-
-        margin:
-            23px
-            0
-            20px;
-
+        margin:23px 0 20px;
     }
-
 
     .hero-description{
-
         font-size:16px;
-
         max-width:330px;
-
     }
-
 
     .hero-quote{
-
         font-size:12px;
-
         letter-spacing:1.2px;
-
     }
-
 
     .hero-button{
-
         width:100%;
-
         height:49px;
-
         margin-top:25px;
-
         font-size:8px;
-
         letter-spacing:2.5px;
-
     }
-
 
     .status-row{
-
         margin-top:27px;
-
-        grid-template-columns:
-            1fr
-            1fr;
-
+        grid-template-columns:1fr 1fr;
     }
-
 
     .status{
-
         min-height:62px;
-
         padding:12px;
-
     }
-
 
     .status:nth-child(2){
-
         border-right:0;
-
     }
-
 
     .status strong{
-
         font-size:13px;
-
     }
-
 
     .status small{
-
         font-size:7px;
-
         letter-spacing:2px;
-
     }
-
-
-    /* CARTAS NO CELULAR */
 
     .playing-card{
-
         width:55px;
         height:78px;
-
         padding:5px;
-
         border-radius:4px;
-
     }
-
 
     .playing-card .corner{
-
         font-size:10px;
-
     }
-
 
     .playing-card .symbol{
-
         font-size:22px;
-
     }
-
 
     .card-one{
-
         right:-10px;
-
         top:20%;
-
     }
-
 
     .card-two{
-
         left:-10px;
-
         bottom:7%;
-
     }
-
 
     .card-three{
-
         right:-8px;
-
         bottom:3%;
-
     }
-
 
     .card-four{
-
         display:none;
-
     }
-
 
     .menu-overlay{
-
         padding-top:70px;
-
     }
-
 
     .menu-inner{
-
-        width:
-            calc(100% - 40px);
-
-        min-height:
-            calc(100svh - 70px);
-
-        padding:
-            30px
-            0;
-
+        width:calc(100% - 40px);
+        min-height:calc(100svh - 70px);
+        padding:30px 0;
     }
-
 
     .menu-title{
-
         font-size:44px;
-
         margin-bottom:20px;
-
     }
-
 
     .menu-link{
-
-        padding:
-            11px
-            2px;
-
+        padding:11px 2px;
         font-size:17px;
-
     }
-
 
     .internal{
-
-        padding:
-            90px
-            20px
-            40px;
-
+        padding:90px 20px 40px;
     }
-
 
     .internal-title{
-
         font-size:43px;
-
     }
-
 
     .internal-intro{
-
         font-size:16px;
-
     }
-
 
     .story{
-
         margin-top:30px;
-
     }
-
 
     .story h3{
-
         font-size:25px;
-
     }
-
 
     .story p{
-
         font-size:16px;
-
     }
-
 
     .info-grid{
-
-        grid-template-columns:
-            1fr;
-
+        grid-template-columns:1fr;
     }
-
 
     .list-grid{
-
-        grid-template-columns:
-            1fr;
-
+        grid-template-columns:1fr;
     }
-
 
     .fraternity-grid{
-
-        grid-template-columns:
-            1fr;
-
+        grid-template-columns:1fr;
     }
-
 
     .fraternity-card{
-
         min-height:290px;
-
     }
-
 
     .fraternity-image{
-
         width:100px;
         height:100px;
-
-        margin:
-            20px
-            0
-            14px;
-
+        margin:20px 0 14px;
     }
-
 
     .fraternity-card h3{
-
         font-size:25px;
-
     }
-
 
     .detail-header{
-
-        grid-template-columns:
-            90px
-            1fr;
-
+        grid-template-columns:90px 1fr;
         gap:16px;
-
     }
-
 
     .detail-image{
-
         width:90px;
         height:90px;
-
     }
-
 
     .detail-title{
-
         font-size:29px;
-
     }
-
 
     .detail-grid{
-
-        grid-template-columns:
-            1fr;
-
+        grid-template-columns:1fr;
     }
-
 
     .detail-box{
-
         padding:18px;
-
     }
-
 
     .detail-box h4{
-
         font-size:18px;
-
     }
-
 
     .detail-box p{
-
         font-size:14px;
-
     }
 
+    /* NPCS NO CELULAR */
+
+    .npc-grid{
+        grid-template-columns:1fr;
+        gap:14px;
+    }
+
+    .npc-photo{
+        height:380px;
+    }
+
+    .npc-info{
+        padding:18px 18px 21px;
+    }
+
+    .npc-info h3{
+        font-size:26px;
+        padding-right:25px;
+    }
+
+    .npc-detail-header{
+        grid-template-columns:105px 1fr;
+        gap:17px;
+        align-items:end;
+    }
+
+    .npc-detail-photo{
+        width:105px;
+        height:145px;
+    }
+
+    .npc-detail-name{
+        font-size:30px;
+        line-height:.9;
+    }
+
+    .npc-detail-role{
+        font-size:7px;
+        letter-spacing:2px;
+    }
+
+    .npc-detail-description{
+        margin-top:28px;
+    }
+
+    .npc-detail-description p{
+        font-size:16px;
+        line-height:1.58;
+    }
+
+    .npc-facts{
+        grid-template-columns:1fr;
+        gap:9px;
+        margin-top:28px;
+    }
+
+    .npc-fact{
+        padding:17px;
+    }
+
+    .npc-fact strong{
+        font-size:16px;
+    }
 
     .event-grid{
-
-        grid-template-columns:
-            1fr;
-
+        grid-template-columns:1fr;
     }
-
 
     .event-card{
-
         min-height:150px;
-
     }
-
 
     .whatsapp-area{
-
         flex-direction:column;
-
     }
-
 
     .whatsapp{
-
         width:100%;
-
     }
-
 
     .circle-one{
-
         width:450px;
         height:450px;
-
         right:-300px;
-
     }
 
-
     .circle-two{
-
         width:300px;
         height:300px;
-
         right:-190px;
-
     }
 
 }
 
-
 /* =========================================================
    CELULARES PEQUENOS
-   ========================================================= */
+========================================================= */
 
 @media(max-width:380px){
 
     .hero-title{
-
         font-size:38px;
-
     }
-
 
     .hero-description{
-
         font-size:15px;
-
     }
 
-
     .status strong{
-
         font-size:12px;
+    }
 
+    .npc-photo{
+        height:330px;
     }
 
 }
@@ -2607,81 +1473,35 @@ footer{
 
 </head>
 
-
 <body>
-
 
 <!-- =====================================================
      CARTAS
 ====================================================== -->
 
 <div class="playing-card card-one">
-
-    <div class="corner">
-        A<br>♥
-    </div>
-
-    <div class="symbol">
-        ♥
-    </div>
-
-    <div class="corner bottom">
-        A<br>♥
-    </div>
-
+    <div class="corner">A<br>♥</div>
+    <div class="symbol">♥</div>
+    <div class="corner bottom">A<br>♥</div>
 </div>
-
 
 <div class="playing-card card-two">
-
-    <div class="corner">
-        J<br>♠
-    </div>
-
-    <div class="symbol">
-        ♠
-    </div>
-
-    <div class="corner bottom">
-        J<br>♠
-    </div>
-
+    <div class="corner">J<br>♠</div>
+    <div class="symbol">♠</div>
+    <div class="corner bottom">J<br>♠</div>
 </div>
-
 
 <div class="playing-card card-three">
-
-    <div class="corner">
-        Q<br>♦
-    </div>
-
-    <div class="symbol">
-        ♦
-    </div>
-
-    <div class="corner bottom">
-        Q<br>♦
-    </div>
-
+    <div class="corner">Q<br>♦</div>
+    <div class="symbol">♦</div>
+    <div class="corner bottom">Q<br>♦</div>
 </div>
-
 
 <div class="playing-card card-four">
-
-    <div class="corner">
-        K<br>♣
-    </div>
-
-    <div class="symbol">
-        ♣
-    </div>
-
-    <div class="corner bottom">
-        K<br>♣
-    </div>
-
+    <div class="corner">K<br>♣</div>
+    <div class="symbol">♣</div>
+    <div class="corner bottom">K<br>♣</div>
 </div>
-
 
 <!-- =====================================================
      CÍRCULOS
@@ -2690,49 +1510,31 @@ footer{
 <div class="circle circle-one"></div>
 <div class="circle circle-two"></div>
 
-
 <!-- =====================================================
      HEADER
 ====================================================== -->
 
 <header>
 
-    <a
-        href="#"
-        class="logo"
-        id="homeLogo"
-    >
+    <a href="#" class="logo" id="homeLogo">
         RED MASQUERADE
     </a>
 
-
-    <button
-        class="menu-button"
-        id="menuButton"
-        aria-label="Abrir menu"
-    >
-
+    <button class="menu-button" id="menuButton" aria-label="Abrir menu">
         <span class="menu-icon">
-
             <span></span>
             <span></span>
             <span></span>
-
         </span>
-
     </button>
 
 </header>
-
 
 <!-- =====================================================
      HOME
 ====================================================== -->
 
-<main
-    class="home"
-    id="home"
->
+<main class="home" id="home">
 
     <div class="hero">
 
@@ -2740,100 +1542,47 @@ footer{
             MOSCOW · RUSSIA · 2026
         </div>
 
-
         <h1 class="hero-title">
-
-            <span class="first">
-                RED
-            </span>
-
-            <span class="second">
-                MASQUERADE
-            </span>
-
+            <span class="first">RED</span>
+            <span class="second">MASQUERADE</span>
         </h1>
-
 
         <div class="hero-line"></div>
 
-
         <p class="hero-description">
-
             Na Universidade Lomonosov, tradição,
             influência, segredos e escolhas se encontram
             em um novo ciclo.
-
         </p>
-
 
         <p class="hero-quote">
-
             “The jester always laughs last.”
-
         </p>
 
-
-        <button
-            class="hero-button"
-            id="exploreButton"
-        >
-
+        <button class="hero-button" id="exploreButton">
             EXPLORAR O UNIVERSO
-
         </button>
-
 
         <div class="status-row">
 
             <div class="status">
-
-                <small>
-                    STATUS
-                </small>
-
-                <strong>
-                    RPG em andamento
-                </strong>
-
+                <small>STATUS</small>
+                <strong>RPG em andamento</strong>
             </div>
 
-
             <div class="status">
-
-                <small>
-                    GÊNERO
-                </small>
-
-                <strong>
-                    RPG textual
-                </strong>
-
+                <small>GÊNERO</small>
+                <strong>RPG textual</strong>
             </div>
 
-
             <div class="status">
-
-                <small>
-                    TEMÁTICA
-                </small>
-
-                <strong>
-                    Mistério
-                </strong>
-
+                <small>TEMÁTICA</small>
+                <strong>Mistério</strong>
             </div>
 
-
             <div class="status">
-
-                <small>
-                    NÚCLEO
-                </small>
-
-                <strong>
-                    Lomonosov
-                </strong>
-
+                <small>NÚCLEO</small>
+                <strong>Lomonosov</strong>
             </div>
 
         </div>
@@ -2842,15 +1591,11 @@ footer{
 
 </main>
 
-
 <!-- =====================================================
      MENU
 ====================================================== -->
 
-<section
-    class="menu-overlay"
-    id="menuOverlay"
->
+<section class="menu-overlay" id="menuOverlay">
 
     <div class="menu-inner">
 
@@ -2862,102 +1607,52 @@ footer{
             Explore o <span>universo</span>
         </h2>
 
-
-        <a
-            href="#"
-            class="menu-link"
-            data-page="universidade"
-        >
+        <a href="#" class="menu-link" data-page="universidade">
             <span>Universidade</span>
             <span class="menu-number">01</span>
         </a>
 
-
-        <a
-            href="#"
-            class="menu-link"
-            data-page="fraternidades"
-        >
+        <a href="#" class="menu-link" data-page="fraternidades">
             <span>Fraternidades</span>
             <span class="menu-number">02</span>
         </a>
 
-
-        <a
-            href="#"
-            class="menu-link"
-            data-page="echo"
-        >
+        <a href="#" class="menu-link" data-page="echo">
             <span>The University Echo</span>
             <span class="menu-number">03</span>
         </a>
 
-
-        <a
-            href="#"
-            class="menu-link"
-            data-page="masquerade"
-        >
+        <a href="#" class="menu-link" data-page="masquerade">
             <span>RED MASQUERADE</span>
             <span class="menu-number">04</span>
         </a>
 
-
-        <a
-            href="#"
-            class="menu-link"
-            data-page="npcs"
-        >
+        <a href="#" class="menu-link" data-page="npcs">
             <span>NPCs</span>
             <span class="menu-number">05</span>
         </a>
 
-
-        <a
-            href="#"
-            class="menu-link"
-            data-page="locais"
-        >
+        <a href="#" class="menu-link" data-page="locais">
             <span>Locais</span>
             <span class="menu-number">06</span>
         </a>
 
-
-        <a
-            href="#"
-            class="menu-link"
-            data-page="eventos"
-        >
+        <a href="#" class="menu-link" data-page="eventos">
             <span>Eventos</span>
             <span class="menu-number">07</span>
         </a>
 
-
-        <a
-            href="#"
-            class="menu-link"
-            data-page="timeline"
-        >
+        <a href="#" class="menu-link" data-page="timeline">
             <span>Linha do Tempo</span>
             <span class="menu-number">08</span>
         </a>
 
-
-        <a
-            href="#"
-            class="menu-link"
-            data-page="regras"
-        >
+        <a href="#" class="menu-link" data-page="regras">
             <span>Regras</span>
             <span class="menu-number">09</span>
         </a>
 
-
-        <a
-            href="#"
-            class="menu-link"
-            data-page="participar"
-        >
+        <a href="#" class="menu-link" data-page="participar">
             <span>Participar</span>
             <span class="menu-number">10</span>
         </a>
@@ -2966,15 +1661,11 @@ footer{
 
 </section>
 
-
 <!-- =====================================================
      UNIVERSIDADE
 ====================================================== -->
 
-<section
-    class="internal"
-    id="universidade"
->
+<section class="internal" id="universidade">
 
     <div class="internal-inner">
 
@@ -2982,150 +1673,97 @@ footer{
             ← VOLTAR
         </button>
 
-
         <div class="internal-eyebrow">
             UNIVERSIDADE LOMONOSOV · 1755
         </div>
-
 
         <h2 class="internal-title">
             A <span>Lomonosov</span>
         </h2>
 
-
         <p class="internal-intro">
-
             A Universidade Lomonosov ocupa o centro do
             universo de Red Masquerade. Fundada em 1755,
             sua história atravessa gerações e permanece
             ligada à tradição, ao prestígio e à influência
             exercida por seus estudantes e pelas instituições
             que a cercam.
-
         </p>
-
 
         <div class="story">
 
-            <h3>
-                História
-            </h3>
-
+            <h3>História</h3>
 
             <p>
-
                 Fundada em 1755, a universidade carrega
                 séculos de tradição acadêmica. Sua existência
                 atravessou diferentes períodos históricos e
                 consolidou a instituição como um dos grandes
                 centros de formação e influência de Moscou.
-
             </p>
 
-
             <p>
-
                 A vida dentro da Lomonosov não se limita às
                 salas de aula. A universidade possui uma
                 dimensão acadêmica e social própria, onde
                 estudantes convivem, constroem relações,
                 participam de atividades e encontram diferentes
                 grupos que disputam espaço e influência.
-
             </p>
 
-
             <p>
-
                 Por trás da imagem de prestígio existe também
                 uma relação próxima com famílias, empresas e
                 organizações privadas. Essa rede faz com que
                 determinados nomes e acontecimentos ultrapassem
                 os limites do campus.
-
             </p>
 
         </div>
 
-
         <div class="info-grid">
 
             <div class="info-box">
-
-                <h4>
-                    Estrutura pública
-                </h4>
-
+                <h4>Estrutura pública</h4>
                 <p>
-
                     A Lomonosov possui estrutura pública,
                     mantendo uma tradição acadêmica construída
                     ao longo de séculos.
-
                 </p>
-
             </div>
 
-
             <div class="info-box">
-
-                <h4>
-                    Prestígio
-                </h4>
-
+                <h4>Prestígio</h4>
                 <p>
-
                     A universidade é marcada por tradição,
                     reputação e influência dentro da sociedade
                     de Moscou.
-
                 </p>
-
             </div>
 
-
             <div class="info-box">
-
-                <h4>
-                    Vida acadêmica
-                </h4>
-
+                <h4>Vida acadêmica</h4>
                 <p>
-
                     Cursos, atividades extracurriculares,
                     esportes, arte e organizações estudantis
                     fazem parte da rotina.
-
                 </p>
-
             </div>
 
-
             <div class="info-box">
-
-                <h4>
-                    Vida social
-                </h4>
-
+                <h4>Vida social</h4>
                 <p>
-
                     Além da formação acadêmica, o campus é
                     cenário para relações, rivalidades,
                     festas, eventos e acontecimentos.
-
                 </p>
-
             </div>
 
         </div>
 
-
         <div class="content-list">
 
-            <h3>
-                Cursos
-            </h3>
-
+            <h3>Cursos</h3>
 
             <div class="list-grid">
 
@@ -3156,13 +1794,9 @@ footer{
 
         </div>
 
-
         <div class="content-list">
 
-            <h3>
-                Atividades extracurriculares
-            </h3>
-
+            <h3>Atividades extracurriculares</h3>
 
             <div class="list-grid">
 
@@ -3184,20 +1818,15 @@ footer{
 
         </div>
 
-
         <div class="story">
 
-            <h3>
-                Moradia
-            </h3>
+            <h3>Moradia</h3>
 
             <p>
-
                 Os estudantes podem encontrar diferentes
                 formas de moradia durante sua permanência
                 na universidade: alojamentos, casas das
                 fraternidades ou residências fora do campus.
-
             </p>
 
         </div>
@@ -3206,15 +1835,11 @@ footer{
 
 </section>
 
-
 <!-- =====================================================
      FRATERNIDADES
 ====================================================== -->
 
-<section
-    class="internal"
-    id="fraternidades"
->
+<section class="internal" id="fraternidades">
 
     <div class="internal-inner">
 
@@ -3222,40 +1847,26 @@ footer{
             ← VOLTAR
         </button>
 
-
         <div class="internal-eyebrow">
             TRÊS CASAS · TRÊS IDENTIDADES
         </div>
-
 
         <h2 class="internal-title">
             As <span>Fraternidades</span>
         </h2>
 
-
         <p class="internal-intro">
-
             As três fraternidades ocupam posições diferentes
             dentro do universo da Lomonosov. Cada uma possui
             sua própria história, identidade, hierarquia,
             princípios e tradições.
-
         </p>
 
+        <div class="fraternity-grid" id="fraternityGrid">
 
-        <div
-            class="fraternity-grid"
-            id="fraternityGrid"
-        >
+            <article class="fraternity-card" data-fraternity="goldenDetail">
 
-            <article
-                class="fraternity-card"
-                data-fraternity="goldenDetail"
-            >
-
-                <div class="fraternity-number">
-                    01
-                </div>
+                <div class="fraternity-number">01</div>
 
                 <img
                     src="img/Golden_Knights_escudo_v2.jpg"
@@ -3263,25 +1874,14 @@ footer{
                     alt="Escudo dos Golden Knights"
                 >
 
-                <h3>
-                    The Golden Knights
-                </h3>
-
-                <p>
-                    STRENGTH &amp; HONOR
-                </p>
+                <h3>The Golden Knights</h3>
+                <p>STRENGTH &amp; HONOR</p>
 
             </article>
 
+            <article class="fraternity-card" data-fraternity="foxDetail">
 
-            <article
-                class="fraternity-card"
-                data-fraternity="foxDetail"
-            >
-
-                <div class="fraternity-number">
-                    02
-                </div>
+                <div class="fraternity-number">02</div>
 
                 <img
                     src="img/Winter_Foxes_escudo_v2.jpg"
@@ -3289,25 +1889,14 @@ footer{
                     alt="Escudo das Winter Foxes"
                 >
 
-                <h3>
-                    The Winter Foxes
-                </h3>
-
-                <p>
-                    ENDURANCE &amp; CUNNING
-                </p>
+                <h3>The Winter Foxes</h3>
+                <p>ENDURANCE &amp; CUNNING</p>
 
             </article>
 
+            <article class="fraternity-card" data-fraternity="crowDetail">
 
-            <article
-                class="fraternity-card"
-                data-fraternity="crowDetail"
-            >
-
-                <div class="fraternity-number">
-                    03
-                </div>
+                <div class="fraternity-number">03</div>
 
                 <img
                     src="img/Iron_Crows_escudo_v2.jpg"
@@ -3315,32 +1904,20 @@ footer{
                     alt="Escudo dos Iron Crows"
                 >
 
-                <h3>
-                    The Iron Crows
-                </h3>
-
-                <p>
-                    STRENGTH &amp; RELENTLESS
-                </p>
+                <h3>The Iron Crows</h3>
+                <p>STRENGTH &amp; RELENTLESS</p>
 
             </article>
 
         </div>
 
-
         <!-- GOLDEN KNIGHTS -->
 
-        <div
-            class="fraternity-detail"
-            id="goldenDetail"
-        >
+        <div class="fraternity-detail" id="goldenDetail">
 
-            <button
-                class="back-button fraternity-back"
-            >
+            <button class="back-button fraternity-back">
                 ← FRATERNIDADES
             </button>
-
 
             <div class="detail-header">
 
@@ -3349,7 +1926,6 @@ footer{
                     class="detail-image"
                     alt="Golden Knights"
                 >
-
 
                 <div>
 
@@ -3369,43 +1945,33 @@ footer{
 
             </div>
 
-
             <div class="story">
 
-                <h3>
-                    História
-                </h3>
+                <h3>História</h3>
 
                 <p>
-
                     Fundada em 1907, a Golden Knights é a
                     mais antiga entre as três fraternidades
                     estabelecidas no universo atual da
                     Lomonosov.
-
                 </p>
 
                 <p>
-
                     Sua identidade é construída sobre a ideia
                     de força e honra. A fraternidade mantém
                     uma estrutura rígida e hierárquica,
                     valorizando vínculos internos, lealdade
                     e discrição.
-
                 </p>
 
                 <p>
-
                     Sua sede está localizada em um clube
                     privado de elite em Moscou, reforçando
                     a distância entre a fraternidade e a
                     vida universitária comum.
-
                 </p>
 
             </div>
-
 
             <div class="detail-grid">
 
@@ -3475,20 +2041,13 @@ footer{
 
         </div>
 
-
         <!-- WINTER FOXES -->
 
-        <div
-            class="fraternity-detail"
-            id="foxDetail"
-        >
+        <div class="fraternity-detail" id="foxDetail">
 
-            <button
-                class="back-button fraternity-back"
-            >
+            <button class="back-button fraternity-back">
                 ← FRATERNIDADES
             </button>
-
 
             <div class="detail-header">
 
@@ -3497,7 +2056,6 @@ footer{
                     class="detail-image"
                     alt="Winter Foxes"
                 >
-
 
                 <div>
 
@@ -3517,42 +2075,32 @@ footer{
 
             </div>
 
-
             <div class="story">
 
-                <h3>
-                    História
-                </h3>
+                <h3>História</h3>
 
                 <p>
-
                     Fundada em 1957, a Winter Foxes possui
                     uma identidade diretamente ligada à
                     Universidade Lomonosov e à sua ala
                     histórica.
-
                 </p>
 
                 <p>
-
                     A fraternidade feminina se construiu
                     ao redor de valores como resistência,
                     astúcia, discrição e proteção das
                     informações internas.
-
                 </p>
 
                 <p>
-
                     Para as Winter Foxes, informação possui
                     valor. A coleta, a troca e o uso estratégico
                     de segredos fazem parte de sua cultura
                     e de suas tradições.
-
                 </p>
 
             </div>
-
 
             <div class="detail-grid">
 
@@ -3623,20 +2171,13 @@ footer{
 
         </div>
 
-
         <!-- IRON CROWS -->
 
-        <div
-            class="fraternity-detail"
-            id="crowDetail"
-        >
+        <div class="fraternity-detail" id="crowDetail">
 
-            <button
-                class="back-button fraternity-back"
-            >
+            <button class="back-button fraternity-back">
                 ← FRATERNIDADES
             </button>
-
 
             <div class="detail-header">
 
@@ -3645,7 +2186,6 @@ footer{
                     class="detail-image"
                     alt="Iron Crows"
                 >
-
 
                 <div>
 
@@ -3665,41 +2205,31 @@ footer{
 
             </div>
 
-
             <div class="story">
 
-                <h3>
-                    História
-                </h3>
+                <h3>História</h3>
 
                 <p>
-
                     Fundada em 1982, a Iron Crows representa
                     uma estrutura diferente das duas
                     fraternidades mais antigas.
-
                 </p>
 
                 <p>
-
                     O grupo é misto e possui poucas regras,
                     dando grande importância à liberdade
                     individual e à responsabilidade pelas
                     próprias escolhas.
-
                 </p>
 
                 <p>
-
                     Sua sede, um clube noturno privado em
                     Moscou, combina com a reputação construída
                     ao redor de festas, riscos, jogos e
                     acontecimentos exclusivos.
-
                 </p>
 
             </div>
-
 
             <div class="detail-grid">
 
@@ -3773,122 +2303,76 @@ footer{
 
 </section>
 
-
 <!-- =====================================================
      THE UNIVERSITY ECHO
 ====================================================== -->
 
-<section
-    class="internal"
-    id="echo"
->
+<section class="internal" id="echo">
 
     <div class="internal-inner">
 
         <button class="back-button">
             ← VOLTAR
         </button>
-
 
         <div class="internal-eyebrow">
             IMPRENSA · LOMONOSOV
         </div>
 
-
         <h2 class="internal-title">
             The University <span>Echo</span>
         </h2>
 
-
         <p class="internal-intro">
-
             O jornal da universidade ocupa um espaço
             importante dentro da vida acadêmica e social
             da Lomonosov. Notícias, matérias, entrevistas
             e informações circulam através de sua redação.
-
         </p>
-
 
         <div class="story">
 
-            <h3>
-                A redação
-            </h3>
+            <h3>A redação</h3>
 
             <p>
-
                 A estrutura do jornal é formada por cargos
                 definidos e vagas limitadas. A administração
                 do jornal é conduzida pela editora-chefe
                 Taryn Frost Durant.
-
             </p>
 
             <p>
-
                 Além das matérias oficiais, o jornal também
                 possui o Burn Book, espaço associado a
                 informações e fofocas enviadas pelos
                 participantes.
-
             </p>
 
         </div>
 
-
         <div class="info-grid">
 
             <div class="info-box">
-
-                <h4>
-                    Editora-chefe
-                </h4>
-
-                <p>
-                    Taryn Frost Durant.
-                </p>
-
+                <h4>Editora-chefe</h4>
+                <p>Taryn Frost Durant.</p>
             </div>
 
-
             <div class="info-box">
-
-                <h4>
-                    Estrutura
-                </h4>
-
-                <p>
-                    Redação com cargos definidos e vagas limitadas.
-                </p>
-
+                <h4>Estrutura</h4>
+                <p>Redação com cargos definidos e vagas limitadas.</p>
             </div>
 
-
             <div class="info-box">
-
-                <h4>
-                    Burn Book
-                </h4>
-
-                <p>
-                    Espaço para informações e fofocas.
-                </p>
-
+                <h4>Burn Book</h4>
+                <p>Espaço para informações e fofocas.</p>
             </div>
 
-
             <div class="info-box">
-
-                <h4>
-                    Participação
-                </h4>
-
+                <h4>Participação</h4>
                 <p>
                     Informações poderão ser enviadas
                     através do formulário definido pela administração.
                 </p>
-
             </div>
 
         </div>
@@ -3896,160 +2380,110 @@ footer{
     </div>
 
 </section>
-
 
 <!-- =====================================================
      RED MASQUERADE
 ====================================================== -->
 
-<section
-    class="internal"
-    id="masquerade"
->
+<section class="internal" id="masquerade">
 
     <div class="internal-inner">
 
         <button class="back-button">
             ← VOLTAR
         </button>
-
 
         <div class="internal-eyebrow">
             THE MYSTERY
         </div>
 
-
         <h2 class="internal-title">
             RED <span>MASQUERADE</span>
         </h2>
 
-
         <p class="internal-intro">
-
             Existe uma parte da história da Lomonosov
             que não pertence oficialmente à universidade,
             às fraternidades ou ao jornal.
 
             É nesse espaço que surge a RED MASQUERADE.
-
         </p>
-
 
         <div class="story">
 
-            <h3>
-                O que é a RED MASQUERADE
-            </h3>
+            <h3>O que é a RED MASQUERADE</h3>
 
             <p>
-
                 A RED MASQUERADE está diretamente ligada
                 ao mistério que envolve o universo do RPG.
                 Sua presença se manifesta através de
                 publicações, informações e segredos que
                 chegam aos participantes.
-
             </p>
 
         </div>
 
-
         <div class="story">
 
-            <h3>
-                O Jester
-            </h3>
+            <h3>O Jester</h3>
 
             <p>
-
                 O Jester é a figura associada à RED MASQUERADE.
                 Sua identidade permanece desconhecida.
-
             </p>
 
             <p>
-
                 A identidade e os segredos do Jester não serão
                 revelados no site.
-
             </p>
 
         </div>
 
-
         <div class="story">
 
-            <h3>
-                Ekaterina Volkov
-            </h3>
+            <h3>Ekaterina Volkov</h3>
 
             <p>
-
                 O nome de Ekaterina Volkov está ligado
                 ao surgimento da página dentro dos
                 acontecimentos de 2026.
-
             </p>
 
         </div>
-
 
         <div class="info-grid">
 
             <div class="info-box">
-
-                <h4>
-                    Publicações
-                </h4>
-
+                <h4>Publicações</h4>
                 <p>
                     A RED MASQUERADE poderá publicar
                     informações relacionadas aos acontecimentos.
                 </p>
-
             </div>
 
-
             <div class="info-box">
-
-                <h4>
-                    Segredos
-                </h4>
-
+                <h4>Segredos</h4>
                 <p>
                     Informações e segredos fazem parte
                     do funcionamento da narrativa.
                 </p>
-
             </div>
 
-
             <div class="info-box">
-
-                <h4>
-                    Envio
-                </h4>
-
+                <h4>Envio</h4>
                 <p>
                     Informações poderão ser enviadas
                     conforme os mecanismos definidos
                     pela administração.
                 </p>
-
             </div>
 
-
             <div class="info-box">
-
-                <h4>
-                    Administração
-                </h4>
-
+                <h4>Administração</h4>
                 <p>
                     A seleção das informações publicadas
                     fica sob responsabilidade da administração.
                 </p>
-
             </div>
 
         </div>
@@ -4057,16 +2491,12 @@ footer{
     </div>
 
 </section>
-
 
 <!-- =====================================================
      NPCS
 ====================================================== -->
 
-<section
-    class="internal"
-    id="npcs"
->
+<section class="internal" id="npcs">
 
     <div class="internal-inner">
 
@@ -4074,43 +2504,981 @@ footer{
             ← VOLTAR
         </button>
 
+        <div id="npcList">
 
-        <div class="internal-eyebrow">
-            PERSONAGENS OFICIAIS
-        </div>
-
-
-        <h2 class="internal-title">
-            Pessoas do <span>Universo</span>
-        </h2>
-
-
-        <p class="internal-intro">
-
-            Os NPCs são personagens oficiais do universo
-            de Red Masquerade. Eles fazem parte da história
-            e não correspondem aos personagens criados
-            pelos jogadores.
-
-        </p>
-
-
-        <div class="empty">
-
-            <div class="empty-symbol">
-                ♠
+            <div class="internal-eyebrow">
+                PERSONAGENS OFICIAIS
             </div>
 
-            <h3>
-                EM BREVE
-            </h3>
+            <h2 class="internal-title">
+                Pessoas do <span>Universo</span>
+            </h2>
 
-            <p>
-
-                A lista de NPCs será adicionada pela
-                administração.
-
+            <p class="internal-intro">
+                A Universidade Lomonosov é feita de pessoas.
+                Médicos, professores, funcionários e figuras
+                ligadas às fraternidades compõem o ecossistema
+                da instituição. Cada um carrega sua própria
+                história, seu papel e suas motivações.
             </p>
+
+            <!-- MÉDICOS -->
+
+            <div class="story">
+                <h3>Doctors &amp; Medical Staff</h3>
+            </div>
+
+            <div class="npc-grid">
+
+                <!-- ATHENA -->
+
+                <article class="npc-card" data-npc="athenaDetail">
+
+                    <img
+                        src="img/Athena_Lare_Trevarrow.jpg"
+                        class="npc-photo"
+                        alt="Athena Lare Trevarrow"
+                    >
+
+                    <div class="npc-info">
+
+                        <div class="npc-category">
+                            DOCTORS &amp; MEDICAL STAFF
+                        </div>
+
+                        <h3>
+                            Athena Lare Trevarrow
+                        </h3>
+
+                        <div class="npc-role">
+                            30 anos · Médica Pediatra /
+                            Cirurgiã Cardiovascular
+                        </div>
+
+                    </div>
+
+                    <div class="npc-arrow">→</div>
+
+                </article>
+
+                <!-- OPHELIA -->
+
+                <article class="npc-card" data-npc="opheliaDetail">
+
+                    <img
+                        src="img/Ophelia_Fletchers.jpg"
+                        class="npc-photo"
+                        alt="Ophelia Fletchers"
+                    >
+
+                    <div class="npc-info">
+
+                        <div class="npc-category">
+                            DOCTORS &amp; MEDICAL STAFF
+                        </div>
+
+                        <h3>
+                            Ophelia Fletchers
+                        </h3>
+
+                        <div class="npc-role">
+                            28 anos · Médica Neurologista /
+                            Ex-militar Alemã
+                        </div>
+
+                    </div>
+
+                    <div class="npc-arrow">→</div>
+
+                </article>
+
+            </div>
+
+            <!-- LEGAL -->
+
+            <div class="story">
+                <h3>Legal Figures &amp; Faculty</h3>
+            </div>
+
+            <div class="npc-grid">
+
+                <!-- ISABEL -->
+
+                <article class="npc-card" data-npc="isabelDetail">
+
+                    <img
+                        src="img/Isabel_Elizabeth_Frost_Durant.jpg"
+                        class="npc-photo"
+                        alt="Isabel Elizabeth Frost Durant"
+                    >
+
+                    <div class="npc-info">
+
+                        <div class="npc-category">
+                            LEGAL FIGURES &amp; FACULTY
+                        </div>
+
+                        <h3>
+                            Isabel Elizabeth Frost Durant
+                        </h3>
+
+                        <div class="npc-role">
+                            37 anos · Advogada / Juíza /
+                            Professora de Direito
+                        </div>
+
+                    </div>
+
+                    <div class="npc-arrow">→</div>
+
+                </article>
+
+                <!-- ELOY -->
+
+                <article class="npc-card" data-npc="eloyDetail">
+
+                    <img
+                        src="img/Eloy_Caelan_Donavan_Durant.jpg"
+                        class="npc-photo"
+                        alt="Eloy Caelan Donavan Durant"
+                    >
+
+                    <div class="npc-info">
+
+                        <div class="npc-category">
+                            LEGAL FIGURES &amp; FACULTY
+                        </div>
+
+                        <h3>
+                            Eloy Caelan Donavan Durant
+                        </h3>
+
+                        <div class="npc-role">
+                            47 anos · Professor de Direito /
+                            Advogado Criminal
+                        </div>
+
+                    </div>
+
+                    <div class="npc-arrow">→</div>
+
+                </article>
+
+            </div>
+
+            <!-- FRATERNITY -->
+
+            <div class="story">
+                <h3>Fraternity-Related Figures</h3>
+            </div>
+
+            <div class="npc-grid">
+
+                <!-- KATYA -->
+
+                <article class="npc-card" data-npc="katyaDetail">
+
+                    <img
+                        src="img/Katya_Sokolova.jpg"
+                        class="npc-photo"
+                        alt="Katya Sokolova"
+                    >
+
+                    <div class="npc-info">
+
+                        <div class="npc-category">
+                            FRATERNITY-RELATED FIGURE
+                        </div>
+
+                        <h3>
+                            Katya Sokolova
+                        </h3>
+
+                        <div class="npc-role">
+                            24 anos · Assistente Administrativa
+                            da Reitoria
+                        </div>
+
+                    </div>
+
+                    <div class="npc-arrow">→</div>
+
+                </article>
+
+            </div>
+
+            <!-- LEADERSHIP -->
+
+            <div class="story">
+                <h3>University Leadership</h3>
+            </div>
+
+            <div class="npc-grid">
+
+                <!-- VLADIMIR -->
+
+                <article class="npc-card" data-npc="vladimirDetail">
+
+                    <img
+                        src="img/Vladimir_Nikolaevich_Sokolov.jpg"
+                        class="npc-photo"
+                        alt="Vladimir Nikolaevich Sokolov"
+                    >
+
+                    <div class="npc-info">
+
+                        <div class="npc-category">
+                            UNIVERSITY LEADERSHIP
+                        </div>
+
+                        <h3>
+                            Vladimir Nikolaevich Sokolov
+                        </h3>
+
+                        <div class="npc-role">
+                            56 anos · Reitor da
+                            Universidade Lomonosov
+                        </div>
+
+                    </div>
+
+                    <div class="npc-arrow">→</div>
+
+                </article>
+
+                <!-- ALEXEI -->
+
+                <article class="npc-card" data-npc="alexeiDetail">
+
+                    <img
+                        src="img/Alexei_Vasilievich_Morozov.jpg"
+                        class="npc-photo"
+                        alt="Alexei Vasilievich Morozov"
+                    >
+
+                    <div class="npc-info">
+
+                        <div class="npc-category">
+                            COMMUNICATION &amp; PUBLIC IMAGE
+                        </div>
+
+                        <h3>
+                            Alexei Vasilievich Morozov
+                        </h3>
+
+                        <div class="npc-role">
+                            34 anos · Diretor de Comunicação
+                            e Relações Públicas
+                        </div>
+
+                    </div>
+
+                    <div class="npc-arrow">→</div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+        <!-- =================================================
+             DETALHES DOS NPCS
+        ================================================== -->
+
+        <!-- ATHENA -->
+
+        <div class="npc-detail" id="athenaDetail">
+
+            <button class="back-button npc-back">
+                ← NPCs
+            </button>
+
+            <div class="npc-detail-header">
+
+                <img
+                    src="img/Athena_Lare_Trevarrow.jpg"
+                    class="npc-detail-photo"
+                    alt="Athena Lare Trevarrow"
+                >
+
+                <div>
+
+                    <div class="internal-eyebrow">
+                        DOCTORS &amp; MEDICAL STAFF
+                    </div>
+
+                    <h2 class="npc-detail-name">
+                        Athena <span>Trevarrow</span>
+                    </h2>
+
+                    <div class="npc-detail-role">
+                        30 ANOS · MÉDICA PEDIATRA /
+                        CIRURGIÃ CARDIOVASCULAR
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="npc-detail-description">
+
+                <p>
+                    Athena Lare Trevarrow é uma médica
+                    dedicada e precisa, conhecida por sua
+                    capacidade de tomar decisões rápidas
+                    em situações de vida ou morte. Especialista
+                    em emergências neonatais e cirurgias
+                    cardíacas, construiu uma carreira sólida
+                    no hospital universitário.
+                </p>
+
+                <p>
+                    Nascida na França, Athena pertence a uma
+                    linhagem da antiga monarquia e cresceu
+                    cercada pelo peso de seu sobrenome. Sua
+                    posição familiar foi parte do que a levou
+                    à Lomonosov, onde também construiu sua
+                    própria reputação através da liderança
+                    e da medicina.
+                </p>
+
+                <p>
+                    Durante seus anos como estudante, Athena
+                    liderou as Winter Foxes. Após se formar,
+                    deixou a posição de liderança e passou a
+                    atuar como conselheira da fraternidade,
+                    função que mantém até hoje e que é de
+                    conhecimento público.
+                </p>
+
+                <p>
+                    Sua ligação com a fraternidade permanece
+                    forte, mas Athena não vive presa ao passado.
+                    Atualmente, sua principal dedicação é a
+                    medicina e o hospital universitário.
+                </p>
+
+                <p>
+                    Athena também foi responsável pelo parto
+                    dos filhos de Eloy e Isabel, incluindo o
+                    nascimento do casal de gêmeos. Sua relação
+                    com a família Durant é, portanto, anterior
+                    e próxima à vida atual dos estudantes.
+                </p>
+
+                <p>
+                    Athena não possui nenhum segredo relevante
+                    escondido de sua história. O que existe
+                    sobre seu passado e sua ligação com as
+                    Winter Foxes é conhecido.
+                </p>
+
+            </div>
+
+            <div class="npc-facts">
+
+                <div class="npc-fact">
+                    <small>NACIONALIDADE</small>
+                    <strong>Francesa.</strong>
+                </div>
+
+                <div class="npc-fact">
+                    <small>PROFISSÃO</small>
+                    <strong>Pediatra e cirurgiã cardiovascular.</strong>
+                </div>
+
+                <div class="npc-fact">
+                    <small>FRATERNIDADE</small>
+                    <strong>Ex-líder das Winter Foxes.</strong>
+                </div>
+
+                <div class="npc-fact">
+                    <small>POSIÇÃO ATUAL</small>
+                    <strong>Conselheira das Winter Foxes.</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- OPHELIA -->
+
+        <div class="npc-detail" id="opheliaDetail">
+
+            <button class="back-button npc-back">
+                ← NPCs
+            </button>
+
+            <div class="npc-detail-header">
+
+                <img
+                    src="img/Ophelia_Fletchers.jpg"
+                    class="npc-detail-photo"
+                    alt="Ophelia Fletchers"
+                >
+
+                <div>
+
+                    <div class="internal-eyebrow">
+                        DOCTORS &amp; MEDICAL STAFF
+                    </div>
+
+                    <h2 class="npc-detail-name">
+                        Ophelia <span>Fletchers</span>
+                    </h2>
+
+                    <div class="npc-detail-role">
+                        28 ANOS · MÉDICA NEUROLOGISTA /
+                        EX-MILITAR ALEMÃ
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="npc-detail-description">
+
+                <p>
+                    Ophelia é uma das médicas mais jovens
+                    e talentosas da Lomonosov. Sua trajetória
+                    é incomum: antes de construir sua carreira
+                    na medicina, serviu no exército alemão.
+                </p>
+
+                <p>
+                    Depois de deixar a carreira militar,
+                    especializou-se em neurologia e construiu
+                    uma reputação internacional, sendo chamada
+                    para coordenar pesquisas e projetos
+                    científicos dentro da universidade.
+                </p>
+
+                <p>
+                    Sua postura fria e calculista esconde
+                    uma mente brilhante e uma capacidade
+                    impressionante de análise. Ophelia observa
+                    antes de agir e raramente demonstra aquilo
+                    que está pensando.
+                </p>
+
+                <p>
+                    Ela não confia facilmente nas pessoas
+                    e mantém grande parte de seus colegas
+                    à distância. Ainda assim, sua dedicação
+                    à medicina e à pesquisa é inquestionável.
+                </p>
+
+            </div>
+
+            <div class="npc-facts">
+
+                <div class="npc-fact">
+                    <small>IDADE</small>
+                    <strong>28 anos.</strong>
+                </div>
+
+                <div class="npc-fact">
+                    <small>PROFISSÃO</small>
+                    <strong>Médica neurologista.</strong>
+                </div>
+
+                <div class="npc-fact">
+                    <small>PASSADO</small>
+                    <strong>Ex-militar alemã.</strong>
+                </div>
+
+                <div class="npc-fact">
+                    <small>ATUAÇÃO</small>
+                    <strong>Medicina, neurologia e pesquisa.</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ISABEL -->
+
+        <div class="npc-detail" id="isabelDetail">
+
+            <button class="back-button npc-back">
+                ← NPCs
+            </button>
+
+            <div class="npc-detail-header">
+
+                <img
+                    src="img/Isabel_Elizabeth_Frost_Durant.jpg"
+                    class="npc-detail-photo"
+                    alt="Isabel Elizabeth Frost Durant"
+                >
+
+                <div>
+
+                    <div class="internal-eyebrow">
+                        LEGAL FIGURES &amp; FACULTY
+                    </div>
+
+                    <h2 class="npc-detail-name">
+                        Isabel Elizabeth <span>Frost Durant</span>
+                    </h2>
+
+                    <div class="npc-detail-role">
+                        37 ANOS · ADVOGADA / JUÍZA /
+                        PROFESSORA DE DIREITO
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="npc-detail-description">
+
+                <p>
+                    Isabel Elizabeth Frost Durant construiu
+                    sua carreira defendendo pessoas em momentos
+                    de vulnerabilidade. Especialista em Direito
+                    de Família, atua em casos de guarda, divórcio,
+                    adoção e sucessões.
+                </p>
+
+                <p>
+                    Além de sua atuação jurídica, Isabel também
+                    é professora de Direito na Universidade
+                    Lomonosov, levando para a sala de aula a
+                    experiência acumulada ao longo de sua carreira.
+                </p>
+
+                <p>
+                    Sua sensibilidade e firmeza a tornaram uma
+                    figura de confiança dentro e fora da
+                    universidade. Muitos alunos procuram Isabel
+                    para orientação em questões pessoais e
+                    familiares.
+                </p>
+
+                <p>
+                    Isabel é conhecida por ouvir com atenção
+                    e transformar histórias complexas em
+                    argumentos sólidos. Apesar da serenidade,
+                    é uma mulher determinada que não recua
+                    diante de injustiças.
+                </p>
+
+                <p>
+                    Isabel é casada com Eloy Caelan Donavan
+                    Durant e, juntos, são pais de Taryn Frost
+                    Durant, figura importante dentro da
+                    universidade e das Winter Foxes.
+                </p>
+
+            </div>
+
+            <div class="npc-facts">
+
+                <div class="npc-fact">
+                    <small>IDADE</small>
+                    <strong>37 anos.</strong>
+                </div>
+
+                <div class="npc-fact">
+                    <small>PROFISSÃO</small>
+                    <strong>Advogada, juíza e professora de Direito.</strong>
+                </div>
+
+                <div class="npc-fact">
+                    <small>ESPECIALIDADE</small>
+                    <strong>Direito de Família.</strong>
+                </div>
+
+                <div class="npc-fact">
+                    <small>FAMÍLIA</small>
+                    <strong>Esposa de Eloy e mãe de Taryn.</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ELOY -->
+
+        <div class="npc-detail" id="eloyDetail">
+
+            <button class="back-button npc-back">
+                ← NPCs
+            </button>
+
+            <div class="npc-detail-header">
+
+                <img
+                    src="img/Eloy_Caelan_Donavan_Durant.jpg"
+                    class="npc-detail-photo"
+                    alt="Eloy Caelan Donavan Durant"
+                >
+
+                <div>
+
+                    <div class="internal-eyebrow">
+                        LEGAL FIGURES &amp; FACULTY
+                    </div>
+
+                    <h2 class="npc-detail-name">
+                        Eloy Caelan Donavan <span>Durant</span>
+                    </h2>
+
+                    <div class="npc-detail-role">
+                        47 ANOS · PROFESSOR DE DIREITO /
+                        ADVOGADO CRIMINAL
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="npc-detail-description">
+
+                <p>
+                    Eloy Caelan Donavan Durant é professor
+                    de Direito da Lomonosov e advogado criminal.
+                    Sua entrada no corpo docente aconteceu no
+                    início do ano letivo, quando foi convidado
+                    para lecionar Direito Empresarial e Criminal.
+                </p>
+
+                <p>
+                    Sua carreira como advogado, embora marcada
+                    por poucos casos, sempre foi guiada pela
+                    ética e pela sinceridade. Essas mesmas
+                    características aparecem em sua maneira
+                    de ensinar.
+                </p>
+
+                <p>
+                    Eloy não suporta a hipocrisia e não se
+                    curva facilmente à hierarquia da universidade.
+                    Essa postura faz dele uma figura controversa
+                    entre colegas e alunos, mas também alguém
+                    respeitado por aqueles que valorizam sua
+                    franqueza.
+                </p>
+
+                <p>
+                    Fora da universidade, Eloy é casado com
+                    Isabel Elizabeth Frost Durant. Os dois são
+                    pais de Taryn Frost Durant, que possui uma
+                    posição de destaque dentro da universidade.
+                </p>
+
+            </div>
+
+            <div class="npc-facts">
+
+                <div class="npc-fact">
+                    <small>IDADE</small>
+                    <strong>47 anos.</strong>
+                </div>
+
+                <div class="npc-fact">
+                    <small>PROFISSÃO</small>
+                    <strong>Professor de Direito e advogado criminal.</strong>
+                </div>
+
+                <div class="npc-fact">
+                    <small>DISCIPLINAS</small>
+                    <strong>Direito Empresarial e Direito Criminal.</strong>
+                </div>
+
+                <div class="npc-fact">
+                    <small>FAMÍLIA</small>
+                    <strong>Marido de Isabel e pai de Taryn.</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- KATYA -->
+
+        <div class="npc-detail" id="katyaDetail">
+
+            <button class="back-button npc-back">
+                ← NPCs
+            </button>
+
+            <div class="npc-detail-header">
+
+                <img
+                    src="img/Katya_Sokolova.jpg"
+                    class="npc-detail-photo"
+                    alt="Katya Sokolova"
+                >
+
+                <div>
+
+                    <div class="internal-eyebrow">
+                        FRATERNITY-RELATED FIGURE
+                    </div>
+
+                    <h2 class="npc-detail-name">
+                        Katya <span>Sokolova</span>
+                    </h2>
+
+                    <div class="npc-detail-role">
+                        24 ANOS · ASSISTENTE ADMINISTRATIVA
+                        DA REITORIA
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="npc-detail-description">
+
+                <p>
+                    Katya Sokolova é a assistente pessoal do
+                    reitor Vladimir Sokolov e uma das funcionárias
+                    mais eficientes da universidade.
+                </p>
+
+                <p>
+                    É responsável por organizar reuniões,
+                    eventos oficiais, documentos e a
+                    correspondência da administração. Sua
+                    capacidade de manter tudo em ordem fez
+                    dela uma presença indispensável na reitoria.
+                </p>
+
+                <p>
+                    Fora de suas funções administrativas,
+                    Katya é membra ativa das Winter Foxes,
+                    onde ocupa o cargo de tesoureira.
+                </p>
+
+                <p>
+                    Discreta, organizada e extremamente leal
+                    à fraternidade, Katya possui também um
+                    talento natural para encontrar informações.
+                    Essa habilidade faz com que seja valiosa
+                    tanto para a reitoria quanto para as
+                    Winter Foxes.
+                </p>
+
+            </div>
+
+            <div class="npc-facts">
+
+                <div class="npc-fact">
+                    <small>IDADE</small>
+                    <strong>24 anos.</strong>
+                </div>
+
+                <div class="npc-fact">
+                    <small>CARGO</small>
+                    <strong>Assistente administrativa da Reitoria.</strong>
+                </div>
+
+                <div class="npc-fact">
+                    <small>FRATERNIDADE</small>
+                    <strong>The Winter Foxes.</strong>
+                </div>
+
+                <div class="npc-fact">
+                    <small>FUNÇÃO</small>
+                    <strong>Tesoureira das Winter Foxes.</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- VLADIMIR -->
+
+        <div class="npc-detail" id="vladimirDetail">
+
+            <button class="back-button npc-back">
+                ← NPCs
+            </button>
+
+            <div class="npc-detail-header">
+
+                <img
+                    src="img/Vladimir_Nikolaevich_Sokolov.jpg"
+                    class="npc-detail-photo"
+                    alt="Vladimir Nikolaevich Sokolov"
+                >
+
+                <div>
+
+                    <div class="internal-eyebrow">
+                        UNIVERSITY LEADERSHIP
+                    </div>
+
+                    <h2 class="npc-detail-name">
+                        Vladimir Nikolaevich <span>Sokolov</span>
+                    </h2>
+
+                    <div class="npc-detail-role">
+                        56 ANOS · REITOR DA UNIVERSIDADE
+                        LOMONOSOV
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="npc-detail-description">
+
+                <p>
+                    Vladimir Nikolaevich Sokolov é reitor da
+                    Universidade Lomonosov há oito anos.
+                    Nascido em São Petersburgo em uma família
+                    de intelectuais, construiu uma carreira
+                    sólida antes de assumir a liderança da
+                    instituição.
+                </p>
+
+                <p>
+                    Sua formação e trajetória como historiador
+                    e diplomata cultural fizeram dele um homem
+                    acostumado a lidar com diferentes grupos
+                    e interesses.
+                </p>
+
+                <p>
+                    Vladimir é conhecido por sua postura
+                    diplomática e por sua habilidade em negociar
+                    com as famílias mais poderosas ligadas
+                    à universidade.
+                </p>
+
+                <p>
+                    Reservado, raramente aparece em eventos
+                    sem um propósito claro. Sua posição exige
+                    que esteja constantemente equilibrando
+                    os interesses acadêmicos, sociais e
+                    institucionais da Lomonosov.
+                </p>
+
+            </div>
+
+            <div class="npc-facts">
+
+                <div class="npc-fact">
+                    <small>IDADE</small>
+                    <strong>56 anos.</strong>
+                </div>
+
+                <div class="npc-fact">
+                    <small>CARGO</small>
+                    <strong>Reitor da Universidade Lomonosov.</strong>
+                </div>
+
+                <div class="npc-fact">
+                    <small>NASCIMENTO</small>
+                    <strong>São Petersburgo.</strong>
+                </div>
+
+                <div class="npc-fact">
+                    <small>FORMAÇÃO</small>
+                    <strong>História e diplomacia cultural.</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ALEXEI -->
+
+        <div class="npc-detail" id="alexeiDetail">
+
+            <button class="back-button npc-back">
+                ← NPCs
+            </button>
+
+            <div class="npc-detail-header">
+
+                <img
+                    src="img/Alexei_Vasilievich_Morozov.jpg"
+                    class="npc-detail-photo"
+                    alt="Alexei Vasilievich Morozov"
+                >
+
+                <div>
+
+                    <div class="internal-eyebrow">
+                        COMMUNICATION &amp; PUBLIC IMAGE
+                    </div>
+
+                    <h2 class="npc-detail-name">
+                        Alexei Vasilievich <span>Morozov</span>
+                    </h2>
+
+                    <div class="npc-detail-role">
+                        34 ANOS · DIRETOR DE COMUNICAÇÃO
+                        E RELAÇÕES PÚBLICAS
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="npc-detail-description">
+
+                <p>
+                    Alexei Morozov é o homem responsável por
+                    proteger a imagem pública da Universidade
+                    Lomonosov. Ocupa o cargo de Diretor de
+                    Comunicação e Relações Públicas há quatro
+                    anos.
+                </p>
+
+                <p>
+                    Com uma carreira consolidada em relações
+                    públicas e assessoria de imprensa, trouxe
+                    para a universidade uma abordagem moderna
+                    e estratégica para lidar com a imagem
+                    institucional.
+                </p>
+
+                <p>
+                    Alexei acompanha a maneira como acontecimentos,
+                    eventos e decisões da universidade chegam
+                    ao público. Seu trabalho exige discrição,
+                    planejamento e capacidade de controlar
+                    situações delicadas.
+                </p>
+
+                <p>
+                    Ele também é responsável por supervisionar
+                    o The University Echo, mantendo uma ligação
+                    direta com a comunicação oficial da
+                    instituição e com a redação do jornal.
+                </p>
+
+            </div>
+
+            <div class="npc-facts">
+
+                <div class="npc-fact">
+                    <small>IDADE</small>
+                    <strong>34 anos.</strong>
+                </div>
+
+                <div class="npc-fact">
+                    <small>CARGO</small>
+                    <strong>Diretor de Comunicação e Relações Públicas.</strong>
+                </div>
+
+                <div class="npc-fact">
+                    <small>ATUAÇÃO</small>
+                    <strong>Imagem pública e relações institucionais.</strong>
+                </div>
+
+                <div class="npc-fact">
+                    <small>RESPONSABILIDADE</small>
+                    <strong>Supervisão do The University Echo.</strong>
+                </div>
+
+            </div>
 
         </div>
 
@@ -4118,15 +3486,11 @@ footer{
 
 </section>
 
-
 <!-- =====================================================
      LOCAIS
 ====================================================== -->
 
-<section
-    class="internal"
-    id="locais"
->
+<section class="internal" id="locais">
 
     <div class="internal-inner">
 
@@ -4134,26 +3498,20 @@ footer{
             ← VOLTAR
         </button>
 
-
         <div class="internal-eyebrow">
             CAMPUS · MOSCOU
         </div>
-
 
         <h2 class="internal-title">
             <span>Locais</span>
         </h2>
 
-
         <p class="internal-intro">
-
             O universo do RPG se estende para além das
             salas da universidade. O campus e Moscou
             possuem espaços que poderão se tornar
             importantes para a narrativa.
-
         </p>
-
 
         <div class="event-grid">
 
@@ -4235,15 +3593,11 @@ footer{
 
 </section>
 
-
 <!-- =====================================================
      EVENTOS
 ====================================================== -->
 
-<section
-    class="internal"
-    id="eventos"
->
+<section class="internal" id="eventos">
 
     <div class="internal-inner">
 
@@ -4251,25 +3605,19 @@ footer{
             ← VOLTAR
         </button>
 
-
         <div class="internal-eyebrow">
             CALENDÁRIO · LOMONOSOV
         </div>
-
 
         <h2 class="internal-title">
             Grandes <span>Eventos</span>
         </h2>
 
-
         <p class="internal-intro">
-
             A vida acadêmica e social da Lomonosov é marcada
             por eventos que reúnem estudantes, fraternidades,
             membros da universidade e convidados.
-
         </p>
-
 
         <div class="event-grid">
 
@@ -4336,15 +3684,11 @@ footer{
 
 </section>
 
-
 <!-- =====================================================
      LINHA DO TEMPO
 ====================================================== -->
 
-<section
-    class="internal"
-    id="timeline"
->
+<section class="internal" id="timeline">
 
     <div class="internal-inner">
 
@@ -4352,103 +3696,52 @@ footer{
             ← VOLTAR
         </button>
 
-
         <div class="internal-eyebrow">
             HISTÓRIA
         </div>
-
 
         <h2 class="internal-title">
             Linha do <span>Tempo</span>
         </h2>
 
-
         <p class="internal-intro">
-
             Os acontecimentos que formam a base histórica
             do universo conhecido até o início do RPG.
-
         </p>
-
 
         <div class="rules">
 
             <div class="rule">
-
-                <strong>
-                    1755 · Fundação da Universidade
-                </strong>
-
-                <p>
-                    A Universidade Lomonosov é fundada.
-                </p>
-
+                <strong>1755 · Fundação da Universidade</strong>
+                <p>A Universidade Lomonosov é fundada.</p>
             </div>
 
-
             <div class="rule">
-
-                <strong>
-                    1907 · Golden Knights
-                </strong>
-
-                <p>
-                    Fundação da Golden Knights.
-                </p>
-
+                <strong>1907 · Golden Knights</strong>
+                <p>Fundação da Golden Knights.</p>
             </div>
 
-
             <div class="rule">
-
-                <strong>
-                    1957 · Winter Foxes
-                </strong>
-
-                <p>
-                    Fundação da Winter Foxes.
-                </p>
-
+                <strong>1957 · Winter Foxes</strong>
+                <p>Fundação da Winter Foxes.</p>
             </div>
 
-
             <div class="rule">
-
-                <strong>
-                    1982 · Iron Crows
-                </strong>
-
-                <p>
-                    Fundação da Iron Crows.
-                </p>
-
+                <strong>1982 · Iron Crows</strong>
+                <p>Fundação da Iron Crows.</p>
             </div>
 
-
             <div class="rule">
-
-                <strong>
-                    2026 · Retorno
-                </strong>
-
+                <strong>2026 · Retorno</strong>
                 <p>
                     Retorno dos estudantes e morte
                     de Ekaterina Volkov.
                 </p>
-
             </div>
 
-
             <div class="rule">
-
-                <strong>
-                    2026 · RED MASQUERADE
-                </strong>
-
-                <p>
-                    Surgimento da RED MASQUERADE.
-                </p>
-
+                <strong>2026 · RED MASQUERADE</strong>
+                <p>Surgimento da RED MASQUERADE.</p>
             </div>
 
         </div>
@@ -4457,15 +3750,11 @@ footer{
 
 </section>
 
-
 <!-- =====================================================
      REGRAS
 ====================================================== -->
 
-<section
-    class="internal"
-    id="regras"
->
+<section class="internal" id="regras">
 
     <div class="internal-inner">
 
@@ -4473,254 +3762,157 @@ footer{
             ← VOLTAR
         </button>
 
-
         <div class="internal-eyebrow">
             RED MASQUERADE · RPG
         </div>
-
 
         <h2 class="internal-title">
             Regras do <span>RPG</span>
         </h2>
 
-
         <p class="internal-intro">
-
             As regras existem para preservar a organização,
             a narrativa e a convivência entre todos os
             participantes. O objetivo é permitir liberdade
             dentro do universo sem transformar a liberdade
             em prejuízo para os demais jogadores.
-
         </p>
-
 
         <div class="rules">
 
-
             <div class="rule">
-
-                <strong>
-                    01 · RPG textual
-                </strong>
-
+                <strong>01 · RPG textual</strong>
                 <p>
                     O Red Masquerade é um RPG textual.
                     As ações, relações e acontecimentos
                     dos personagens são desenvolvidos
                     através da escrita.
                 </p>
-
             </div>
 
-
             <div class="rule">
-
-                <strong>
-                    02 · Mínimo de 20 linhas
-                </strong>
-
+                <strong>02 · Mínimo de 20 linhas</strong>
                 <p>
                     As interações devem respeitar o mínimo
                     de 20 linhas estabelecido pela administração.
                 </p>
-
             </div>
 
-
             <div class="rule">
-
-                <strong>
-                    03 · Até dois personagens
-                </strong>
-
+                <strong>03 · Até dois personagens</strong>
                 <p>
                     Cada jogador poderá possuir até dois
                     personagens, respeitando as condições
                     determinadas pela administração.
                 </p>
-
             </div>
 
-
             <div class="rule">
-
-                <strong>
-                    04 · Metagame proibido
-                </strong>
-
+                <strong>04 · Metagame proibido</strong>
                 <p>
                     Informações conhecidas pelo jogador,
                     mas não pelo personagem, não podem
                     ser utilizadas como conhecimento dentro
                     da narrativa.
                 </p>
-
             </div>
 
-
             <div class="rule">
-
-                <strong>
-                    05 · Consequências narrativas
-                </strong>
-
+                <strong>05 · Consequências narrativas</strong>
                 <p>
                     Escolhas possuem consequências.
                     Ações realizadas dentro do RPG podem
                     alterar relações, situações e caminhos
                     narrativos.
                 </p>
-
             </div>
 
-
             <div class="rule">
-
-                <strong>
-                    06 · Morte mediante acordo
-                </strong>
-
+                <strong>06 · Morte mediante acordo</strong>
                 <p>
                     A morte de um personagem deverá ocorrer
                     mediante acordo quando não estiver
                     diretamente ligada ao plot central.
                 </p>
-
             </div>
 
-
             <div class="rule">
-
-                <strong>
-                    07 · Ninguém está protegido
-                </strong>
-
+                <strong>07 · Ninguém está protegido</strong>
                 <p>
                     Nenhum personagem está protegido das
                     consequências da narrativa. Isso inclui
                     personagens ligados à administração.
                 </p>
-
             </div>
 
-
             <div class="rule">
-
-                <strong>
-                    08 · Troca de personagem
-                </strong>
-
+                <strong>08 · Troca de personagem</strong>
                 <p>
                     A troca de personagem somente poderá
                     ser realizada durante o período de
                     abertura das fichas.
                 </p>
-
             </div>
 
-
             <div class="rule">
-
-                <strong>
-                    09 · Reservas
-                </strong>
-
+                <strong>09 · Reservas</strong>
                 <p>
                     As reservas serão realizadas durante
                     a semana determinada pelos administradores.
                 </p>
-
             </div>
 
-
             <div class="rule">
-
-                <strong>
-                    10 · Conteúdo +18
-                </strong>
-
+                <strong>10 · Conteúdo +18</strong>
                 <p>
                     Conteúdo adulto deve ser sinalizado
                     e mantido em ambiente privado adequado.
                 </p>
-
             </div>
 
-
             <div class="rule">
-
-                <strong>
-                    11 · Plágio proibido
-                </strong>
-
+                <strong>11 · Plágio proibido</strong>
                 <p>
                     É proibido copiar personagens,
                     textos, conceitos ou criações
                     pertencentes a outros participantes.
                 </p>
-
             </div>
 
-
             <div class="rule">
-
-                <strong>
-                    12 · Saída do RPG
-                </strong>
-
+                <strong>12 · Saída do RPG</strong>
                 <p>
                     Jogadores que decidirem deixar o RPG
                     devem comunicar a administração.
                 </p>
-
             </div>
 
-
             <div class="rule">
-
-                <strong>
-                    13 · Ausência
-                </strong>
-
+                <strong>13 · Ausência</strong>
                 <p>
                     A ausência prolongada poderá resultar
                     na remoção do jogador, de acordo com
                     as regras da administração.
                 </p>
-
             </div>
 
-
             <div class="rule">
-
-                <strong>
-                    14 · Descumprimento
-                </strong>
-
+                <strong>14 · Descumprimento</strong>
                 <p>
                     O descumprimento das regras poderá
                     resultar na remoção do RPG.
                 </p>
-
             </div>
 
-
             <div class="rule">
-
-                <strong>
-                    15 · Ouvidoria
-                </strong>
-
+                <strong>15 · Ouvidoria</strong>
                 <p>
                     Problemas, conflitos ou situações que
                     precisem de intervenção devem ser
                     encaminhados à administração através
                     da ouvidoria.
                 </p>
-
             </div>
-
 
         </div>
 
@@ -4728,15 +3920,11 @@ footer{
 
 </section>
 
-
 <!-- =====================================================
      PARTICIPAR
 ====================================================== -->
 
-<section
-    class="internal"
-    id="participar"
->
+<section class="internal" id="participar">
 
     <div class="internal-inner">
 
@@ -4744,51 +3932,37 @@ footer{
             ← VOLTAR
         </button>
 
-
         <div class="internal-eyebrow">
             PARTICIPE DO RPG
         </div>
-
 
         <h2 class="internal-title">
             Entre na <span>História</span>
         </h2>
 
-
         <p class="internal-intro">
-
             As fichas e reservas não ficam permanentemente
             disponíveis dentro do site. A administração
             disponibiliza os procedimentos através dos
             canais oficiais durante os períodos determinados.
-
         </p>
-
 
         <div class="story">
 
-            <h3>
-                Fichas e reservas
-            </h3>
+            <h3>Fichas e reservas</h3>
 
             <p>
-
                 As fichas e reservas são disponibilizadas
                 pela administração no canal oficial do
                 WhatsApp durante os períodos determinados.
-
             </p>
 
-
             <p>
-
                 O formulário será enviado no grupo de avisos
                 do RPG quando estiver disponível.
-
             </p>
 
         </div>
-
 
         <div class="whatsapp-area">
 
@@ -4800,7 +3974,6 @@ footer{
             >
                 CANAL OFICIAL
             </a>
-
 
             <a
                 href="https://chat.whatsapp.com/HBHdg2gMY8J5EkcAGcfMXG?s=cl&p=a&ilr=1"
@@ -4817,17 +3990,13 @@ footer{
 
 </section>
 
-
 <!-- =====================================================
      FOOTER
 ====================================================== -->
 
 <footer>
-
     RED MASQUERADE · THE JESTER ALWAYS LAUGHS LAST
-
 </footer>
-
 
 <!-- =====================================================
      JAVASCRIPT
@@ -4835,200 +4004,134 @@ footer{
 
 <script>
 
-
-/* =========================================================
-   ELEMENTOS
-   ========================================================= */
-
 const menuButton =
-    document.getElementById(
-        "menuButton"
-    );
-
+    document.getElementById("menuButton");
 
 const menuOverlay =
-    document.getElementById(
-        "menuOverlay"
-    );
-
+    document.getElementById("menuOverlay");
 
 const home =
-    document.getElementById(
-        "home"
-    );
-
+    document.getElementById("home");
 
 const homeLogo =
-    document.getElementById(
-        "homeLogo"
-    );
-
+    document.getElementById("homeLogo");
 
 const exploreButton =
-    document.getElementById(
-        "exploreButton"
-    );
-
+    document.getElementById("exploreButton");
 
 const internalPages =
-    document.querySelectorAll(
-        ".internal"
-    );
-
+    document.querySelectorAll(".internal");
 
 const menuLinks =
-    document.querySelectorAll(
-        ".menu-link"
-    );
-
+    document.querySelectorAll(".menu-link");
 
 const backButtons =
-    document.querySelectorAll(
-        ".back-button"
-    );
+    document.querySelectorAll(".back-button");
 
+const npcList =
+    document.getElementById("npcList");
+
+const npcCards =
+    document.querySelectorAll(".npc-card");
+
+const npcDetails =
+    document.querySelectorAll(".npc-detail");
 
 /* =========================================================
    MENU
-   ========================================================= */
+========================================================= */
 
 function openMenu(){
 
-    menuOverlay.classList.add(
-        "open"
-    );
-
-    menuButton.classList.add(
-        "active"
-    );
+    menuOverlay.classList.add("open");
+    menuButton.classList.add("active");
 
 }
-
 
 function closeMenu(){
 
-    menuOverlay.classList.remove(
-        "open"
-    );
-
-    menuButton.classList.remove(
-        "active"
-    );
+    menuOverlay.classList.remove("open");
+    menuButton.classList.remove("active");
 
 }
-
 
 menuButton.addEventListener(
     "click",
     function(){
 
         if(
-            menuOverlay.classList.contains(
-                "open"
-            )
+            menuOverlay.classList.contains("open")
         ){
-
             closeMenu();
-
         }else{
-
             openMenu();
-
         }
 
     }
 );
 
-
 /* =========================================================
    ABRIR PÁGINA
-   ========================================================= */
+========================================================= */
 
-function openPage(
-    pageName
-){
+function openPage(pageName){
 
     closeMenu();
 
-    home.classList.add(
-        "hidden"
-    );
+    home.classList.add("hidden");
 
     internalPages.forEach(
         function(page){
-
-            page.classList.remove(
-                "active"
-            );
-
+            page.classList.remove("active");
         }
     );
 
-
     const page =
-        document.getElementById(
-            pageName
-        );
-
+        document.getElementById(pageName);
 
     if(!page){
-
         return;
-
     }
-
 
     setTimeout(
         function(){
-
-            page.classList.add(
-                "active"
-            );
-
+            page.classList.add("active");
         },
         120
     );
 
 }
 
-
 /* =========================================================
-   VOLTAR PARA HOME
-   ========================================================= */
+   HOME
+========================================================= */
 
 function goHome(){
 
     internalPages.forEach(
         function(page){
-
-            page.classList.remove(
-                "active"
-            );
-
+            page.classList.remove("active");
         }
     );
 
-
     closeMenu();
 
+    resetNPC();
+
+    resetFraternities();
 
     setTimeout(
         function(){
-
-            home.classList.remove(
-                "hidden"
-            );
-
+            home.classList.remove("hidden");
         },
         100
     );
 
 }
 
-
 /* =========================================================
-   LINKS DO MENU
-   ========================================================= */
+   LINKS MENU
+========================================================= */
 
 menuLinks.forEach(
     function(link){
@@ -5042,9 +4145,7 @@ menuLinks.forEach(
                 const pageName =
                     link.dataset.page;
 
-                openPage(
-                    pageName
-                );
+                openPage(pageName);
 
             }
         );
@@ -5052,26 +4153,20 @@ menuLinks.forEach(
     }
 );
 
-
 /* =========================================================
    BOTÃO EXPLORAR
-   ========================================================= */
+========================================================= */
 
 exploreButton.addEventListener(
     "click",
     function(){
-
-        openPage(
-            "universidade"
-        );
-
+        openPage("universidade");
     }
 );
 
-
 /* =========================================================
    LOGO
-   ========================================================= */
+========================================================= */
 
 homeLogo.addEventListener(
     "click",
@@ -5084,81 +4179,30 @@ homeLogo.addEventListener(
     }
 );
 
-
-/* =========================================================
-   BOTÕES VOLTAR
-   ========================================================= */
-
-backButtons.forEach(
-    function(button){
-
-        button.addEventListener(
-            "click",
-            function(){
-
-                if(
-                    button.classList.contains(
-                        "fraternity-back"
-                    )
-                ){
-
-                    document
-                        .querySelector(
-                            "#fraternidades .fraternity-grid"
-                        )
-                        .style.display =
-                            "grid";
-
-
-                    document
-                        .querySelectorAll(
-                            ".fraternity-detail"
-                        )
-                        .forEach(
-                            function(detail){
-
-                                detail.classList.remove(
-                                    "active"
-                                );
-
-                            }
-                        );
-
-                    return;
-
-                }
-
-
-                goHome();
-
-            }
-        );
-
-    }
-);
-
-
 /* =========================================================
    FRATERNIDADES
-   ========================================================= */
+========================================================= */
 
 const fraternityCards =
-    document.querySelectorAll(
-        ".fraternity-card"
-    );
-
+    document.querySelectorAll(".fraternity-card");
 
 const fraternityGrid =
-    document.getElementById(
-        "fraternityGrid"
-    );
-
+    document.getElementById("fraternityGrid");
 
 const fraternityDetails =
-    document.querySelectorAll(
-        ".fraternity-detail"
+    document.querySelectorAll(".fraternity-detail");
+
+function resetFraternities(){
+
+    fraternityGrid.style.display = "grid";
+
+    fraternityDetails.forEach(
+        function(detail){
+            detail.classList.remove("active");
+        }
     );
 
+}
 
 fraternityCards.forEach(
     function(card){
@@ -5170,34 +4214,20 @@ fraternityCards.forEach(
                 const target =
                     card.dataset.fraternity;
 
-
                 fraternityGrid.style.display =
                     "none";
 
-
                 fraternityDetails.forEach(
                     function(detail){
-
-                        detail.classList.remove(
-                            "active"
-                        );
-
+                        detail.classList.remove("active");
                     }
                 );
 
-
                 const detail =
-                    document.getElementById(
-                        target
-                    );
-
+                    document.getElementById(target);
 
                 if(detail){
-
-                    detail.classList.add(
-                        "active"
-                    );
-
+                    detail.classList.add("active");
                 }
 
             }
@@ -5206,16 +4236,97 @@ fraternityCards.forEach(
     }
 );
 
-
 /* =========================================================
-   CARTAS FLUTUANTES
-   ========================================================= */
+   NPCS
+========================================================= */
 
-const playingCards =
-    document.querySelectorAll(
-        ".playing-card"
+function resetNPC(){
+
+    npcList.style.display = "block";
+
+    npcDetails.forEach(
+        function(detail){
+            detail.classList.remove("active");
+        }
     );
 
+}
+
+npcCards.forEach(
+    function(card){
+
+        card.addEventListener(
+            "click",
+            function(){
+
+                const target =
+                    card.dataset.npc;
+
+                npcList.style.display =
+                    "none";
+
+                npcDetails.forEach(
+                    function(detail){
+                        detail.classList.remove("active");
+                    }
+                );
+
+                const detail =
+                    document.getElementById(target);
+
+                if(detail){
+                    detail.classList.add("active");
+                }
+
+            }
+        );
+
+    }
+);
+
+/* =========================================================
+   BOTÕES VOLTAR
+========================================================= */
+
+backButtons.forEach(
+    function(button){
+
+        button.addEventListener(
+            "click",
+            function(){
+
+                if(
+                    button.classList.contains("fraternity-back")
+                ){
+
+                    resetFraternities();
+                    return;
+
+                }
+
+                if(
+                    button.classList.contains("npc-back")
+                ){
+
+                    resetNPC();
+                    return;
+
+                }
+
+                goHome();
+
+            }
+        );
+
+    }
+);
+
+/* =========================================================
+   CARTAS
+========================================================= */
+
+const playingCards =
+    document.querySelectorAll(".playing-card");
 
 playingCards.forEach(
     function(card){
@@ -5225,28 +4336,16 @@ playingCards.forEach(
             function(){
 
                 if(
-                    card.classList.contains(
-                        "touched"
-                    )
+                    card.classList.contains("touched")
                 ){
-
                     return;
-
                 }
 
-
-                card.classList.add(
-                    "touched"
-                );
-
+                card.classList.add("touched");
 
                 setTimeout(
                     function(){
-
-                        card.classList.remove(
-                            "touched"
-                        );
-
+                        card.classList.remove("touched");
                     },
                     1100
                 );
@@ -5257,20 +4356,19 @@ playingCards.forEach(
     }
 );
 
-
 /* =========================================================
-   ESC FECHA O MENU
-   ========================================================= */
+   ESC
+========================================================= */
 
 document.addEventListener(
     "keydown",
     function(event){
 
-        if(
-            event.key === "Escape"
-        ){
+        if(event.key === "Escape"){
 
-            closeMenu();
+            if(menuOverlay.classList.contains("open")){
+                closeMenu();
+            }
 
         }
 
@@ -5279,7 +4377,5 @@ document.addEventListener(
 
 </script>
 
-
 </body>
-
 </html>
